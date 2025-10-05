@@ -1,0 +1,8 @@
+packages:
+  - 'app/*'
+  - 'packages/ui/*'
+  - 'packages/configs/*'
+  - 'packages/domains/*'
+  - 'packages/feature/*'
+  - 'packages/infras/*'
+  - 'template/*'
