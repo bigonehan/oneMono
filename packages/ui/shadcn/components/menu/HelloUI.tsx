@@ -1,4 +1,11 @@
+import { Badge } from "../ui/badge";
+
+
 export function HelloUI(){
 return(
-<div>Hi! I'm Hello Ui Component</div>
+<div className="bg-red-20"> hell..!!..
+			<Badge variant="default"> hm.. </Badge>
+
+  <Badge variant="secondary">Secondary</Badge>
+			Component....</div>
 )}

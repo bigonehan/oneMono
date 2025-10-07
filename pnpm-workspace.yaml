@@ -1,8 +1,12 @@
 packages:
-  - 'app/*'
-  - 'packages/ui/*'
-  - 'packages/configs/*'
-  - 'packages/domains/*'
-  - 'packages/feature/*'
-  - 'packages/infras/*'
-  - 'template/*'
+  - app/*
+  - packages/ui/*
+  - packages/configs/*
+  - packages/domains/*
+  - packages/feature/*
+  - packages/infras/*
+  - packages/utils/*
+  - template/*
+
+ignoredBuiltDependencies:
+  - '@tailwindcss/oxide'

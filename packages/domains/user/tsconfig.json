@@ -1,5 +1,0 @@
-{
-  "extends": "@repo/tsconfig/base.json",
-  "include": ["index.ts"],
-  "exclude": ["dist", "build", "node_modules"]
-}

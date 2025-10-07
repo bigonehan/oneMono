@@ -1,8 +1,23 @@
 {
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@ui/shadcn/**/*": ["./components/**/*"]
-    }
-  }
+	"extends": "@configs/typescript/react-library.json",
+	"include": [
+		"."
+	],
+	"exclude": [
+		"dist",
+		"build",
+		"node_modules"
+	],
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@ui/shadcn/menu/*": [
+				"./components/menu/*"
+			],
+			"@ui/shadcn/ui/*": [
+				"./components/ui/*"
+			]
+			//		 "components/*": ["@ui/shadcn/*"] 
+		}
+	}
 }
