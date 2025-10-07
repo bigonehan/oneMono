@@ -7,9 +7,9 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"build": "tailwindcss -i ./src/styles.css -o ./dist/styles.css",
+		"build": "tailwindcss -i ./styles/globals.css -o ./dist/styles.css",
 		"lint": "eslint src/",
-		"dev": "tailwindcss -i ./src/styles.css -o ./dist/styles.css --watch",
+		"dev": "tailwindcss -i ./styles/globals.css -o ./dist/styles.css --watch",
 		"type-check": "tsc --noEmit"
 	},
 	"exports": {

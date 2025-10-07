@@ -7,15 +7,9 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
-    vite: {
-        plugins: [tailwindcss()],
-        ssr: {
-            noExternal: [
-                '@ui/shadcn',
+  vite: {
+      plugins: [tailwindcss()],
+	},
 
-            ]
-		},
-    },
-
-    integrations: [react()],
+  integrations: [react()],
 });
