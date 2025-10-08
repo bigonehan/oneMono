@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "jsx": "react-jsx",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@ui/shadcn/*": ["../shadcn/*"],
+      "@ui/design": ["../design"]
+    }
+  },
+  "include": ["stories/**/*"],
+  "exclude": ["node_modules"]
+}

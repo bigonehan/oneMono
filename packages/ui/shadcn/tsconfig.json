@@ -11,13 +11,7 @@
 	"compilerOptions": {
 		"baseUrl": ".",
 		"paths": {
-			"@ui/shadcn/menu/*": [
-				"./components/menu/*"
-			],
-			"@ui/shadcn/ui/*": [
-				"./components/ui/*"
-			]
-			//		 "components/*": ["@ui/shadcn/*"] 
+		  "@ui/shadcn/*": ["./components/*"]			//		 "components/*": ["@ui/shadcn/*"] 
 		}
 	}
 }
