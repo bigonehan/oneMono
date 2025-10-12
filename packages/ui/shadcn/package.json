@@ -21,7 +21,8 @@
 		"./globals.css": "./styles/globals.css",
 		"./styles.css": "./dist/styles.css",
 		"./Colors": "./styles/Colors.tsx",
-		"./types": "./types/*"
+		"./types": "./types/*",
+		"./utils:": "./lib/utils",
 	},
 	"keywords": [],
 	"author": "",
