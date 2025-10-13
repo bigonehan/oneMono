@@ -184,3 +184,23 @@ If the path issue (`components/components/...`) occurs multiple times (3 or more
 4.  **Remove the temporary directory:** `rm -rf temp_component`
 
 This ensures the component is placed in the correct directory without the nested path issue.
+
+# User Notes
+
+React에서는 이제 더 이상 Forwardref에서 wrap하지 않아도 ref 전달이 가능합니다.
+
+```jsx
+const MyButton = ({ ref, ...props }) => {
+  return (
+    <button ref={ref} {...props}>
+      {props.children}
+    </button>
+  );
+};
+ 
+// 사용 예시
+const App = () => {
+  const buttonRef = React.useRef();
+  return <MyButton ref={buttonRef}>Click Me</MyButton>;
+};
+```

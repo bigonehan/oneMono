@@ -1,5 +1,6 @@
 import * as React from "react"
-import { Button, ButtonProps } from "@ui/shadcn/ui/button"
+import { Button } from "@ui/shadcn/ui/button"
+import type { ButtonProps } from "../../types/button"
 import { cn } from "../../lib/utils"
 import { Bell } from "lucide-react"
 

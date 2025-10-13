@@ -1,5 +1,6 @@
 import * as React from "react"
-import { Toaster, toast } from "@ui/shadcn/ui/sonner"
+import { Toaster } from "@ui/shadcn/ui/sonner"
+import { toast } from "sonner"
 import { Button } from "@ui/shadcn/ui/button"
 
 /**
