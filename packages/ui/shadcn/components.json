@@ -10,12 +10,11 @@
     "cssVariables": true,
     "prefix": ""
   },
-  "aliases": {
-    "components": "@ui/shadcn/components",
-    "utils": "@ui/shadcn/lib/utils",
-    "ui": "@ui/shadcn/components/ui",
-    "lib": "@/lib",
-    "hooks": "@/hooks"
-  },
-  "iconLibrary": "lucide"
+"aliases": {
+  "components": "@ui/shadcn/components",
+  "utils": "@ui/shadcn/lib/utils",
+  "ui": "@ui/shadcn/components/ui",
+  "lib": "@/lib",
+  "hooks": "@/hooks"
+} , "iconLibrary": "lucide"
 }
