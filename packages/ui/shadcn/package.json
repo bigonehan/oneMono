@@ -22,7 +22,7 @@
 		"./styles.css": "./dist/styles.css",
 		"./Colors": "./styles/Colors.tsx",
 		"./types": "./types/*",
-		"./utils:": "./lib/utils"
+		"./lib/utils:": "./lib/utils"
 	},
 	"keywords": [],
 	"author": "",
