@@ -16,7 +16,11 @@
 			],
 			"@ui/shadcn/lib/*": [
 				"./lib/*"
+			],
+			"@ui/shadcn/utils": [
+				"./lib/utils"
 			]
+
 		}
 	}
 }
