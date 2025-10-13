@@ -9,6 +9,7 @@
 		"node_modules"
 	],
 	"compilerOptions": {
+		  "moduleResolution": "node",
 		"baseUrl": ".",
 		"paths": {
 			"@ui/shadcn/*": [
@@ -18,7 +19,7 @@
 				"./lib/*"
 			],
 			"@ui/shadcn/utils": [
-				"./lib/utils"
+				"./lib/utils.ts"
 			]
 
 		}
