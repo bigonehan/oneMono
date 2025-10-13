@@ -1,4 +1,4 @@
-import { HeroConfig } from "@ui/shadcn/types/hero";
+import { HeroConfig } from "@ui/shadcn/hero/hero_1";	
 
 export const heroHeaderConfig: HeroConfig = {
   header: `Landing pages made easy`,

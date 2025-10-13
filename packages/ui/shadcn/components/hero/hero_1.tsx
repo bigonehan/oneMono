@@ -7,12 +7,14 @@ export type HeroConfig = {
     header: string;
     subheader: string;
     ctaText: string;
+    ctaLink: string;
+    image: string;
 };
 
 interface HeroHeaderProps {
     config: HeroConfig;
-    ctaButton: React.ReactNode; // CTA 버튼을 슬롯으로
-    heroImage?: React.ReactNode; // 이미지를 슬롯으로 (optional)
+    ctaButton?: React.ReactNode; // optional - 커스텀 버튼 가능
+    heroImage?: React.ReactNode; // optional - 커스텀 이미지 가능
 }
 
 export default function HeroHeader({ config, ctaButton, heroImage }: HeroHeaderProps) {
