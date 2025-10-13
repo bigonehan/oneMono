@@ -1,6 +1,12 @@
 packages:
-  - 'app/**'
-  - 'packages/**'
+  - app/*
+  - packages/ui/*
+  - packages/domains/*
+  - packages/feature/*
+  - template/*
 
 ignoredBuiltDependencies:
   - '@tailwindcss/oxide'
+
+onlyBuiltDependencies:
+  - esbuild

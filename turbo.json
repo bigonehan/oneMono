@@ -4,6 +4,9 @@
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
+    },   "commit": {
+      "cache": false,
+      "persistent": false
     },
     "lint": {},
     "dev": {
