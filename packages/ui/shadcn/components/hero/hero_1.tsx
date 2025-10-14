@@ -17,7 +17,7 @@ interface HeroHeaderProps {
     heroImage?: React.ReactNode; // optional - 커스텀 이미지 가능
 }
 
-export default function HeroHeader({ config, ctaButton, heroImage }: HeroHeaderProps) {
+export default function Hero_1{ config, ctaButton, heroImage }: HeroHeaderProps) {
     return (
         <section className="container flex flex-col gap-4 pb-12 pt-4 text-center lg:items-center lg:gap-8 lg:py-20">
             <div className="flex flex-1 flex-col items-center gap-4 text-center lg:gap-8">

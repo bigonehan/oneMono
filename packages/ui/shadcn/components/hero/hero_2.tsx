@@ -3,7 +3,7 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Badge } from "@ui/shadcn/ui/badge";
 import { Button } from "@ui/shadcn/ui/button";
 
-interface Hero_1Props {
+interface Hero_2Props {
   badge?: string;
   heading: string;
   description: string;
@@ -23,17 +23,17 @@ interface Hero_1Props {
   };
 }
 
-const Hero_1 = ({
-  badge = "beta",
-  heading = "즐거움을 함께 하다",
-  description = "AI와 함께 하는 치매 예방 및 인지기능 활성 어플리케이션",
+const Hero_2 = ({
+  badge = "버튼",
+  heading = "메인 문구",
+  description = "설명",
   buttons = {
     primary: {
-      text: "기능 알아보기",
+      text: "버튼 선택",
       url: "https://www.shadcnblocks.com",
     },
     secondary: {
-      text: "신청하기",
+      text: "버튼 취소 ",
       url: "https://www.shadcnblocks.com",
     },
   },
@@ -86,5 +86,5 @@ const Hero_1 = ({
   );
 };
 
-export { Hero_1 };
+export { Hero_2 };
 

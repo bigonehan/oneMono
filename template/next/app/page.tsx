@@ -1,13 +1,14 @@
-import Image from "next/image";
+import Image from "next/image";	
+
+import {Hero_2} from "@ui/shadcn/hero/hero_2";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-				reset 
-     </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-     </footer>
-    </div>
-  );
+	return (
+		<main className="flex min-h-screen flex-col items-center justify-between p-24">
+			<div> 
+
+				<Hero_2/>
+			</div>
+		</main>
+	);
 }
