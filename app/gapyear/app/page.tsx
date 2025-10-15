@@ -1,12 +1,32 @@
+'use client'
 import Image from "next/image";
 
+import { Hero_1 } from "@ui/shadcn/hero/hero_1";
+import { Button } from "@ui/shadcn/ui/button";
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start"> h
-     </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-     </footer>
-    </div>
-  );
+    return (
+        <main className="flex min-h-screen flex-col items-center justify-between p-24">
+            <div>
+
+                <Hero_1
+                    header="세상을 바꾸는 아이디어"
+                    subheader="우리의 기술로 더 나은 내일을 만듭니다"
+                    ctaButton={
+                        <Button size="lg" onClick={() => alert("시작하기 클릭!")}>
+                            시작하기
+                        </Button>
+                    }
+                    heroImage={
+                        <Image
+                            src="/images/hero-image.png"
+                            alt="Hero Image"
+                            width={500}
+                            height={400}
+                            className="rounded-2xl shadow-lg"
+                        />
+                    }
+                />
+            </div>
+        </main>
+    );
 }
