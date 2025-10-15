@@ -2,7 +2,7 @@ import { ArrowRight } from "lucide-react";
 
 import { Button } from "@ui/shadcn/ui/button";
 
-interface Feature {
+interface Featureprop {
   id: string;
   heading: string;
   description: string;
@@ -10,20 +10,15 @@ interface Feature {
   url: string;
 }
 
-interface Feature73Props {
+interface Feature73prop {
   title: string;
   description?: string;
   buttonUrl?: string;
   buttonText?: string;
-  features?: Feature[];
+  features?: Featureprop[];
 }
 
-const Feature73 = ({
-  title = "Key Features",
-  description = "Discover the powerful features that make our platform stand out from the rest. Built with the latest technology and designed for maximum productivity.",
-  buttonUrl = "https://shadcnblocks.com",
-  buttonText = "Book a demo",
-  features = [
+const featuresExample: Featureprop[] = [
     {
       id: "feature-1",
       heading: "Modern Design",
@@ -48,8 +43,15 @@ const Feature73 = ({
       image: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-3.svg",
       url: "https://shadcnblocks.com",
     },
-  ],
-}: Feature73Props) => {
+  ];
+
+const Feature73 = ({
+  title = "Key Features",
+  description = "Discover the powerful features that make our platform stand out from the rest. Built with the latest technology and designed for maximum productivity.",
+  buttonUrl = "https://shadcnblocks.com",
+  buttonText = "Book a demo",
+  features = featuresExample,
+}: Feature73prop) => {
   return (
     <section className="py-32">
       <div className="container">

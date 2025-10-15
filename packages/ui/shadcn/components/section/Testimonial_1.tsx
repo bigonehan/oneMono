@@ -1,24 +1,24 @@
 import { Card, CardContent } from "@ui/shadcn/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@ui/shadcn/ui/avatar";
 
-export interface Testimonial {
+export interface Testimonialprop {
   content: string;
   author: string;
   role: string;
   company?: string;
   avatar?: string;
 }
-interface TestimonialsProps {
+interface Testimonial_1prop {
   title: string;
   description: string;
-  testimonials: Testimonial[];
+  testimonials: Testimonialprop[];
 }
 
 export function Testimonial_1({
   title,
   description,
   testimonials = [],
-}: TestimonialsProps) {
+}: Testimonial_1prop) {
   return (
     <section className="container py-20">
       <div className="mx-auto max-w-6xl space-y-12">

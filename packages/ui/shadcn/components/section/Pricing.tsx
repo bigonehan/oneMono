@@ -10,25 +10,25 @@ import {
 
 import { Check } from "lucide-react";
 
-export type LinkComponent = ComponentType<{
+export type LinkComponentprop = ComponentType<{
   href: string;
   className?: string;
   children: ReactNode;
   "aria-label"?: string;
 }>;
-export interface PricingData {
+export interface PricingDataprop {
   title: string;
   description?: string;
   plans: PricingPlan[];
 }
-interface PricingProps {
-  data: PricingData;
-  Link: LinkComponent; // Accept Link as prop
+interface Pricingprop {
+  data: PricingDataprop;
+  Link: LinkComponentprop; // Accept Link as prop
 }
 export function Pricing({
   data = { title: "", plans: [] },
   Link,
-}: PricingProps) {
+}: Pricingprop) {
   return (
     <section className="container py-20">
       <div className="mx-auto max-w-6xl space-y-12">

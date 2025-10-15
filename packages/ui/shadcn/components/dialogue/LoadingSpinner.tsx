@@ -8,7 +8,11 @@ import { cn } from "../../lib/utils"
  * @param {string} [props.className] - Optional class name for the spinner.
  * @returns {JSX.Element} - The rendered loading spinner component.
  */
-const LoadingSpinner = ({ className }: { className?: string }) => {
+interface LoadingSpinnerprop {
+  className?: string;
+}
+
+const LoadingSpinner = ({ className }: LoadingSpinnerprop) => {
   return (
     <Loader2 className={cn("animate-spin", className)} />
   )

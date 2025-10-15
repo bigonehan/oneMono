@@ -1,16 +1,31 @@
-interface FooterProps {
-  data: FooterData;
+import { ComponentType, ReactNode } from "react";
+import type { LinkComponent } from "../../types/link";
+
+interface FooterDataprop {
+  logo?: string;
+  logoText?: string;
+  description?: string;
+  socialLinks?: {
+    name: string;
+    href: string;
+    icon: React.ComponentType<{ className?: string }>;
+  }[];
+  links?: {
+    title: string;
+    items: {
+      label: string;
+      href: string;
+    }[];
+  }[];
+  copyright?: string;
+}
+
+interface Footer_2prop {
+  data: FooterDataprop;
   Link: LinkComponent; // Accept Link as prop
 }
 
-export type LinkComponent = ComponentType<{
-  href: string;
-  className?: string;
-  children: ReactNode;
-  "aria-label"?: string;
-}>;
-
-export function Footer_2({ data, Link }: FooterProps) {
+export function Footer_2({ data, Link }: Footer_2prop) {
   return (
     <footer className="border-t border-border/40 bg-background">
       <div className="container py-12">

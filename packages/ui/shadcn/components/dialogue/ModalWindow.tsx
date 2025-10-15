@@ -20,19 +20,21 @@ import { Button } from "@ui/shadcn/ui/button"
  * @param {React.ReactNode} [props.footer] - An optional footer for the modal.
  * @returns {JSX.Element} - The rendered modal window component.
  */
+interface ModalWindowprop {
+  trigger: React.ReactNode
+  title: string
+  description?: string
+  children: React.ReactNode
+  footer?: React.ReactNode
+}
+
 const ModalWindow = ({
   trigger,
   title,
   description,
   children,
   footer,
-}: {
-  trigger: React.ReactNode
-  title: string
-  description?: string
-  children: React.ReactNode
-  footer?: React.ReactNode
-}) => {
+}: ModalWindowprop) => {
   return (
     <Dialog>
       <DialogTrigger asChild>{trigger}</DialogTrigger>

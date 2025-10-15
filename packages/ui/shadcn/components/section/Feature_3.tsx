@@ -7,7 +7,7 @@ import {
 } from "@ui/shadcn/ui/card"
 import { Rocket, Zap, Shield } from "lucide-react"
 
-const features = [
+const featuresContent = [
   {
     icon: <Rocket className="h-8 w-8" />,
     title: "Fast & Reliable",
@@ -29,7 +29,7 @@ const features = [
  * A section that displays a grid of features with icons, titles, and descriptions.
  * @returns {JSX.Element} - The rendered feature section component.
  */
-const FeatureSection = () => {
+const Feature_3 = () => {
   return (
     <section className="py-20">
       <div className="container mx-auto text-center">
@@ -39,7 +39,7 @@ const FeatureSection = () => {
         </p>
       </div>
       <div className="container mx-auto mt-12 grid gap-8 md:grid-cols-3">
-        {features.map((feature, index) => (
+        {featuresContent.map((feature, index) => (
           <Card key={index}>
             <CardHeader className="items-center">
               {feature.icon}
@@ -55,4 +55,4 @@ const FeatureSection = () => {
   )
 }
 
-export { FeatureSection }
+export { Feature_3 }

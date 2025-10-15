@@ -1,7 +1,7 @@
 import { cn } from "../../lib/utils";
 import { buttonVariants } from "@ui/shadcn/ui/button";
 
-interface Hero_1Props {
+interface Hero_1prop {
   header: string;
   subheader: string;
   ctaButton?: React.ReactNode; // optional - 커스텀 버튼 가능
@@ -16,7 +16,7 @@ export function Hero_1({
   subheader,
   ctaButton,
   heroImage,
-}: Hero_1Props) {
+}: Hero_1prop) {
   return (
     <section className="flex flex-col gap-4 pb-12 pt-4 text-center lg:items-center lg:gap-8 lg:py-20">
       <div className="flex flex-1 flex-col items-center gap-4 text-center lg:gap-8">

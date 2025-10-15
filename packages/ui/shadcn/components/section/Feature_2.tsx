@@ -2,7 +2,7 @@ import { Cog, Lightbulb, ListChecks } from "lucide-react";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ui/shadcn/ui/tabs";
 
-interface Feature {
+interface Featureprop {
     id: string;
     icon: React.ReactNode;
     heading: string;
@@ -12,13 +12,13 @@ interface Feature {
     isDefault: boolean;
 }
 
-interface Feature_Props {
-    features: Feature[];
+interface Feature_2prop {
+    features: Featureprop[];
 }
 
-const Feature_2 = ({
-    features = featuresDefaults,
-}: Feature_Props) => {
+export const Feature_2 = ({
+    features = featuresExample,
+}: Feature_2prop) => {
     const defaultTab =
         features.find((tab) => tab.isDefault)?.id || features[0].id;
 
@@ -72,7 +72,7 @@ const Feature_2 = ({
 };
 
 
-const featuresDefaults = [
+const featuresExample = [
     {
         id: "feature-1",
         heading: "Research",
@@ -108,6 +108,6 @@ const featuresDefaults = [
         url: "https://shadcnblocks.com",
         isDefault: false,
     },
-],
+]
 
-export { Feature_2 };
+

@@ -3,7 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import { Badge } from "@ui/shadcn/ui/badge";
 import { Button } from "@ui/shadcn/ui/button";
 
-export type ChangelogEntry = {
+export type ChangelogEntryprop = {
   version: string;
   date: string;
   title: string;
@@ -16,14 +16,14 @@ export type ChangelogEntry = {
   };
 };
 
-export interface Changelog1Props {
+export interface Changelog1prop {
   title?: string;
   description?: string;
-  entries?: ChangelogEntry[];
+  entries?: ChangelogEntryprop[];
   className?: string;
 }
 
-export const defaultEntries: ChangelogEntry[] = [
+export const defaultEntriesExample: ChangelogEntryprop[] = [
   {
     version: "Version 1.3.0",
     date: "15 November 2024",
@@ -84,11 +84,11 @@ export const defaultEntries: ChangelogEntry[] = [
   },
 ];
 
-const Changelog1 = ({
+const Changelog_1 = ({
   title = "Changelog",
   description = "Get the latest updates and improvements to our platform.",
-  entries = defaultEntries,
-}: Changelog1Props) => {
+  entries = defaultEntriesExample,
+}: Changelog1prop) => {
   return (
     <section className="py-32">
       <div className="container">
@@ -153,5 +153,5 @@ const Changelog1 = ({
   );
 };
 
-export { Changelog1 };
+export { Changelog_1 };
 

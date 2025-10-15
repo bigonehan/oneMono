@@ -1,5 +1,4 @@
 {
-	"extends": "@configs/typescript/react-library.json",
 	"include": [
 		"."
 	],
@@ -9,19 +8,34 @@
 		"node_modules"
 	],
 	"compilerOptions": {
-		  "moduleResolution": "node",
-		"baseUrl": ".",
-		"paths": {
-			"@ui/shadcn/*": [
-				"./components/*"
-			],
-			"@ui/shadcn/lib/*": [
-				"./lib/*"
-			],
-			"@ui/shadcn/utils": [
-				"./lib/utils.ts"
-			]
-
-		}
+		"target": "ES2020",
+		"lib": [
+			"ES2020",
+			"DOM",
+			"DOM.Iterable"
+		],
+		"module": "ESNext",
+		"skipLibCheck": true,
+		"moduleResolution": "bundler",
+		"allowImportingTsExtensions": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"noEmit": true,
+		"jsx": "react-jsx", // 이게 중요!
+		"strict": true,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true
+	},
+	"baseUrl": ".",
+	"paths": {
+		"@ui/shadcn/*": [
+			"./components/*"
+		],
+		"@ui/shadcn/lib/*": [
+			"./lib/*"
+		],
+		"@ui/shadcn/utils": [
+			"./lib/utils.ts"
+		]
 	}
 }

@@ -3,6 +3,7 @@ import Image from "next/image";
 
 import { Hero_1 } from "@ui/shadcn/hero/hero_1";
 import { Button } from "@ui/shadcn/ui/button";
+improt {Feature_2} from "@ui/shadcn/section/feature_2"
 export default function Home() {
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -26,6 +27,7 @@ export default function Home() {
                         />
                     }
                 />
+				<Feature_2/>
             </div>
         </main>
     );

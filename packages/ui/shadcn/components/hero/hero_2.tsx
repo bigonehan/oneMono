@@ -3,7 +3,7 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Badge } from "@ui/shadcn/ui/badge";
 import { Button } from "@ui/shadcn/ui/button";
 
-interface Hero_2Props {
+interface Hero_2prop {
   badge?: string;
   heading: string;
   description: string;
@@ -41,7 +41,7 @@ const Hero_2 = ({
     src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg",
     alt: "Hero section demo image showing interface components",
   },
-}: Hero1Props) => {
+}: Hero_2prop) => {
   return (
     <section className="py-32">
       <div className="container">

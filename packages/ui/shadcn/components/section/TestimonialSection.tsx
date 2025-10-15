@@ -9,7 +9,7 @@ import {
   AvatarImage,
 } from "@ui/shadcn/ui/avatar"
 
-const testimonials = [
+const testimonialsContent = [
   {
     quote: "This product is amazing! It has changed my life.",
     name: "Jane Doe",
@@ -44,7 +44,7 @@ const TestimonialSection = () => {
         </p>
       </div>
       <div className="container mx-auto mt-12 grid gap-8 md:grid-cols-3">
-        {testimonials.map((testimonial, index) => (
+        {testimonialsContent.map((testimonial, index) => (
           <Card key={index}>
             <CardContent className="pt-6">
               <p className="italic">"{testimonial.quote}"</p>
