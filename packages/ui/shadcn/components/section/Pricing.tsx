@@ -9,13 +9,9 @@ import {
 } from "@ui/shadcn/ui/card";
 
 import { Check } from "lucide-react";
+import { LinkComponent } from "types/link";
+import { PricingPlan } from "types/pricing";
 
-export type LinkComponentprop = ComponentType<{
-  href: string;
-  className?: string;
-  children: ReactNode;
-  "aria-label"?: string;
-}>;
 export interface PricingDataprop {
   title: string;
   description?: string;
@@ -23,7 +19,7 @@ export interface PricingDataprop {
 }
 interface Pricingprop {
   data: PricingDataprop;
-  Link: LinkComponentprop; // Accept Link as prop
+  Link: LinkComponent; // Accept Link as prop
 }
 export function Pricing({
   data = { title: "", plans: [] },
