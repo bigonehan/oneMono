@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Footer_1 } from "@ui/shadcn/footer/Footer_1";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -23,11 +24,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-  <html lang="en" suppressHydrationWarning>
-			<body
+    <html lang="en" suppressHydrationWarning>
+      <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <div className="flex flex-col min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+          <header className="sticky top-0 z-10 bg-white shadow-md dark:bg-gray-800 dark:shadow-lg">
+            <div className="container mx-auto px-4 py-4"></div>
+          </header>
+
+          <main className="flex-grow container mx-auto px-5 py-8">
+            {children}
+          </main>
+
+          <footer className="bg-gray-100 dark:bg-gray-800 mt-auto border-t border-gray-200 dark:border-gray-700">
+            <div className="container mx-auto px-4 py-6 text-center text-sm">
+              <Footer_1 />
+            </div>
+          </footer>
+        </div>
+        {/* 전체 레이아웃 Div 닫힘 */}
       </body>
     </html>
   );
