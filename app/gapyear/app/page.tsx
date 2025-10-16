@@ -31,7 +31,7 @@ export default function Home() {
                     }
                 />
                 <p>price</p>
-                <Pricing />
+
                 <Feature_2 />
                 <Testimonial_1 title={"hello"} testimonials={testimonialsData} />
             </div>
