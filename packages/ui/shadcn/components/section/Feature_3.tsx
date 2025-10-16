@@ -38,8 +38,7 @@ const Feature_3 = () => {
           Discover what makes our product unique.
         </p>
       </div>
-      <div className="container mx-auto mt-12 grid gap-8 md:grid-cols-3">
-        {featuresContent.map((feature, index) => (
+          {featuresContent.map((feature, index) => (
           <Card key={index}>
             <CardHeader className="items-center">
               {feature.icon}
