@@ -1,8 +1,9 @@
 import { ComponentType, ReactNode } from "react";
 
-export type LinkComponent = ComponentType<{
+export type Link = ComponentType<{
   href: string;
   className?: string;
   children: ReactNode;
   "aria-label"?: string;
 }>;
+
