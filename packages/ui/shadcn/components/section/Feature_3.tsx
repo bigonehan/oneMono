@@ -4,7 +4,7 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-} from "@ui/shadcn/ui/card"
+} from "@ui/shadcn/components/ui/card"
 import { Rocket, Zap, Shield } from "lucide-react"
 
 const featuresContent = [
@@ -32,13 +32,14 @@ const featuresContent = [
 const Feature_3 = () => {
   return (
     <section className="py-20">
-      <div className="container mx-auto text-center">
+      <div className="text-center">
         <h2 className="text-3xl font-bold">Features</h2>
         <p className="text-muted-foreground mt-2">
           Discover what makes our product unique.
         </p>
       </div>
-          {featuresContent.map((feature, index) => (
+      <div className="mt-12 grid gap-8 md:grid-cols-3">
+        {featuresContent.map((feature, index) => (
           <Card key={index}>
             <CardHeader className="items-center">
               {feature.icon}

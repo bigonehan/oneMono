@@ -5,8 +5,8 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@ui/shadcn/ui/sheet"
-import { Button } from "@ui/shadcn/ui/button"
+} from "@ui/shadcn/components/ui/sheet"
+import { Button } from "@ui/shadcn/components/ui/button"
 import { Menu } from "lucide-react"
 
 /**

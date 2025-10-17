@@ -28,14 +28,44 @@
 	},
 	"baseUrl": ".",
 	"paths": {
-		"@ui/shadcn/*": [
-			"./components/*"
+		"@ui/shadcn/types": [
+			"./types/index.ts"
+		],
+		"@ui/shadcn/utils": [
+			"./lib/utils.ts"
+		],
+		"@ui/shadcn/components/hero/*": [
+			"./components/hero/*"
+		],
+		"@ui/shadcn/components/menu/*": [
+			"./components/menu/*"
+		],
+		"@ui/shadcn/components/body/testimonial/*": [
+			"./components/body/testimonial/*"
+		],
+		"@ui/shadcn/components/block/*": [
+			"./components/block/*"
+		],
+		"@ui/shadcn/components/section/*": [
+			"./components/section/*"
+		],
+		"@ui/shadcn/components/footer/*": [
+			"./components/footer/*"
+		],
+		"@ui/shadcn/components/ui/*": [
+			"./components/ui/*"
 		],
 		"@ui/shadcn/lib/*": [
 			"./lib/*"
 		],
-		"@ui/shadcn/utils": [
-			"./lib/utils.ts"
+		"@ui/shadcn/globals.css": [
+			"./styles/globals.css"
+		],
+		"@ui/shadcn/styles.css": [
+			"./dist/styles.css"
+		],
+		"@ui/shadcn/Colors": [
+			"./styles/Colors.tsx"
 		]
 	}
 }

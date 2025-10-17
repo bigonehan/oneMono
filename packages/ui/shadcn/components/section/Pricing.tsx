@@ -1,4 +1,4 @@
-import { Button } from "@ui/shadcn/ui/button";
+import { Button } from "@ui/shadcn/components/ui/button";
 import {
   Card,
   CardContent,
@@ -6,11 +6,11 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@ui/shadcn/ui/card";
+} from "@ui/shadcn/components/ui/card";
 
 import { Check } from "lucide-react";
-import { Link } from "types/link";
-import { PricingPlan } from "types/pricing";
+import type { Link } from "@ui/shadcn/types";
+import type { PricingPlan } from "@ui/shadcn/types";
 
 export interface PricingDataprop {
   title: string;

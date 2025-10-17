@@ -1,5 +1,5 @@
-import { ComponentType, ReactNode } from "react";
-import type { LinkComponent } from "../../types/link";
+
+import type { Link } from "@ui/shadcn/types";
 
 interface FooterDataprop {
   logo?: string;
@@ -22,7 +22,7 @@ interface FooterDataprop {
 
 interface Footer_2prop {
   data: FooterDataprop;
-  Link: LinkComponent; // Accept Link as prop
+  Link: Link; // Accept Link as prop
 }
 
 export function Footer_2({ data, Link }: Footer_2prop) {

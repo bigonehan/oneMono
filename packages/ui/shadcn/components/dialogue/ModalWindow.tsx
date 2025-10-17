@@ -7,8 +7,8 @@ import {
   DialogTitle,
   DialogTrigger,
   DialogFooter,
-} from "@ui/shadcn/ui/dialog"
-import { Button } from "@ui/shadcn/ui/button"
+} from "@ui/shadcn/components/ui/dialog"
+
 
 /**
  * A reusable modal window component built on top of shadcn's Dialog.

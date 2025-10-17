@@ -1,4 +1,4 @@
-import { Badge } from "../ui/badge";
+import { Badge } from "@ui/shadcn/components/ui/badge";
 
 
 export function HelloUI(){

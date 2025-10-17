@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Button } from "@ui/shadcn/ui/button"
+import { Button } from "@ui/shadcn/components/ui/button"
 
 /**
  * A hero section component with a title, tagline, and call-to-action buttons.

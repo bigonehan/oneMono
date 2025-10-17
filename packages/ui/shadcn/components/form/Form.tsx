@@ -1,7 +1,7 @@
 import * as React from "react"
-import { Input } from "@ui/shadcn/ui/input"
-import { Label } from "@ui/shadcn/ui/label"
-import { Button } from "@ui/shadcn/ui/button"
+import { Input } from "@ui/shadcn/components/ui/input"
+import { Label } from "@ui/shadcn/components/ui/label"
+import { Button } from "@ui/shadcn/components/ui/button"
 
 /**
  * A basic login form component with email and password fields.

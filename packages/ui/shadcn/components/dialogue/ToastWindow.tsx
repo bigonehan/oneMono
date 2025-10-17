@@ -1,7 +1,7 @@
 import * as React from "react"
-import { Toaster } from "@ui/shadcn/ui/sonner"
+import { Toaster } from "@ui/shadcn/components/ui/sonner"
 import { toast } from "sonner"
-import { Button } from "@ui/shadcn/ui/button"
+import { Button } from "@ui/shadcn/components/ui/button"
 
 /**
  * A component that demonstrates how to use the toast notification system.

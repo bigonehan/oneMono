@@ -1,5 +1,5 @@
-import { Card, CardContent } from "@ui/shadcn/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@ui/shadcn/ui/avatar";
+import { Card, CardContent } from "@ui/shadcn/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@ui/shadcn/components/ui/avatar";
 
 export interface Testimonialprop {
   content: string;
@@ -38,7 +38,7 @@ export function Testimonial_1({
             <Card key={index} className="border-border/50">
               <CardContent className="p-6 space-y-4">
                 <p className="text-sm text-foreground leading-relaxed">
-                  "{testimonial.content}"
+                  &quot;{testimonial.content}&quot;
                 </p>
                 <div className="flex items-center gap-3">
                   <Avatar>

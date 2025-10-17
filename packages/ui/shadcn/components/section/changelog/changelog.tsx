@@ -1,7 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 
-import { Badge } from "@ui/shadcn/ui/badge";
-import { Button } from "@ui/shadcn/ui/button";
+import { Badge } from "@ui/shadcn/components/ui/badge";
+import { Button } from "@ui/shadcn/components/ui/button";
 
 export type ChangelogEntryprop = {
   version: string;
@@ -139,7 +139,7 @@ const Changelog_1 = ({
                 )}
                 {entry.button && (
                   <Button variant="link" className="mt-4 self-end" asChild>
-                    <a href={entry.button.url} target="_blank">
+                    <a href={entry.button.url} target="_blank" rel="noreferrer">
                       {entry.button.text} <ArrowUpRight className="h-4 w-4" />
                     </a>
                   </Button>

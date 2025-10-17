@@ -1,6 +1,6 @@
 import { Cog, Lightbulb, ListChecks } from "lucide-react";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ui/shadcn/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ui/shadcn/components/ui/tabs";
 
 interface Featureprop {
     id: string;

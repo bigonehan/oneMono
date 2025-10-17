@@ -1,5 +1,4 @@
-import { cn } from "../../lib/utils";
-import { buttonVariants } from "@ui/shadcn/ui/button";
+
 
 interface Hero_1prop {
   header: string;

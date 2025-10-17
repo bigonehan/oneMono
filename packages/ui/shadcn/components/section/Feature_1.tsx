@@ -1,6 +1,6 @@
 import { ArrowRight } from "lucide-react";
 
-import { Button } from "@ui/shadcn/ui/button";
+import { Button } from "@ui/shadcn/components/ui/button";
 
 interface Featureprop {
   id: string;

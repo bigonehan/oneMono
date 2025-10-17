@@ -1,7 +1,7 @@
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 
-import { Badge } from "@ui/shadcn/ui/badge";
-import { Button } from "@ui/shadcn/ui/button";
+import { Badge } from "@ui/shadcn/components/ui/badge";
+import { Button } from "@ui/shadcn/components/ui/button";
 
 interface Hero_2prop {
   badge?: string;

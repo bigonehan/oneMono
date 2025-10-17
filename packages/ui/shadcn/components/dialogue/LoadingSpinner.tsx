@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Loader2 } from "lucide-react"
-import { cn } from "../../lib/utils"
+import { cn } from "@ui/shadcn/utils"
 
 /**
  * A loading spinner component that uses the Loader2 icon from lucide-react and a spin animation.

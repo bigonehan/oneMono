@@ -2,12 +2,12 @@ import * as React from "react"
 import {
   Card,
   CardContent,
-} from "@ui/shadcn/ui/card"
+} from "@ui/shadcn/components/ui/card"
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@ui/shadcn/ui/avatar"
+} from "@ui/shadcn/components/ui/avatar"
 
 const testimonialsContent = [
   {
@@ -47,7 +47,7 @@ const TestimonialSection = () => {
         {testimonialsContent.map((testimonial, index) => (
           <Card key={index}>
             <CardContent className="pt-6">
-              <p className="italic">"{testimonial.quote}"</p>
+              <p className="italic">&quot;{testimonial.quote}&quot;</p>
               <div className="flex items-center mt-4">
                 <Avatar>
                   <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
