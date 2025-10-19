@@ -1,4 +1,4 @@
-import type { Testimonial } from "@ui/shadcn/body/tesimonial/testimonial_1";
+import type { Testimonial } from "@ui/shadcn/components/section/Testimonial_1";
 
 const testimonialsData: Testimonial[] = [
   {

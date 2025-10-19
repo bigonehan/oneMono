@@ -23,8 +23,15 @@
       "@/*": ["./*"],
       "@src/*": ["./src/*"],
       "@/config/*": ["./src/config/*"],
+      "@ui/shadcn/components/*": ["../../packages/ui/shadcn/components/*"],
       "@ui/shadcn/*": ["../../packages/ui/shadcn/components/*"],
-      "@ui/shadcn/body/": ["../../packages/ui/shadcn/components/body/*"]
+      "@ui/shadcn/body/*": ["../../packages/ui/shadcn/components/body/*"],
+      "@ui/shadcn/types": ["../../packages/ui/shadcn/types/index.ts"],
+      "@ui/shadcn/utils": ["../../packages/ui/shadcn/lib/utils.ts"],
+      "@ui/shadcn/lib/*": ["../../packages/ui/shadcn/lib/*"],
+      "@ui/shadcn/globals.css": ["../../packages/ui/shadcn/styles/globals.css"],
+      "@ui/shadcn/styles.css": ["../../packages/ui/shadcn/dist/styles.css"],
+      "@ui/shadcn/Colors": ["../../packages/ui/shadcn/styles/Colors.tsx"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

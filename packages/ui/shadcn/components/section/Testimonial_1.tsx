@@ -8,6 +8,8 @@ export interface Testimonialprop {
   company?: string;
   avatar?: string;
 }
+
+export type Testimonial = Testimonialprop;
 interface Testimonial_1prop {
   title: string;
   description: string;

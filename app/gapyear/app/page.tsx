@@ -4,12 +4,12 @@ import Image from "next/image";
 import { Hero_1 } from "@ui/shadcn/hero/hero_1";
 import { Button } from "@ui/shadcn/ui/button";
 import { Testimonial_1 } from "@ui/shadcn/section/Testimonial_1";
-import { Pricing } from "@ui/shadcn/section/Pricing";
 import { Feature_2 } from "@ui/shadcn/section/Feature_2";
+import { ExampleFeatureData } from "@src/content/FeatureContent";
 import testimonialsData from "@src/content/testmonials";
 
 export default function Home() {
-    return(
+    return (
         <main className="flex min-h-screen flex-col items-center justify-between">
             <div>
                 <Hero_1
@@ -31,9 +31,8 @@ export default function Home() {
                     }
                 />
                 <p>price</p>
-
-                <Feature_2 />
-                <Testimonial_1 title={"hello"} testimonials={testimonialsData} />
+                <Feature_2 features={ExampleFeatureData} />
+                <Testimonial_1 title={"hello"} testimonials={testimonialsData} description={""} />
             </div>
         </main>
     );

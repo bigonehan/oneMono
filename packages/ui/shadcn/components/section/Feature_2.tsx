@@ -2,7 +2,7 @@ import { Cog, Lightbulb, ListChecks } from "lucide-react";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ui/shadcn/components/ui/tabs";
 
-interface Featureprop {
+export interface Featureprop {
     id: string;
     icon: React.ReactNode;
     heading: string;
@@ -12,13 +12,23 @@ interface Featureprop {
     isDefault: boolean;
 }
 
-interface Feature_2prop {
-    features: Featureprop[];
-}
+const FeaturesExample: Featureprop[] = [
+    {
+        id: "feature-1",
+        heading: "Research",
+        icon: <Lightbulb className="size-4" />,
 
+        description:
+            "Discover the powerful features that make our platform stand out from the rest.",
+        image:
+            "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg",
+        url: "https://shadcnblocks.com",
+        isDefault: true,
+    }
+]
 export const Feature_2 = ({
-    features = featuresExample,
-}: Feature_2prop) => {
+    features = FeaturesExample,
+}: { features?: Featureprop[] }) => {
     const defaultTab =
         features.find((tab) => tab.isDefault)?.id || features[0].id;
 
@@ -72,42 +82,6 @@ export const Feature_2 = ({
 };
 
 
-const featuresExample = [
-    {
-        id: "feature-1",
-        heading: "Research",
-        icon: <Lightbulb className="size-4" />,
 
-        description:
-            "Discover the powerful features that make our platform stand out from the rest.",
-        image:
-            "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg",
-        url: "https://shadcnblocks.com",
-        isDefault: true,
-    },
-    {
-        id: "feature-2",
-        icon: <ListChecks className="size-4" />,
-
-        heading: "Refine",
-        description:
-            "Built with the latest technology and designed for maximum productivity.",
-        image:
-            "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-2.svg",
-        url: "https://shadcnblocks.com",
-        isDefault: false,
-    },
-    {
-        id: "feature-3",
-        icon: <Cog className="size-4" />,
-        heading: "Build",
-        description:
-            "Create amazing experiences with our comprehensive toolkit and resources.",
-        image:
-            "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-3.svg",
-        url: "https://shadcnblocks.com",
-        isDefault: false,
-    },
-]
 
 
