@@ -23,6 +23,7 @@
   --border: oklch(0.9220 0 0);
   --input: oklch(0.9220 0 0);
   --ring: oklch(0.7080 0 0);
+  --line-width: 1.5px;
   --chart-1: oklch(0.8100 0.1000 252);
   --chart-2: oklch(0.6200 0.1900 260);
   --chart-3: oklch(0.5500 0.2200 263);
@@ -78,6 +79,7 @@
   --border: oklch(0.2750 0 0);
   --input: oklch(0.3250 0 0);
   --ring: oklch(0.5560 0 0);
+  --line-width: 1.5px;
   --chart-1: oklch(0.8100 0.1000 252);
   --chart-2: oklch(0.6200 0.1900 260);
   --chart-3: oklch(0.5500 0.2200 263);
@@ -163,4 +165,3 @@
   --shadow-xl: var(--shadow-xl);
   --shadow-2xl: var(--shadow-2xl);
 }
-

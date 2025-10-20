@@ -5,7 +5,7 @@ import { Hero_1 } from "@ui/shadcn/hero/hero_1";
 import { Button } from "@ui/shadcn/ui/button";
 import { Testimonial_1 } from "@ui/shadcn/section/Testimonial_1";
 import { Feature_2 } from "@ui/shadcn/section/Feature_2";
-import { ExampleFeatureData } from "@src/content/FeatureContent";
+import { FeatureContentData } from "@src/content/FeatureContent";
 import testimonialsData from "@src/content/testmonials";
 
 export default function Home() {
@@ -13,11 +13,11 @@ export default function Home() {
         <main className="flex min-h-screen flex-col items-center justify-between">
             <div>
                 <Hero_1
-                    header="세상을 바꾸는 아이디어"
-                    subheader="우리의 기술로 더 나은 내일을 만듭니다"
+                    header="이음"
+                    subheader="즐거움을 되찾는 방법 "
                     ctaButton={
-                        <Button size="lg" onClick={() => alert("시작하기 클릭!")}>
-                            시작하기
+                        <Button size="lg" onClick={() => alert("main")}>
+                            알아보기 
                         </Button>
                     }
                     heroImage={
@@ -30,8 +30,7 @@ export default function Home() {
                         />
                     }
                 />
-                <p>price</p>
-                <Feature_2 features={ExampleFeatureData} />
+                <Feature_2 features={FeatureContentData} />
                 <Testimonial_1 title={"hello"} testimonials={testimonialsData} description={""} />
             </div>
         </main>
