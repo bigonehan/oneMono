@@ -31,7 +31,7 @@ export default function Home() {
                     }
                 />
                 <Feature_2 features={FeatureContentData} />
-                <Testimonial_1 title={"hello"} testimonials={testimonialsData} description={""} />
+
             </div>
         </main>
     );
