@@ -2,6 +2,7 @@ import * as React from "react"
 import { Toaster } from "@ui/shadcn/components/ui/sonner"
 import { toast } from "sonner"
 import { Button } from "@ui/shadcn/components/ui/button"
+import { SectionWrapper } from "../SectionWrapper"
 
 /**
  * A component that demonstrates how to use the toast notification system.
@@ -10,7 +11,7 @@ import { Button } from "@ui/shadcn/components/ui/button"
  */
 const ToastWindow = () => {
   return (
-    <div>
+    <SectionWrapper contentClassName="space-y-4">
       <Toaster />
       <Button
         onClick={() =>
@@ -25,7 +26,7 @@ const ToastWindow = () => {
       >
         Show Toast
       </Button>
-    </div>
+    </SectionWrapper>
   )
 }
 

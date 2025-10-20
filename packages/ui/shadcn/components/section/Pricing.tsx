@@ -11,6 +11,7 @@ import {
 import { Check } from "lucide-react";
 import type { Link } from "@ui/shadcn/types";
 import type { PricingPlan } from "@ui/shadcn/types";
+import { SectionWrapper } from "../SectionWrapper";
 
 export interface PricingDataprop {
   title: string;
@@ -26,7 +27,7 @@ export function Pricing({
   Link,
 }: Pricingprop) {
   return (
-    <section className="container py-20">
+    <SectionWrapper className="py-20">
       <div className="mx-auto max-w-6xl space-y-12">
         <div className="text-center space-y-4">
           <h2 className="font-sans text-3xl font-bold tracking-tight text-foreground text-balance md:text-4xl lg:text-5xl">
@@ -93,6 +94,6 @@ export function Pricing({
           ))}
         </div>
       </div>
-    </section>
+    </SectionWrapper>
   );
 }

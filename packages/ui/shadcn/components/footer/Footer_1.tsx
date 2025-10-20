@@ -1,4 +1,5 @@
 import * as React from "react";
+import { SectionWrapper } from "../SectionWrapper";
 
 /**
  * The main footer component for the application.
@@ -7,8 +8,11 @@ import * as React from "react";
  */
 const Footer_1 = () => {
   return (
-    <footer className="bg-muted text-muted-foreground p-8">
-      <div className="container mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+    <SectionWrapper
+      className="bg-muted text-muted-foreground"
+      contentClassName="space-y-8"
+    >
+      <footer className="grid grid-cols-2 gap-8 md:grid-cols-4">
         <div>
           <h3 className="font-bold mb-2">Company</h3>
           <ul>
@@ -59,14 +63,14 @@ const Footer_1 = () => {
             </li>
           </ul>
         </div>
-      </div>
+      </footer>
       <div className="text-center mt-8 text-sm">
         <p>
           &copy; {new Date().getFullYear()} My Company, Inc. All rights
           reserved.
         </p>
       </div>
-    </footer>
+    </SectionWrapper>
   );
 };
 

@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Loader2 } from "lucide-react"
 import { cn } from "@ui/shadcn/utils"
+import { SectionWrapper } from "../SectionWrapper"
 
 /**
  * A loading spinner component that uses the Loader2 icon from lucide-react and a spin animation.
@@ -14,7 +15,9 @@ interface LoadingSpinnerprop {
 
 const LoadingSpinner = ({ className }: LoadingSpinnerprop) => {
   return (
-    <Loader2 className={cn("animate-spin", className)} />
+    <SectionWrapper contentClassName="flex justify-center">
+      <Loader2 className={cn("animate-spin", className)} />
+    </SectionWrapper>
   )
 }
 

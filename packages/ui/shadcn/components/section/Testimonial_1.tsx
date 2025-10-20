@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@ui/shadcn/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@ui/shadcn/components/ui/avatar";
+import { SectionWrapper } from "../SectionWrapper";
 
 export interface Testimonialprop {
   content: string;
@@ -22,7 +23,7 @@ export function Testimonial_1({
   testimonials = [],
 }: Testimonial_1prop) {
   return (
-    <section className="container py-20">
+    <SectionWrapper className="py-20">
       <div className="mx-auto max-w-6xl space-y-12">
         <div className="text-center space-y-4">
           <h2 className="font-sans text-3xl font-bold tracking-tight text-foreground text-balance md:text-4xl lg:text-5xl">
@@ -71,6 +72,6 @@ export function Testimonial_1({
           ))}
         </div>
       </div>
-    </section>
+    </SectionWrapper>
   );
 }

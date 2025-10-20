@@ -6,6 +6,7 @@ import {
   CardTitle,
 } from "@ui/shadcn/components/ui/card"
 import { Rocket, Zap, Shield } from "lucide-react"
+import { SectionWrapper } from "../SectionWrapper"
 
 const featuresContent = [
   {
@@ -31,14 +32,14 @@ const featuresContent = [
  */
 const Feature_3 = () => {
   return (
-    <section className="py-20">
-      <div className="text-center">
+    <SectionWrapper className="py-20" contentClassName="space-y-12">
+      <div className="text-center space-y-2">
         <h2 className="text-3xl font-bold">Features</h2>
-        <p className="text-muted-foreground mt-2">
+        <p className="text-muted-foreground">
           Discover what makes our product unique.
         </p>
       </div>
-      <div className="mt-12 grid gap-8 md:grid-cols-3">
+      <div className="grid gap-8 md:grid-cols-3">
         {featuresContent.map((feature, index) => (
           <Card key={index}>
             <CardHeader className="items-center">
@@ -51,7 +52,7 @@ const Feature_3 = () => {
           </Card>
         ))}
       </div>
-    </section>
+    </SectionWrapper>
   )
 }
 

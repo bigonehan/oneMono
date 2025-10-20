@@ -1,4 +1,4 @@
-
+import { SectionWrapper } from "../SectionWrapper";
 
 interface Hero_1prop {
   header: string;
@@ -17,7 +17,10 @@ export function Hero_1({
   heroImage,
 }: Hero_1prop) {
   return (
-    <section className="flex flex-col gap-4 pb-12 pt-4 text-center lg:items-center lg:gap-8 lg:py-20">
+    <SectionWrapper
+      className="lg:py-20"
+      contentClassName="flex flex-col gap-4 text-center lg:items-center lg:gap-8"
+    >
       <div className="flex flex-1 flex-col items-center gap-4 text-center lg:gap-8">
         <div className="space-y-4">
           <h1 className="text-4xl font-bold lg:text-6xl">{header}</h1>
@@ -32,6 +35,6 @@ export function Hero_1({
           {heroImage}
         </div>
       )}
-    </section>
+    </SectionWrapper>
   );
 }

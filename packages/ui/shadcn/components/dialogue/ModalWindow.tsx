@@ -8,6 +8,7 @@ import {
   DialogTrigger,
   DialogFooter,
 } from "@ui/shadcn/components/ui/dialog"
+import { SectionWrapper } from "../SectionWrapper"
 
 
 /**
@@ -36,17 +37,19 @@ const ModalWindow = ({
   footer,
 }: ModalWindowprop) => {
   return (
-    <Dialog>
-      <DialogTrigger asChild>{trigger}</DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>{title}</DialogTitle>
-          {description && <DialogDescription>{description}</DialogDescription>}
-        </DialogHeader>
-        {children}
-        {footer && <DialogFooter>{footer}</DialogFooter>}
-      </DialogContent>
-    </Dialog>
+    <SectionWrapper contentClassName="flex justify-center">
+      <Dialog>
+        <DialogTrigger asChild>{trigger}</DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{title}</DialogTitle>
+            {description && <DialogDescription>{description}</DialogDescription>}
+          </DialogHeader>
+          {children}
+          {footer && <DialogFooter>{footer}</DialogFooter>}
+        </DialogContent>
+      </Dialog>
+    </SectionWrapper>
   )
 }
 

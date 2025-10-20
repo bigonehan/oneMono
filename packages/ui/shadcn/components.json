@@ -1,20 +1,24 @@
 {
-  "$schema": "https://ui.shadcn.com/schema.json",
-  "style": "new-york",
-  "rsc": false,
-  "tsx": true,
-  "tailwind": {
-    "config": "",
-    "css": "@ui/shadcn/styles/globals.css",
-    "baseColor": "neutral",
-    "cssVariables": true,
-    "prefix": ""
-  },
-"aliases": {
-  "components": "@ui/shadcn/",
-  "utils": "@ui/shadcn/lib/utils",
-  "ui": "@ui/shadcn/ui",
-  "lib": "@ui/shadcn/lib",
-  "hooks": "@ui/shadcn/hooks"
-} , "iconLibrary": "lucide"
+	"$schema": "https://ui.shadcn.com/schema.json",
+	"style": "new-york",
+	"rsc": false,
+	"tsx": true,
+	"tailwind": {
+		"config": "",
+		"css": "@ui/shadcn/styles/globals.css",
+		"baseColor": "neutral",
+		"cssVariables": true,
+		"prefix": ""
+	},
+	"aliases": {
+		"components": "@ui/shadcn/",
+		"utils": "@ui/shadcn/lib/utils",
+		"ui": "@ui/shadcn/ui",
+		"lib": "@ui/shadcn/lib",
+		"hooks": "@ui/shadcn/hooks"
+	},
+	"iconLibrary": "lucide",
+	"registries": {
+		"@tailark": "https://tailark.com/r/{name}.json"
+	}
 }

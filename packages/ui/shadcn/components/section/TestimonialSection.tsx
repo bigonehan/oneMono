@@ -8,6 +8,7 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@ui/shadcn/components/ui/avatar"
+import { SectionWrapper } from "../SectionWrapper"
 
 const testimonialsContent = [
   {
@@ -36,14 +37,17 @@ const testimonialsContent = [
  */
 const TestimonialSection = () => {
   return (
-    <section className="py-20 bg-muted">
-      <div className="container mx-auto text-center">
+    <SectionWrapper
+      className="bg-muted"
+      contentClassName="space-y-12"
+    >
+      <div className="text-center space-y-2">
         <h2 className="text-3xl font-bold">What Our Customers Say</h2>
-        <p className="text-muted-foreground mt-2">
+        <p className="text-muted-foreground">
           Real stories from real people.
         </p>
       </div>
-      <div className="container mx-auto mt-12 grid gap-8 md:grid-cols-3">
+      <div className="grid gap-8 md:grid-cols-3">
         {testimonialsContent.map((testimonial, index) => (
           <Card key={index}>
             <CardContent className="pt-6">
@@ -62,7 +66,7 @@ const TestimonialSection = () => {
           </Card>
         ))}
       </div>
-    </section>
+    </SectionWrapper>
   )
 }
 
