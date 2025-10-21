@@ -1,61 +1,34 @@
-import { Featureprop } from "@ui/shadcn/components/section/Feature_2.jsx";
-export const FeatureContentData: Featureprop[] = [
+import type { FeatureListItem } from "@ui/shadcn/components/section/FeatureListSection";
 
+export const FeatureList: FeatureListItem[] = [
     {
-        id: "feature-1",
-        icon: (
-            <svg width="24" height="24" fill="currentColor">
-                <circle cx="12" cy="12" r="10" />
-            </svg>
-        ),
-        heading: "두뇌 활성 미니게임",
-        description:
-            "단어 맞추기, 숫자 기억하기 등 재미있는 게임을 통해 자연스럽게 인지 능력을 유지합니다.",
-        image: "/images/brain_game.png",
-        url: "/features/brain-games",
-        isDefault: true,
+        id: "feature-memory-game",
+        icon: "🧩",
+        title: "기억력 게임",
+        description: "단어, 숫자, 그림을 이용한 맞추기 게임으로 기억력 향상",
     },
     {
-        id: "feature-2",
-        icon: (
-            <svg width="24" height="24" fill="currentColor">
-                <rect x="4" y="4" width="16" height="16" />
-            </svg>
-        ),
-        heading: "언어 · 수리 훈련",
-        description:
-            "단어 연상, 계산 퀴즈 등 다양한 훈련으로 기억력과 집중력을 향상시킵니다.",
-        image: "/images/language_math.png",
-        url: "/features/language-math",
-        isDefault: false,
+        id: "feature-focus-training",
+        icon: "🔢",
+        title: "집중력 훈련",
+        description: "제한 시간 내 문제 해결로 주의 집중 능력 강화",
     },
     {
-        id: "feature-3",
-        icon: (
-            <svg width="24" height="24" fill="currentColor">
-                <polygon points="12,2 22,22 2,22" />
-            </svg>
-        ),
-        heading: "AI 맞춤 분석",
-        description:
-            "AI가 게임 기록을 분석하여 개인별 인지 상태를 파악하고 맞춤형 훈련을 제안합니다.",
-        image: "/images/ai_analysis.png",
-        url: "/features/ai-analysis",
-        isDefault: false,
+        id: "feature-language-quiz",
+        icon: "💬",
+        title: "언어 퀴즈",
+        description: "단어 연결과 문장 완성으로 언어능력 훈련",
     },
     {
-        id: "feature-4",
-        icon: (
-            <svg width="24" height="24" fill="currentColor">
-                <path d="M12 2L2 7v6c0 5.5 5 10 10 10s10-4.5 10-10V7z" />
-            </svg>
-        ),
-        heading: "감정 케어 기록",
-        description:
-            "매일의 기분과 감정을 기록하며 마음의 변화를 함께 관리할 수 있습니다.",
-        image: "/images/emotion_care.png",
-        url: "/features/emotion-care",
-        isDefault: false,
+        id: "feature-cognition-report",
+        icon: "📊",
+        title: "인지 리포트",
+        description: "주간 점수와 변화 추이를 한눈에 확인",
+    },
+    {
+        id: "feature-relax-mode",
+        icon: "🧘‍♀️",
+        title: "두뇌 휴식 모드",
+        description: "명상음과 시각 자극으로 스트레스 완화",
     },
 ];
-

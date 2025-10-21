@@ -1,18 +1,22 @@
+import type { ReactNode } from "react";
+
 import { SectionWrapper } from "../SectionWrapper";
 
 interface Hero_1prop {
-  header: string;
-  subheader: string;
-  ctaButton?: React.ReactNode; // optional - 커스텀 버튼 가능
+  header: ReactNode;
+  subheader: ReactNode;
+  description?: ReactNode;
+  ctaButton?: ReactNode; // optional - 커스텀 버튼 가능
   ctaText?: string;
   ctaLink?: string;
   image?: string;
-  heroImage?: React.ReactNode; // optional - 커스텀 이미지 가능
+  heroImage?: ReactNode; // optional - 커스텀 이미지 가능
 }
 
 export function Hero_1({
   header,
   subheader,
+  description,
   ctaButton,
   heroImage,
 }: Hero_1prop) {
@@ -27,6 +31,11 @@ export function Hero_1({
           <h2 className="text-lg font-light text-muted-foreground lg:text-3xl">
             {subheader}
           </h2>
+          {description && (
+            <p className="text-base text-muted-foreground lg:text-xl">
+              {description}
+            </p>
+          )}
         </div>
         {ctaButton}
       </div>

@@ -1,38 +1,94 @@
-"use client";
+import Link from "next/link";
 import Image from "next/image";
 
 import { Hero_1 } from "@ui/shadcn/hero/hero_1";
-import { Button } from "@ui/shadcn/ui/button";
+import { InformationalSection } from "@ui/shadcn/section/InformationalSection";
+import { CallToActionSection } from "@ui/shadcn/section/CallToActionSection";
 import { Testimonial_1 } from "@ui/shadcn/section/Testimonial_1";
-import { Feature_2 } from "@ui/shadcn/section/Feature_2";
-import { FeatureContentData } from "@src/content/FeatureContent";
-import testimonialsData from "@src/content/testmonials";
+import { FeatureListSection } from "@ui/shadcn/section/FeatureListSection";
+import { Button } from "@ui/shadcn/ui/button";
+
+import { FeatureList } from "@src/content/FeatureContent";
+import {
+    appHighlightsContent,
+    finalCtaContent,
+    heroContent,
+    problemAwarenessContent,
+    scientificProofContent,
+    testimonials,
+} from "@src/content/landingSections";
 
 export default function Home() {
     return (
-        <main className="flex min-h-screen flex-col items-center justify-between">
-            <div>
-                <Hero_1
-                    header="이음"
-                    subheader="즐거움을 되찾는 방법 "
-                    ctaButton={
-                        <Button size="lg" onClick={() => alert("main")}>
-                            알아보기 
+        <main className="flex min-h-screen flex-col">
+            <Hero_1
+                header={heroContent.header}
+                subheader={heroContent.subheader}
+                description={heroContent.description}
+                ctaButton={
+                    <div className="flex flex-col gap-3 sm:flex-row">
+                        <Button asChild size="lg">
+                            <Link href={heroContent.primaryCta.href}>
+                                {heroContent.primaryCta.label}
+                            </Link>
                         </Button>
-                    }
-                    heroImage={
-                        <Image
-                            src="/globe.svg"
-                            alt="Hero Image"
-                            width={500}
-                            height={400}
-                            className="rounded-2xl shadow-lg"
-                        />
-                    }
-                />
-                <Feature_2 features={FeatureContentData} />
+                        <Button asChild size="lg" variant="outline">
+                            <Link href={heroContent.secondaryCta.href}>
+                                {heroContent.secondaryCta.label}
+                            </Link>
+                        </Button>
+                    </div>
+                }
+                heroImage={
+                    <Image
+                        src="/globe.svg"
+                        alt="이음 앱 미리보기"
+                        width={520}
+                        height={420}
+                        className="rounded-2xl shadow-xl"
+                        priority
+                    />
+                }
+            />
 
-            </div>
+            <InformationalSection
+                title={problemAwarenessContent.title}
+                description={problemAwarenessContent.description}
+            />
+
+            <FeatureListSection
+                eyebrow="핵심 기능"
+                title="꾸준히 즐기는 두뇌 훈련"
+                description="이음의 다섯 가지 코어 기능으로 기억력부터 집중력, 휴식까지 균형 있게 채워보세요."
+                features={FeatureList}
+            />
+
+            <InformationalSection
+                eyebrow={scientificProofContent.eyebrow}
+                title={scientificProofContent.title}
+                description={scientificProofContent.description}
+                highlights={scientificProofContent.highlights}
+            />
+
+            <Testimonial_1
+                title="사용자 후기"
+                description="꾸준한 두뇌 훈련으로 변화를 경험한 분들의 목소리입니다."
+                testimonials={testimonials}
+            />
+
+            <InformationalSection
+                eyebrow={appHighlightsContent.eyebrow}
+                title={appHighlightsContent.title}
+                description={appHighlightsContent.description}
+                highlights={appHighlightsContent.highlights}
+            />
+
+            <CallToActionSection
+                title={finalCtaContent.title}
+                description={finalCtaContent.description}
+                primaryAction={finalCtaContent.primary}
+                secondaryAction={finalCtaContent.secondary}
+            />
         </main>
     );
 }

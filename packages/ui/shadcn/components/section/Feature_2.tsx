@@ -1,4 +1,4 @@
-import { Cog, Lightbulb, ListChecks } from "lucide-react";
+import { Lightbulb } from "lucide-react";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ui/shadcn/components/ui/tabs";
 import { SectionWrapper } from "../SectionWrapper";
@@ -79,7 +79,6 @@ export const Feature_2 = ({
         </SectionWrapper>
     );
 };
-
 
 
 

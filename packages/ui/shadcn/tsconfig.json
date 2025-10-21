@@ -1,71 +1,37 @@
 {
-	"include": [
-		"."
-	],
-	"exclude": [
-		"dist",
-		"build",
-		"node_modules"
-	],
-	"compilerOptions": {
-		"target": "ES2020",
-		"lib": [
-			"ES2020",
-			"DOM",
-			"DOM.Iterable"
-		],
-		"module": "ESNext",
-		"skipLibCheck": true,
-		"moduleResolution": "bundler",
-		"allowImportingTsExtensions": true,
-		"resolveJsonModule": true,
-		"isolatedModules": true,
-		"noEmit": true,
-		"jsx": "react-jsx", // 이게 중요!
-		"strict": true,
-		"esModuleInterop": true,
-		"forceConsistentCasingInFileNames": true
-	},
-	"baseUrl": ".",
-	"paths": {
-		"@ui/shadcn/types": [
-			"./types/index.ts"
-		],
-		"@ui/shadcn/utils": [
-			"./lib/utils.ts"
-		],
-		"@ui/shadcn/components/hero/*": [
-			"./components/hero/*"
-		],
-		"@ui/shadcn/components/menu/*": [
-			"./components/menu/*"
-		],
-		"@ui/shadcn/components/body/testimonial/*": [
-			"./components/body/testimonial/*"
-		],
-		"@ui/shadcn/components/block/*": [
-			"./components/block/*"
-		],
-		"@ui/shadcn/components/section/*": [
-			"./components/section/*"
-		],
-		"@ui/shadcn/components/footer/*": [
-			"./components/footer/*"
-		],
-		"@ui/shadcn/components/ui/*": [
-			"./components/ui/*"
-		],
-		"@ui/shadcn/lib/*": [
-			"./lib/*"
-		],
-		"@ui/shadcn/globals.css": [
-			"./styles/globals.css"
-		],
-		"@ui/shadcn/styles.css": [
-			"./dist/styles.css"
-		],
-		"@ui/shadcn/Colors": [
-			"./styles/Colors.tsx"
-		]
-	}
+  "include": ["."],
+  "exclude": ["dist", "build", "node_modules"],
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    
+    // ⭐ baseUrl과 paths를 여기 안에!
+    "baseUrl": ".",
+    "paths": {
+      "@ui/shadcn/types": ["./types/index.ts"],
+      "@ui/shadcn/utils": ["./lib/utils.ts"],
+      "@ui/shadcn/components/hero/*": ["./components/hero/*"],
+      "@ui/shadcn/components/menu/*": ["./components/menu/*"],
+      "@ui/shadcn/components/body/testimonial/*": ["./components/body/testimonial/*"],
+      "@ui/shadcn/components/block/*": ["./components/block/*"],
+      "@ui/shadcn/components/section/*": ["./components/section/*"],
+      "@ui/shadcn/components/footer/*": ["./components/footer/*"],
+      "@ui/shadcn/components/ui/*": ["./components/ui/*"],
+      "@ui/shadcn/lib/*": ["./lib/*"],
+      "@ui/shadcn/globals.css": ["./styles/globals.css"],
+      "@ui/shadcn/styles.css": ["./dist/styles.css"],
+      "@ui/shadcn/Colors": ["./styles/Colors.tsx"]
+    }
+  }
 }
