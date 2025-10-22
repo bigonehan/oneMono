@@ -28,13 +28,19 @@ export function Pricing({
 }: Pricingprop) {
   return (
     <SectionWrapper className="py-20">
-      <div className="mx-auto max-w-6xl space-y-12">
-        <div className="text-center space-y-4">
-          <h2 className="font-sans text-3xl font-bold tracking-tight text-foreground text-balance md:text-4xl lg:text-5xl">
+      <div data-anim="pane" className="mx-auto max-w-6xl space-y-12">
+        <div data-anim="pane" className="text-center space-y-4">
+          <h2
+            data-anim="title"
+            className="font-sans text-3xl font-bold tracking-tight text-foreground text-balance md:text-4xl lg:text-5xl"
+          >
             {data?.title}
           </h2>
           {data?.description && (
-            <p className="mx-auto max-w-2xl text-lg text-muted-foreground text-pretty leading-relaxed">
+            <p
+              data-anim="description"
+              className="mx-auto max-w-2xl text-lg text-muted-foreground text-pretty leading-relaxed"
+            >
               {data?.description}
             </p>
           )}
@@ -44,27 +50,31 @@ export function Pricing({
           {data.plans.map((plan, index) => (
             <Card
               key={index}
+              data-anim="pane"
               className={`flex flex-col border-border/50 ${
                 plan.highlighted
                   ? "border-accent shadow-lg shadow-accent/20"
                   : ""
               }`}
             >
-              <CardHeader>
-                <CardTitle className="text-2xl font-bold text-foreground">
+              <CardHeader data-anim="pane">
+                <CardTitle
+                  data-anim="title"
+                  className="text-2xl font-bold text-foreground"
+                >
                   {plan.name}
                 </CardTitle>
-                <CardDescription className="text-muted-foreground">
+                <CardDescription data-anim="description" className="text-muted-foreground">
                   {plan.description}
                 </CardDescription>
               </CardHeader>
-              <CardContent className="flex-1 space-y-6">
+              <CardContent data-anim="pane" className="flex-1 space-y-6">
                 <div className="space-y-1">
-                  <div className="text-4xl font-bold text-foreground">
+                  <div data-anim="title" className="text-4xl font-bold text-foreground">
                     {plan.price}
                   </div>
                   {plan.period && (
-                    <div className="text-sm text-muted-foreground">
+                    <div data-anim="description" className="text-sm text-muted-foreground">
                       {plan.period}
                     </div>
                   )}
@@ -75,15 +85,16 @@ export function Pricing({
                       key={featureIndex}
                       className="flex items-start gap-3 text-sm text-foreground"
                     >
-                      <Check className="h-5 w-5 shrink-0 text-accent" />
-                      <span>{feature}</span>
+                      <Check data-anim="img" className="h-5 w-5 shrink-0 text-accent" />
+                      <span data-anim="description">{feature}</span>
                     </li>
                   ))}
                 </ul>
               </CardContent>
-              <CardFooter>
+              <CardFooter data-anim="pane">
                 <Button
                   asChild
+                  data-anim="pane"
                   className="w-full"
                   variant={plan.highlighted ? "default" : "outline"}
                 >

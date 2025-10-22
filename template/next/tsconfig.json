@@ -24,6 +24,7 @@
       "@src/*": ["./src/*"],
       "@/config/*": ["./src/config/*"],
       "@ui/shadcn/*": ["../../packages/ui/shadcn/components/*"],
+      "@ui/gsap/*": ["../../packages/ui/gsap/src/*"],
       "@ui/shadcn/body/": ["../../packages/ui/shadcn/components/body/*"]
     }
   },

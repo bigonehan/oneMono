@@ -16,7 +16,7 @@ interface LoadingSpinnerprop {
 const LoadingSpinner = ({ className }: LoadingSpinnerprop) => {
   return (
     <SectionWrapper contentClassName="flex justify-center">
-      <Loader2 className={cn("animate-spin", className)} />
+      <Loader2 data-anim="img" className={cn("animate-spin", className)} />
     </SectionWrapper>
   )
 }

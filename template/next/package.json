@@ -12,7 +12,8 @@
     "next": "15.5.5",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-		"@ui/shadcn": "workspace:*"
+    "@ui/shadcn": "workspace:*",
+    "@ui/gsap": "workspace:*"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

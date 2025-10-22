@@ -58,23 +58,29 @@ const Feature73 = ({
       className="py-32"
       contentClassName="space-y-12"
     >
-      <div className="lg:max-w-sm">
-        <h2 className="mb-3 text-3xl font-semibold md:mb-4 md:text-4xl lg:mb-6">
+      <div data-anim="pane" className="lg:max-w-sm">
+        <h2
+          data-anim="title"
+          className="mb-3 text-3xl font-semibold md:mb-4 md:text-4xl lg:mb-6"
+        >
           {title}
         </h2>
         {description && (
-          <p className="text-muted-foreground mb-8 lg:text-lg">
+          <p
+            data-anim="description"
+            className="text-muted-foreground mb-8 lg:text-lg"
+          >
             {description}
           </p>
         )}
         {buttonUrl && (
-          <Button variant="link" asChild>
+          <Button data-anim="pane" variant="link" asChild>
             <a
               href={buttonUrl}
               className="group flex items-center font-medium md:text-base lg:text-lg"
             >
               {buttonText}
-              <ArrowRight />
+              <ArrowRight data-anim="img" />
             </a>
           </Button>
         )}
@@ -83,20 +89,28 @@ const Feature73 = ({
         {features.map((feature) => (
           <div
             key={feature.id}
+            data-anim="pane"
             className="border-border flex flex-col overflow-clip rounded-xl border"
           >
             <a href={feature.url}>
               <img
+                data-anim="img"
                 src={feature.image}
                 alt={feature.heading}
                 className="aspect-16/9 h-full w-full object-cover object-center transition-opacity hover:opacity-80"
               />
             </a>
             <div className="px-6 py-8 md:px-8 md:py-10 lg:px-10 lg:py-12">
-              <h3 className="mb-3 text-lg font-semibold md:mb-4 md:text-2xl lg:mb-6">
+              <h3
+                data-anim="title"
+                className="mb-3 text-lg font-semibold md:mb-4 md:text-2xl lg:mb-6"
+              >
                 {feature.heading}
               </h3>
-              <p className="text-muted-foreground lg:text-lg">
+              <p
+                data-anim="description"
+                className="text-muted-foreground lg:text-lg"
+              >
                 {feature.description}
               </p>
             </div>

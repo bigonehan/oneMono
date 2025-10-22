@@ -19,20 +19,20 @@ const Sidebar = () => {
     <SectionWrapper contentClassName="flex justify-center">
       <Sheet>
         <SheetTrigger asChild>
-          <Button variant="outline" size="icon">
-            <Menu className="h-4 w-4" />
+          <Button data-anim="pane" variant="outline" size="icon">
+            <Menu data-anim="img" className="h-4 w-4" />
             <span className="sr-only">Open Menu</span>
           </Button>
         </SheetTrigger>
-        <SheetContent side="left">
+        <SheetContent data-anim="pane" side="left">
           <SheetHeader>
-            <SheetTitle>Menu</SheetTitle>
+            <SheetTitle data-anim="title">Menu</SheetTitle>
           </SheetHeader>
-          <div className="grid gap-4 py-4">
-            <a href="/" className="py-2">Home</a>
-            <a href="/features" className="py-2">Features</a>
-            <a href="/pricing" className="py-2">Pricing</a>
-            <a href="/about" className="py-2">About</a>
+          <div data-anim="pane" className="grid gap-4 py-4">
+            <a data-anim="description" href="/" className="py-2">Home</a>
+            <a data-anim="description" href="/features" className="py-2">Features</a>
+            <a data-anim="description" href="/pricing" className="py-2">Pricing</a>
+            <a data-anim="description" href="/about" className="py-2">About</a>
           </div>
         </SheetContent>
       </Sheet>

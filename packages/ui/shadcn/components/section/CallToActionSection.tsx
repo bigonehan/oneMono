@@ -38,27 +38,43 @@ export function CallToActionSection({
 
   return (
     <SectionWrapper className="bg-primary/5 py-24">
-      <div className={`max-w-3xl space-y-6 ${alignmentClasses}`}>
+      <div
+        data-anim="pane"
+        className={`max-w-3xl space-y-6 ${alignmentClasses}`}
+      >
         {eyebrow && (
-          <span className="text-sm font-semibold uppercase tracking-wide text-primary">
+          <span
+            data-anim="description"
+            className="text-sm font-semibold uppercase tracking-wide text-primary"
+          >
             {eyebrow}
           </span>
         )}
-        <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+        <h2
+          data-anim="title"
+          className="text-3xl font-bold tracking-tight text-foreground md:text-4xl"
+        >
           {title}
         </h2>
-        <p className="text-lg leading-relaxed text-muted-foreground">
+        <p
+          data-anim="description"
+          className="text-lg leading-relaxed text-muted-foreground"
+        >
           {description}
         </p>
-        <div className="flex flex-col gap-3 sm:flex-row">
-          <Button asChild size="lg">
-            <a href={primaryAction.href} className="inline-flex items-center gap-2">
+        <div data-anim="pane" className="flex flex-col gap-3 sm:flex-row">
+          <Button data-anim="pane" asChild size="lg">
+            <a
+              href={primaryAction.href}
+              className="inline-flex items-center gap-2"
+            >
               {primaryAction.label}
               {primaryAction.icon}
             </a>
           </Button>
           {secondaryAction && (
             <Button
+              data-anim="pane"
               asChild
               size="lg"
               variant={secondaryAction.variant ?? "outline"}

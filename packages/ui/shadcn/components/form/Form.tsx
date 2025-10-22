@@ -11,16 +11,20 @@ import { SectionWrapper } from "../SectionWrapper"
 const Form = () => {
   return (
     <SectionWrapper contentClassName="max-w-md space-y-6">
-      <form className="grid gap-4">
+      <form data-anim="pane" className="grid gap-4">
         <div className="grid gap-2">
-          <Label htmlFor="email">Email</Label>
+          <Label data-anim="title" htmlFor="email">
+            Email
+          </Label>
           <Input id="email" type="email" placeholder="m@example.com" />
         </div>
         <div className="grid gap-2">
-          <Label htmlFor="password">Password</Label>
+          <Label data-anim="title" htmlFor="password">
+            Password
+          </Label>
           <Input id="password" type="password" />
         </div>
-        <Button type="submit" className="w-full">
+        <Button data-anim="pane" type="submit" className="w-full">
           Login
         </Button>
       </form>

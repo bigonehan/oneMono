@@ -41,25 +41,42 @@ const TestimonialSection = () => {
       className="bg-muted"
       contentClassName="space-y-12"
     >
-      <div className="text-center space-y-2">
-        <h2 className="text-3xl font-bold">What Our Customers Say</h2>
-        <p className="text-muted-foreground">
+      <div data-anim="pane" className="text-center space-y-2">
+        <h2 data-anim="title" className="text-3xl font-bold">
+          What Our Customers Say
+        </h2>
+        <p data-anim="description" className="text-muted-foreground">
           Real stories from real people.
         </p>
       </div>
       <div className="grid gap-8 md:grid-cols-3">
         {testimonialsContent.map((testimonial, index) => (
-          <Card key={index}>
-            <CardContent className="pt-6">
-              <p className="italic">&quot;{testimonial.quote}&quot;</p>
+          <Card key={index} data-anim="pane">
+            <CardContent data-anim="pane" className="pt-6">
+              <p data-anim="description" className="italic">
+                &quot;{testimonial.quote}&quot;
+              </p>
               <div className="flex items-center mt-4">
-                <Avatar>
-                  <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
-                  <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
+                <Avatar data-anim="img">
+                  <AvatarImage
+                    data-anim="img"
+                    src={testimonial.avatar}
+                    alt={testimonial.name}
+                  />
+                  <AvatarFallback data-anim="title">
+                    {testimonial.name.charAt(0)}
+                  </AvatarFallback>
                 </Avatar>
                 <div className="ml-4">
-                  <p className="font-bold">{testimonial.name}</p>
-                  <p className="text-sm text-muted-foreground">{testimonial.title}</p>
+                  <p data-anim="title" className="font-bold">
+                    {testimonial.name}
+                  </p>
+                  <p
+                    data-anim="description"
+                    className="text-sm text-muted-foreground"
+                  >
+                    {testimonial.title}
+                  </p>
                 </div>
               </div>
             </CardContent>

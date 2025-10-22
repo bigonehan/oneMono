@@ -31,26 +31,33 @@ export function Footer_2({ data, Link }: Footer_2prop) {
       className="border-t border-border/40 bg-background py-12"
       contentClassName="space-y-12"
     >
-      <footer className="grid gap-8 lg:grid-cols-4">
+      <footer data-anim="pane" className="grid gap-8 lg:grid-cols-4">
         <div className="space-y-4 lg:col-span-1">
           <Link href="/" className="flex items-center gap-2">
             {data.logo ? (
               <img
+                data-anim="img"
                 src={data.logo || "/placeholder.svg"}
                 alt="Logo"
                 className="h-8 w-8"
               />
             ) : (
-              <div className="h-8 w-8 rounded-lg bg-primary" />
+              <div data-anim="img" className="h-8 w-8 rounded-lg bg-primary" />
             )}
             {data.logoText && (
-              <span className="font-sans text-xl font-bold text-foreground">
+              <span
+                data-anim="title"
+                className="font-sans text-xl font-bold text-foreground"
+              >
                 {data.logoText}
               </span>
             )}
           </Link>
           {data.description && (
-            <p className="text-sm text-muted-foreground leading-relaxed">
+            <p
+              data-anim="description"
+              className="text-sm text-muted-foreground leading-relaxed"
+            >
               {data.description}
             </p>
           )}
@@ -65,7 +72,7 @@ export function Footer_2({ data, Link }: Footer_2prop) {
                     className="text-muted-foreground transition-colors hover:text-foreground"
                     aria-label={social.name}
                   >
-                    <IconComponent className="h-5 w-5" />
+                    <IconComponent data-anim="img" className="h-5 w-5" />
                   </Link>
                 );
               })}
@@ -77,7 +84,10 @@ export function Footer_2({ data, Link }: Footer_2prop) {
           <>
             {data.links.map((section, index) => (
               <div key={index} className="space-y-4">
-                <h3 className="text-sm font-semibold text-foreground">
+                <h3
+                  data-anim="title"
+                  className="text-sm font-semibold text-foreground"
+                >
                   {section.title}
                 </h3>
                 <ul className="space-y-3">
@@ -86,6 +96,7 @@ export function Footer_2({ data, Link }: Footer_2prop) {
                       <Link
                         href={item.href}
                         className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                        data-anim="description"
                       >
                         {item.label}
                       </Link>
@@ -99,7 +110,10 @@ export function Footer_2({ data, Link }: Footer_2prop) {
       </footer>
 
       <div className="border-t border-border/40 pt-8">
-        <p className="text-center text-sm text-muted-foreground">
+        <p
+          data-anim="description"
+          className="text-center text-sm text-muted-foreground"
+        >
           {data.copyright}
         </p>
       </div>

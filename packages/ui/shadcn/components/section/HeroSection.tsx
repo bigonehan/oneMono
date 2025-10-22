@@ -10,13 +10,17 @@ const HeroSection = () => {
   return (
     <SectionWrapper className="py-20" contentClassName="text-center space-y-8">
       <React.Fragment>
-        <h1 className="text-4xl font-bold">Your Awesome Product</h1>
-        <p className="text-lg text-muted-foreground">
+        <h1 data-anim="title" className="text-4xl font-bold">
+          Your Awesome Product
+        </h1>
+        <p data-anim="description" className="text-lg text-muted-foreground">
           A catchy tagline about what makes your product great.
         </p>
-        <div className="flex justify-center gap-4">
-          <Button size="lg">Get Started</Button>
-          <Button size="lg" variant="outline">
+        <div data-anim="pane" className="flex justify-center gap-4">
+          <Button data-anim="pane" size="lg">
+            Get Started
+          </Button>
+          <Button data-anim="pane" size="lg" variant="outline">
             Learn More
           </Button>
         </div>

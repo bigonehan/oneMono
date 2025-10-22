@@ -41,20 +41,30 @@ export function FeatureListSection({
 
   return (
     <SectionWrapper>
-      <div className="mx-auto flex max-w-6xl flex-col gap-10">
-        <div className="space-y-4 text-center">
+      <div data-anim="pane" className="mx-auto flex max-w-6xl flex-col gap-10">
+        <div data-anim="pane" className="space-y-4 text-center">
           {eyebrow && (
-            <span className="text-sm font-semibold uppercase tracking-wide text-primary">
+            <span
+              data-anim="description"
+              className="text-sm font-semibold uppercase tracking-wide text-primary"
+            >
               {eyebrow}
             </span>
           )}
-          <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+          <h2
+            data-anim="title"
+            className="text-3xl font-bold tracking-tight text-foreground md:text-4xl"
+          >
             {title}
           </h2>
           {descriptions.length > 0 && (
             <div className="space-y-3 text-muted-foreground">
               {descriptions.map((para, index) => (
-                <p key={index} className="text-lg leading-relaxed">
+                <p
+                  key={index}
+                  data-anim="description"
+                  className="text-lg leading-relaxed"
+                >
                   {para}
                 </p>
               ))}
@@ -66,17 +76,24 @@ export function FeatureListSection({
           {features.map((feature) => (
             <div
               key={feature.id}
+              data-anim="pane"
               className="rounded-xl border border-border/60 bg-card/60 p-6 text-left shadow-sm backdrop-blur"
             >
               {feature.icon && (
-                <div className="mb-4 flex size-12 items-center justify-center rounded-full bg-primary/10 text-2xl">
+                <div
+                  data-anim="img"
+                  className="mb-4 flex size-12 items-center justify-center rounded-full bg-primary/10 text-2xl"
+                >
                   {feature.icon}
                 </div>
               )}
-              <h3 className="text-xl font-semibold text-foreground">
+              <h3 data-anim="title" className="text-xl font-semibold text-foreground">
                 {feature.title}
               </h3>
-              <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+              <p
+                data-anim="description"
+                className="mt-3 text-base leading-relaxed text-muted-foreground"
+              >
                 {feature.description}
               </p>
             </div>

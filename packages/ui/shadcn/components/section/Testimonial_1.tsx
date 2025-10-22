@@ -24,13 +24,19 @@ export function Testimonial_1({
 }: Testimonial_1prop) {
   return (
     <SectionWrapper className="py-20">
-      <div className="mx-auto max-w-6xl space-y-12">
-        <div className="text-center space-y-4">
-          <h2 className="font-sans text-3xl font-bold tracking-tight text-foreground text-balance md:text-4xl lg:text-5xl">
+      <div data-anim="pane" className="mx-auto max-w-6xl space-y-12">
+        <div data-anim="pane" className="text-center space-y-4">
+          <h2
+            data-anim="title"
+            className="font-sans text-3xl font-bold tracking-tight text-foreground text-balance md:text-4xl lg:text-5xl"
+          >
             {title}
           </h2>
           {description && (
-            <p className="mx-auto max-w-2xl text-lg text-muted-foreground text-pretty leading-relaxed">
+            <p
+              data-anim="description"
+              className="mx-auto max-w-2xl text-lg text-muted-foreground text-pretty leading-relaxed"
+            >
               {description}
             </p>
           )}
@@ -38,18 +44,25 @@ export function Testimonial_1({
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {testimonials.map((testimonial, index) => (
-            <Card key={index} className="border-border/50">
-              <CardContent className="p-6 space-y-4">
-                <p className="text-sm text-foreground leading-relaxed">
+            <Card key={index} data-anim="pane" className="border-border/50">
+              <CardContent data-anim="pane" className="p-6 space-y-4">
+                <p
+                  data-anim="description"
+                  className="text-sm text-foreground leading-relaxed"
+                >
                   &quot;{testimonial.content}&quot;
                 </p>
                 <div className="flex items-center gap-3">
-                  <Avatar>
+                  <Avatar data-anim="img">
                     <AvatarImage
+                      data-anim="img"
                       src={testimonial.avatar || "/placeholder.svg"}
                       alt={testimonial.author}
                     />
-                    <AvatarFallback className="bg-accent/10 text-accent">
+                    <AvatarFallback
+                      data-anim="title"
+                      className="bg-accent/10 text-accent"
+                    >
                       {testimonial.author
                         .split(" ")
                         .map((n) => n[0])
@@ -58,10 +71,16 @@ export function Testimonial_1({
                     </AvatarFallback>
                   </Avatar>
                   <div>
-                    <div className="text-sm font-semibold text-foreground">
+                    <div
+                      data-anim="title"
+                      className="text-sm font-semibold text-foreground"
+                    >
                       {testimonial.author}
                     </div>
-                    <div className="text-xs text-muted-foreground">
+                    <div
+                      data-anim="description"
+                      className="text-xs text-muted-foreground"
+                    >
                       {testimonial.role}
                       {testimonial.company && ` at ${testimonial.company}`}
                     </div>

@@ -25,22 +25,36 @@ export function Hero_1({
       className="lg:py-20"
       contentClassName="flex flex-col gap-4 text-center lg:items-center lg:gap-8"
     >
-      <div className="flex flex-1 flex-col items-center gap-4 text-center lg:gap-8">
+      <div
+        data-anim="pane"
+        className="flex flex-1 flex-col items-center gap-4 text-center lg:gap-8"
+      >
         <div className="space-y-4">
-          <h1 className="text-4xl font-bold lg:text-6xl">{header}</h1>
-          <h2 className="text-lg font-light text-muted-foreground lg:text-3xl">
+          <h1 data-anim="title" className="text-4xl font-bold lg:text-6xl">
+            {header}
+          </h1>
+          <h2
+            data-anim="description"
+            className="text-lg font-light text-muted-foreground lg:text-3xl"
+          >
             {subheader}
           </h2>
           {description && (
-            <p className="text-base text-muted-foreground lg:text-xl">
+            <p
+              data-anim="description"
+              className="text-base text-muted-foreground lg:text-xl"
+            >
               {description}
             </p>
           )}
         </div>
-        {ctaButton}
+        {ctaButton && <div data-anim="pane">{ctaButton}</div>}
       </div>
       {heroImage && (
-        <div className="flex flex-1 justify-center lg:justify-end">
+        <div
+          data-anim="img"
+          className="flex flex-1 justify-center lg:justify-end"
+        >
           {heroImage}
         </div>
       )}

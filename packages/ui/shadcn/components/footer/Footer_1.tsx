@@ -12,9 +12,14 @@ const Footer_1 = () => {
       className="bg-muted text-muted-foreground"
       contentClassName="space-y-8"
     >
-      <footer className="grid grid-cols-2 gap-8 md:grid-cols-4">
+      <footer
+        data-anim="pane"
+        className="grid grid-cols-2 gap-8 md:grid-cols-4"
+      >
         <div>
-          <h3 className="font-bold mb-2">Company</h3>
+          <h3 data-anim="title" className="font-bold mb-2">
+            Company
+          </h3>
           <ul>
             <li>
               <a href="/about">About Us</a>
@@ -25,7 +30,9 @@ const Footer_1 = () => {
           </ul>
         </div>
         <div>
-          <h3 className="font-bold mb-2">Legal</h3>
+          <h3 data-anim="title" className="font-bold mb-2">
+            Legal
+          </h3>
           <ul>
             <li>
               <a href="/terms">Terms of Service</a>
@@ -36,7 +43,9 @@ const Footer_1 = () => {
           </ul>
         </div>
         <div>
-          <h3 className="font-bold mb-2">Connect</h3>
+          <h3 data-anim="title" className="font-bold mb-2">
+            Connect
+          </h3>
           <ul>
             <li>
               <a href="#">Facebook</a>
@@ -50,7 +59,9 @@ const Footer_1 = () => {
           </ul>
         </div>
         <div>
-          <h3 className="font-bold mb-2">Site Map</h3>
+          <h3 data-anim="title" className="font-bold mb-2">
+            Site Map
+          </h3>
           <ul>
             <li>
               <a href="/">Home</a>
@@ -65,7 +76,7 @@ const Footer_1 = () => {
         </div>
       </footer>
       <div className="text-center mt-8 text-sm">
-        <p>
+        <p data-anim="description">
           &copy; {new Date().getFullYear()} My Company, Inc. All rights
           reserved.
         </p>

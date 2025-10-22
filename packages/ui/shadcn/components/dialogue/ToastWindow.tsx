@@ -14,6 +14,7 @@ const ToastWindow = () => {
     <SectionWrapper contentClassName="space-y-4">
       <Toaster />
       <Button
+        data-anim="pane"
         onClick={() =>
           toast("Event has been created", {
             description: "Sunday, December 03, 2023 at 9:00 AM",

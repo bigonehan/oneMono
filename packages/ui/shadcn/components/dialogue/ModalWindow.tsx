@@ -40,10 +40,14 @@ const ModalWindow = ({
     <SectionWrapper contentClassName="flex justify-center">
       <Dialog>
         <DialogTrigger asChild>{trigger}</DialogTrigger>
-        <DialogContent>
+        <DialogContent data-anim="pane">
           <DialogHeader>
-            <DialogTitle>{title}</DialogTitle>
-            {description && <DialogDescription>{description}</DialogDescription>}
+            <DialogTitle data-anim="title">{title}</DialogTitle>
+            {description && (
+              <DialogDescription data-anim="description">
+                {description}
+              </DialogDescription>
+            )}
           </DialogHeader>
           {children}
           {footer && <DialogFooter>{footer}</DialogFooter>}

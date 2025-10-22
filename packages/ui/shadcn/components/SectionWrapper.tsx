@@ -14,6 +14,7 @@ const SectionWrapper = ({
 }: SectionWrapperProps) => {
   return (
     <section
+      data-anim="pane"
       className={cn(
         "py-16 px-4 sm:px-6 lg:px-8 bg-background transition-colors dark:bg-neutral-950",
         className,
