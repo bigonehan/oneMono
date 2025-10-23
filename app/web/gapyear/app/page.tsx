@@ -41,7 +41,7 @@ export default function Home() {
                 }
                 heroImage={
                     <Image
-                        src="/globe.svg"
+                        src="/logo.png"
                         alt="이음 앱 미리보기"
                         width={520}
                         height={420}
