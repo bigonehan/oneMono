@@ -5,13 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "commit": "git add . && git commit"
+    "commit": "git add . && git commit",
+    "lint": "pnpm --filter @app/web/gapyear lint && pnpm --filter @ui/shadcn lint",
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.18.3",
   "devDependencies": {
+    "husky": "^9.1.7",
     "plop": "^4.0.4"
   }
 }

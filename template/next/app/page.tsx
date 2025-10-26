@@ -8,6 +8,7 @@ import {
 } from "@ui/gsap/scroll";
 import { Enterance } from "@ui/shadcn/section/Enterance";
 import { BasicSection } from "@ui/shadcn/section/BasicSection";
+import { mockPosts } from "@src/mocks/posts";
 
 const sections = [
   {
@@ -67,6 +68,41 @@ export default function Home() {
           <BasicSection key={section.title} {...section} />
         ))}
       </ScrollSections>
+      <section className="border-t border-border/40 bg-muted/30">
+        <div className="mx-auto flex w-full max-w-4xl flex-col gap-6 px-6 py-12">
+          <header className="space-y-3">
+            <p className="text-sm uppercase tracking-widest text-muted-foreground">
+              Board Preview
+            </p>
+            <h2 className="text-2xl font-semibold">
+              Mock Posts powered by Effect brands
+            </h2>
+            <p className="text-sm text-muted-foreground">
+              게시글 도메인을 UI에 렌더링해 Effect 브랜드 타입이 올바르게
+              적용되는지 확인합니다.
+            </p>
+          </header>
+          <div className="grid gap-4">
+            {mockPosts.map((post) => (
+              <article
+                key={post.id}
+                className="rounded-lg border border-border/40 bg-background/80 p-6 shadow-sm transition hover:border-border hover:shadow-md"
+              >
+                <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-muted-foreground">
+                  <span>{post.user.name}</span>
+                  <time dateTime={post.createdAt.toISOString()}>
+                    {post.createdAt.toLocaleString()}
+                  </time>
+                </div>
+                <h3 className="mt-3 text-lg font-semibold">{post.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  {post.body}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

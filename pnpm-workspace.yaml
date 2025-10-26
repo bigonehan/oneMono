@@ -3,6 +3,7 @@ packages:
   - app/mobile/*
   - packages/ui/*
   - packages/domains/*
+  - packages/repository/*
   - packages/feature/*
   - template/*
 

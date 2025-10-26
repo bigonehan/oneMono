@@ -13,7 +13,10 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "@ui/shadcn": "workspace:*",
-    "@ui/gsap": "workspace:*"
+    "@ui/gsap": "workspace:*",
+    "@domains/core": "workspace:*",
+    "@domains/post": "workspace:*",
+    "@domains/user": "workspace:*"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
