@@ -5,7 +5,7 @@ packages:
   - packages/domains/*
   - packages/repository/*
   - packages/feature/*
-  - template/*
+  - template/web/*
 
 ignoredBuiltDependencies:
   - '@tailwindcss/oxide'
