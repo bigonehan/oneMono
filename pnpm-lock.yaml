@@ -25,7 +25,7 @@ importers:
         version: 0.544.0(react@19.1.0)
       next:
         specifier: 15.5.5
-        version: 15.5.5(@babel/core@7.28.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 15.5.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       next-themes:
         specifier: ^0.4.6
         version: 0.4.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -330,7 +330,7 @@ importers:
         specifier: ^3.2.4
         version: 3.2.4(@types/debug@4.1.12)(@types/node@20.19.23)(@vitest/browser@3.2.4)(jiti@2.6.1)(lightningcss@1.30.2)
 
-  template/astro:
+  template/web/astro:
     dependencies:
       '@astrojs/mdx':
         specifier: ^4.3.6
@@ -342,7 +342,7 @@ importers:
         specifier: ^1.2.3
         version: 1.2.3(@types/react@19.2.2)(react@19.2.0)
       '@tailwindcss/vite':
-        specifier: ^4.1.13
+        specifier: ^4.1.15
         version: 4.1.15(vite@7.1.11(@types/node@20.19.23)(jiti@2.6.1)(lightningcss@1.30.2))
       '@types/canvas-confetti':
         specifier: ^1.9.0
@@ -355,7 +355,7 @@ importers:
         version: 19.2.2(@types/react@19.2.2)
       '@ui/shadcn':
         specifier: workspace:*
-        version: link:../../packages/ui/shadcn
+        version: link:../../../packages/ui/shadcn
       astro:
         specifier: ^5.14.1
         version: 5.14.7(@types/node@20.19.23)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.52.5)(typescript@5.9.3)
@@ -381,26 +381,26 @@ importers:
         specifier: ^4.1.13
         version: 4.1.15
 
-  template/next:
+  template/web/next:
     dependencies:
       '@domains/core':
         specifier: workspace:*
-        version: link:../../packages/domains/core
+        version: link:../../../packages/domains/core
       '@domains/post':
         specifier: workspace:*
-        version: link:../../packages/domains/post
+        version: link:../../../packages/domains/post
       '@domains/user':
         specifier: workspace:*
-        version: link:../../packages/domains/user
+        version: link:../../../packages/domains/user
       '@ui/gsap':
         specifier: workspace:*
-        version: link:../../packages/ui/gsap
+        version: link:../../../packages/ui/gsap
       '@ui/shadcn':
         specifier: workspace:*
-        version: link:../../packages/ui/shadcn
+        version: link:../../../packages/ui/shadcn
       next:
         specifier: 15.5.5
-        version: 15.5.5(@babel/core@7.28.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 15.5.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: 19.1.0
         version: 19.1.0
@@ -9677,7 +9677,7 @@ snapshots:
       react: 19.2.0
       react-dom: 19.2.0(react@19.2.0)
 
-  next@15.5.5(@babel/core@7.28.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+  next@15.5.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       '@next/env': 15.5.5
       '@swc/helpers': 0.5.15
@@ -9685,7 +9685,7 @@ snapshots:
       postcss: 8.4.31
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
-      styled-jsx: 5.1.6(@babel/core@7.28.4)(react@19.1.0)
+      styled-jsx: 5.1.6(react@19.1.0)
     optionalDependencies:
       '@next/swc-darwin-arm64': 15.5.5
       '@next/swc-darwin-x64': 15.5.5
@@ -10652,12 +10652,10 @@ snapshots:
     dependencies:
       inline-style-parser: 0.2.4
 
-  styled-jsx@5.1.6(@babel/core@7.28.4)(react@19.1.0):
+  styled-jsx@5.1.6(react@19.1.0):
     dependencies:
       client-only: 0.0.1
       react: 19.1.0
-    optionalDependencies:
-      '@babel/core': 7.28.4
 
   supports-color@7.2.0:
     dependencies:
