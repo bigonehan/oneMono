@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Footer_1 } from "@ui/shadcn/footer/Footer_1";
 import "./globals.css";
+import { Providers } from "./providers";
+import { ThemeToggle } from "@ui/shadcn/components/ui/theme-toggle";
+import { cn } from "@ui/shadcn/utils";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,23 +29,31 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={cn(
+          geistSans.variable,
+          geistMono.variable,
+          "min-h-screen bg-background text-foreground antialiased transition-colors duration-300"
+        )}
       >
-        <div className="flex flex-col min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-          <header className="sticky top-0 z-10 bg-white shadow-md dark:bg-gray-800 dark:shadow-lg">
-            <div className="container mx-auto px-4 py-4"></div>
-          </header>
+        <Providers>
+          <div className="flex min-h-screen flex-col bg-background transition-colors duration-300">
+            <header className="sticky top-0 z-10 border-b border-border/60 bg-background/90 backdrop-blur transition-colors duration-300">
+              <div className="container mx-auto flex items-center justify-end gap-3 px-4 py-4">
+                <ThemeToggle className="border-border/60 bg-transparent hover:bg-muted/70" />
+              </div>
+            </header>
 
-          <main className="flex-grow container mx-auto px-5 py-8">
-            {children}
-          </main>
+            <main className="container mx-auto flex-grow px-5 py-8 transition-colors duration-300">
+              {children}
+            </main>
 
-          <footer className="bg-gray-100 dark:bg-gray-800 mt-auto border-t border-gray-200 dark:border-gray-700">
-            <div className="container mx-auto px-4 py-6 text-center text-sm">
-              <Footer_1 />
-            </div>
-          </footer>
-        </div>
+            <footer className="mt-auto border-t border-border/60 bg-muted/40 transition-colors duration-300">
+              <div className="container mx-auto px-4 py-6 text-center text-sm">
+                <Footer_1 />
+              </div>
+            </footer>
+          </div>
+        </Providers>
         {/* 전체 레이아웃 Div 닫힘 */}
       </body>
     </html>
