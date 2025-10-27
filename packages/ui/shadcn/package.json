@@ -5,6 +5,7 @@
 		"**/*.css"
 	],
 	"description": "",
+	"type": "module",
 	"main": "index.js",
 	"scripts": {
 		"build": "tailwindcss -i ./styles/globals.css -o ./dist/styles.css",
