@@ -9,17 +9,18 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "next": "15.5.5",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "@ui/shadcn": "workspace:*",
-    "@ui/gsap": "workspace:*",
     "@domains/core": "workspace:*",
     "@domains/post": "workspace:*",
-    "@domains/user": "workspace:*"
+    "@domains/user": "workspace:*",
+    "@ui/gsap": "workspace:*",
+    "@ui/shadcn": "workspace:*",
+    "lenis": "^1.3.13",
+    "next": "15.5.5",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
+    "@eslint/eslintrc": "^3.3.1",
     "@next/eslint-plugin-next": "^15.5.5",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",

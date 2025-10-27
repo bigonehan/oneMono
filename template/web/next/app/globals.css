@@ -3,6 +3,23 @@
 @source "../../../../packages/ui/shadcn/components/**/*.{js,ts,tsx,jsx}";
 @source "../../../packages/ui/shadcn/components/**/*.{js,ts,tsx,jsx}";
 
+html.lenis, html.lenis body {
+ height: auto;
+}
+.lenis.lenis-smooth {
+ scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+ overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+ overflow: hidden;
+}
+.lenis.lenis-smooth iframe {
+ pointer-events: none;
+}
+
+
 :root {
   --background: oklch(1.0000 0 0);
   --foreground: oklch(0 0 0);

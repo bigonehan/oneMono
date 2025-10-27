@@ -7,15 +7,17 @@ import { SectionWrapper } from "../SectionWrapper";
  * @returns {JSX.Element} - The rendered footer component.
  */
 const Footer_1 = () => {
-  return (
-    <SectionWrapper
-      className="bg-muted text-muted-foreground"
-      contentClassName="space-y-8"
-    >
-      <footer
-        data-anim="pane"
-        className="grid grid-cols-2 gap-8 md:grid-cols-4"
-      >
+    return (
+        <SectionWrapper
+            className="bg-muted text-muted-foreground"
+            contentClassName="space-y-8"
+        >
+            <footer
+                data-anim="pane"
+                className="grid grid-cols-2 gap-8 md:grid-cols-4"
+            >
+                {/*
+
         <div>
           <h3 data-anim="title" className="font-bold mb-2">
             Company
@@ -73,16 +75,17 @@ const Footer_1 = () => {
               <a href="/pricing">Pricing</a>
             </li>
           </ul>
-        </div>
-      </footer>
-      <div className="text-center mt-8 text-sm">
-        <p data-anim="description">
-          &copy; {new Date().getFullYear()} My Company, Inc. All rights
-          reserved.
-        </p>
-      </div>
-    </SectionWrapper>
-  );
+         </div>
+		 */}
+            </footer>
+            <div className="text-center mt-2 text-sm">
+                <p data-anim="description">
+                    &copy; {new Date().getFullYear()} Ieum, Inc. All rights
+                    reserved.
+                </p>
+            </div>
+        </SectionWrapper>
+    );
 };
 
 export { Footer_1 };

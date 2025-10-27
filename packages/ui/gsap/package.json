@@ -3,6 +3,16 @@
   "version": "0.0.1",
   "description": "GSAP animation utilities for UI components",
   "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./scroll": "./src/scroll/index.ts",
+    "./scroll/*": "./src/scroll/*",
+    "./utils": "./src/utils/index.ts",
+    "./utils/*": "./src/utils/*",
+    "./presets": "./src/presets/index.ts",
+    "./presets/*": "./src/presets/*",
+    "./package.json": "./package.json"
+  },
   "types": "./src/index.ts",
   "sideEffects": false,
   "scripts": {
