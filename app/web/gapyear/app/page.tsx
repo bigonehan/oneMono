@@ -1,8 +1,6 @@
 
 
 import SmoothScroll from "@src/components/SmoothScroll";
-import { Hero_ttbt } from "@ui/shadcn/components/hero/Hero_ttbt";
-import { HeroContent } from "@/src/content/HeroContent";
 import { VideoBackgroundSection } from "@ui/shadcn/components/section/VideoBackgroundSection";
 
 export default function Home() {
