@@ -43,7 +43,7 @@ export default function RootLayout({
               </div>
             </header>
 
-            <main className="container mx-auto flex-grow px-5 py-8 transition-colors duration-300">
+            <main className=" w-full mx-auto flex-grow  py-8 transition-colors duration-300">
               {children}
             </main>
 			

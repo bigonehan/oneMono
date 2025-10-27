@@ -1,24 +1,20 @@
+
+
+
 import type { ReactNode, VideoHTMLAttributes } from "react";
 import { cn } from "@ui/shadcn/utils";
 
 interface VideoBackgroundSectionProps {
-  /** Video file or stream URL used as the section background. */
   src: string;
-  /** Poster frame displayed before the video becomes ready. */
   poster?: string;
   children?: ReactNode;
   className?: string;
   contentClassName?: string;
   overlayClassName?: string;
   videoClassName?: string;
-  /** Additional props applied to the underlying <video> element. */
   videoProps?: Omit<VideoHTMLAttributes<HTMLVideoElement>, "src" | "poster">;
 }
 
-/**
- * Full-bleed section that plays a looping background video while keeping the content readable
- * with a primary-colour gradient overlay.
- */
 export const VideoBackgroundSection = ({
   src,
   poster,
@@ -46,6 +42,7 @@ export const VideoBackgroundSection = ({
         className,
       )}
     >
+      {/* 🎥 비디오 */}
       <video
         className={cn(
           "absolute inset-0 h-full w-full object-cover",
@@ -60,18 +57,24 @@ export const VideoBackgroundSection = ({
         playsInline={playsInline}
         {...restVideoProps}
       />
+
+      {/* 🌓 위아래 그라데이션 오버레이 */}
       <div
         aria-hidden="true"
         className={cn(
-          "pointer-events-none absolute inset-0 bg-gradient-to-tr from-background/80 via-background/60 to-transparent",
-          "transition-opacity",
+          "pointer-events-none absolute inset-0",
+
+"bg-gradient-to-b from-black/30 via-black/10 via-20% via-transparent via-80% to-black/30",
+          "transition-opacity duration-700",
           overlayClassName,
         )}
       />
+
+      {/* ✨ 콘텐츠 */}
       <div
         data-anim="content"
         className={cn(
-          "relative z-10 mx-auto flex w-full max-w-5xl flex-col gap-6 text-balance",
+          "relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center justify-center gap-6 text-balance text-center text-white",
           contentClassName,
         )}
       >
@@ -80,3 +83,4 @@ export const VideoBackgroundSection = ({
     </section>
   );
 };
+
