@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Footer_1 } from "@ui/shadcn/footer/Footer_1";
 import "./globals.css";
 import { Providers } from "./providers";
-import { ThemeToggle } from "@ui/shadcn/components/ui/theme-toggle";
 import { cn } from "@ui/shadcn/utils";
 
 const geistSans = Geist({
@@ -39,7 +38,7 @@ export default function RootLayout({
           <div className="flex min-h-screen flex-col bg-background transition-colors duration-300">
             <header className="sticky top-0 z-10 border-b border-border/60 bg-background/90 backdrop-blur transition-colors duration-300">
               <div className="container mx-auto flex items-center justify-end gap-3 px-4 py-4">
-                <ThemeToggle className="border-border/60 bg-transparent hover:bg-muted/70" />
+
               </div>
             </header>
 

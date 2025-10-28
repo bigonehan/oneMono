@@ -8,7 +8,7 @@ export default function Home() {
         <main className="flex min-h-screen flex-col">
             <SmoothScroll />
             <VideoBackgroundSection
-                src="https://rdmueoyidhachtpnopac.supabase.co/storage/v1/object/public/Public/slow_2.mp4"
+                src="https://rdmueoyidhachtpnopac.supabase.co/storage/v1/object/public/Public/output.mp4"
                 className="relative min-h-screen flex items-center justify-center text-center"
                 overlayClassName="from-black/50 via-black/30 to-transparent"
                 contentClassName="flex flex-col items-center justify-center gap-4 max-w-md w-full mx-auto text-white"
