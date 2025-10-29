@@ -77,12 +77,12 @@ export function FeatureListSection({
             <div
               key={feature.id}
               data-anim="pane"
-              className="rounded-xl border border-border/60 bg-card/60 p-6 text-left shadow-sm backdrop-blur"
+              className="rounded-xl border border-border/60 bg-card text-card-foreground p-6 text-left shadow-sm transition-colors supports-[backdrop-filter]:bg-card/80 supports-[backdrop-filter]:backdrop-blur"
             >
               {feature.icon && (
                 <div
                   data-anim="img"
-                  className="mb-4 flex size-12 items-center justify-center rounded-full bg-primary/10 text-2xl"
+                  className="mb-4 flex size-12 items-center justify-center rounded-full bg-primary/10 text-2xl text-primary dark:bg-primary/20"
                 >
                   {feature.icon}
                 </div>
