@@ -25,7 +25,7 @@ export default function Home() {
                 <p className="mt-2 text-sm text-white/60">beta</p>
             </VideoBackgroundSection>
 			     <FeatureListSection
-                eyebrow="핵심 기능"
+                eyebrow=""
                 title="꾸준히 즐기는 두뇌 훈련"
                 description="이음의 다섯 가지 코어 기능으로 기억력부터 집중력, 휴식까지 균형 있게 채워보세요."
                 features={FeatureList}
