@@ -8,11 +8,17 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function SmoothScroll() {
   useEffect(() => {
-    let lenis: Lenis;
-    
+    let lenis: Lenis | null = null;
+    let rafId: number | null = null;
+    let isUnmounted = false;
+
     const initLenis = async () => {
       // Lenis 동적 import
       const Lenis = (await import('lenis')).default;
+
+      if (isUnmounted) {
+        return;
+      }
       
       lenis = new Lenis({
         duration: 1.2,
@@ -24,21 +30,34 @@ export default function SmoothScroll() {
       lenis.on('scroll', ScrollTrigger.update);
       
       // requestAnimationFrame 루프
-      function raf(time: number) {
+      const raf = (time: number) => {
+        if (!lenis || isUnmounted) {
+          return;
+        }
+
         lenis.raf(time);
-        requestAnimationFrame(raf);
-      }
+        rafId = requestAnimationFrame(raf);
+      };
       
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     };
     
     initLenis();
     
     // cleanup
     return () => {
+      isUnmounted = true;
+
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+
       if (lenis) {
         lenis.destroy();
       }
+
+      lenis = null;
     };
   }, []);
   

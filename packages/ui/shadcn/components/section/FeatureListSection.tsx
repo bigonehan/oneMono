@@ -15,6 +15,7 @@ interface FeatureListSectionProps {
   description?: string | string[];
   features: FeatureListItem[];
   columns?: 2 | 3;
+  id?: string;
 }
 
 /**
@@ -27,6 +28,7 @@ export function FeatureListSection({
   description,
   features,
   columns = 3,
+  id,
 }: FeatureListSectionProps) {
   const descriptions = Array.isArray(description)
     ? description
@@ -40,7 +42,7 @@ export function FeatureListSection({
       : "md:grid-cols-2 xl:grid-cols-3";
 
   return (
-    <SectionWrapper>
+    <SectionWrapper id={id}>
       <div data-anim="pane" className="mx-auto flex max-w-6xl flex-col gap-10">
         <div data-anim="pane" className="space-y-4 text-center">
           {eyebrow && (
