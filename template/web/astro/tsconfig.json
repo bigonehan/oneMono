@@ -15,9 +15,18 @@
 			"@/*": [
 				"./src/*"
 			],
-			"@ui/shadcn/*": [
-				"../../packages/ui/shadcn/components/*"
-			]
+				"@ui/shadcn/components/*": [
+					"../../../packages/ui/shadcn/components/*"
+				],
+				"@ui/shadcn/globals.css": [
+					"../../../packages/ui/shadcn/styles/globals.css"
+				],
+				"@ui/*": [
+					"../../../packages/ui/*"
+				],
+				"@ui/shadcn/*": [
+					"../../../packages/ui/shadcn/*"
+				]
 		}
 	}
 }

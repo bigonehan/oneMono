@@ -1,5 +1,5 @@
 
 @import "tailwindcss";
 @import "@ui/shadcn/globals.css";
-@source "../../../../packages/ui/shadcn/components/**/*.{js,ts,tsx,jsx}";
-
+@source "../**/*.{astro,js,ts,jsx,tsx}";
+@source "../../../../../packages/ui/shadcn/components/**/*.{js,ts,tsx,jsx}";

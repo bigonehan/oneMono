@@ -2,9 +2,11 @@
 import '../styles/global.css';
 // Component Imports
 import Button from '../components/Button.astro';
+import Basic_tdli from "@ui/shadcn/components/section/Basic_tdli"
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/basics/astro-components/
+
 ---
 
 <html lang="en">
@@ -13,12 +15,19 @@ import Button from '../components/Button.astro';
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro + TailwindCSS</title>
+		<title>Astro Template Page</title>
 	</head>
 
 	<body>
 		<div class="grid place-items-center h-screen content-center">
-			<Button>Tailwind Button in Astro!</Button>
+			<Basic_tdli
+        heading="Astro에서 React 컴포넌트 사용하기"
+        body="섹션 컴포넌트 예시야."
+        index={1}
+        client:visible
+      />
+srtast
+			<Button>Tailwind Button in Astro?</Button>
 			<a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>
 		</div>
 	</body>
