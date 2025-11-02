@@ -12,29 +12,31 @@ export interface Testimonialprop {
 
 export type Testimonial = Testimonialprop;
 interface Testimonial_1prop {
+  id?: string;
   title: string;
   description: string;
   testimonials: Testimonialprop[];
 }
 
 export function Testimonial_1({
+  id,
   title,
   description,
   testimonials = [],
 }: Testimonial_1prop) {
   return (
-    <SectionWrapper className="py-20">
-      <div data-anim="pane" className="mx-auto max-w-6xl space-y-12">
-        <div data-anim="pane" className="text-center space-y-4">
+    <SectionWrapper id={id} className="py-20">
+      <div className="mx-auto max-w-6xl space-y-12">
+        <div className="text-center space-y-4">
           <h2
-            data-anim="title"
+            data-section-heading
             className="font-sans text-3xl font-bold tracking-tight text-foreground text-balance md:text-4xl lg:text-5xl"
           >
             {title}
           </h2>
           {description && (
             <p
-              data-anim="description"
+              data-section-body
               className="mx-auto max-w-2xl text-lg text-muted-foreground text-pretty leading-relaxed"
             >
               {description}
@@ -44,25 +46,18 @@ export function Testimonial_1({
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {testimonials.map((testimonial, index) => (
-            <Card key={index} data-anim="pane" className="border-border/50">
-              <CardContent data-anim="pane" className="p-6 space-y-4">
+            <Card key={index} className="border-border/50">
+              <CardContent className="p-6 space-y-4">
                 <p
-                  data-anim="description"
+                  data-section-body
                   className="text-sm text-foreground leading-relaxed"
                 >
                   &quot;{testimonial.content}&quot;
                 </p>
                 <div className="flex items-center gap-3">
-                  <Avatar data-anim="img">
-                    <AvatarImage
-                      data-anim="img"
-                      src={testimonial.avatar || "/placeholder.svg"}
-                      alt={testimonial.author}
-                    />
-                    <AvatarFallback
-                      data-anim="title"
-                      className="bg-accent/10 text-accent"
-                    >
+                  <Avatar>
+                    <AvatarImage src={testimonial.avatar || "/placeholder.svg"} alt={testimonial.author} />
+                    <AvatarFallback className="bg-accent/10 text-accent">
                       {testimonial.author
                         .split(" ")
                         .map((n) => n[0])
@@ -72,13 +67,13 @@ export function Testimonial_1({
                   </Avatar>
                   <div>
                     <div
-                      data-anim="title"
+                      data-section-heading
                       className="text-sm font-semibold text-foreground"
                     >
                       {testimonial.author}
                     </div>
                     <div
-                      data-anim="description"
+                      data-section-body
                       className="text-xs text-muted-foreground"
                     >
                       {testimonial.role}

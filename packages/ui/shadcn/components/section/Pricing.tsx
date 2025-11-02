@@ -19,26 +19,28 @@ export interface PricingDataprop {
   plans: PricingPlan[];
 }
 interface Pricingprop {
+  id?: string;
   data: PricingDataprop;
   Link: Link; // Accept Link as prop
 }
 export function Pricing({
+  id,
   data = { title: "", plans: [] },
   Link,
 }: Pricingprop) {
   return (
-    <SectionWrapper className="py-20">
-      <div data-anim="pane" className="mx-auto max-w-6xl space-y-12">
-        <div data-anim="pane" className="text-center space-y-4">
+    <SectionWrapper id={id} className="py-20">
+      <div className="mx-auto max-w-6xl space-y-12">
+        <div className="text-center space-y-4">
           <h2
-            data-anim="title"
+            data-section-heading
             className="font-sans text-3xl font-bold tracking-tight text-foreground text-balance md:text-4xl lg:text-5xl"
           >
             {data?.title}
           </h2>
           {data?.description && (
             <p
-              data-anim="description"
+              data-section-body
               className="mx-auto max-w-2xl text-lg text-muted-foreground text-pretty leading-relaxed"
             >
               {data?.description}
@@ -50,31 +52,36 @@ export function Pricing({
           {data.plans.map((plan, index) => (
             <Card
               key={index}
-              data-anim="pane"
               className={`flex flex-col border-border/50 ${
                 plan.highlighted
                   ? "border-accent shadow-lg shadow-accent/20"
                   : ""
               }`}
             >
-              <CardHeader data-anim="pane">
+              <CardHeader>
                 <CardTitle
-                  data-anim="title"
+                  data-section-heading
                   className="text-2xl font-bold text-foreground"
                 >
                   {plan.name}
                 </CardTitle>
-                <CardDescription data-anim="description" className="text-muted-foreground">
+                <CardDescription
+                  data-section-body
+                  className="text-muted-foreground"
+                >
                   {plan.description}
                 </CardDescription>
               </CardHeader>
-              <CardContent data-anim="pane" className="flex-1 space-y-6">
+              <CardContent className="flex-1 space-y-6">
                 <div className="space-y-1">
-                  <div data-anim="title" className="text-4xl font-bold text-foreground">
+                  <div className="text-4xl font-bold text-foreground">
                     {plan.price}
                   </div>
                   {plan.period && (
-                    <div data-anim="description" className="text-sm text-muted-foreground">
+                    <div
+                      data-section-body
+                      className="text-sm text-muted-foreground"
+                    >
                       {plan.period}
                     </div>
                   )}
@@ -85,16 +92,17 @@ export function Pricing({
                       key={featureIndex}
                       className="flex items-start gap-3 text-sm text-foreground"
                     >
-                      <Check data-anim="img" className="h-5 w-5 shrink-0 text-accent" />
-                      <span data-anim="description">{feature}</span>
+                      <Check className="h-5 w-5 shrink-0 text-accent" />
+                      <span data-section-body>
+                        {feature}
+                      </span>
                     </li>
                   ))}
                 </ul>
               </CardContent>
-              <CardFooter data-anim="pane">
+              <CardFooter>
                 <Button
                   asChild
-                  data-anim="pane"
                   className="w-full"
                   variant={plan.highlighted ? "default" : "outline"}
                 >

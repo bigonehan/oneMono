@@ -10,17 +10,17 @@ import { SectionWrapper } from "../SectionWrapper"
 
 const featuresContent = [
   {
-    icon: <Rocket data-anim="img" className="h-8 w-8" />,
+    icon: <Rocket className="h-8 w-8" />,
     title: "Fast & Reliable",
     description: "Our service is blazing fast and always available.",
   },
   {
-    icon: <Zap data-anim="img" className="h-8 w-8" />,
+    icon: <Zap className="h-8 w-8" />,
     title: "Easy to Use",
     description: "A simple and intuitive interface to get things done.",
   },
   {
-    icon: <Shield data-anim="img" className="h-8 w-8" />,
+    icon: <Shield className="h-8 w-8" />,
     title: "Secure",
     description: "Your data is safe with our top-tier security.",
   },
@@ -30,26 +30,30 @@ const featuresContent = [
  * A section that displays a grid of features with icons, titles, and descriptions.
  * @returns {JSX.Element} - The rendered feature section component.
  */
-const Feature_3 = () => {
+const Feature_3 = ({ id }: { id?: string }) => {
   return (
-    <SectionWrapper className="py-20" contentClassName="space-y-12">
-      <div data-anim="pane" className="text-center space-y-2">
-        <h2 data-anim="title" className="text-3xl font-bold">
+    <SectionWrapper id={id} className="py-20" contentClassName="space-y-12">
+      <div className="text-center space-y-2">
+        <h2 data-section-heading className="text-3xl font-bold">
           Features
         </h2>
-        <p data-anim="description" className="text-muted-foreground">
+        <p data-section-body className="text-muted-foreground">
           Discover what makes our product unique.
         </p>
       </div>
       <div className="grid gap-8 md:grid-cols-3">
         {featuresContent.map((feature, index) => (
-          <Card key={index} data-anim="pane">
-            <CardHeader data-anim="pane" className="items-center">
+          <Card key={index}>
+            <CardHeader className="items-center">
               {feature.icon}
-              <CardTitle data-anim="title">{feature.title}</CardTitle>
+              <CardTitle data-section-heading>
+                {feature.title}
+              </CardTitle>
             </CardHeader>
-            <CardContent data-anim="pane" className="text-center">
-              <p data-anim="description">{feature.description}</p>
+            <CardContent className="text-center">
+              <p data-section-body>
+                {feature.description}
+              </p>
             </CardContent>
           </Card>
         ))}

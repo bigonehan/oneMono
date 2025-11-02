@@ -13,8 +13,6 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
-    "baseUrl": "./src"
+    "noEmit": true
   }
 }

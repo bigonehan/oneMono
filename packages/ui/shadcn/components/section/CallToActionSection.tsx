@@ -12,6 +12,7 @@ interface CTAButton {
 }
 
 interface CallToActionSectionProps {
+  id?: string;
   eyebrow?: string;
   title: string;
   description: string;
@@ -24,6 +25,7 @@ interface CallToActionSectionProps {
  * CallToActionSection renders a focused CTA block with optional secondary action.
  */
 export function CallToActionSection({
+  id,
   eyebrow,
   title,
   description,
@@ -37,33 +39,27 @@ export function CallToActionSection({
       : "text-left";
 
   return (
-    <SectionWrapper className="bg-primary/5 py-24">
-      <div
-        data-anim="pane"
-        className={`max-w-3xl space-y-6 ${alignmentClasses}`}
-      >
+    <SectionWrapper id={id} className="bg-primary/5 py-24">
+      <div className={`max-w-3xl space-y-6 ${alignmentClasses}`}>
         {eyebrow && (
-          <span
-            data-anim="description"
-            className="text-sm font-semibold uppercase tracking-wide text-primary"
-          >
+          <span className="text-sm font-semibold uppercase tracking-wide text-primary">
             {eyebrow}
           </span>
         )}
         <h2
-          data-anim="title"
+          data-section-heading
           className="text-3xl font-bold tracking-tight text-foreground md:text-4xl"
         >
           {title}
         </h2>
         <p
-          data-anim="description"
+          data-section-body
           className="text-lg leading-relaxed text-muted-foreground"
         >
           {description}
         </p>
-        <div data-anim="pane" className="flex flex-col gap-3 sm:flex-row">
-          <Button data-anim="pane" asChild size="lg">
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <Button asChild size="lg">
             <a
               href={primaryAction.href}
               className="inline-flex items-center gap-2"
@@ -74,7 +70,6 @@ export function CallToActionSection({
           </Button>
           {secondaryAction && (
             <Button
-              data-anim="pane"
               asChild
               size="lg"
               variant={secondaryAction.variant ?? "outline"}

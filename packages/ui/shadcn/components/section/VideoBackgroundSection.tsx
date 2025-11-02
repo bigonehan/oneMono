@@ -5,6 +5,7 @@ import type { ReactNode, VideoHTMLAttributes } from "react";
 import { cn } from "@ui/shadcn/utils";
 
 interface VideoBackgroundSectionProps {
+  id?: string;
   src: string;
   poster?: string;
   children?: ReactNode;
@@ -16,6 +17,7 @@ interface VideoBackgroundSectionProps {
 }
 
 export const VideoBackgroundSection = ({
+  id,
   src,
   poster,
   children,
@@ -35,7 +37,7 @@ export const VideoBackgroundSection = ({
 
   return (
     <section
-      data-anim="pane"
+      id={id}
       className={cn(
         "relative isolate flex min-h-[32rem] w-full items-center justify-center overflow-hidden py-24 px-4 sm:px-6 lg:px-8",
         "bg-background text-foreground transition-colors",
@@ -72,7 +74,6 @@ export const VideoBackgroundSection = ({
 
       {/* ✨ 콘텐츠 */}
       <div
-        data-anim="content"
         className={cn(
           "relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center justify-center gap-6 text-balance text-center text-white",
           contentClassName,
@@ -83,4 +84,3 @@ export const VideoBackgroundSection = ({
     </section>
   );
 };
-

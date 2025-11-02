@@ -1,12 +1,27 @@
 ---
-import '../styles/global.css';
+import "../styles/global.css";
 // Component Imports
-import Button from '../components/Button.astro';
-import Basic_tdli from "@ui/shadcn/components/section/Basic_tdli"
+import Button from "../components/Button.astro";
+import Basic_tdli from "@ui/shadcn/components/section/Basic_tdli";
 
-// Full Astro Component Syntax:
-// https://docs.astro.build/basics/astro-components/
-
+const sections = [
+	{
+		heading: "Astro에서 React 컴포넌트 사용하기",
+		body: "섹션 컴포넌트 예시야.",
+		index: 1,
+	},
+	{
+		heading: "GSAP 애니메이션",
+		body: "스크롤하면 애니메이션이 실행됩니다.",
+		href: "https://gsap.com",
+		index: 2,
+	},
+	{
+		heading: "LifecycleManager",
+		body: "페이지 전환 시 자동으로 정리됩니다.",
+		index: 3,
+	},
+];
 ---
 
 <html lang="en">
@@ -19,16 +34,125 @@ import Basic_tdli from "@ui/shadcn/components/section/Basic_tdli"
 	</head>
 
 	<body>
-		<div class="grid place-items-center h-screen content-center">
-			<Basic_tdli
-        heading="Astro에서 React 컴포넌트 사용하기"
-        body="섹션 컴포넌트 예시야."
-        index={1}
-        client:visible
-      />
-srtast
+		<main class="flex flex-col">
+			{
+				sections.map((section) => (
+					<Basic_tdli
+						key={section.index}
+						heading={section.heading}
+						body={section.body}
+						href={section.href}
+						index={section.index}
+						client:visible
+					/>
+				))
+				}
+		</main>
+		<div>
 			<Button>Tailwind Button in Astro?</Button>
-			<a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>
+			<a href="/markdown-page" class="p-4 underline"
+				>Markdown is also supported...</a
+			>
 		</div>
 	</body>
+
+<script>
+  import { gsap, ScrollTrigger, getAnimationManager } from "@ui/gsap";
+  import { sectionAnimations } from "@/animations/sectionAnimations";
+  import type {
+    SectionAnimationConfig,
+    TimelineConfig,
+    TimelineStep
+  } from "@/animations/sectionAnimations";
+
+  const manager = getAnimationManager();
+
+  const resolveSelector = (sectionId: string, selector: string) => {
+    if (selector.startsWith("#")) {
+      return selector;
+    }
+
+    return `#${sectionId} ${selector}`;
+  };
+
+  const applyTimelineStep = (
+    timeline: gsap.core.Timeline,
+    sectionId: string,
+    step: TimelineStep
+  ) => {
+    const target = resolveSelector(sectionId, step.selector);
+
+    if (step.method === "to") {
+      timeline.to(target, step.vars, step.position);
+      return;
+    }
+
+    if (step.method === "fromTo") {
+      timeline.fromTo(target, step.fromVars, step.toVars, step.position);
+      return;
+    }
+
+    timeline.from(target, step.vars, step.position);
+  };
+
+  const registerSectionAnimations = (config: SectionAnimationConfig) => {
+    manager.onElementLoaded(config.id, (ctx) => {
+      const runTimelines = () => {
+        ctx?.add(() => {
+          config.timelines.forEach((timelineConfig: TimelineConfig) => {
+            const timeline = gsap.timeline({
+              defaults: {
+                immediateRender: false,
+                ...timelineConfig.defaults
+              }
+            });
+
+            timelineConfig.steps.forEach((step) =>
+              applyTimelineStep(timeline, config.id, step)
+            );
+
+            ScrollTrigger.create({
+              trigger: `#${config.id}`,
+              animation: timeline,
+              ...timelineConfig.trigger
+            });
+          });
+
+          ScrollTrigger.refresh();
+        });
+      };
+
+      if (typeof window === "undefined") {
+        return;
+      }
+
+      const target = document.getElementById(config.id);
+      if (!target) {
+        return;
+      }
+
+      if (!("IntersectionObserver" in window)) {
+        runTimelines();
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) {
+            observer.disconnect();
+            runTimelines();
+          }
+        },
+        {
+          rootMargin: "0px 0px -10% 0px",
+          threshold: 0.1
+        }
+      );
+
+      observer.observe(target);
+    });
+  };
+
+  sectionAnimations.forEach(registerSectionAnimations);
+</script>
 </html>

@@ -43,18 +43,15 @@ export function FeatureListSection({
 
   return (
     <SectionWrapper id={id}>
-      <div data-anim="pane" className="mx-auto flex max-w-6xl flex-col gap-10">
-        <div data-anim="pane" className="space-y-4 text-center">
+      <div className="mx-auto flex max-w-6xl flex-col gap-10">
+        <div className="space-y-4 text-center">
           {eyebrow && (
-            <span
-              data-anim="description"
-              className="text-sm font-semibold uppercase tracking-wide text-primary"
-            >
+            <span className="text-sm font-semibold uppercase tracking-wide text-primary">
               {eyebrow}
             </span>
           )}
           <h2
-            data-anim="title"
+            data-section-heading
             className="text-3xl font-bold tracking-tight text-foreground md:text-4xl"
           >
             {title}
@@ -64,7 +61,7 @@ export function FeatureListSection({
               {descriptions.map((para, index) => (
                 <p
                   key={index}
-                  data-anim="description"
+                  data-section-body
                   className="text-lg leading-relaxed"
                 >
                   {para}
@@ -78,22 +75,23 @@ export function FeatureListSection({
           {features.map((feature) => (
             <div
               key={feature.id}
-              data-anim="pane"
               className="rounded-xl border border-border/60 bg-card text-card-foreground p-6 text-left shadow-sm transition-colors supports-[backdrop-filter]:bg-card/80 supports-[backdrop-filter]:backdrop-blur"
             >
               {feature.icon && (
                 <div
-                  data-anim="img"
                   className="mb-4 flex size-12 items-center justify-center rounded-full bg-primary/10 text-2xl text-primary dark:bg-primary/20"
                 >
                   {feature.icon}
                 </div>
               )}
-              <h3 data-anim="title" className="text-xl font-semibold text-foreground">
+              <h3
+                data-section-heading
+                className="text-xl font-semibold text-foreground"
+              >
                 {feature.title}
               </h3>
               <p
-                data-anim="description"
+                data-section-body
                 className="mt-3 text-base leading-relaxed text-muted-foreground"
               >
                 {feature.description}

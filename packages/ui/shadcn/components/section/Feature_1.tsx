@@ -12,6 +12,7 @@ interface Featureprop {
 }
 
 interface Feature73prop {
+  id?: string;
   title: string;
   description?: string;
   buttonUrl?: string;
@@ -47,6 +48,7 @@ const featuresExample: Featureprop[] = [
   ];
 
 const Feature73 = ({
+  id,
   title = "Key Features",
   description = "Discover the powerful features that make our platform stand out from the rest. Built with the latest technology and designed for maximum productivity.",
   buttonUrl = "https://shadcnblocks.com",
@@ -55,32 +57,33 @@ const Feature73 = ({
 }: Feature73prop) => {
   return (
     <SectionWrapper
+      id={id}
       className="py-32"
       contentClassName="space-y-12"
     >
-      <div data-anim="pane" className="lg:max-w-sm">
+      <div className="lg:max-w-sm">
         <h2
-          data-anim="title"
+          data-section-heading
           className="mb-3 text-3xl font-semibold md:mb-4 md:text-4xl lg:mb-6"
         >
           {title}
         </h2>
         {description && (
           <p
-            data-anim="description"
+            data-section-body
             className="text-muted-foreground mb-8 lg:text-lg"
           >
             {description}
           </p>
         )}
         {buttonUrl && (
-          <Button data-anim="pane" variant="link" asChild>
+          <Button variant="link" asChild>
             <a
               href={buttonUrl}
               className="group flex items-center font-medium md:text-base lg:text-lg"
             >
               {buttonText}
-              <ArrowRight data-anim="img" />
+              <ArrowRight />
             </a>
           </Button>
         )}
@@ -89,12 +92,10 @@ const Feature73 = ({
         {features.map((feature) => (
           <div
             key={feature.id}
-            data-anim="pane"
             className="border-border flex flex-col overflow-clip rounded-xl border"
           >
             <a href={feature.url}>
               <img
-                data-anim="img"
                 src={feature.image}
                 alt={feature.heading}
                 className="aspect-16/9 h-full w-full object-cover object-center transition-opacity hover:opacity-80"
@@ -102,13 +103,13 @@ const Feature73 = ({
             </a>
             <div className="px-6 py-8 md:px-8 md:py-10 lg:px-10 lg:py-12">
               <h3
-                data-anim="title"
+                data-section-heading
                 className="mb-3 text-lg font-semibold md:mb-4 md:text-2xl lg:mb-6"
               >
                 {feature.heading}
               </h3>
               <p
-                data-anim="description"
+                data-section-body
                 className="text-muted-foreground lg:text-lg"
               >
                 {feature.description}
