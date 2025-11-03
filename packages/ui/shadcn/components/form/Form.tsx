@@ -1,8 +1,8 @@
-import * as React from "react"
-import { Input } from "@ui/shadcn/components/ui/input"
-import { Label } from "@ui/shadcn/components/ui/label"
-import { Button } from "@ui/shadcn/components/ui/button"
-import { SectionWrapper } from "../SectionWrapper"
+import * as React from "react";
+import { Input } from "@ui/shadcn/components/ui/input";
+import { Label } from "@ui/shadcn/components/ui/label";
+import { Button } from "@ui/shadcn/components/ui/button";
+import { SectionWrapper } from "../SectionWrapper";
 
 /**
  * A basic login form component with email and password fields.
@@ -10,7 +10,7 @@ import { SectionWrapper } from "../SectionWrapper"
  */
 const Form = () => {
   return (
-    <SectionWrapper contentClassName="max-w-md space-y-6">
+    <SectionWrapper contentClassName="max-w-md space-y-6 ">
       <form data-anim="pane" className="grid gap-4">
         <div className="grid gap-2">
           <Label data-anim="title" htmlFor="email">
@@ -29,7 +29,7 @@ const Form = () => {
         </Button>
       </form>
     </SectionWrapper>
-  )
-}
+  );
+};
 
-export { Form }
+export { Form };

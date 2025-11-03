@@ -1,1 +1,11 @@
+#!/usr/bin/env sh
+
+echo "🔍 Checking lockfile..."
 pnpm run check:lockfile
+
+if [ $? -eq 0 ]; then
+  echo "✅ lockfile checked successfully"
+else
+  echo "❌ lockfile check failed — commit aborted"
+  exit 1
+fi

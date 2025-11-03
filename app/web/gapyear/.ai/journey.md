@@ -1,4 +1,0 @@
-- Extended `Hero_1` to accept richer copy and optional descriptions so hero messaging can follow storytelling guidance.
-- Added shared `InformationalSection` and `CallToActionSection` blocks to cover problem framing and CTA use cases for future pages.
-- Introduced a non-tabbed `FeatureListSection` so we can mirror the content document's icon-led feature grid across pages.
-- Synchronized landing page content objects with `.ai/content.md`, ensuring each section now mirrors the documented Korean copy and optional research callouts.
