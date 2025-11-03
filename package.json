@@ -6,13 +6,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "commit": "git add . && git commit",
+    "check:lockfile": "pnpm install --frozen-lockfile",
     "lint": "pnpm --filter @app/web/gapyear lint && pnpm --filter @ui/shadcn lint",
     "prepare": "husky"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.19.0",
+  "packageManager": "pnpm@10.20.0",
   "devDependencies": {
     "husky": "^9.1.7",
     "plop": "^4.0.4"

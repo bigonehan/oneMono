@@ -1,10 +1,13 @@
 packages:
   - app/web/*
   - app/mobile/*
+  - app/api/*
   - packages/ui/*
   - packages/domains/*
-  - packages/repository/*
-  - packages/feature/*
+  - packages/infras/*
+  - packages/features/*
+  - packages/services/*
+  - packages/adapters/*
   - template/web/*
 
 ignoredBuiltDependencies:

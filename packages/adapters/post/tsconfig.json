@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "lib": ["ES2020", "DOM"],
+    "lib": ["ES2020"],
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "strict": true,
@@ -9,12 +9,8 @@
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "baseUrl": ".",
-    "paths": {
-      "@domains/post": ["../../domains/post/src/index.ts"],
-      "@domains/post/*": ["../../domains/post/src/*"]
-    }
+    "noEmit": true
   },
-  "include": ["src"]
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules"]
 }

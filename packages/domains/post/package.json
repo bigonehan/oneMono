@@ -3,11 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "main": "src/index.ts",
+  "main": "./src/Post.ts",
   "exports": {
     ".": {
-      "types": "./src/index.ts",
-      "import": "./src/index.ts"
+      "types": "./src/Post.ts",
+      "import": "./src/Post.ts"
+    },
+    "./Post": {
+      "types": "./src/Post.ts",
+      "import": "./src/Post.ts"
+    },
+    "./PostPort": {
+      "types": "./src/PostPort.ts",
+      "import": "./src/PostPort.ts"
     }
   },
   "dependencies": {

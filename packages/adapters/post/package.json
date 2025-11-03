@@ -1,0 +1,32 @@
+{
+  "name": "@adapters/post",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./PostAdapterConsole.ts",
+  "exports": {
+    ".": {
+      "types": "./PostAdapterConsole.ts",
+      "import": "./PostAdapterConsole.ts"
+    },
+    "./PostAdapterConsole": {
+      "types": "./PostAdapterConsole.ts",
+      "import": "./PostAdapterConsole.ts"
+    },
+    "./PostAdapterPostgre": {
+      "types": "./PostAdapterPostgre.ts",
+      "import": "./PostAdapterPostgre.ts"
+    }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@domains/post": "workspace:*",
+    "@infra/postgre": "workspace:*"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.19.0"
+}

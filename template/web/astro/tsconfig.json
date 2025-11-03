@@ -1,19 +1,33 @@
 {
-  "extends": "astro/tsconfigs/strict",
-  "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"],
-  "compilerOptions": {
-    "jsx": "react-jsx",
-    "jsxImportSource": "react",
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"],
-      "@ui/shadcn/components/*": ["../../../packages/ui/shadcn/components/*"],
-      "@ui/shadcn/globals.css": [
-        "../../../packages/ui/shadcn/styles/globals.css"
-      ],
-      "@ui/*": ["../../../packages/ui/*"],
-      "@ui/shadcn/*": ["../../../packages/ui/shadcn/*"]
-    }
-  }
+	"extends": "astro/tsconfigs/strict",
+	"include": [
+		".astro/types.d.ts",
+		"**/*"
+	],
+	"exclude": [
+		"dist"
+	],
+	"compilerOptions": {
+		"jsx": "react-jsx",
+		"jsxImportSource": "react",
+		"baseUrl": ".",
+		"strict": true,
+		"paths": {
+			"@/*": [
+				"./src/*"
+			],
+			"@ui/shadcn/components/*": [
+				"../../../packages/ui/shadcn/components/*"
+			],
+			"@ui/shadcn/globals.css": [
+				"../../../packages/ui/shadcn/styles/globals.css"
+			],
+			"@ui/*": [
+				"../../../packages/ui/*"
+			],
+			"@ui/shadcn/*": [
+				"../../../packages/ui/shadcn/*"
+			]
+		}
+	}
 }

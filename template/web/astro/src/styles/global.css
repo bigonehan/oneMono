@@ -2,3 +2,7 @@
 @import "@ui/shadcn/globals.css";
 @source "../**/*.{astro,js,ts,jsx,tsx}";
 @source "../../../../../packages/ui/shadcn/components/**/*.{js,ts,tsx,jsx}";
+body {
+  font-family: "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
+}
+

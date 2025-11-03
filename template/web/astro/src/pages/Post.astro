@@ -1,0 +1,51 @@
+---
+import { Effect } from "effect"
+import { PostService } from "@services/post/PostService"
+import { PostRepo, PostRepoConsoleLive } from "@services/post/PostRepo.layer"
+
+const program = Effect.gen(function*(_) {
+  const repo = yield* _(PostRepo)
+  const service = new PostService(repo)
+
+  // 1️⃣ create
+  yield* _(Effect.promise(() =>
+    service.createPost("tree", "첫 번째 글이에요")
+  ))
+yield* _(Effect.promise(() => service.createPost("tree", "두 번째 글이에요")))
+  // 2️⃣ list
+  const list1 = yield* _(Effect.promise(() => service.listPosts()))
+
+  // 3️⃣ update (첫 번째 글 수정)
+  if (list1.length > 0) {
+    const first = list1[0]
+    yield* _(Effect.promise(() =>
+      service.updatePost(first.id, "수정된 본문 내용이에요")
+    ))
+  }
+
+  // 4️⃣ 다시 list
+  const list2 = yield* _(Effect.promise(() => service.listPosts()))
+
+  return { list1, list2 }
+})
+
+// Effect 실행
+const result = await Effect.runPromise(
+  program.pipe(Effect.provide(PostRepoConsoleLive))
+)
+
+const { list1, list2 } = result
+---
+
+<h1>🧩 PostAdapterConsole 테스트</h1>
+
+<h2>✅ 첫 번째 목록</h2>
+<ul>
+  {list1.map(p => <li><b>{p.user}</b>: {p.body}</li>)}
+</ul>
+
+<h2>✏️ 수정 후 목록</h2>
+<ul>
+  {list2.map(p => <li><b>{p.user}</b>: {p.body}</li>)}
+</ul>
+
