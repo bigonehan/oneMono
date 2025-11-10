@@ -1,5 +1,6 @@
 packages:
   - app/web/*
+  - app/script/*
   - app/mobile/*
   - app/api/*
   - packages/ui/*
@@ -8,6 +9,7 @@ packages:
   - packages/features/*
   - packages/services/*
   - packages/adapters/*
+  - packages/script/*
   - template/web/*
 
 ignoredBuiltDependencies:
