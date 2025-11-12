@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Footer_1 } from '@ui/shadcn/components/footer/Footer_1';
+import { Footer_1 } from '@ui/shadcn/footer/Footer_1';
 
 const meta: Meta<typeof Footer_1> = {
   title: 'Footer/Footer_1',
