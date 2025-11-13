@@ -7,39 +7,39 @@ import {
   initGristConfig,
   insertRow,
   updateRow,
-} from "./infra/relay";
+} from "../infra/relay";
 import { matchesProject, parseArgs, parseBoolean } from "@script/cli";
 
-dotenv.config({ override: true });
+dotenv.config({ override: true, quiet: true });
 
-interface CliState {
+export interface CliState {
   tableId: string;
   projectId: string;
   currentId?: number;
 }
 
-const STATE_PATH = path.resolve(process.cwd(), ".grist-cli.json");
+export const STATE_PATH = path.resolve(process.cwd(), ".grist-cli.json");
 
 function printUsage() {
   console.log(`Usage:
-  bun main.ts init <tableId> <projectId>        Initialize CLI context
-  bun main.ts read [--limit <n>]               Read rows for the project
-  bun main.ts list                             List every row for the current project
-  bun main.ts insert --item <text> --description <text> [--status <code>] [--done <true|false>]
-  bun main.ts update --id <rowId> [--item <text>] [--description <text>] [--status <code>] [--done <true|false>]
-  bun main.ts current [show|set <value>|sync]  Manage cached next id`);
+  bun src/grist.ts init <tableId> <projectId>        Initialize CLI context
+  bun src/grist.ts read [--limit <n>]               Read rows for the project
+  bun src/grist.ts list                             List every row for the current project
+  bun src/grist.ts insert --item <text> --description <text> [--status <code>] [--done <true|false>]
+  bun src/grist.ts update --id <rowId> [--item <text>] [--description <text>] [--status <code>] [--done <true|false>]
+  bun src/grist.ts current [show|set <value>|sync]  Manage cached next id`);
 }
 
-function writeState(state: CliState, options: { quiet?: boolean } = {}) {
+export function writeState(state: CliState, options: { quiet?: boolean } = {}) {
   fs.writeFileSync(STATE_PATH, JSON.stringify(state, null, 2), "utf-8");
   if (!options.quiet) {
     console.log(`✅ CLI context saved to ${STATE_PATH}`);
   }
 }
 
-function loadState(): CliState {
+export function loadState(): CliState {
   if (!fs.existsSync(STATE_PATH)) {
-    throw new Error("CLI context not found. Run `bun main.ts init <tableId> <projectId>` first.");
+    throw new Error("CLI context not found. Run `bun src/grist.ts init <tableId> <projectId>` first.");
   }
 
   const data = JSON.parse(fs.readFileSync(STATE_PATH, "utf-8"));
@@ -49,7 +49,7 @@ function loadState(): CliState {
   return data;
 }
 
-function configureEnvForState(state: CliState) {
+export function configureEnvForState(state: CliState) {
   process.env.GRIST_TABLE = state.tableId;
   initGristConfig();
 }
@@ -200,7 +200,7 @@ async function handleCurrent(positional: string[]) {
     case undefined:
     case "show": {
       if (typeof state.currentId === "undefined") {
-        console.log("ℹ️ currentId not set. Run `bun main.ts current sync`.");
+        console.log("ℹ️ currentId not set. Run `bun src/grist.ts current sync`.");
       } else {
         console.log(`📍 currentId: ${state.currentId} (next expected id)`);
       }
@@ -249,4 +249,6 @@ async function main() {
   }
 }
 
-main();
+if (import.meta.main) {
+  main();
+}

@@ -1,6 +1,10 @@
 import { Either, pipe } from "effect";
 import { Environment, Network, RecordSource, Store } from "relay-runtime";
-import { formatAvailableTables } from "../utils";
+import { formatAvailableTables } from "../src/utils";
+const isMcpContext = process.env.MCP_MODE === "1";
+const logInfo = (...args: unknown[]) => {
+  (isMcpContext ? console.error : console.log)(...args);
+};
 
 // -----------------------------------------------------------
 // 1️⃣ Grist 전역 설정 관리
@@ -81,7 +85,7 @@ export function initGristConfig() {
     apiKey: process.env.GRIST_API_KEY ?? "",
   };
 
-  console.log("✅ Grist config initialized:", GRIST_CONFIG);
+  logInfo("✅ Grist config initialized:", GRIST_CONFIG);
   return GRIST_CONFIG;
 }
 
@@ -178,7 +182,7 @@ async function loadTableInfo(): Promise<GristTableInfo> {
     id: selectedId,
     columns: columns.columns ?? columns,
   };
-  console.log(`🔁 Resolved table "${table}" to id "${TABLE_INFO.id}"`);
+  logInfo(`🔁 Resolved table "${table}" to id "${TABLE_INFO.id}"`);
   return TABLE_INFO;
 }
 
@@ -206,7 +210,7 @@ async function getColumnMap() {
     map[label] = columnId; // label → ID 매핑
   }
 
-  console.log("🧩 Column map loaded:", map);
+  logInfo("🧩 Column map loaded:", map);
   COLUMN_MAP_CACHE = map;
   return COLUMN_MAP_CACHE;
 }
