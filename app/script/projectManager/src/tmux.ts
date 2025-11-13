@@ -109,3 +109,12 @@ export function ensureManagerPaneId(): string {
   saveManagerSocket(process.env.TMUX ?? null);
   return currentPaneId;
 }
+
+export function getManagerPanePath(): string | null {
+  const paneId = getManagerPaneId();
+  if (!paneId) {
+    return null;
+  }
+  const path = runTmuxCommand(`display-message -p -t ${paneId} "#{pane_current_path}"`);
+  return path || null;
+}

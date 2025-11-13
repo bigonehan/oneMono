@@ -9,6 +9,7 @@ import {
   updateRow,
 } from "../infra/relay";
 import { matchesProject, parseArgs, parseBoolean } from "@script/cli";
+import { formatAvailableTables } from "./utils";
 
 dotenv.config({ override: true, quiet: true });
 
@@ -25,6 +26,8 @@ function printUsage() {
   bun src/grist.ts init <tableId> <projectId>        Initialize CLI context
   bun src/grist.ts read [--limit <n>]               Read rows for the project
   bun src/grist.ts list                             List every row for the current project
+  bun src/grist.ts rows <tableId|number> [--limit]  List rows from a specific table
+  bun src/grist.ts tables                           List available tables in the configured doc
   bun src/grist.ts insert --item <text> --description <text> [--status <code>] [--done <true|false>]
   bun src/grist.ts update --id <rowId> [--item <text>] [--description <text>] [--status <code>] [--done <true|false>]
   bun src/grist.ts current [show|set <value>|sync]  Manage cached next id`);
@@ -86,6 +89,186 @@ async function handleRead(limitArg?: string) {
 
 async function handleList() {
   await handleRead(undefined);
+}
+
+function normalizeTableIdentifier(input: string): string {
+  const trimmed = input.trim();
+  if (!trimmed) {
+    throw new Error("rows command requires a table identifier (e.g., Table7 or 7).");
+  }
+  if (/^table\d+$/i.test(trimmed)) {
+    return trimmed.replace(/^table/i, "Table");
+  }
+  if (/^\d+$/.test(trimmed)) {
+    return `Table${trimmed}`;
+  }
+  return trimmed;
+}
+
+async function handleRows(positional: string[], flags: Record<string, string | boolean>) {
+  const target = positional[0];
+  if (!target) {
+    throw new Error("rows command requires <tableId|number> as the first argument.");
+  }
+
+  const tableId = normalizeTableIdentifier(target);
+  const config = initGristConfig();
+  const headers: Record<string, string> = {};
+  if (config.apiKey) {
+    headers.Authorization = `Bearer ${config.apiKey}`;
+  }
+
+  const limit = flags.limit ? Number(flags.limit) : undefined;
+  if (typeof limit !== "undefined" && (!Number.isFinite(limit) || limit <= 0)) {
+    throw new Error("rows command expects --limit <positive number>.");
+  }
+
+  const searchParams = new URLSearchParams();
+  if (typeof limit === "number") {
+    searchParams.set("limit", String(limit));
+  }
+
+  const query = searchParams.toString();
+  const url = `${config.baseUrl}/api/docs/${config.docId}/tables/${tableId}/records${query ? `?${query}` : ""}`;
+
+  const res = await fetch(url, { headers });
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    throw new Error(
+      `Failed to fetch rows for ${tableId}: ${res.status} ${res.statusText}${text ? ` - ${text}` : ""}`
+    );
+  }
+
+  const json = await res.json();
+  const records: Array<Record<string, any>> = json.records ?? json ?? [];
+  if (!records.length) {
+    console.log(`ℹ️ No rows found in ${tableId}.`);
+    return;
+  }
+
+  const formatted = records.map((record) => ({
+    id: record.id ?? record.recordId ?? record.fields?.id ?? "",
+    ...(record.fields ?? record),
+  }));
+
+  console.log(`📄 Rows from ${tableId}${limit ? ` (limit ${limit})` : ""}:`);
+  console.table(formatted);
+}
+
+async function fetchTableLabel(
+  resolvedId: string,
+  config: ReturnType<typeof initGristConfig>,
+  headers: Record<string, string>
+): Promise<string | null> {
+  try {
+    const res = await fetch(
+      `${config.baseUrl}/api/docs/${config.docId}/tables/${resolvedId}`,
+      { headers }
+    );
+    if (!res.ok) {
+      return null;
+    }
+    const detail = await res.json();
+    const label =
+      detail.name ??
+      detail.label ??
+      detail.title ??
+      detail.fields?.label ??
+      detail.fields?.title ??
+      detail.fields?.tableName ??
+      detail.fields?.name ??
+      null;
+    if (label) {
+      return label;
+    }
+    const columnsRes = await fetch(
+      `${config.baseUrl}/api/docs/${config.docId}/tables/${resolvedId}/columns`,
+      { headers }
+    );
+    if (!columnsRes.ok) {
+      return null;
+    }
+    const columnsJson = await columnsRes.json();
+    return (
+      columnsJson.tableLabel ??
+      columnsJson.tableName ??
+      columnsJson.name ??
+      columnsJson.label ??
+      null
+    );
+  } catch {
+    return null;
+  }
+}
+
+async function handleTables() {
+  const config = initGristConfig();
+  const headers: Record<string, string> = {};
+  if (config.apiKey) {
+    headers.Authorization = `Bearer ${config.apiKey}`;
+  }
+
+  const res = await fetch(`${config.baseUrl}/api/docs/${config.docId}/tables`, {
+    headers,
+  });
+
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    throw new Error(
+      `Failed to fetch tables: ${res.status} ${res.statusText}${text ? ` - ${text}` : ""}`
+    );
+  }
+
+  const json = await res.json();
+  const tables: Array<Record<string, any>> = json.tables ?? json ?? [];
+  if (!tables.length) {
+    console.log("⚠️ No tables found in the current Grist document.");
+    return;
+  }
+
+  console.log(`📋 Tables in doc "${config.docId}":\n`);
+  
+  // 테이블 정보를 테이블 형식으로 출력
+  const tableData = [];
+  
+  for (const table of tables) {
+    const resolvedId =
+      table.id ??
+      (typeof table.tableRef === "number" ? `Table${table.tableRef}` : null) ??
+      table.fields?.tableRef ??
+      "unknown";
+    
+    const existingLabel =
+      table.name ??
+      table.label ??
+      table.title ??
+      table.fields?.label ??
+      table.fields?.title ??
+      table.fields?.tableName ??
+      table.fields?.name ??
+      "";
+    
+    const label =
+      existingLabel ||
+      (typeof resolvedId === "string"
+        ? await fetchTableLabel(resolvedId, config, headers)
+        : null) ||
+      "";
+    
+    const tableRef =
+      typeof table.tableRef === "number"
+        ? table.tableRef
+        : table.fields?.tableRef ?? table.fields?.tableRefName;
+    
+    tableData.push({
+      "ID": resolvedId,
+      "이름": label || "(없음)",
+      "Ref": typeof tableRef !== "undefined" ? tableRef : "-"
+    });
+  }
+
+  console.table(tableData);
+  console.log(`\n💡 Available identifiers: ${formatAvailableTables(tables)}`);
 }
 
 async function handleInsert(flags: Record<string, string | boolean>) {
@@ -225,6 +408,12 @@ async function main() {
         break;
       case "list":
         await handleList();
+        break;
+      case "rows":
+        await handleRows(positional, flags);
+        break;
+      case "tables":
+        await handleTables();
         break;
       case "insert":
         await handleInsert(flags);

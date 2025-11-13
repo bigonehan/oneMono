@@ -47,15 +47,23 @@ Keep the file in the directory where you’ll start Codex.
 
 ## 4. Commands & scripts
 - Install deps: `bun install`
-- Start MCP server (if not already running): `bun run src/tmux-mcp-server.ts`
+- Start MCP server (if not already running): `bun run main.ts`
 - Invoke `one:coding`: run it inside tmux within the directory that holds `plan.md`.
-- One-shot helper: `scripts/run-one-coding.sh` starts the MCP server in the background, returns to your working directory, and runs `codex "one:coding"`. Add an alias in `~/.zshrc` for convenience:
-  ```zsh
-  alias onecode='/home/tree/project/oneMono/app/script/grist/scripts/run-one-coding.sh'
+- One-shot helper: `scripts/run-one-project.sh` boots the MCP server in the background, keeps your working directory, and runs any `one:<flow>` command (default: `one:coding`). You can pass either `coding` or `one:coding`, plus extra Codex flags:
+  ```bash
+  scripts/run-one-project.sh story -- --no-color
   ```
+  Add an alias in `~/.zshrc` for convenience:
+  ```zsh
+  alias onecode='/home/tree/project/oneMono/app/script/projectManager/scripts/run-one-project.sh'
+  ```
+  The launcher sets `ONEPM_WORKSPACE` to your current repo, records the selected flow in `ONEPM_FLOW`, and, when present, exposes `rules/<flow>.md` via `ONEPM_RULES_FILE` so specialized rule files (e.g., `rules/coding.md`, `rules/story.md`) are automatically discoverable.
+- Inspect Grist data before editing `plan.md`:  
+  - `scripts/run-one-project.sh` will still use whatever `tableId` you provide.
+  - `scripts/list-grist-rows.sh <table|number> [--limit N]` prints the rows for a specific table (e.g., `scripts/list-grist-rows.sh 13` shows `Table13`). Alias it (e.g., `alias gristrows='…/scripts/list-grist-rows.sh'`) to quickly grab IDs/names and confirm contents before updating `## Config`.
 
 ## 5. Troubleshooting
-- **No tmux pane appears** – ensure `src/tmux-mcp-server.ts` is running and that `one:coding` was executed inside tmux.
+- **No tmux pane appears** – ensure `main.ts` is running and that `one:coding` was executed inside tmux.
 - **Grist logging fails** – verify `.grist-cli.json` contains the correct table/project ids referenced by `plan.md`.
 - **Flow skipped structure/task files** – confirm `plan.md` exists and follows the schema above; MCP will only create `rules/structure.md` and `rules/task.md` when the plan parses correctly.
 
