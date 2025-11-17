@@ -1,0 +1,8 @@
+table_id: "Table13"  # 또는 실제 Grist table ID
+table_name: "CodeProjects"
+columns:
+  project: "$B"
+  completed: "$C"
+  status: "$D"
+  item: "$E"
+  description: "$F"
