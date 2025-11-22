@@ -1,11 +1,25 @@
 #!/usr/bin/env sh
-
 echo "🔍 Checking lockfile..."
+# 1. 락파일 체크 실행
 pnpm run check:lockfile
 
-if [ $? -eq 0 ]; then
-  echo "✅ lockfile checked successfully"
+# 2. 체크 실패(코드 불일치) 시 처리
+if [ $? -ne 0 ]; then
+  echo "⚠️ Lockfile is out of sync with package.json"
+  echo "🔄 Running 'pnpm install' to fix..."
+
+  # 3. 락파일 강제 갱신 (frozen 옵션 끄기)
+  pnpm install --no-frozen-lockfile
+
+  # 4. 설치 성공 시, 변경된 pnpm-lock.yaml을 스테이징(git add)
+  if [ $? -eq 0 ]; then
+    git add pnpm-lock.yaml
+    echo "✅ pnpm-lock.yaml has been updated and staged automatically."
+  else
+    # 설치마저 실패하면 커밋 중단
+    echo "❌ Auto-fix failed. Please run 'pnpm install' manually."
+    exit 1
+  fi
 else
-  echo "❌ lockfile check failed — commit aborted"
-  exit 1
+  echo "✅ lockfile checked successfully"
 fi
