@@ -16,5 +16,7 @@ packages:
 ignoredBuiltDependencies:
   - '@tailwindcss/oxide'
 
+nodeLinker: hoisted
+
 onlyBuiltDependencies:
   - esbuild
