@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		    <script type="text/javascript" src="js/plugin.js"></script>
+    <title>폴더별 일괄 이름 변경</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .info-box {
+            background: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .info-value {
+            color: #333;
+            font-weight: 600;
+        }
+
+        .preview-box {
+            background: #fff8e1;
+            border: 1px solid #ffd54f;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .preview-title {
+            font-size: 13px;
+            color: #f57f17;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .preview-example {
+            font-size: 12px;
+            color: #666;
+            font-family: 'Courier New', monospace;
+            padding: 8px;
+            background: white;
+            border-radius: 4px;
+            margin-bottom: 5px;
+        }
+
+        .options {
+            margin-bottom: 20px;
+        }
+
+        .option-group {
+            margin-bottom: 15px;
+        }
+
+        .option-label {
+            display: block;
+            font-size: 14px;
+            color: #333;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .option-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.2s;
+        }
+
+        .option-input:focus {
+            outline: none;
+            border-color: #2196F3;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 8px;
+        }
+
+        .checkbox-group label {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            flex: 1;
+            padding: 12px 24px;
+            font-size: 15px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: #2196F3;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1976D2;
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        .btn-primary:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #666;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .message {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            text-align: center;
+            display: none;
+        }
+
+        .message.success {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #81c784;
+            display: block;
+        }
+
+        .message.error {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #ef5350;
+            display: block;
+        }
+
+        .message.info {
+            background: #e3f2fd;
+            color: #1565c0;
+            border: 1px solid #64b5f6;
+            display: block;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #2196F3;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📁 폴더별 일괄 이름 변경</h1>
+        <p class="subtitle">현재 폴더의 이미지들을 일괄적으로 이름 변경합니다</p>
+
+        <div class="info-box">
+            <div class="info-item">
+                <span class="info-label">선택된 폴더:</span>
+                <span class="info-value" id="folderName">-</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">폴더 내 이미지 개수:</span>
+                <span class="info-value" id="itemCount">0</span>
+            </div>
+        </div>
+
+        <div class="preview-box">
+            <div class="preview-title">📝 미리보기</div>
+            <div class="preview-example" id="previewExample">
+                예시: 폴더명_001, 폴더명_002, 폴더명_003 ...
+            </div>
+        </div>
+
+        <div class="options">
+            <div class="option-group">
+                <label class="option-label">시작 번호</label>
+                <input type="number" class="option-input" id="startNumber" value="1" min="1">
+            </div>
+
+            <div class="option-group">
+                <label class="option-label">자릿수 (001, 0001 등)</label>
+                <input type="number" class="option-input" id="paddingLength" value="3" min="1" max="6">
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="useOriginalExt" checked>
+                <label for="useOriginalExt">원본 파일 확장자 유지</label>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button class="btn-secondary" id="cancelBtn">취소</button>
+            <button class="btn-primary" id="renameBtn">이름 변경 실행</button>
+        </div>
+
+        <div class="message" id="message"></div>
+    </div>
+
+</body>
+</html>

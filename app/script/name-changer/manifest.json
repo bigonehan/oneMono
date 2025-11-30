@@ -1,0 +1,25 @@
+
+{
+  "id": "com.eagle.rename.folder.index",
+  "name": "folder name changer",
+  "version": "1.0.0",
+  "description": "현재 폴더의 이미지들을 '폴더명_색인' 형식으로 일괄 이름 변경",
+  "author": "bigonehan",
+  "locale": {
+    "en": {
+      "name": "Folder Index Rename",
+      "description": "Batch rename images in current folder as 'FolderName_Index'"
+    },
+    "ko": {
+      "name": "폴더별 일괄 이름 변경",
+      "description": "현재 폴더의 이미지들을 '폴더명_색인' 형식으로 일괄 이름 변경"
+    }
+  },
+  "type": "window",
+  "main": "index.html",
+  "logo": "logo.png",
+  "keywords": ["rename", "batch", "folder", "일괄변경", "이름변경"],
+  "platform": "all",
+  "arch": "all",
+  "minAppVersion": "4.0"
+}
