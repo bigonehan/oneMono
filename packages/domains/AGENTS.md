@@ -1,14 +1,14 @@
 # AGENTS.md (domains scope)
 
 ## Domain Package Naming Rule (Mandatory)
-When creating a new package under `domains/`, the package directory name and `package.json` name must follow this rule:
+When creating a new package under `packages/domains/`, the package directory name and `package.json` name must follow this rule:
 
-- Directory: `domains/<name>`
+- Directory: `packages/domains/<name>`
 - Package name: `@domain/<name>`
 
 Examples:
-- `domains/a/package.json` -> `"name": "@domain/a"`
-- `domains/b/package.json` -> `"name": "@domain/b"`
+- `packages/domains/a/package.json` -> `"name": "@domain/a"`
+- `packages/domains/b/package.json` -> `"name": "@domain/b"`
 
 ## Enforcement
 - Do not use unscoped names (e.g. `"a"`) for domain packages.
