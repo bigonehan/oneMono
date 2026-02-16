@@ -2,7 +2,7 @@
 
 import { Footer, Header } from "@ui/shadcn";
 import Lenis from "lenis";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const sections = [
   { id: "section-1", title: "Section 1", color: "section--one" },
@@ -13,6 +13,8 @@ const sections = [
 ];
 
 export default function Home() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.1,
@@ -35,7 +37,24 @@ export default function Home() {
 
   return (
     <div className="template-root">
-      <Header />
+      <Header onMenuClick={() => setIsMobileMenuOpen(true)} />
+
+      <div
+        className={`mobile-overlay ${isMobileMenuOpen ? "is-open" : ""}`}
+        onClick={() => setIsMobileMenuOpen(false)}
+        aria-hidden={!isMobileMenuOpen}
+      />
+
+      <aside className={`mobile-side-menu ${isMobileMenuOpen ? "is-open" : ""}`} aria-label="Mobile menu">
+        <nav className="mobile-side-menu__nav">
+          <a href="#section-1" onClick={() => setIsMobileMenuOpen(false)}>
+            Blog
+          </a>
+          <a href="#section-2" onClick={() => setIsMobileMenuOpen(false)}>
+            Profile
+          </a>
+        </nav>
+      </aside>
 
       <main className="template-body">
         {sections.map((section) => (

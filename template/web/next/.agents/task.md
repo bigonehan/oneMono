@@ -1,41 +1,31 @@
 ---
-name: next-template-structure-enhancement
-description: Add header/body/footer structure with smooth scroll sections using @ui/shadcn components
+name: next-header-mobile-side-menu
+description: Show hamburger only on mobile and open left side menu drawer on selection
 owner: codex
 status: done
 related_plan: ./.agents/plan.md
-related_change: zykwzxkq
+related_change: pwtzrryw
 ---
 
 # features
-- [x] F1. Header with mobile hamburger and navigation items
-  - objective: Provide baseline top navigation in template
+- [x] F1. 모바일에서만 햄버거 아이콘 표시
+  - objective: 모바일 네비게이션 진입점을 명확히 분리
   - acceptance_criteria:
-    - Header includes hamburger icon button for mobile
-    - Header includes Blog and Profile menu items
-- [x] F2. Body sections with smooth scroll
-  - objective: Provide full-page section-based landing template
+    - viewport 768px 미만에서만 햄버거 버튼이 보인다
+    - viewport 768px 이상에서는 햄버거 버튼이 숨겨진다
+- [x] F2. 모바일 햄버거 클릭 시 좌측 사이드 메뉴 표시
+  - objective: 모바일 내비게이션 접근성 개선
   - acceptance_criteria:
-    - Exactly 5 sections rendered
-    - Each section fills viewport height
-    - Each section uses a distinct background color
-    - Lenis is enabled for smooth scrolling
-- [x] F3. Footer with centered SNS icons
-  - objective: Provide reusable simple social footer area
-  - acceptance_criteria:
-    - Footer places SNS icons at center horizontally and vertically
+    - 햄버거 클릭 시 왼쪽에서 슬라이드되는 메뉴가 열린다
+    - 오버레이 클릭 또는 메뉴 항목 클릭 시 닫힌다
 
 # files
 ## create
-- `packages/ui/shadcn/components/layout/header.tsx`: Header component with hamburger and nav items
-- `packages/ui/shadcn/components/layout/footer.tsx`: Footer component with centered SNS icons
-- `packages/ui/shadcn/components/icons/hamburger.tsx`: Reusable hamburger icon component
+- none
 
 ## modify
-- `packages/ui/shadcn/src/index.ts`: Export newly added components
-- `template/web/next/package.json`: Add lenis dependency
-- `template/web/next/app/page.tsx`: Apply header/body/footer structure and 5 sections
-- `template/web/next/app/globals.css`: Add layout/section/footer styles
+- `template/web/next/app/page.tsx`: Header onMenuClick 연결, 모바일 사이드메뉴 상태/마크업 추가
+- `template/web/next/app/globals.css`: 모바일 전용 표시 및 좌측 드로어/오버레이 스타일 추가
 
 ## delete
 - none
@@ -48,19 +38,18 @@ related_change: zykwzxkq
 - Keep changes scoped to this feature document.
 
 # implementation_steps
-1. Check existing `@ui/shadcn` components and identify missing ones.
-2. Add missing header/footer/icon components to `packages/ui/shadcn` and export them.
-3. Update template app page and styles to satisfy requested structure.
-4. Add Lenis dependency and initialize smooth scrolling in page runtime.
-5. Run type checks to validate integration.
+1. `Header`의 `onMenuClick`을 페이지 상태와 연결한다.
+2. 페이지에 모바일 사이드메뉴/오버레이 마크업을 추가한다.
+3. CSS에서 모바일에서만 햄버거 노출, 데스크톱 네비게이션 유지, 드로어 애니메이션을 적용한다.
+4. 타입 체크로 변경 검증한다.
 
 # validation
 - [x] Type check: `bun run check-types`
 - [ ] Tests: `N/A`
-- [ ] Manual checks:
-  - Header renders mobile hamburger icon and Blog/Profile menu.
-  - Five full-screen color sections render and scroll smoothly.
-  - Footer SNS icons are centered.
+- [x] Manual checks:
+  - 모바일에서 햄버거 버튼 클릭 시 좌측 사이드메뉴가 열린다.
+  - 모바일에서 메뉴/오버레이 클릭 시 사이드메뉴가 닫힌다.
+  - 데스크톱에서 햄버거는 보이지 않고 상단 nav만 보인다.
 
 # done_definition
 - [x] All acceptance criteria are met.
