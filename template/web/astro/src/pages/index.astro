@@ -32,7 +32,155 @@ const sections = [
         }
       </main>
 
+      <div class="mobile-sidemenu__overlay" data-menu-overlay></div>
+      <aside
+        id="mobile-sidemenu"
+        class="mobile-sidemenu"
+        aria-hidden="true"
+        data-mobile-sidemenu
+      >
+        <div class="mobile-sidemenu__header">
+          <strong>Menu</strong>
+          <button type="button" class="mobile-sidemenu__close" data-menu-close aria-label="Close menu">
+            닫기
+          </button>
+        </div>
+        <nav class="mobile-sidemenu__nav" aria-label="Mobile menu">
+          {
+            sections.map((section) => (
+              <a href={`#${section.id}`} data-menu-link>
+                {section.title}
+              </a>
+            ))
+          }
+        </nav>
+      </aside>
+
       <Footer />
     </div>
+    <script>
+      import Lenis from "../lib/lenis";
+
+      const sections = Array.from(document.querySelectorAll<HTMLElement>(".section"));
+      const menuButton = document.querySelector<HTMLButtonElement>(".template-header__menu");
+      const sideMenu = document.querySelector<HTMLElement>("[data-mobile-sidemenu]");
+      const menuOverlay = document.querySelector<HTMLElement>("[data-menu-overlay]");
+      const closeButton = document.querySelector<HTMLButtonElement>("[data-menu-close]");
+      const menuLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-menu-link]"));
+      const allAnchorLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]'));
+
+      const lenis = new Lenis({
+        duration: 1,
+        smoothWheel: true,
+        syncTouch: true,
+      });
+
+      let rafId = 0;
+      let snapTimer = 0;
+      let isSnapping = false;
+
+      const setMenuOpen = (open: boolean) => {
+        document.body.classList.toggle("menu-open", open);
+        sideMenu?.setAttribute("aria-hidden", String(!open));
+        menuButton?.setAttribute("aria-expanded", String(open));
+      };
+
+      const snapToNearestSection = () => {
+        if (
+          isSnapping ||
+          sections.length === 0 ||
+          (window.innerWidth < 768 && document.body.classList.contains("menu-open"))
+        ) {
+          return;
+        }
+
+        const currentY = window.scrollY;
+        const tops = sections.map((section) => section.offsetTop);
+
+        let targetTop = tops[0];
+
+        for (let index = 0; index < tops.length; index += 1) {
+          const currentTop = tops[index];
+          const nextTop = tops[index + 1];
+
+          if (nextTop === undefined) {
+            targetTop = currentTop;
+            break;
+          }
+
+          if (currentY >= currentTop && currentY < nextTop) {
+            const halfPoint = currentTop + (nextTop - currentTop) / 2;
+            targetTop = currentY >= halfPoint ? nextTop : currentTop;
+            break;
+          }
+        }
+
+        if (Math.abs(targetTop - currentY) < 6) {
+          return;
+        }
+
+        isSnapping = true;
+        lenis.scrollTo(targetTop, {
+          duration: 0.75,
+          lock: true,
+          onComplete: () => {
+            isSnapping = false;
+          },
+        });
+      };
+
+      lenis.on("scroll", () => {
+        window.clearTimeout(snapTimer);
+        snapTimer = window.setTimeout(snapToNearestSection, 120);
+      });
+
+      const raf = (time: number) => {
+        lenis.raf(time);
+        rafId = window.requestAnimationFrame(raf);
+      };
+
+      rafId = window.requestAnimationFrame(raf);
+
+      allAnchorLinks.forEach((link) => {
+        link.addEventListener("click", (event) => {
+          const href = link.getAttribute("href");
+          if (!href || !href.startsWith("#")) {
+            return;
+          }
+
+          const target = document.querySelector<HTMLElement>(href);
+          if (!target) {
+            return;
+          }
+
+          event.preventDefault();
+          lenis.scrollTo(target, { duration: 0.8, lock: true });
+          setMenuOpen(false);
+        });
+      });
+
+      menuButton?.setAttribute("aria-controls", "mobile-sidemenu");
+      menuButton?.setAttribute("aria-expanded", "false");
+
+      menuButton?.addEventListener("click", () => {
+        const open = !document.body.classList.contains("menu-open");
+        setMenuOpen(open);
+      });
+
+      menuOverlay?.addEventListener("click", () => setMenuOpen(false));
+      closeButton?.addEventListener("click", () => setMenuOpen(false));
+      menuLinks.forEach((link) => link.addEventListener("click", () => setMenuOpen(false)));
+
+      window.addEventListener("resize", () => {
+        if (window.innerWidth >= 768) {
+          setMenuOpen(false);
+        }
+      });
+
+      window.addEventListener("beforeunload", () => {
+        window.cancelAnimationFrame(rafId);
+        lenis.destroy();
+      });
+    </script>
   </body>
 </html>
