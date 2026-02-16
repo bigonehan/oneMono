@@ -2,25 +2,25 @@
 name: next-template-structure-enhancement
 description: Add header/body/footer structure with smooth scroll sections using @ui/shadcn components
 owner: codex
-status: in-progress
+status: done
 related_plan: ./.agents/plan.md
 related_change: zykwzxkq
 ---
 
 # features
-- [ ] F1. Header with mobile hamburger and navigation items
+- [x] F1. Header with mobile hamburger and navigation items
   - objective: Provide baseline top navigation in template
   - acceptance_criteria:
     - Header includes hamburger icon button for mobile
     - Header includes Blog and Profile menu items
-- [ ] F2. Body sections with smooth scroll
+- [x] F2. Body sections with smooth scroll
   - objective: Provide full-page section-based landing template
   - acceptance_criteria:
     - Exactly 5 sections rendered
     - Each section fills viewport height
     - Each section uses a distinct background color
     - Lenis is enabled for smooth scrolling
-- [ ] F3. Footer with centered SNS icons
+- [x] F3. Footer with centered SNS icons
   - objective: Provide reusable simple social footer area
   - acceptance_criteria:
     - Footer places SNS icons at center horizontally and vertically
@@ -55,7 +55,7 @@ related_change: zykwzxkq
 5. Run type checks to validate integration.
 
 # validation
-- [ ] Type check: `bun run check-types`
+- [x] Type check: `bun run check-types`
 - [ ] Tests: `N/A`
 - [ ] Manual checks:
   - Header renders mobile hamburger icon and Blog/Profile menu.
@@ -63,6 +63,6 @@ related_change: zykwzxkq
   - Footer SNS icons are centered.
 
 # done_definition
-- [ ] All acceptance criteria are met.
-- [ ] Validation commands pass.
-- [ ] Task document and decision notes are updated.
+- [x] All acceptance criteria are met.
+- [x] Validation commands pass.
+- [x] Task document and decision notes are updated.
