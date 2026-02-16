@@ -20,6 +20,11 @@
 - No code implementation is allowed until `./.agents/task.md` is created and the task scope/rules/files are documented.
 - All tasks must be completed by following `./.agents/task.md` as the execution checklist and source of truth.
 
+## Completion Log Rule (Feature Addition)
+- Whenever a feature addition is fully completed, append a completion record to `./.agents/log.md`.
+- Use this heading format for each record: `## 날짜 - 작업한일`.
+- Add one record per completed feature task and keep entries in chronological order.
+
 ## Version Control: Jujutsu (jj)
 This project uses **Jujutsu (jj)** (Git-backed) as the primary local VCS workflow.
 
