@@ -1,55 +1,75 @@
 ---
-name: next-header-mobile-side-menu
-description: Show hamburger only on mobile and open left side menu drawer on selection
+name: user-task-table-domain-port-adapter
+description: Implement user/task table flow using domain-port-adapter and gel infra with tanstack table
 owner: codex
 status: done
 related_plan: ./.agents/plan.md
-related_change: pwtzrryw
+related_change: zkomyokq
 ---
 
 # features
-- [x] F1. 모바일에서만 햄버거 아이콘 표시
-  - objective: 모바일 네비게이션 진입점을 명확히 분리
+- [x] F1. user/task 도메인 모델 생성
+  - objective: user와 task 핵심 모델을 도메인 계층으로 분리
   - acceptance_criteria:
-    - viewport 768px 미만에서만 햄버거 버튼이 보인다
-    - viewport 768px 이상에서는 햄버거 버튼이 숨겨진다
-- [x] F2. 모바일 햄버거 클릭 시 좌측 사이드 메뉴 표시
-  - objective: 모바일 내비게이션 접근성 개선
+    - `packages/domains/user`에 user 모델이 존재한다.
+    - `packages/domains/task`에 task 모델이 존재한다.
+- [x] F2. user/task CRUD 포트 생성
+  - objective: 애플리케이션이 인프라 구현과 분리된 계약에 의존하도록 구성
   - acceptance_criteria:
-    - 햄버거 클릭 시 왼쪽에서 슬라이드되는 메뉴가 열린다
-    - 오버레이 클릭 또는 메뉴 항목 클릭 시 닫힌다
+    - `packages/ports/user`에 user CRUD 포트가 존재한다.
+    - `packages/ports/task`에 task CRUD 포트가 존재한다.
+- [x] F3. gel 인프라 및 user adapter 생성
+  - objective: gel 기반 저장소를 통해 user와 연관 task 데이터를 조회/생성
+  - acceptance_criteria:
+    - `packages/infras` 하위 gel 관련 패키지가 존재한다.
+    - `packages/adapters` 하위 user adapter가 포트를 구현한다.
+- [x] F4. next 템플릿에 table 메뉴/화면 추가
+  - objective: header의 table 메뉴를 통해 user+task 데이터 생성/표시
+  - acceptance_criteria:
+    - header에 `Table` 메뉴가 보인다.
+    - `Table` 클릭 시 user와 연관 task 데이터가 생성된다.
+    - tanstack table로 user/task 데이터가 표시된다.
+- [x] F5. vitest 테스트 추가
+  - objective: adapter 동작을 자동 검증
+  - acceptance_criteria:
+    - vitest 테스트가 추가되고 통과한다.
 
 # files
 ## create
-- none
+- `packages/domains/user/*`: user 도메인 모델/유스케이스
+- `packages/domains/task/*`: task 도메인 모델/유스케이스
+- `packages/ports/user/*`: user CRUD 포트
+- `packages/ports/task/*`: task CRUD 포트
+- `packages/infras/gel-client/*`: gel 기반 in-memory 클라이언트
+- `packages/adapters/user-gel/*`: user/task port adapter 구현 및 테스트
 
 ## modify
-- `template/web/next/app/page.tsx`: Header onMenuClick 연결, 모바일 사이드메뉴 상태/마크업 추가
-- `template/web/next/app/globals.css`: 모바일 전용 표시 및 좌측 드로어/오버레이 스타일 추가
+- `template/web/next/app/page.tsx`: table 메뉴 액션과 tanstack table 렌더링 연결
+- `template/web/next/app/globals.css`: table 섹션 스타일 추가
+- `packages/ui/shadcn/components/layout/header.tsx`: Table 메뉴 노출
+- `packages/ui/shadcn/src/index.ts`: 필요한 export 정리(필요 시)
+- `template/web/next/package.json`: 새 패키지 및 tanstack table 의존성 반영
 
 ## delete
 - none
 
 # rule
 - Follow architecture order: `domain -> port -> adapter -> composition`.
-- For UI changes, add components under `packages/ui/shadcn` and consume via `@ui/shadcn`.
-- Use Jujutsu workflow: `jj new` for localized changes, `jj workspace` for structural changes.
-- Do not implement code before `./.agents/task.md` is created from this template.
-- Keep changes scoped to this feature document.
+- Use Jujutsu workflow: `jj new` for localized changes.
+- Do not implement code outside this feature scope.
 
 # implementation_steps
-1. `Header`의 `onMenuClick`을 페이지 상태와 연결한다.
-2. 페이지에 모바일 사이드메뉴/오버레이 마크업을 추가한다.
-3. CSS에서 모바일에서만 햄버거 노출, 데스크톱 네비게이션 유지, 드로어 애니메이션을 적용한다.
-4. 타입 체크로 변경 검증한다.
+1. domain 패키지(user/task)를 생성한다.
+2. port 패키지(user/task CRUD 계약)를 생성한다.
+3. gel infra 패키지 및 user adapter 패키지를 생성하고 포트를 구현한다.
+4. next 페이지/header에 table 메뉴와 tanstack table을 연결한다.
+5. vitest 테스트와 타입체크를 수행한다.
 
 # validation
-- [x] Type check: `bun run check-types`
-- [ ] Tests: `N/A`
+- [x] Type check: `bun run --cwd template/web/next check-types`
+- [x] Tests: `bun run --cwd /home/tree/home/packages/adapters/user-gel test`
 - [x] Manual checks:
-  - 모바일에서 햄버거 버튼 클릭 시 좌측 사이드메뉴가 열린다.
-  - 모바일에서 메뉴/오버레이 클릭 시 사이드메뉴가 닫힌다.
-  - 데스크톱에서 햄버거는 보이지 않고 상단 nav만 보인다.
+  - Header `Table` 메뉴 클릭 시 user/task 데이터가 생성되고 테이블에 렌더링된다.
 
 # done_definition
 - [x] All acceptance criteria are met.

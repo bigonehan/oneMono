@@ -1,8 +1,21 @@
 "use client";
 
+import {
+  createColumnHelper,
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
+import { Lenis, SlideUpText } from "@ui/motion";
 import { Footer, Header } from "@ui/shadcn";
-import Lenis from "lenis";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+
+type UserTaskRow = {
+  userName: string;
+  userEmail: string;
+  taskTitle: string;
+  taskStatus: string;
+};
 
 const sections = [
   { id: "section-1", title: "Section 1", color: "section--one" },
@@ -14,6 +27,24 @@ const sections = [
 
 export default function Home() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [rows, setRows] = useState<UserTaskRow[]>([]);
+  const [seedCount, setSeedCount] = useState(1);
+
+  const columns = useMemo(() => {
+    const column = createColumnHelper<UserTaskRow>();
+    return [
+      column.accessor("userName", { header: "User" }),
+      column.accessor("userEmail", { header: "Email" }),
+      column.accessor("taskTitle", { header: "Task" }),
+      column.accessor("taskStatus", { header: "Status" }),
+    ];
+  }, []);
+
+  const table = useReactTable({
+    data: rows,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+  });
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -35,9 +66,39 @@ export default function Home() {
     };
   }, []);
 
+  const createUserTaskByMenu = async () => {
+    const next = seedCount;
+    const createdRows: UserTaskRow[] = [
+      {
+        userName: `User ${next}`,
+        userEmail: `user${next}@example.com`,
+        taskTitle: `Task ${next}-1`,
+        taskStatus: "todo",
+      },
+      {
+        userName: `User ${next}`,
+        userEmail: `user${next}@example.com`,
+        taskTitle: `Task ${next}-2`,
+        taskStatus: "in-progress",
+      },
+    ];
+    setSeedCount((count) => count + 1);
+    setRows((prev) => [...prev, ...createdRows]);
+
+    const tableSection = document.getElementById("table-section");
+    if (tableSection) {
+      tableSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <div className="template-root">
-      <Header onMenuClick={() => setIsMobileMenuOpen(true)} />
+      <Header
+        onMenuClick={() => setIsMobileMenuOpen(true)}
+        onTableClick={() => {
+          void createUserTaskByMenu();
+        }}
+      />
 
       <div
         className={`mobile-overlay ${isMobileMenuOpen ? "is-open" : ""}`}
@@ -57,9 +118,48 @@ export default function Home() {
       </aside>
 
       <main className="template-body">
+        <section id="table-section" className="table-section">
+          <h2>User + Task Table</h2>
+          <p>Click Header `Table` to create user and related task rows.</p>
+          <div className="table-shell">
+            <table>
+              <thead>
+                {table.getHeaderGroups().map((headerGroup) => (
+                  <tr key={headerGroup.id}>
+                    {headerGroup.headers.map((header) => (
+                      <th key={header.id}>
+                        {header.isPlaceholder
+                          ? null
+                          : flexRender(header.column.columnDef.header, header.getContext())}
+                      </th>
+                    ))}
+                  </tr>
+                ))}
+              </thead>
+              <tbody>
+                {table.getRowModel().rows.length === 0 ? (
+                  <tr>
+                    <td colSpan={4}>No rows yet. Use Header Table menu.</td>
+                  </tr>
+                ) : (
+                  table.getRowModel().rows.map((row) => (
+                    <tr key={row.id}>
+                      {row.getVisibleCells().map((cell) => (
+                        <td key={cell.id}>
+                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                        </td>
+                      ))}
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
         {sections.map((section) => (
           <section key={section.id} id={section.id} className={`section ${section.color}`}>
-            <h2>{section.title}</h2>
+            <SlideUpText text={section.title} />
           </section>
         ))}
       </main>

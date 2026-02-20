@@ -64,6 +64,51 @@ a {
   padding-top: var(--header-height);
 }
 
+.template-header__table {
+  font-weight: 700;
+}
+
+.table-section {
+  min-height: 100vh;
+  padding: calc(var(--header-height) + 24px) 24px 40px;
+  background: #f4f7fb;
+}
+
+.table-section h2 {
+  margin: 0;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+}
+
+.table-section p {
+  margin: 10px 0 20px;
+}
+
+.table-shell {
+  overflow-x: auto;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+}
+
+.table-shell table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-shell th,
+.table-shell td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.table-shell th {
+  font-size: 0.86rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: #eef3fb;
+}
+
 .section {
   min-height: 100vh;
   display: grid;

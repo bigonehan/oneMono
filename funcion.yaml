@@ -1,0 +1,79 @@
+abbreviations:
+  crud: create/read/update/delete
+  c: create
+  r: read
+  u: update
+  d: delete
+
+domains:
+  "@domain/user":
+    can:
+      - user_crud
+  "@domain/article":
+    can:
+      - article_crud
+
+features:
+  "@features/auth":
+    can:
+      - auth_id_pw_c
+      - auth_session_r
+  "@features/editor":
+    can:
+      - article_editor_c
+
+adapters:
+  "@adapters/user-gel":
+    can:
+      - user_crud
+      - article_crud
+      - user_article_rows_r
+    types:
+      - user_article_row
+
+infras:
+  "@infras/gel-client":
+    exports:
+      - gel_client_get
+      - user_article_schema
+
+ui:
+  "@repo/ui":
+    exports:
+      - button_component
+      - card_component
+      - code_component
+  "@ui/gsap":
+    exports:
+      - gsap
+      - gsap_named
+  "@ui/shadcn":
+    exports:
+      - header_component
+      - footer_component
+      - hamburger_icon_component
+      - label_component
+      - test_component
+      - form_login_component
+      - form_editor_component
+      - list_article_component
+  "@ui/storybook":
+    exports:
+      - storybook_react
+
+templates:
+  "template-mobile-expo":
+    can:
+      - mobile_expo_flashlist_r
+
+tooling:
+  "@repo/eslint-config":
+    exports:
+      - base_config
+      - nextjs_config
+      - react_internal_config
+  "@repo/typescript-config":
+    exports:
+      - base_tsconfig
+      - nextjs_tsconfig
+      - react_library_tsconfig
