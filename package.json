@@ -20,6 +20,9 @@
   "workspaces": [
     "apps/*",
     "packages/*",
+    "packages/domains/*",
+    "packages/adapters/*",
+    "packages/infras/*",
     "packages/ui/*",
     "template/*/*"
   ]

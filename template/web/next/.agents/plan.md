@@ -1,72 +1,72 @@
 ---
-name: monorepo-next-template
-description: Next app template for monorepo using @ui/shadcn components
+name: next-user-task-table
+description: template/web/next에서 user-task table 생성 흐름을 domain-port-adapter 순서로 구현
 features:
-  - Use @ui/shadcn as the only UI package source
-  - Provide a runnable App Router template
+  - user/task domain 모델 분리
+  - user/task CRUD 포트 정의
+  - gel infra + user adapter 구현
+  - Header Table 메뉴 클릭 시 user/task 생성 및 tanstack table 표시
 libs:
-  - next@16.1.5
-  - react@^19.2.0
-  - react-dom@^19.2.0
+  - @tanstack/react-table@^8.21.3
+  - vitest@^3.2.4
 design:
-  architecture: Next app template in template/web/next, consuming workspace UI package
-  patterns: Workspace package import and transpilePackages for shared TS source
-  data_flow: page.tsx imports components from @ui/shadcn and renders in App Router
-  interfaces: package.json dependency on @ui/shadcn and app-level imports
+  architecture: domain -> port -> adapter -> template composition
+  patterns: in-memory gel table client + adapter join row 변환
+  data_flow: Header Table 클릭 -> adapter.createUserWithTasks -> adapter.listUserTaskRows -> UI table render
+  interfaces: UserCrudPort, TaskCrudPort, GelUserTaskAdapter
 warnings:
-  - Do not add UI components locally in template app
+  - domain이 adapter/infrastructure에 의존하지 않도록 유지
 constraints:
-  - Components must be added under packages/ui/shadcn and imported via @ui/shadcn
+  - require.md 요구사항 범위 밖 기능 추가 금지
 dependencies:
   external: none
-  internal: packages/ui/shadcn exports
+  internal: packages/domains/*, packages/ports/*, packages/infras/gel-client, packages/adapters/user-gel
 ---
 
 ## Goals (완료 정의)
-- Template app compiles with @ui/shadcn imports ← **검증 방법**: `bun run check-types`
-- Dev server starts without module resolution errors ← **검증 방법**: `bun run dev`
+- user/task domain, port, adapter, gel infra가 생성된다 ← **검증 방법**: `rg --files packages/domains packages/ports packages/infras packages/adapters`
+- Header `Table` 클릭 시 user + 연관 task row가 생성/표시된다 ← **검증 방법**: `template/web/next` 수동 확인
+- adapter vitest가 통과한다 ← **검증 방법**: `bun run --cwd packages/adapters/user-gel test`
+- next 타입체크가 통과한다 ← **검증 방법**: `bun run --cwd template/web/next check-types`
 
 ## Non-goals (이번에 안 함)
-- Add new shadcn components in this task
-- Create domain/port/adapter packages
+- 실제 외부 DB 연결
+- 인증/권한 처리
 
 ## Files to touch
 - **Create**:
-  - `.agents/plan.md`: plan source of truth | implementation checklist
-  - `package.json`: template app package definition
-  - `tsconfig.json`: TypeScript config for Next app
-  - `next.config.js`: Next config with transpilePackages
-  - `eslint.config.js`: lint config
-  - `next-env.d.ts`: Next TypeScript environment file
-  - `app/layout.tsx`: root layout
-  - `app/page.tsx`: sample page consuming @ui/shadcn
-  - `app/globals.css`: baseline styles
-  - `README.md`: template usage notes
+  - `packages/domains/user/*`: user domain model
+  - `packages/domains/task/*`: task domain model
+  - `packages/ports/user/*`: user CRUD port
+  - `packages/ports/task/*`: task CRUD port
+  - `packages/infras/gel-client/*`: gel in-memory table client
+  - `packages/adapters/user-gel/*`: port 구현 + 테스트
 - **Modify**:
-  - `/home/tree/home/AGENTS.md`: fix template path typo (`template` -> `templates`)
+  - `packages/ui/shadcn/components/layout/header.tsx`: Table 메뉴 추가
+  - `template/web/next/app/page.tsx`: table 생성 액션/렌더링 연결
+  - `template/web/next/app/globals.css`: table section 스타일 추가
+  - `template/web/next/package.json`: adapter/tanstack 의존성
+  - `package.json`: workspace 패턴 확장
 
 ## Milestones
-### 1) Scaffold template files
-**Exit criteria**: All template files exist and reference @ui/shadcn
-- [ ] Create app/config/package files
-  - **Verify**: `find . -maxdepth 3 -type f`
-  - **Rollback**: remove created files
+### 1) domain/port/infra/adapter 생성
+**Exit criteria**: 코드와 테스트 파일이 생성됨
+- [x] 계층별 패키지 생성
+  - **Verify**: `rg --files packages/domains packages/ports packages/infras packages/adapters`
+  - **Rollback**: 생성 파일 삭제
 
-### 2) Validate buildability
-**Exit criteria**: Type check passes and dev server starts
-- [ ] Run type check
-  - **Verify**: `bun run check-types`
-  - **Rollback**: fix config/import mismatches
-- [ ] Run dev server
-  - **Verify**: startup log without module resolution errors
-  - **Rollback**: fix package dependency and next transpile settings
+### 2) next 템플릿 연결
+**Exit criteria**: Header Table 클릭 시 row가 표시됨
+- [x] Header + page + style 수정
+  - **Verify**: `bun run --cwd template/web/next check-types`
+  - **Rollback**: page/header 변경 revert
 
 ## Risks & Mitigation
-- **Risk**: Workspace package import fails in Next bundling → **Mitigation**: set `transpilePackages` for `@ui/shadcn`
-- **Risk**: Type check fails due shared package TS settings → **Mitigation**: align with existing monorepo TS config
+- **Risk**: workspace dependency 인식 실패 → **Mitigation**: root workspaces 패턴 확장
+- **Risk**: Astro/Next 동시 사용 시 browser runtime 차이 → **Mitigation**: adapter를 browser-safe in-memory 코드로 구현
 
 ## Open questions
 - [ ] none — **Blocker**: NO
 
 ## Decision log
-- `2026-02-16`: Keep template minimal and enforce @ui/shadcn usage — clear monorepo convention and low maintenance
+- `2026-02-16`: gel은 in-memory client로 추상화해 template 단계에서 빠르게 검증

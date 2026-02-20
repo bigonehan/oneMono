@@ -10,6 +10,7 @@
     "check-types": "astro check"
   },
   "dependencies": {
+    "@tanstack/table-core": "^8.21.3",
     "@astrojs/react": "^4.3.1",
     "@ui/shadcn": "*",
     "astro": "^5.2.0",

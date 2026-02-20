@@ -23,6 +23,21 @@ const sections = [
       <Header />
 
       <main class="template-body">
+        <section id="table-section" class="table-section">
+          <h2>User + Task Table</h2>
+          <p>Click Header `Table` to create user and related task rows.</p>
+          <div class="table-shell">
+            <table>
+              <thead data-table-head></thead>
+              <tbody data-table-body>
+                <tr>
+                  <td colspan="4">No rows yet. Use Header Table menu.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
         {
           sections.map((section) => (
             <section id={section.id} class={`section ${section.color}`}>
@@ -59,6 +74,7 @@ const sections = [
       <Footer />
     </div>
     <script>
+      import { createColumnHelper } from "@tanstack/table-core";
       import Lenis from "../lib/lenis";
 
       const sections = Array.from(document.querySelectorAll<HTMLElement>(".section"));
@@ -67,13 +83,18 @@ const sections = [
       const menuOverlay = document.querySelector<HTMLElement>("[data-menu-overlay]");
       const closeButton = document.querySelector<HTMLButtonElement>("[data-menu-close]");
       const menuLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-menu-link]"));
+      const tableActionLink = document.querySelector<HTMLAnchorElement>("[data-table-action]");
       const allAnchorLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]'));
+      const tableHead = document.querySelector<HTMLElement>("[data-table-head]");
+      const tableBody = document.querySelector<HTMLElement>("[data-table-body]");
 
       const lenis = new Lenis({
         duration: 1,
         smoothWheel: true,
         syncTouch: true,
       });
+      const rows: UserTaskRow[] = [];
+      let seedCount = 1;
 
       let rafId = 0;
       let snapTimer = 0;
@@ -129,6 +150,59 @@ const sections = [
         });
       };
 
+      type UserTaskRow = {
+        userName: string;
+        userEmail: string;
+        taskTitle: string;
+        taskStatus: string;
+      };
+
+      const columnHelper = createColumnHelper<UserTaskRow>();
+      const columns = [
+        columnHelper.accessor("userName", { id: "userName", header: "User" }),
+        columnHelper.accessor("userEmail", { id: "userEmail", header: "Email" }),
+        columnHelper.accessor("taskTitle", { id: "taskTitle", header: "Task" }),
+        columnHelper.accessor("taskStatus", { id: "taskStatus", header: "Status" }),
+      ];
+
+      const escapeHtml = (value: string) =>
+        value
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/\"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+
+      const renderRows = (rows: UserTaskRow[]) => {
+        if (tableHead) {
+          tableHead.innerHTML = `<tr>${columns
+            .map((column) => `<th>${String(column.header ?? "")}</th>`)
+            .join("")}</tr>`;
+        }
+
+        if (!tableBody) {
+          return;
+        }
+
+        if (rows.length === 0) {
+          tableBody.innerHTML = "<tr><td colspan=\"4\">No rows yet. Use Header Table menu.</td></tr>";
+          return;
+        }
+
+        tableBody.innerHTML = rows
+          .map(
+            (row) =>
+              `<tr>${columns
+                .map((column) => {
+                  const key = column.id;
+                  const value = key ? row[key as keyof UserTaskRow] : "";
+                  return `<td>${escapeHtml(String(value ?? ""))}</td>`;
+                })
+                .join("")}</tr>`,
+          )
+          .join("");
+      };
+
       lenis.on("scroll", () => {
         window.clearTimeout(snapTimer);
         snapTimer = window.setTimeout(snapToNearestSection, 120);
@@ -143,6 +217,9 @@ const sections = [
 
       allAnchorLinks.forEach((link) => {
         link.addEventListener("click", (event) => {
+          if (link.matches("[data-table-action]")) {
+            return;
+          }
           const href = link.getAttribute("href");
           if (!href || !href.startsWith("#")) {
             return;
@@ -157,6 +234,33 @@ const sections = [
           lenis.scrollTo(target, { duration: 0.8, lock: true });
           setMenuOpen(false);
         });
+      });
+
+      tableActionLink?.addEventListener("click", async (event) => {
+        event.preventDefault();
+        const current = seedCount;
+        rows.push(
+          {
+            userName: `User ${current}`,
+            userEmail: `user${current}@example.com`,
+            taskTitle: `Task ${current}-1`,
+            taskStatus: "todo",
+          },
+          {
+            userName: `User ${current}`,
+            userEmail: `user${current}@example.com`,
+            taskTitle: `Task ${current}-2`,
+            taskStatus: "in-progress",
+          },
+        );
+        seedCount += 1;
+        renderRows(rows);
+
+        const tableSection = document.querySelector<HTMLElement>("#table-section");
+        if (tableSection) {
+          lenis.scrollTo(tableSection, { duration: 0.8, lock: true });
+        }
+        setMenuOpen(false);
       });
 
       menuButton?.setAttribute("aria-controls", "mobile-sidemenu");
@@ -181,6 +285,8 @@ const sections = [
         window.cancelAnimationFrame(rafId);
         lenis.destroy();
       });
+
+      renderRows([]);
     </script>
   </body>
 </html>

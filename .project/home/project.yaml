@@ -1,0 +1,11 @@
+name: home
+description: ''
+framework: ''
+rule: []
+features:
+  domain: []
+  feature: []
+lib:
+- prettier
+- turbo
+- typescript

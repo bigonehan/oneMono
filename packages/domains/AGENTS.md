@@ -15,3 +15,9 @@ Examples:
 - Do not use other scopes for domain packages (e.g. `@domains/*`, `@app/*`).
 - If an existing package violates this rule, normalize it to `@domain/<name>` before adding new domain code.
 - If a task requires breaking this rule, ask for explicit approval before proceeding.
+
+## Port Location Rule (Mandatory)
+- Keep port interfaces inside each domain package.
+- File name pattern: `packages/domains/<name>/src/<name>_port.ts`.
+- Re-export the port type from `packages/domains/<name>/src/index.ts`.
+- Do not create or reuse cross-domain port packages such as `packages/ports/*`.
