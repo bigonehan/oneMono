@@ -1,0 +1,11 @@
+package: @ui/shadcn
+path: packages/ui/shadcn
+domain: ui-shadcn
+summary: Shadcn-based composed UI components for forms/layout/list.
+llm_hint:
+  - Use this file as a quick package capability map before reading code.
+  - Treat listed features as stable entry points; verify details in src when implementing.
+features:
+  - layout_components: header/footer/navigation components
+  - form_components: login/editor forms
+  - list_components: article list and card rendering

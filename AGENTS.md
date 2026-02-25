@@ -33,3 +33,43 @@
 - 도메인 usecase 파일명은 도메인 접두사 기반 snake_case를 사용한다.
 - 파일명 패턴: `packages/domains/<domain>/src/usecases/<domain>_<action>.ts`
 - 예시: `user_create.ts`, `user_get.ts`, `user_list.ts`, `user_update.ts`, `user_delete.ts`
+
+## 폴더/파일 네이밍 규칙 (Python 도메인)
+- 새 파일 생성 전 반드시 대상 도메인을 먼저 식별한다.
+- 파일은 반드시 `domains/{entity명}/` 디렉토리 내부에 배치한다.
+- 새로운 도메인이 필요하면 `domains/{entity명}/` 디렉토리를 새로 생성한다.
+- 기본 구조:
+- `domains/{entity명}/{entity명}_entity.py` (도메인 엔티티)
+- `domains/{entity명}/{entity명}_port.py` (포트 인터페이스)
+- `domains/{entity명}/{entity명}_service.py` (서비스, in adapter)
+- `domains/{entity명}/{entity명}_{기술명}.py` (기술 어댑터, in/out)
+- suffix 규칙:
+- `_entity`: 도메인 엔티티
+- `_port`: 포트 인터페이스
+- `_service`: 서비스(in adapter)
+- `_{기술명}`: 기술 어댑터(in/out) 예: `user_rest.py`, `user_pg.py`, `user_kafka.py`
+- `_entity`, `_port`를 제외한 나머지 파일은 모두 어댑터로 간주한다.
+- 어댑터 파일명에는 `_adapter` suffix를 붙이지 않고 기술명을 suffix로 사용한다.
+
+예시 (`user` 도메인):
+
+```text
+domains/
+└── user/
+    ├── user_entity.py
+    ├── user_port.py
+    ├── user_service.py
+    ├── user_rest.py
+    └── user_pg.py
+```
+
+## JJ Workspace 작업 규칙 (Mandatory)
+- 구현/생성/개선 요청을 수행할 때는 코드 변경 전에 반드시 전용 `jj workspace`를 먼저 생성(또는 전환)한다.
+- 코드 편집, 의존성 변경, 빌드/테스트 실행은 해당 작업용 `jj workspace`에서만 수행한다.
+- 작업 완료 후 검증이 끝나면 기본 workspace로 변경사항을 반드시 merge 한다.
+- merge 충돌 또는 merge 불가 상태가 발생하면 임의 우회하지 말고 즉시 사용자에게 확인한다.
+- merge 완료 후에는 사용한 임시 workspace를 정리한다.
+
+## Shell 사용 규칙
+- 검색/필터/간단 치환은 `rg`, `rg --files`, `sd` 같은 직접 명령으로 먼저 처리한다.
+- `rg` 중심의 직접 명령만으로 해결할 수 없을 때에만 `fish -ic` 또는 `bash -c`를 사용한다.

@@ -57,6 +57,8 @@ ui:
       - form_login_component
       - form_editor_component
       - list_article_component
+      - list_card_component
+      - gen_pane_component
   "@ui/storybook":
     exports:
       - storybook_react
@@ -65,6 +67,14 @@ templates:
   "template-mobile-expo":
     can:
       - mobile_expo_flashlist_r
+  "template-web-next":
+    can:
+      - next_auth_sign_up_c
+      - next_auth_login_c
+      - next_auth_me_r
+      - next_auth_logout_d
+      - next_post_menu_r
+      - next_post_list_card_r
 
 tooling:
   "@repo/eslint-config":

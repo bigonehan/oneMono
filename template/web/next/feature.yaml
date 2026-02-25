@@ -1,0 +1,11 @@
+package: template-web-next
+path: template/web/next
+domain: web-template-next
+summary: Next.js template containing auth and post APIs with UI integration.
+llm_hint:
+  - Use this file as a quick package capability map before reading code.
+  - Treat listed features as stable entry points; verify details in src when implementing.
+features:
+  - auth_api_flow: sign-up/login/me/logout route handlers
+  - post_api_flow: create/read/update/delete post handlers
+  - template_ui_pages: page/editor/post list rendering
