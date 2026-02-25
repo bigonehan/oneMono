@@ -54,3 +54,8 @@ export const createAuthService = (userPort: UserPort): AuthService => {
     },
   };
 };
+
+export { FormLogin } from "./components/form_login";
+export type { LoginPayload } from "./components/form_login";
+export { FormSignUp } from "./components/form_sign_up";
+export type { SignUpPayload } from "./components/form_sign_up";

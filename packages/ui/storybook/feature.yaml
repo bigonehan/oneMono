@@ -1,0 +1,9 @@
+package: @ui/storybook
+path: packages/ui/storybook
+domain: ui-storybook
+summary: Storybook integration package for UI component documentation.
+llm_hint:
+  - Use this file as a quick package capability map before reading code.
+  - Treat listed features as stable entry points; verify details in src when implementing.
+features:
+  - storybook_runtime: storybook react runtime export

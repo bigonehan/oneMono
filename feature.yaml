@@ -1,0 +1,10 @@
+package: home
+path: .
+domain: monorepo-orchestration
+summary: Workspace root that orchestrates turbo tasks and shared package management.
+llm_hint:
+  - Use this file as a quick package capability map before reading code.
+  - Treat listed features as stable entry points; verify details in src when implementing.
+features:
+  - run_turbo_tasks: build/dev/lint/check-types orchestration
+  - manage_workspace: unified dependency and workspace boundaries

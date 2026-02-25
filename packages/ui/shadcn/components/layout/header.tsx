@@ -3,9 +3,24 @@ import { HamburgerIcon } from "../icons/hamburger";
 type HeaderProps = {
   onMenuClick?: () => void;
   onTableClick?: () => void;
+  onLoginClick?: () => void;
+  onSignUpClick?: () => void;
+  onLogoutClick?: () => void;
+  authUserLabel?: string;
+  dashHref?: string;
+  postHref?: string;
 };
 
-export const Header = ({ onMenuClick, onTableClick }: HeaderProps) => (
+export const Header = ({
+  onMenuClick,
+  onTableClick,
+  onLoginClick,
+  onSignUpClick,
+  onLogoutClick,
+  authUserLabel,
+  dashHref = "/dash",
+  postHref = "/post",
+}: HeaderProps) => (
   <header className="template-header">
     <button
       type="button"
@@ -33,6 +48,47 @@ export const Header = ({ onMenuClick, onTableClick }: HeaderProps) => (
       </a>
       <a href="#section-1">Blog</a>
       <a href="#section-2">Profile</a>
+      <a href={dashHref}>Dash</a>
+      <a href={postHref}>Post</a>
+      {authUserLabel ? (
+        <>
+          <span className="template-header__user">{authUserLabel}</span>
+          <button
+            type="button"
+            className="template-header__auth-button"
+            onClick={() => onLogoutClick?.()}
+          >
+            Logout
+          </button>
+        </>
+      ) : (
+        <>
+          <a
+            href="#auth-section"
+            onClick={(event) => {
+              if (!onLoginClick) {
+                return;
+              }
+              event.preventDefault();
+              onLoginClick();
+            }}
+          >
+            Login
+          </a>
+          <a
+            href="#auth-section"
+            onClick={(event) => {
+              if (!onSignUpClick) {
+                return;
+              }
+              event.preventDefault();
+              onSignUpClick();
+            }}
+          >
+            Signin
+          </a>
+        </>
+      )}
     </nav>
   </header>
 );

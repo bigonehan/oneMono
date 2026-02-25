@@ -1,0 +1,11 @@
+package: @domain/article
+path: packages/domains/article
+domain: article-domain
+summary: Article domain models, use-cases, and article port contracts.
+llm_hint:
+  - Use this file as a quick package capability map before reading code.
+  - Treat listed features as stable entry points; verify details in src when implementing.
+features:
+  - article_model: canonical article entity and rule states
+  - article_usecase: article creation/update validation flows
+  - article_port_contract: domain-owned article port interface

@@ -1,0 +1,10 @@
+package: @adapters/article-md
+path: packages/adapters/article-md
+domain: article-adapter
+summary: Article adapter that bridges domain ports to markdown infrastructure.
+llm_hint:
+  - Use this file as a quick package capability map before reading code.
+  - Treat listed features as stable entry points; verify details in src when implementing.
+features:
+  - article_port_bridge: map domain article operations to markdown store
+  - author_article_views: provide article-with-author responses

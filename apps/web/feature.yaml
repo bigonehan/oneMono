@@ -1,0 +1,10 @@
+package: web
+path: apps/web
+domain: web-application
+summary: Primary Next.js app runtime for the monorepo web surface.
+llm_hint:
+  - Use this file as a quick package capability map before reading code.
+  - Treat listed features as stable entry points; verify details in src when implementing.
+features:
+  - render_web_routes: app router pages and assets
+  - consume_shared_ui: integrates workspace UI packages

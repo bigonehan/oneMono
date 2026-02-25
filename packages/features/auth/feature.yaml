@@ -1,0 +1,11 @@
+package: @features/auth
+path: packages/features/auth
+domain: auth-feature
+summary: Auth feature package with sign-in/sign-up flows and auth service helpers.
+llm_hint:
+  - Use this file as a quick package capability map before reading code.
+  - Treat listed features as stable entry points; verify details in src when implementing.
+features:
+  - auth_form_login: login form component and payload contract
+  - auth_form_sign_up: sign-up form component and payload contract
+  - auth_service_flow: credential/session service abstraction

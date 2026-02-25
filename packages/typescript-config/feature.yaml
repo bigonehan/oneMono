@@ -1,0 +1,11 @@
+package: @repo/typescript-config
+path: packages/typescript-config
+domain: tooling-typescript
+summary: Shared TypeScript config presets used across packages and apps.
+llm_hint:
+  - Use this file as a quick package capability map before reading code.
+  - Treat listed features as stable entry points; verify details in src when implementing.
+features:
+  - base_tsconfig: strict shared compiler defaults
+  - next_tsconfig: Next.js oriented compiler preset
+  - react_library_tsconfig: react library compiler preset

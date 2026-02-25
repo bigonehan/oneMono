@@ -1,0 +1,11 @@
+package: @domain/user
+path: packages/domains/user
+domain: user-domain
+summary: User domain models, use-cases, and user port contracts.
+llm_hint:
+  - Use this file as a quick package capability map before reading code.
+  - Treat listed features as stable entry points; verify details in src when implementing.
+features:
+  - user_model: canonical user entity and profile fields
+  - user_usecase: user creation and domain validation flows
+  - user_port_contract: domain-owned user port interface

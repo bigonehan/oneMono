@@ -3,6 +3,7 @@
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import type { NewArticle } from "@domain/article";
+import { useEffect } from "react";
 
 type EditorProps = {
   value?: string;
@@ -23,7 +24,19 @@ export const ArticleEditor = ({
     },
   });
 
-  return <EditorContent editor={editor} />;
+  useEffect(() => {
+    if (!editor) {
+      return;
+    }
+
+    const fallback = `<p>${placeholder}</p>`;
+    const nextValue = value || fallback;
+    if (editor.getHTML() !== nextValue) {
+      editor.commands.setContent(nextValue, false);
+    }
+  }, [editor, value, placeholder]);
+
+  return EditorContent({ editor });
 };
 
 export type EditorDraft = Pick<NewArticle, "title" | "body" | "rule">;

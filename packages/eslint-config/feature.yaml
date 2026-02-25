@@ -1,0 +1,11 @@
+package: @repo/eslint-config
+path: packages/eslint-config
+domain: tooling-eslint
+summary: Reusable ESLint rule presets for workspace projects.
+llm_hint:
+  - Use this file as a quick package capability map before reading code.
+  - Treat listed features as stable entry points; verify details in src when implementing.
+features:
+  - base_ruleset: shared baseline lint rules
+  - next_ruleset: Next.js specific lint policy
+  - react_internal_ruleset: internal React lint profile
