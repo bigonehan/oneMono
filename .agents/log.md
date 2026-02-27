@@ -89,3 +89,9 @@
 - `template/mobile/expo/App.tsx`에 하단 탭 `Grid`를 추가하고, 선택 시 핀치 입력으로 `3x3 -> 5x5 -> 7x7 -> 9x9` 그리드 전환이 동작하도록 구현했다.
 - 핀치 이동량을 `zoom` 상태로 변환하고 `Animated.spring` 기반 카메라 스케일/위치 보간을 적용해 자연스럽게 멀어지는 전환감을 구성했다.
 - UI 연결 검증으로 `Grid 탭 버튼 -> activeTab 상태 변경 -> onResponder 핀치 핸들러 호출 -> gridSize/zoom 상태 갱신 -> 그리드 재렌더` 경로를 `rg`와 빌드/타입체크로 확인했다.
+
+## 2026-02-26 - message 도메인 및 UI 쪽지/대화창 컴포넌트 추가
+- `packages/domains/message` 패키지를 새로 추가하고 `Message` 모델, `MessagePort`, 메시지 생성/대화 필터 유스케이스를 구현했다.
+- `packages/ui/src/message-compose.tsx`에 받는 사람/내용 입력 기반 쪽지 보내기 폼 컴포넌트를 추가했다.
+- `packages/ui/src/message-chat-window.tsx`에 현재 사용자 기준 메시지 대화 목록 렌더 컴포넌트를 추가했다.
+- 검증으로 `bun run check-types --filter=@domain/message --filter=@repo/ui`를 실행해 타입체크를 통과했다.
