@@ -1,0 +1,11 @@
+package: @domain/message
+path: packages/domains/message
+domain: message-domain
+summary: Message domain models, use-cases, and message port contracts.
+llm_hint:
+  - Use this file as a quick package capability map before reading code.
+  - Treat listed features as stable entry points; verify details in src when implementing.
+features:
+  - message_model: canonical message entity and payload fields
+  - message_usecase: message creation and conversation grouping flows
+  - message_port_contract: domain-owned message port interface
