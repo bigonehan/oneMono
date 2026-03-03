@@ -1,0 +1,5 @@
+package: @infras/article-md
+summary: Markdown-file backed infrastructure store for article persistence.
+info:
+  markdown_store: get/list/save/delete article files
+  frontmatter_codec: metadata and markdown body serialization

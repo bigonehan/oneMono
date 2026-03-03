@@ -21,6 +21,9 @@ features:
   "@features/editor":
     can:
       - article_editor_c
+  "@features/reader":
+    can:
+      - reader_typing_text_r
 
 adapters:
   "@adapters/user-gel":
@@ -67,6 +70,11 @@ templates:
   "template-mobile-expo":
     can:
       - mobile_expo_flashlist_r
+  "template-desktop-astro":
+    can:
+      - desktop_article_list_r
+      - desktop_article_editor_c
+      - desktop_sqlite_store_crud
   "template-web-next":
     can:
       - next_auth_sign_up_c
