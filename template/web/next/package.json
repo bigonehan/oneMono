@@ -15,6 +15,7 @@
     "@domain/article": "*",
     "@features/auth": "*",
     "@features/editor": "*",
+    "@features/reader": "*",
     "@infras/article-md": "*",
     "@tanstack/react-table": "^8.21.3",
     "@ui/motion": "*",

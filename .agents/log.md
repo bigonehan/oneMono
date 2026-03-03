@@ -95,3 +95,37 @@
 - `packages/ui/src/message-compose.tsx`에 받는 사람/내용 입력 기반 쪽지 보내기 폼 컴포넌트를 추가했다.
 - `packages/ui/src/message-chat-window.tsx`에 현재 사용자 기준 메시지 대화 목록 렌더 컴포넌트를 추가했다.
 - 검증으로 `bun run check-types --filter=@domain/message --filter=@repo/ui`를 실행해 타입체크를 통과했다.
+
+## 2026-03-02 - 패키지별 info.yaml 생성 및 탐색 규칙 추가
+- 모노레포의 각 `feature.yaml`을 기준으로 패키지 기능을 `name: description` 형태로 정리한 `info.yaml`을 같은 경로에 생성했다.
+- 루트 `AGENTS.md`에 신규 기능 추가 시 `info.yaml` 갱신 규칙을 추가했다.
+- 새 작업/코드 개선/기능 추가 전 패키지 순회와 `info.yaml` 탐색을 필수 절차로 명시했다.
+
+## 2026-03-02 - Codex용 모노레포 project.md 설계 문서 생성
+- `plan-project-code` 기준으로 `.project/project.md`를 신규 생성했다.
+- 폴더별 위치와 사용 조건을 `structure` 섹션에 명시했다.
+- `features`, `domains`, `stage`, `step`, `constraints`, `verification(미완)`을 모노레포 운영 흐름에 맞게 정리했다.
+
+## 2026-03-03 - template/desktop/astro Astro+Tauri+SQLite 기본 템플릿 추가
+- `template/desktop/astro` 패키지를 새로 만들고 Astro + React + Tauri 구조를 구성했다.
+- `@ui/shadcn` 리스트 UI와 `@features/editor` 에디터 모달을 연결해 `추가 -> 저장 -> 리스트 갱신` 흐름을 구현했다.
+- Tauri SQL 플러그인 기반 SQLite 테이블(users/articles) 초기화와 article 생성/조회 저장소를 추가했다.
+- Playwright e2e(`tests/article-flow.spec.ts`)를 추가하고 실제 실행 통과를 확인했다.
+- `plan.md`, `feedback.md`, `funcion.yaml`, `info.yaml`, `feature.yaml`을 함께 갱신했다.
+
+## 2026-03-03 - features reader 패키지 추가 및 Next 홈 화면 PixiJS 타이핑 데모 연결
+- `packages/features/reader` 패키지를 신규 생성하고 `TypingTextReader`(PixiJS 기반 타이핑 텍스트 React 컴포넌트)를 구현했다.
+- `funcion.yaml`에 `@features/reader` 기능(`reader_typing_text_r`)을 추가하고, 패키지 `feature.yaml`/`info.yaml`을 함께 반영했다.
+- `template/web/next/app/page.tsx`에서 `@features/reader`를 import해 홈 화면 내 `Reader Typing Demo` 섹션에서 입력/재생 UI와 캔버스 렌더를 연결했다.
+- `template/web/next/package.json`, `feature.yaml`, `info.yaml`, `app/globals.css`를 갱신해 의존성과 기능 메타/스타일을 정리했다.
+- 검증으로 `packages/features/reader`와 `template/web/next` 타입체크를 통과했고, `rg`로 트리거/핸들러/렌더 연결 경로를 확인했다.
+
+## 2026-03-03 - reader 패키지 Config.yaml/AGENTS 추가 및 타이핑 속도 설정화
+- `packages/features/reader/Config.yaml`을 추가하고 `reader.speed: 100` 기본 설정을 정의했다.
+- `packages/features/reader/AGENTS.md`를 추가해 기능/설정 추가 시 `Config.yaml` 참조 규칙을 명시했다.
+- `TypingTextReader` 기본 타이핑 속도를 `READER_DEFAULT_SPEED(100)`로 변경하고 설정 상수를 패키지 export로 노출했다.
+- `template/web/next/app/page.tsx`에 속도 조절 슬라이더를 추가해 타이핑 속도를 실시간 조절할 수 있게 연결했다.
+
+## 2026-03-03 - reader 캔버스 window resize 이벤트 반응 보강
+- `TypingTextReader`에 `window.addEventListener("resize", resize)`를 추가해 화면 크기 변경 시 캔버스와 텍스트 래핑 폭이 즉시 갱신되도록 보강했다.
+- cleanup에서 `removeEventListener`를 함께 처리해 리스너 누수를 방지했다.

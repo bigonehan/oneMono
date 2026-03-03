@@ -1,0 +1,6 @@
+package: template-desktop-astro
+summary: Desktop Astro template with Tauri runtime, SQLite storage, and article editor flow.
+info:
+  desktop_article_list_r: render article list with @ui/shadcn list components
+  desktop_article_editor_c: open @features/editor modal and create article
+  desktop_sqlite_store_crud: persist article/user data through tauri sqlite plugin

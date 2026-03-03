@@ -1,0 +1,5 @@
+package: @adapters/article-md
+summary: Article adapter that bridges domain ports to markdown infrastructure.
+info:
+  article_port_bridge: map domain article operations to markdown store
+  author_article_views: provide article-with-author responses
