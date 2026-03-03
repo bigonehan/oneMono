@@ -9,3 +9,4 @@ features:
   - auth_api_flow: sign-up/login/me/logout route handlers
   - post_api_flow: create/read/update/delete post handlers
   - template_ui_pages: page/editor/post list rendering
+  - reader_demo_ui: home page inline pixijs typing reader section

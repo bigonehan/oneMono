@@ -7,6 +7,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { FormLogin, FormSignUp, type LoginPayload, type SignUpPayload } from "@features/auth";
+import { READER_DEFAULT_SPEED, TypingTextReader } from "@features/reader";
 import { Lenis, SlideUpText } from "@ui/motion";
 import { Footer, Header } from "@ui/shadcn";
 import { useEffect, useMemo, useState } from "react";
@@ -46,12 +47,22 @@ const scrollToAuthSection = () => {
 };
 
 export default function Home() {
+  const READER_SPEED_MIN = 20;
+  const READER_SPEED_MAX = 300;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [rows, setRows] = useState<UserTaskRow[]>([]);
   const [seedCount, setSeedCount] = useState(1);
   const [loginResult, setLoginResult] = useState<string>("");
   const [signUpResult, setSignUpResult] = useState<string>("");
   const [authUser, setAuthUser] = useState<AuthUser | null>(null);
+  const [readerInput, setReaderInput] = useState(
+    "PixiJS Reader는 입력한 문장을 타이핑 애니메이션으로 표현합니다.",
+  );
+  const [readerText, setReaderText] = useState(
+    "PixiJS Reader는 입력한 문장을 타이핑 애니메이션으로 표현합니다.",
+  );
+  const [readerSpeed, setReaderSpeed] = useState(READER_DEFAULT_SPEED);
+  const [readerRenderKey, setReaderRenderKey] = useState(0);
 
   const columns = useMemo(() => {
     const column = createColumnHelper<UserTaskRow>();
@@ -188,6 +199,18 @@ export default function Home() {
     }
   };
 
+  const playReaderText = () => {
+    const normalized = readerInput.trim();
+    if (!normalized) {
+      return;
+    }
+
+    setReaderText(normalized);
+    setReaderRenderKey((prev) => prev + 1);
+  };
+
+  const readerIntervalMs = READER_SPEED_MAX - readerSpeed + READER_SPEED_MIN;
+
   return (
     <div className="template-root">
       <Header
@@ -313,6 +336,40 @@ export default function Home() {
                 )}
               </tbody>
             </table>
+          </div>
+        </section>
+
+        <section className="reader-inline-section">
+          <h2>Reader Typing Demo</h2>
+          <p>텍스트를 입력하고 재생하면 PixiJS 캔버스에 타이핑 형태로 렌더링됩니다.</p>
+          <div className="reader-inline-section__controls">
+            <textarea
+              value={readerInput}
+              onChange={(event) => setReaderInput(event.target.value)}
+              rows={3}
+              placeholder="타이핑할 텍스트를 입력하세요"
+            />
+            <label htmlFor="reader-speed">Typing Speed: {readerSpeed}</label>
+            <input
+              id="reader-speed"
+              type="range"
+              min={READER_SPEED_MIN}
+              max={READER_SPEED_MAX}
+              step={10}
+              value={readerSpeed}
+              onChange={(event) => setReaderSpeed(Number(event.target.value))}
+            />
+            <button type="button" onClick={playReaderText} disabled={!readerInput.trim()}>
+              타이핑 재생
+            </button>
+          </div>
+          <div className="reader-inline-section__preview" aria-live="polite">
+            <TypingTextReader
+              key={readerRenderKey}
+              text={readerText}
+              intervalMs={readerIntervalMs}
+              height={220}
+            />
           </div>
         </section>
 
