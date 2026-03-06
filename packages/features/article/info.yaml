@@ -1,0 +1,5 @@
+package: @features/article
+summary: Article feature package that defines CRUD use-cases and markdown repository adapters.
+info:
+  article_usecase_crud: create/read/update/delete usecase contracts
+  article_md_repo_crud: markdown file CRUD repository functions

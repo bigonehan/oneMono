@@ -1,0 +1,31 @@
+{
+  "name": "@templates/web-blog",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --port 4321",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check-types": "astro check"
+  },
+  "dependencies": {
+    "@features/article": "file:../../../packages/features/article",
+    "@features/comment": "file:../../../packages/features/comment",
+    "@features/user": "file:../../../packages/features/user",
+    "@astrojs/react": "^4.3.1",
+    "astro": "^5.2.0",
+    "fuse.js": "^7.1.0",
+    "gray-matter": "^4.0.3",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "@ui/shadcn": "file:../../../packages/ui/shadcn"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.6",
+    "@astrojs/node": "^9.5.4",
+    "@playwright/test": "^1.54.2",
+    "@types/node": "^22.15.3",
+    "typescript": "5.9.2"
+  }
+}

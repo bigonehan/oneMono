@@ -21,7 +21,7 @@
 
 ## 검증
 - 완료 기준: AGENTS.override/skill 점검 후 "작업 완료 후 tmux 창 오픈" 지시가 더 이상 존재하지 않으면 완료.
-- 검증 명령: `rg -n "완료.*tmux|tmux.*완료|complete.*tmux|tmux.*complete" /home/tree/ai/codex/AGENTS.override.md /home/tree/ai/skills/plan-code/SKILL.md`
+- 검증 명령: `rg -n "완료.*tmux|tmux.*완료|complete.*tmux|tmux.*complete" /home/tree/ai/codex/AGENTS.override.md`
 
 ## 다음 이터레이션
 - 필요 시, "구현 시작 전 tmux" 문구도 정책적으로 제거할지 사용자 확인 후 별도 수정

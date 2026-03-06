@@ -1,5 +1,5 @@
 {
-  "name": "home",
+  "name": "@repo/home",
   "private": true,
   "scripts": {
     "build": "turbo run build",
