@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getPostsByTag, getTagCounts, normalizeTag } from "../../lib/posts";
+
+export const getStaticPaths = async () =>
+  getTagCounts().map((item) => ({
+    params: { tag: item.tag },
+  }));
+
+const tag = normalizeTag(Astro.params.tag ?? "");
+const posts = getPostsByTag(tag);
+---
+
+<BaseLayout title={`Tag: ${tag}`}>
+  <h1>#{tag}</h1>
+  <ul>
+    {posts.map((post) => (
+      <li><a href={`/posts/${post.slug}`}>{post.title}</a></li>
+    ))}
+  </ul>
+</BaseLayout>

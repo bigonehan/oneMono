@@ -74,6 +74,12 @@ domains/
 - 작업 완료 후 검증이 끝나면 기본 workspace로 변경사항을 반드시 merge 한다.
 - merge 충돌 또는 merge 불가 상태가 발생하면 임의 우회하지 말고 즉시 사용자에게 확인한다.
 - merge 완료 후에는 사용한 임시 workspace를 정리한다.
+- 임시 workspace 정리는 반드시 두 단계로 수행한다.
+- `jj workspace forget <workspace-name>`
+- workspace 디렉터리 실제 삭제 (`rm -rf <workspace-path>` 또는 동등한 삭제 절차)
+- 임시 workspace 정리 후 아래 후검증을 반드시 수행한다.
+- `jj workspace list`에서 대상 workspace가 사라졌는지 확인
+- 루트 기준 `bun install` 실행 시 workspace name 충돌이 없는지 확인
 
 ## Shell 사용 규칙
 - 검색/필터/간단 치환은 `rg`, `rg --files`, `sd` 같은 직접 명령으로 먼저 처리한다.

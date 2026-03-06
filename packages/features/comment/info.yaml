@@ -1,0 +1,5 @@
+package: @features/comment
+summary: Comment feature package for CRUD contracts and moderation-safe repository adapters.
+info:
+  comment_usecase_crud: create/read/update/delete usecase contracts
+  comment_soft_delete_u: soft delete preserving thread structure

@@ -129,3 +129,9 @@
 ## 2026-03-03 - reader 캔버스 window resize 이벤트 반응 보강
 - `TypingTextReader`에 `window.addEventListener("resize", resize)`를 추가해 화면 크기 변경 시 캔버스와 텍스트 래핑 폭이 즉시 갱신되도록 보강했다.
 - cleanup에서 `removeEventListener`를 함께 처리해 리스너 누수를 방지했다.
+
+## 2026-03-05 - template/desktop/astro 구글 로그인 자동화 사이드바 앱 추가
+- `template/desktop/astro/src/components/DesktopArticleApp.tsx`를 Zustand 상태 기반 로그인 러너 UI로 교체해 VSCode 유사 사이드바 + 실행 로그 패널을 구성했다.
+- `template/desktop/astro/src-tauri/src/main.rs`에 `run_google_login` Tauri command를 추가해 Playwright 스크립트를 `bun/node` 런타임으로 실행하도록 연결했다.
+- `template/desktop/astro/scripts/google-login.mjs`를 추가해 Google 로그인 페이지 이동 및 계정/비밀번호 자동 입력 흐름을 구현했다.
+- `template/desktop/astro/info.yaml`, `template/desktop/astro/feature.yaml`, `template/desktop/astro/tests/article-flow.spec.ts`를 새 기능 기준으로 갱신했다.
