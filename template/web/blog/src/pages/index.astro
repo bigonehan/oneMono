@@ -3,7 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { ListBlogShowcase } from "@ui/shadcn";
 import { getAllPosts } from "../lib/posts";
 
-const posts = getAllPosts();
+const posts = await getAllPosts();
 const imagePool = ["/reference/featured.jpg", "/reference/card1.jpg", "/reference/card2.jpg", "/reference/card3.jpg"];
 
 const fallback = {

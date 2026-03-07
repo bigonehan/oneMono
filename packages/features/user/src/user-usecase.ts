@@ -16,6 +16,7 @@ export interface IUserCreateUseCase {
 
 export interface IUserReadUseCase {
   getByEmail(email: string): Promise<UserRecord | null>;
+  getRole(email: string): Promise<UserRole | null>;
 }
 
 export interface IUserUpdateUseCase {
@@ -27,7 +28,7 @@ export interface IUserDeleteUseCase {
 }
 
 export interface IUserAuthUseCase {
-  signUp(email: string, passwordHash: string): Promise<UserRecord>;
+  signUp(email: string, password: string): Promise<UserRecord>;
   verify(email: string): Promise<UserRecord>;
-  login(email: string, passwordHash: string): Promise<UserRecord>;
+  login(email: string, password: string): Promise<{ user: UserRecord; token: string }>;
 }

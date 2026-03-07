@@ -3,18 +3,18 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getAllPosts, getPostBySlug, getSeriesPosts } from "../../lib/posts";
 
 export const getStaticPaths = async () =>
-  getAllPosts().map((post) => ({
+  (await getAllPosts()).map((post) => ({
     params: { slug: post.slug },
   }));
 
 const slug = Astro.params.slug ?? "";
-const postResult = getPostBySlug(slug);
+const postResult = await getPostBySlug(slug);
 if (!postResult) {
-  throw new Error(`post not found: ${slug}`);
+  return new Response(null, { status: 404 });
 }
 
 const { post, prev, next } = postResult;
-const seriesPosts = post.series ? getSeriesPosts(post.series) : [];
+const seriesPosts = post.series ? await getSeriesPosts(post.series) : [];
 ---
 
 <BaseLayout title={post.title} description={post.description}>

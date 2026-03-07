@@ -1,4 +1,6 @@
 import type { IUserAuthUseCase, UserRecord } from "./user-usecase";
+import bcrypt from "bcryptjs";
+import { randomUUID } from "node:crypto";
 import { UserCreateMemoryRepo } from "./user-repo-create";
 import { UserReadMemoryRepo } from "./user-repo-read";
 import { UserUpdateMemoryRepo } from "./user-repo-update";
@@ -8,7 +10,8 @@ export class UserAuthMemoryUseCase implements IUserAuthUseCase {
   private readonly readRepo = new UserReadMemoryRepo();
   private readonly updateRepo = new UserUpdateMemoryRepo();
 
-  async signUp(email: string, passwordHash: string): Promise<UserRecord> {
+  async signUp(email: string, password: string): Promise<UserRecord> {
+    const passwordHash = await bcrypt.hash(password, 10);
     return this.createRepo.create(email, passwordHash);
   }
 
@@ -16,7 +19,7 @@ export class UserAuthMemoryUseCase implements IUserAuthUseCase {
     return this.updateRepo.update(email, { verified: true });
   }
 
-  async login(email: string, passwordHash: string): Promise<UserRecord> {
+  async login(email: string, password: string): Promise<{ user: UserRecord; token: string }> {
     const user = await this.readRepo.getByEmail(email);
     if (!user) {
       throw new Error("invalid credential");
@@ -28,7 +31,8 @@ export class UserAuthMemoryUseCase implements IUserAuthUseCase {
       throw new Error("email not verified");
     }
 
-    if (user.passwordHash !== passwordHash) {
+    const isMatch = await bcrypt.compare(password, user.passwordHash);
+    if (!isMatch) {
       const failedCount = user.failedCount + 1;
       await this.updateRepo.update(email, {
         failedCount,
@@ -37,6 +41,10 @@ export class UserAuthMemoryUseCase implements IUserAuthUseCase {
       throw new Error("invalid credential");
     }
 
-    return this.updateRepo.update(email, { failedCount: 0 });
+    const authenticated = await this.updateRepo.update(email, { failedCount: 0 });
+    return {
+      user: authenticated,
+      token: randomUUID(),
+    };
   }
 }

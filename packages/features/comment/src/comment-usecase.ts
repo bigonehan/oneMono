@@ -18,9 +18,41 @@ export interface ICommentReadUseCase {
 }
 
 export interface ICommentUpdateUseCase {
-  update(commentId: string, content: string): Promise<CommentRecord>;
+  update(input: {
+    commentId: string;
+    content: string;
+    requesterEmail: string;
+    requesterRole: "admin" | "user";
+  }): Promise<CommentRecord>;
 }
 
 export interface ICommentDeleteUseCase {
-  remove(commentId: string): Promise<CommentRecord>;
+  remove(input: {
+    commentId: string;
+    requesterEmail: string;
+    requesterRole: "admin" | "user";
+  }): Promise<CommentRecord>;
+}
+
+export type NotificationRecord = {
+  id: string;
+  userEmail: string;
+  actorEmail: string;
+  articleSlug: string;
+  commentId: string;
+  type: "article_comment" | "comment_reply";
+  read: boolean;
+  createdAt: string;
+};
+
+export interface INotificationUseCase {
+  notify(input: {
+    userEmail: string;
+    actorEmail: string;
+    articleSlug: string;
+    commentId: string;
+    type: "article_comment" | "comment_reply";
+  }): Promise<NotificationRecord | null>;
+  list(userEmail: string, read?: boolean): Promise<NotificationRecord[]>;
+  markRead(userEmail: string, notificationId: string): Promise<NotificationRecord>;
 }

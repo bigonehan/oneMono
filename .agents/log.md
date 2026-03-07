@@ -135,3 +135,10 @@
 - `template/desktop/astro/src-tauri/src/main.rs`에 `run_google_login` Tauri command를 추가해 Playwright 스크립트를 `bun/node` 런타임으로 실행하도록 연결했다.
 - `template/desktop/astro/scripts/google-login.mjs`를 추가해 Google 로그인 페이지 이동 및 계정/비밀번호 자동 입력 흐름을 구현했다.
 - `template/desktop/astro/info.yaml`, `template/desktop/astro/feature.yaml`, `template/desktop/astro/tests/article-flow.spec.ts`를 새 기능 기준으로 갱신했다.
+
+## 2026-03-07 - 작업한일
+- `template/web/blog` 작성 화면을 `@features/editor` 기반 tiptap 에디터로 전환하고 등록 유효성 검증(필수 frontmatter, 태그 1~5개)을 강화했다.
+- `@features/article`에 검색 인덱스/검색(Fuse), 상세(prev/next), slug 전역 중복 방지, 좋아요/북마크/조회수 메모리 구현체를 추가했다.
+- `@features/user` 인증을 bcrypt 기반으로 변경하고 역할 조회 메서드를 추가했다.
+- `@features/comment` 수정/삭제 권한(작성자/admin) 검증과 알림(읽음/안읽음, 100개 보관) 구현체를 추가했다.
+- `template/web/blog`에 `/search` 페이지를 추가하고 `search-index.json` fetch + Fuse 검색(2자 미만 차단) 흐름을 연결했다.

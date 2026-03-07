@@ -24,16 +24,26 @@ export class ArticleCreateFileRepo implements IArticleCreateUseCase {
     if (input.tags.length > 5) {
       throw new Error("tags can not exceed 5");
     }
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(input.date)) {
+      throw new Error("date must follow YYYY-MM-DD format");
+    }
 
     const postsDir = path.join(this.rootDir, "posts");
     fs.mkdirSync(postsDir, { recursive: true });
 
     const slug = normalizeSlug(input.title);
-    const filename = `${input.date}-${slug}.md`;
-    const fullPath = path.join(postsDir, filename);
-    if (fs.existsSync(fullPath)) {
+    if (!slug) {
+      throw new Error("slug can not be empty");
+    }
+    const exists = fs
+      .readdirSync(postsDir)
+      .filter((file) => file.endsWith(".md"))
+      .some((file) => file.replace(/\.md$/, "").replace(/^\d{4}-\d{2}-\d{2}-/, "") === slug);
+    if (exists) {
       throw new Error(`slug already exists: ${slug}`);
     }
+    const filename = `${input.date}-${slug}.md`;
+    const fullPath = path.join(postsDir, filename);
 
     fs.writeFileSync(fullPath, buildFrontmatter(input), "utf8");
     return {

@@ -4,13 +4,13 @@ import { getAllPosts, getSeriesPosts } from "../../lib/posts";
 
 export const getStaticPaths = async () => {
   const series = Array.from(
-    new Set(getAllPosts().map((post) => post.series).filter((item): item is string => Boolean(item))),
+    new Set((await getAllPosts()).map((post) => post.series).filter((item): item is string => Boolean(item))),
   );
   return series.map((item) => ({ params: { series: item } }));
 };
 
 const series = Astro.params.series ?? "";
-const posts = getSeriesPosts(series);
+const posts = await getSeriesPosts(series);
 ---
 
 <BaseLayout title={`Series: ${series}`}>

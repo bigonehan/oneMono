@@ -2,7 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCategoryCounts } from "../../lib/posts";
 
-const categories = getCategoryCounts();
+const categories = await getCategoryCounts();
 ---
 
 <BaseLayout title="Categories">

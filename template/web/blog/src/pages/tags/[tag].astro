@@ -3,12 +3,12 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getPostsByTag, getTagCounts, normalizeTag } from "../../lib/posts";
 
 export const getStaticPaths = async () =>
-  getTagCounts().map((item) => ({
+  (await getTagCounts()).map((item) => ({
     params: { tag: item.tag },
   }));
 
 const tag = normalizeTag(Astro.params.tag ?? "");
-const posts = getPostsByTag(tag);
+const posts = await getPostsByTag(tag);
 ---
 
 <BaseLayout title={`Tag: ${tag}`}>

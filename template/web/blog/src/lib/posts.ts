@@ -1,63 +1,10 @@
-import fs from "node:fs";
-import path from "node:path";
-import matter from "gray-matter";
-import type { ArticleDocument } from "@features/article";
+import { ArticleReadFileRepo, type ArticleDocument } from "@features/article";
 import { normalizeCategory } from "./category";
 
-const POSTS_DIR = path.join(process.cwd(), "posts");
-
-type PostMeta = {
-  title?: string;
-  description?: string;
-  date?: string;
-  tags?: string[] | string;
-  category?: string;
-  draft?: boolean;
-  series?: string;
-  seriesOrder?: number;
-};
-
 export type BlogPost = ArticleDocument;
+const articleReadRepo = new ArticleReadFileRepo(process.cwd());
 
 export const normalizeTag = (tag: string): string => tag.trim().toLowerCase();
-
-const parseTags = (raw: string[] | string | undefined): string[] => {
-  if (!raw) return [];
-  const list = Array.isArray(raw) ? raw : raw.split(",");
-  return Array.from(new Set(list.map((item) => normalizeTag(String(item))).filter(Boolean))).slice(0, 5);
-};
-
-const ensurePostsDir = (): void => {
-  if (!fs.existsSync(POSTS_DIR)) {
-    fs.mkdirSync(POSTS_DIR, { recursive: true });
-  }
-};
-
-const readPostFile = (filename: string): BlogPost | null => {
-  const fullPath = path.join(POSTS_DIR, filename);
-  const content = fs.readFileSync(fullPath, "utf8");
-  const { data, content: body } = matter(content);
-  const meta = data as PostMeta;
-
-  if (!meta.title || !meta.date) {
-    return null;
-  }
-
-  const slug = filename.replace(/\.md$/, "").replace(/^\d{4}-\d{2}-\d{2}-/, "");
-  return {
-    slug,
-    title: String(meta.title),
-    description: meta.description ? String(meta.description) : "",
-    date: String(meta.date),
-    tags: parseTags(meta.tags),
-    category: normalizeCategory(meta.category),
-    draft: Boolean(meta.draft),
-    series: meta.series ? String(meta.series) : undefined,
-    seriesOrder: typeof meta.seriesOrder === "number" ? meta.seriesOrder : undefined,
-    content: body,
-    path: fullPath,
-  };
-};
 
 const assertSeriesOrder = (posts: BlogPost[]): void => {
   const map = new Map<string, Set<number>>();
@@ -73,33 +20,26 @@ const assertSeriesOrder = (posts: BlogPost[]): void => {
   }
 };
 
-export const getAllPosts = (): BlogPost[] => {
-  ensurePostsDir();
-  const files = fs.readdirSync(POSTS_DIR).filter((name) => name.endsWith(".md"));
-  const posts = files
-    .map((name) => readPostFile(name))
-    .filter((item): item is BlogPost => item !== null)
-    .filter((post) => !post.draft)
-    .sort((a, b) => (a.date < b.date ? 1 : -1));
+const normalizePost = (post: BlogPost): BlogPost => ({
+  ...post,
+  tags: Array.from(new Set(post.tags.map((item) => normalizeTag(String(item))).filter(Boolean))).slice(0, 5),
+  category: normalizeCategory(post.category),
+});
+
+export const getAllPosts = async (): Promise<BlogPost[]> => {
+  const posts = (await articleReadRepo.list()).map(normalizePost);
 
   assertSeriesOrder(posts);
   return posts;
 };
 
-export const getPostBySlug = (slug: string): { post: BlogPost; prev?: BlogPost; next?: BlogPost } | null => {
-  const posts = getAllPosts();
-  const index = posts.findIndex((post) => post.slug === slug);
-  if (index < 0) return null;
-  return {
-    post: posts[index],
-    prev: posts[index + 1],
-    next: posts[index - 1],
-  };
-};
+export const getPostBySlug = (
+  slug: string,
+): Promise<{ post: BlogPost; prev?: BlogPost; next?: BlogPost } | null> => articleReadRepo.getDetail(slug);
 
-export const getTagCounts = (): Array<{ tag: string; count: number }> => {
+export const getTagCounts = async (): Promise<Array<{ tag: string; count: number }>> => {
   const map = new Map<string, number>();
-  for (const post of getAllPosts()) {
+  for (const post of await getAllPosts()) {
     for (const tag of post.tags) {
       map.set(tag, (map.get(tag) ?? 0) + 1);
     }
@@ -109,14 +49,14 @@ export const getTagCounts = (): Array<{ tag: string; count: number }> => {
     .sort((a, b) => a.tag.localeCompare(b.tag));
 };
 
-export const getPostsByTag = (tag: string): BlogPost[] => {
+export const getPostsByTag = async (tag: string): Promise<BlogPost[]> => {
   const normalized = normalizeTag(tag);
-  return getAllPosts().filter((post) => post.tags.includes(normalized));
+  return (await getAllPosts()).filter((post) => post.tags.includes(normalized));
 };
 
-export const getCategoryCounts = (): Array<{ category: string; count: number }> => {
+export const getCategoryCounts = async (): Promise<Array<{ category: string; count: number }>> => {
   const map = new Map<string, number>();
-  for (const post of getAllPosts()) {
+  for (const post of await getAllPosts()) {
     map.set(post.category, (map.get(post.category) ?? 0) + 1);
   }
   return Array.from(map.entries())
@@ -124,29 +64,26 @@ export const getCategoryCounts = (): Array<{ category: string; count: number }> 
     .sort((a, b) => a.category.localeCompare(b.category));
 };
 
-export const getPostsByCategory = (category: string): BlogPost[] => {
+export const getPostsByCategory = async (category: string): Promise<BlogPost[]> => {
   const normalized = normalizeCategory(category);
-  return getAllPosts().filter((post) => post.category === normalized);
+  return (await getAllPosts()).filter((post) => post.category === normalized);
 };
 
-export const getSeriesPosts = (series: string): BlogPost[] => {
+export const getSeriesPosts = async (series: string): Promise<BlogPost[]> => {
   const normalized = series.toLowerCase();
-  return getAllPosts()
+  return (await getAllPosts())
     .filter((post) => post.series?.toLowerCase() === normalized)
     .sort((a, b) => (a.seriesOrder ?? Number.MAX_SAFE_INTEGER) - (b.seriesOrder ?? Number.MAX_SAFE_INTEGER));
 };
 
-export const getSearchIndex = (): Array<{
-  slug: string;
-  title: string;
-  description: string;
-  tags: string[];
-  content: string;
-}> =>
-  getAllPosts().map((post) => ({
-    slug: post.slug,
-    title: post.title,
-    description: post.description,
-    tags: post.tags,
-    content: post.content,
-  }));
+export const getSearchIndex = (): Promise<
+  Array<{
+    slug: string;
+    title: string;
+    description: string;
+    tags: string[];
+    content: string;
+  }>
+> => articleReadRepo.getSearchIndex();
+
+export const searchPosts = (query: string): ReturnType<ArticleReadFileRepo["search"]> => articleReadRepo.search(query);

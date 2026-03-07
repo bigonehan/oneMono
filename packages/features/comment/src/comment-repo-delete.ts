@@ -2,21 +2,30 @@ import type { CommentRecord, ICommentDeleteUseCase } from "./comment-usecase";
 import { commentStore } from "./comment-repo-read";
 
 export class CommentDeleteMemoryRepo implements ICommentDeleteUseCase {
-  async remove(commentId: string): Promise<CommentRecord> {
-    const current = commentStore.get(commentId);
+  async remove(input: {
+    commentId: string;
+    requesterEmail: string;
+    requesterRole: "admin" | "user";
+  }): Promise<CommentRecord> {
+    const current = commentStore.get(input.commentId);
     if (!current) {
       throw new Error("comment not found");
     }
+    if (input.requesterRole !== "admin" && current.authorEmail !== input.requesterEmail) {
+      throw new Error("forbidden");
+    }
 
-    const hasReply = Array.from(commentStore.values()).some((item) => item.parentId === commentId && !item.deleted);
+    const hasReply = Array.from(commentStore.values()).some(
+      (item) => item.parentId === input.commentId && !item.deleted,
+    );
     const next: CommentRecord = {
       ...current,
       content: "삭제된 댓글입니다",
-      deleted: !hasReply,
+      deleted: true,
       updatedAt: new Date().toISOString(),
     };
 
-    commentStore.set(commentId, next);
+    commentStore.set(input.commentId, next);
     return next;
   }
 }

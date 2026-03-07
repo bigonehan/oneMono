@@ -9,5 +9,7 @@ features:
   - blog_category_list_r
   - blog_series_list_r
   - blog_search_index_r
+  - blog_search_fuse_r
+  - blog_write_tiptap_c
   - blog_showcase_ui_r
   - blog_header_nav_r
