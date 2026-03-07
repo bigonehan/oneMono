@@ -3,3 +3,5 @@ summary: Comment feature package for CRUD contracts and moderation-safe reposito
 info:
   comment_usecase_crud: create/read/update/delete usecase contracts
   comment_soft_delete_u: soft delete preserving thread structure
+  comment_permission_u: author-or-admin guard for update/delete
+  comment_notification_u: unread/read notifications with max-100 retention

@@ -3,3 +3,4 @@ summary: User feature package with CRUD contracts and in-memory auth repositorie
 info:
   user_usecase_crud: create/read/update/delete usecase contracts
   user_auth_r: sign-up/login and role lookup helpers
+  user_auth_bcrypt_u: bcrypt password hash/verify and lock-after-5-failures

@@ -9,6 +9,7 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
+    "fuse.js": "^7.1.0",
     "gray-matter": "^4.0.3"
   },
   "devDependencies": {

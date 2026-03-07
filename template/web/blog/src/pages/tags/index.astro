@@ -2,7 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getTagCounts } from "../../lib/posts";
 
-const tags = getTagCounts();
+const tags = await getTagCounts();
 ---
 
 <BaseLayout title="Tags">

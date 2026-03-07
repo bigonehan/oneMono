@@ -1,53 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { WriteArticleForm } from "../components/WriteArticleForm";
 ---
 
 <BaseLayout title="Write">
   <h1>Write Article</h1>
-  <form id="write-form" class="write-form">
-    <input name="title" placeholder="title" required />
-    <input name="date" type="date" required />
-    <input name="tags" placeholder="tag1,tag2" required />
-    <input name="category" placeholder="tech" required />
-    <input name="description" placeholder="description" />
-    <input name="series" placeholder="series(optional)" />
-    <input name="seriesOrder" type="number" placeholder="series order(optional)" />
-    <textarea name="content" rows="16" placeholder="markdown content" required></textarea>
-    <button type="submit">등록</button>
-  </form>
-  <p id="write-result"></p>
-
-  <script>
-    const form = document.querySelector<HTMLFormElement>("#write-form");
-    const result = document.querySelector<HTMLParagraphElement>("#write-result");
-
-    if (form && result) {
-      form.addEventListener("submit", async (event) => {
-        event.preventDefault();
-        const formData = new FormData(form);
-        const payload = {
-          title: String(formData.get("title") ?? ""),
-          date: String(formData.get("date") ?? ""),
-          tags: String(formData.get("tags") ?? "")
-            .split(",")
-            .map((item) => item.trim())
-            .filter(Boolean),
-          category: String(formData.get("category") ?? ""),
-          description: String(formData.get("description") ?? ""),
-          series: String(formData.get("series") ?? ""),
-          seriesOrder: Number(formData.get("seriesOrder") ?? 0) || undefined,
-          content: String(formData.get("content") ?? ""),
-        };
-
-        const response = await fetch("/api/articles/create", {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify(payload),
-        });
-
-        const data = await response.json();
-        result.textContent = response.ok ? `저장 완료: ${data.slug}` : `실패: ${data.error}`;
-      });
-    }
-  </script>
+  <WriteArticleForm client:load />
 </BaseLayout>
