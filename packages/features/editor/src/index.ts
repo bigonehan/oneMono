@@ -18,6 +18,7 @@ export const ArticleEditor = ({
 }: EditorProps) => {
   const editor = useEditor({
     extensions: [StarterKit],
+    immediatelyRender: false,
     content: value || `<p>${placeholder}</p>`,
     onUpdate: ({ editor: nextEditor }) => {
       onChange?.(nextEditor.getHTML());

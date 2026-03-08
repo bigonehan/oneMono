@@ -9,6 +9,9 @@ const normalizeSlug = (title: string): string =>
     .replace(/[^a-z0-9\s-]/g, "")
     .replace(/\s+/g, "-");
 
+const fallbackSlug = (input: Pick<ArticleCreateInput, "date">): string =>
+  `article-${input.date.replace(/-/g, "")}`;
+
 const buildFrontmatter = (input: ArticleCreateInput): string => {
   const tags = input.tags.map((tag) => `'${tag.toLowerCase()}'`).join(", ");
   return `---\ntitle: "${input.title}"\ndate: "${input.date}"\ntags: [${tags}]\ncategory: "${input.category.toLowerCase()}"\ndescription: "${input.description ?? ""}"${input.series ? `\nseries: "${input.series}"` : ""}${typeof input.seriesOrder === "number" ? `\nseriesOrder: ${input.seriesOrder}` : ""}\n---\n\n${input.content}\n`;
@@ -31,10 +34,7 @@ export class ArticleCreateFileRepo implements IArticleCreateUseCase {
     const postsDir = path.join(this.rootDir, "posts");
     fs.mkdirSync(postsDir, { recursive: true });
 
-    const slug = normalizeSlug(input.title);
-    if (!slug) {
-      throw new Error("slug can not be empty");
-    }
+    const slug = normalizeSlug(input.title) || fallbackSlug(input);
     const exists = fs
       .readdirSync(postsDir)
       .filter((file) => file.endsWith(".md"))

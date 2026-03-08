@@ -1,5 +1,7 @@
 "use client";
 
+import { ProjectTypeChip } from "./project_type_chip";
+
 type CardItemProps = {
   path: string;
   title: string;
@@ -15,7 +17,7 @@ export const CardItem = ({ path, title, description, imageUrl, labels = [], date
     <div className="card-item__content">
       <p className="card-item__meta">
         {labels.map((label) => (
-          <span className="card-item__chip" key={`${path}-${label}`}>{label}</span>
+          <ProjectTypeChip chipClassName="card-item__chip" key={`${path}-${label}`} value={label} />
         ))}
         {date ? <span>{date}</span> : null}
       </p>

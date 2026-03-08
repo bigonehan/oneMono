@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "next dev --port 3000",
     "build": "next build",
+    "test": "tsx --test app/actions/commentupdate.test.ts app/actions/commentread.test.ts",
     "start": "next start",
     "lint": "eslint --max-warnings 0",
     "check-types": "next typegen && tsc --noEmit"
@@ -32,6 +33,7 @@
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
     "eslint": "^9.39.1",
+    "tsx": "^4.21.0",
     "typescript": "5.9.2"
   }
 }
