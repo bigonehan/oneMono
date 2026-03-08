@@ -10,6 +10,7 @@ import { FormLogin, FormSignUp, type LoginPayload, type SignUpPayload } from "@f
 import { READER_DEFAULT_SPEED, TypingTextReader } from "@features/reader";
 import { Lenis, SlideUpText } from "@ui/motion";
 import { Footer, Header } from "@ui/shadcn";
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
 type UserTaskRow = {
@@ -240,12 +241,12 @@ export default function Home() {
           <a href="#section-2" onClick={() => setIsMobileMenuOpen(false)}>
             Profile
           </a>
-          <a href="/dash" onClick={() => setIsMobileMenuOpen(false)}>
+          <Link href="/dash" onClick={() => setIsMobileMenuOpen(false)}>
             Dash
-          </a>
-          <a href="/post" onClick={() => setIsMobileMenuOpen(false)}>
+          </Link>
+          <Link href="/post" onClick={() => setIsMobileMenuOpen(false)}>
             Post
-          </a>
+          </Link>
           {authUser ? (
             <button
               type="button"

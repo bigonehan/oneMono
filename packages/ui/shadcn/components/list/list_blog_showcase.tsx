@@ -2,6 +2,7 @@
 
 import { CardList } from "./card_list";
 import type { CardItemProps } from "./card_item";
+import { ProjectTypeChip } from "./project_type_chip";
 
 type BlogShowcasePost = {
   path: string;
@@ -24,7 +25,7 @@ export const ListBlogShowcase = ({ featured, items }: ListBlogShowcaseProps) => 
       <div className="blog-showcase__featured-content">
         <p className="blog-showcase__meta">
           {featured.labels.map((label) => (
-            <span className="blog-showcase__chip" key={`${featured.path}-${label}`}>{label}</span>
+            <ProjectTypeChip chipClassName="blog-showcase__chip" key={`${featured.path}-${label}`} value={label} />
           ))}
           {featured.date ? <span>{featured.date}</span> : null}
         </p>

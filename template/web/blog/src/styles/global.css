@@ -216,6 +216,30 @@ button {
   font-weight: 600;
 }
 
+.project-type-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.project-type-chip__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background: #d9d6ea;
+  color: #686281;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.project-type-chip__name {
+  font-weight: 700;
+}
+
 .card-item__content h3 {
   margin: 2px 0 0;
   font-size: clamp(0.75rem, 3vw, 1.1rem);

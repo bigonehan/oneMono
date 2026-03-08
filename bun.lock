@@ -99,6 +99,7 @@
       "name": "@features/article",
       "version": "0.0.0",
       "dependencies": {
+        "fuse.js": "^7.1.0",
         "gray-matter": "^4.0.3",
       },
       "devDependencies": {
@@ -180,6 +181,9 @@
     "packages/features/user": {
       "name": "@features/user",
       "version": "0.0.0",
+      "dependencies": {
+        "bcryptjs": "^2.4.3",
+      },
       "devDependencies": {
         "@repo/typescript-config": "*",
         "typescript": "5.9.2",
@@ -378,6 +382,7 @@
         "@astrojs/react": "^4.3.1",
         "@features/article": "file:../../../packages/features/article",
         "@features/comment": "file:../../../packages/features/comment",
+        "@features/editor": "file:../../../packages/features/editor",
         "@features/user": "file:../../../packages/features/user",
         "@ui/shadcn": "file:../../../packages/ui/shadcn",
         "astro": "^5.2.0",
@@ -1499,6 +1504,8 @@
     "base64-js": ["base64-js@1.5.1", "", {}, "sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA=="],
 
     "baseline-browser-mapping": ["baseline-browser-mapping@2.9.19", "", { "bin": { "baseline-browser-mapping": "dist/cli.js" } }, "sha512-ipDqC8FrAl/76p2SSWKSI+H9tFwm7vYqXQrItCuiVPt26Km0jS+NzSsBWAaBusvSbQcfJG+JitdMm+wZAgTYqg=="],
+
+    "bcryptjs": ["bcryptjs@2.4.3", "", {}, "sha512-V/Hy/X9Vt7f3BbPJEi8BdVFMByHi+jNXrYkW3huaybV/kQ0KJg0Y6PkEMbn+zeT+i+SiKZ/HMqJGIIt4LZDqNQ=="],
 
     "better-auth": ["better-auth@1.4.18", "", { "dependencies": { "@better-auth/core": "1.4.18", "@better-auth/telemetry": "1.4.18", "@better-auth/utils": "0.3.0", "@better-fetch/fetch": "1.1.21", "@noble/ciphers": "^2.0.0", "@noble/hashes": "^2.0.0", "better-call": "1.1.8", "defu": "^6.1.4", "jose": "^6.1.0", "kysely": "^0.28.5", "nanostores": "^1.0.1", "zod": "^4.3.5" }, "peerDependencies": { "@lynx-js/react": "*", "@prisma/client": "^5.0.0 || ^6.0.0 || ^7.0.0", "@sveltejs/kit": "^2.0.0", "@tanstack/react-start": "^1.0.0", "@tanstack/solid-start": "^1.0.0", "better-sqlite3": "^12.0.0", "drizzle-kit": ">=0.31.4", "drizzle-orm": ">=0.41.0", "mongodb": "^6.0.0 || ^7.0.0", "mysql2": "^3.0.0", "next": "^14.0.0 || ^15.0.0 || ^16.0.0", "pg": "^8.0.0", "prisma": "^5.0.0 || ^6.0.0 || ^7.0.0", "react": "^18.0.0 || ^19.0.0", "react-dom": "^18.0.0 || ^19.0.0", "solid-js": "^1.0.0", "svelte": "^4.0.0 || ^5.0.0", "vitest": "^2.0.0 || ^3.0.0 || ^4.0.0", "vue": "^3.0.0" }, "optionalPeers": ["@lynx-js/react", "@prisma/client", "@sveltejs/kit", "@tanstack/react-start", "@tanstack/solid-start", "better-sqlite3", "drizzle-kit", "drizzle-orm", "mongodb", "mysql2", "next", "pg", "prisma", "react", "react-dom", "solid-js", "svelte", "vitest", "vue"] }, "sha512-bnyifLWBPcYVltH3RhS7CM62MoelEqC6Q+GnZwfiDWNfepXoQZBjEvn4urcERC7NTKgKq5zNBM8rvPvRBa6xcg=="],
 
@@ -3244,11 +3251,13 @@
 
     "@templates/mobile-expo/typescript": ["typescript@5.8.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ=="],
 
-    "@templates/web-blog/@features/article": ["@features/article@file:packages/features/article", { "dependencies": { "gray-matter": "^4.0.3" }, "devDependencies": { "@repo/typescript-config": "*", "typescript": "5.9.2" } }],
+    "@templates/web-blog/@features/article": ["@features/article@file:packages/features/article", { "dependencies": { "fuse.js": "^7.1.0", "gray-matter": "^4.0.3" }, "devDependencies": { "@repo/typescript-config": "*", "typescript": "5.9.2" } }],
 
     "@templates/web-blog/@features/comment": ["@features/comment@file:packages/features/comment", { "devDependencies": { "@repo/typescript-config": "*", "typescript": "5.9.2" } }],
 
-    "@templates/web-blog/@features/user": ["@features/user@file:packages/features/user", { "devDependencies": { "@repo/typescript-config": "*", "typescript": "5.9.2" } }],
+    "@templates/web-blog/@features/editor": ["@features/editor@file:packages/features/editor", { "dependencies": { "@domain/article": "*", "@tiptap/react": "^2.12.0", "@tiptap/starter-kit": "^2.12.0", "react": "^19.2.0", "react-dom": "^19.2.0" }, "devDependencies": { "@repo/typescript-config": "*", "@types/react": "19.2.2", "@types/react-dom": "19.2.2", "typescript": "5.9.2" } }],
+
+    "@templates/web-blog/@features/user": ["@features/user@file:packages/features/user", { "dependencies": { "bcryptjs": "^2.4.3" }, "devDependencies": { "@repo/typescript-config": "*", "typescript": "5.9.2" } }],
 
     "@templates/web-blog/@ui/shadcn": ["@ui/shadcn@file:packages/ui/shadcn", { "dependencies": { "class-variance-authority": "^0.7.0", "clsx": "^2.1.1", "react": "^19.2.0", "react-dom": "^19.2.0", "tailwind-merge": "^2.5.4" }, "devDependencies": { "@repo/typescript-config": "*", "@types/react": "19.2.2", "@types/react-dom": "19.2.2", "typescript": "5.9.2" } }],
 

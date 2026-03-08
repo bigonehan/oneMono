@@ -1,0 +1,13 @@
+goal: ''
+domains: []
+drafts:
+  planned:
+  - 1_nav_menu_blog_profile_menu_item_2_navbar_login_auth_forms_login_login_signup_signup_feature_editor_editor_component_write_editor_component_editor_local_storage_localstorage_public_posts_date_name_md_date_260308_2
+  worked:
+  - commentcreate
+  - commentupdate
+  - unknown
+  complete:
+  - commentread
+  - commentdelete
+  - commentreply
