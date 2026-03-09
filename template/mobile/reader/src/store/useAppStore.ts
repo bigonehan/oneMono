@@ -13,16 +13,20 @@ type AppState = {
   readerSettings: ReaderSettings;
   bootstrap: () => Promise<void>;
   selectSubject: (id: string) => Promise<void>;
+  updateReaderSettings: (settings: Partial<ReaderSettings>) => void;
 };
 
 const readerRepository = createReaderRepository(fileSubjectRepository);
+const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
 
 export const useAppStore = create<AppState>((set, get) => ({
   subjects: [],
   selectedSubjectId: null,
   currentSubject: null,
   readerSettings: {
-    typingIntervalMs: 40
+    typingIntervalMs: 40,
+    autoPlay: true,
+    fontScale: 1
   },
   bootstrap: async () => {
     const subjects = await ensureSubjectSeedUseCase(fileSubjectRepository);
@@ -47,6 +51,21 @@ export const useAppStore = create<AppState>((set, get) => ({
       selectedSubjectId: selected.id,
       currentSubject: selected,
       subjects: exists ? prev : [...prev, selected]
+    });
+  },
+  updateReaderSettings: (settings) => {
+    const prev = get().readerSettings;
+
+    set({
+      readerSettings: {
+        typingIntervalMs: clamp(
+          settings.typingIntervalMs ?? prev.typingIntervalMs,
+          20,
+          120
+        ),
+        autoPlay: settings.autoPlay ?? prev.autoPlay,
+        fontScale: clamp(settings.fontScale ?? prev.fontScale, 0.9, 1.6)
+      }
     });
   }
 }));

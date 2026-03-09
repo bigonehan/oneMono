@@ -1,0 +1,16 @@
+{
+  "name": "structure-viewer-monorepo",
+  "private": true,
+  "version": "0.0.0",
+  "dependencies": {
+    "@react-three/fiber": "^9.0.0",
+    "pixi.js": "^8.2.0",
+    "react": "^19.0.0",
+    "three": "^0.173.0",
+    "zustand": "^5.0.8"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}

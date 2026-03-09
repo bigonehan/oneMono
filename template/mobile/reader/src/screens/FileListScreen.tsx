@@ -1,35 +1,47 @@
-import { useCallback } from 'react';
-import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { FlashList } from '@shopify/flash-list';
+import { useNavigation } from '@react-navigation/native';
+import { Card, ListItem, Text } from '@rneui/themed';
+import type { Subject } from '../domains/subject/subject_port';
+import { TAB_ROUTES } from '../navigation/routes';
 import { useAppStore } from '../store/useAppStore';
 
 export const FileListScreen = () => {
+  const navigation = useNavigation();
   const subjects = useAppStore((state) => state.subjects);
   const selectedSubjectId = useAppStore((state) => state.selectedSubjectId);
   const selectSubject = useAppStore((state) => state.selectSubject);
 
-  const onPress = useCallback(
-    (id: string) => {
-      void selectSubject(id);
-    },
-    [selectSubject]
-  );
-
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>읽을 파일 목록</Text>
-      <FlatList
+      <Card containerStyle={styles.heroCard}>
+        <Text h3>문서 라이브러리</Text>
+        <Text style={styles.heroCopy}>
+          md 문서를 고른 뒤 소개 탭과 리더 탭으로 바로 이어서 읽을 수 있습니다.
+        </Text>
+      </Card>
+      <FlashList
         data={subjects}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => {
+        contentContainerStyle={styles.listContent}
+        renderItem={({ item }: { item: Subject }) => {
           const selected = selectedSubjectId === item.id;
           return (
-            <Pressable
-              onPress={() => onPress(item.id)}
-              style={[styles.card, selected && styles.selectedCard]}
+            <ListItem
+              bottomDivider
+              containerStyle={[styles.card, selected && styles.selectedCard]}
+              onPress={() => {
+                void selectSubject(item.id);
+                navigation.navigate(TAB_ROUTES.intro as never);
+              }}
             >
-              <Text style={styles.fileName}>{item.fileName}</Text>
-              <Text style={styles.caption}>{item.title}</Text>
-            </Pressable>
+              <ListItem.Content>
+                <ListItem.Title style={styles.fileName}>{item.title}</ListItem.Title>
+                <ListItem.Subtitle style={styles.caption}>{item.fileName}</ListItem.Subtitle>
+                <Text style={styles.description}>{item.description}</Text>
+              </ListItem.Content>
+              <ListItem.Chevron />
+            </ListItem>
           );
         }}
       />
@@ -40,32 +52,44 @@ export const FileListScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
-    backgroundColor: '#ffffff'
+    backgroundColor: '#f4efe6'
   },
-  title: {
-    fontSize: 22,
-    fontWeight: '700',
-    marginBottom: 12
+  heroCard: {
+    borderRadius: 24,
+    borderWidth: 0,
+    backgroundColor: '#fff8ef',
+    marginBottom: 8
+  },
+  heroCopy: {
+    marginTop: 10,
+    color: '#4b5563',
+    lineHeight: 22
+  },
+  listContent: {
+    paddingHorizontal: 16,
+    paddingBottom: 24
   },
   card: {
-    borderWidth: 1,
-    borderColor: '#e5e7eb',
-    borderRadius: 12,
-    padding: 14,
-    marginBottom: 10,
-    backgroundColor: '#fafafa'
+    borderRadius: 18,
+    borderWidth: 0,
+    backgroundColor: '#ffffff',
+    marginBottom: 12
   },
   selectedCard: {
-    borderColor: '#2563eb',
-    backgroundColor: '#eff6ff'
+    backgroundColor: '#fff2d8'
   },
   fileName: {
     fontSize: 16,
-    fontWeight: '600'
+    fontWeight: '700',
+    color: '#1f2937'
   },
   caption: {
     marginTop: 4,
-    color: '#4b5563'
+    color: '#8a5a2b'
+  },
+  description: {
+    marginTop: 8,
+    color: '#4b5563',
+    lineHeight: 20
   }
 });

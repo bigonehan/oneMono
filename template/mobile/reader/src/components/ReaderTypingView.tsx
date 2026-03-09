@@ -1,21 +1,57 @@
-import { useEffect, useMemo, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { ScrollView, StyleSheet } from 'react-native';
+import Markdown from 'react-native-markdown-display';
 
 type Props = {
   content: string;
   typingIntervalMs: number;
+  fontScale: number;
+  isPlaying: boolean;
+  restartToken: number;
 };
 
-export const ReaderTypingView = ({ content, typingIntervalMs }: Props) => {
+const buildMarkdownStyles = (fontScale: number) => ({
+  body: {
+    color: '#1f2937',
+    fontSize: 17 * fontScale,
+    lineHeight: 29 * fontScale
+  },
+  heading1: {
+    color: '#7c2d12',
+    fontSize: 28 * fontScale,
+    marginBottom: 12
+  },
+  heading2: {
+    color: '#9a3412',
+    fontSize: 22 * fontScale,
+    marginTop: 18,
+    marginBottom: 8
+  },
+  paragraph: {
+    marginTop: 0,
+    marginBottom: 10
+  },
+  list_item: {
+    marginBottom: 8
+  }
+});
+
+export const ReaderTypingView = ({
+  content,
+  typingIntervalMs,
+  fontScale,
+  isPlaying,
+  restartToken
+}: Props) => {
   const [index, setIndex] = useState(0);
-  const normalized = useMemo(() => content ?? '', [content]);
+  const normalized = content ?? '';
 
   useEffect(() => {
     setIndex(0);
-  }, [normalized]);
+  }, [normalized, restartToken]);
 
   useEffect(() => {
-    if (index >= normalized.length) {
+    if (!isPlaying || index >= normalized.length) {
       return;
     }
 
@@ -24,25 +60,24 @@ export const ReaderTypingView = ({ content, typingIntervalMs }: Props) => {
     }, typingIntervalMs);
 
     return () => clearTimeout(timer);
-  }, [index, normalized, typingIntervalMs]);
+  }, [index, isPlaying, normalized, typingIntervalMs]);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>{normalized.slice(0, index)}</Text>
-    </View>
+    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+      <Markdown style={buildMarkdownStyles(fontScale)}>
+        {normalized.slice(0, index)}
+      </Markdown>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    borderRadius: 12,
-    backgroundColor: '#f5f7f9',
-    padding: 16
+    borderRadius: 20,
+    backgroundColor: '#fffdf9'
   },
-  text: {
-    fontSize: 18,
-    lineHeight: 28,
-    color: '#111827'
+  content: {
+    padding: 20
   }
 });

@@ -1,0 +1,1 @@
+- [ ] cargo run -- --help -> error: a bin target must be available for `cargo run` : 바이너리 타깃이 없어 초기 빌드 검증(help 실행)이 실패함

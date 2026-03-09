@@ -1,15 +1,13 @@
 # problem
-`game` 신규 앱 검증에서 ESLint patch 오류와 `three` 타입 선언 누락으로 lint/build가 실패했다.
+`game` 도메인에 `character` 전용 폴더와 기본 움직임 usecase가 분리되어 있지 않아, stage가 character 이동 로직을 직접 다루고 있다.
 
 # tasks
-- ESLint를 Next 15 호환 조합으로 고정(`eslint@8`, `.eslintrc.json` 기반)한다.
-- `@types/three`를 devDependency에 추가한다.
-- 실패 원인에 대한 강제 실행 항목: 의존성 수정 후 반드시 `npm --prefix game install`을 재실행한다.
-- `@domains/game` lifecycle(load/start/end) 및 click-only input 흐름이 유지되는지 호출 경로를 재점검한다.
-- lint/build를 재실행해 통과 여부를 확인한다.
+- `game/src/domains/game/character` 폴더를 만들고 기본 이동 usecase 파일을 추가한다.
+- 기존 `character-create`의 클릭 입력 처리에서 이동 갱신을 usecase 호출로 위임한다.
+- 외부 인터페이스(`input_character`, click-only 규칙)는 유지한다.
+- `@domains/game` export 경로를 새 구조에 맞춰 정리한다.
 
 # check
-- `npm --prefix game install`
 - `npm --prefix game run lint`
 - `npm --prefix game run build`
-- `rg -n "start_game|start_system|start_stage|click_stage|input_stage|input_character" game -S`
+- `rg -n "move|input_character|usecase|character" game/src/domains/game -S`

@@ -18,3 +18,4 @@ goal: create game folder with next-zustand-three and game domain lifecycle
 - load-game-system: implement system load/start flow
 - manage-game-stage: implement stage load/start/end and character ownership
 - move-character-click: character accepts click input only and updates position/click count
+- add-character-usecase: character movement update must be delegated to a dedicated usecase file in character folder

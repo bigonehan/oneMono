@@ -8,6 +8,17 @@
 - [ ] commentread :: 댓글 집합 -> createdAt 오름차순 목록 : 최신 댓글이 하단에 위치하도록 정렬한다
 - [ ] commentread :: 초기 페이지 진입 -> 서버 기반 초기 목록 렌더 : SSR/ISR로 초기 로딩 성능과 노출을 보장한다
 - [ ] commentread :: page 증가 요청 -> 기존 목록 + 추가 목록 : 연속 스크롤/페이지네이션으로 목록을 확장한다
-- [ ] commentupdate :: (constraints 없음) -> 제약 비정의 상태 유지 : 추가 제약은 추후 확정
-- [ ] commentdelete :: (constraints 없음) -> 제약 비정의 상태 유지 : 추가 제약은 추후 확정
-- [ ] commentreply :: (constraints 없음) -> 제약 비정의 상태 유지 : 추가 제약은 추후 확정
+- [ ] commentupdate :: (constraints 없음) -> constraints 빈 배열 유지 : 추가 제약 미정 상태를 유지한다
+- [ ] commentdelete :: (constraints 없음) -> constraints 빈 배열 유지 : 추가 제약 미정 상태를 유지한다
+- [ ] commentreply :: (constraints 없음) -> constraints 빈 배열 유지 : 추가 제약 미정 상태를 유지한다
+- [ ] 1_nav_menu_blog_profile_menu_item_2_navbar_login_auth_forms_login_login_signup_signup_feature_editor_editor_component_write_editor_component_editor_local_storage_localstorage_public_posts_date_name_md_date_260308_2 :: (constraints 없음) -> constraints 빈 배열 유지 : 추가 제약 미정 상태를 유지한다
+- [ ] setup_node_package_workspace :: (constraints 없음) -> constraints 빈 배열 유지 : 추가 제약 미정 상태를 유지한다
+- [ ] scaffold_next_app_router_routes :: (constraints 없음) -> constraints 빈 배열 유지 : 추가 제약 미정 상태를 유지한다
+- [ ] implement_shared_responsive_navbar_with_login_icon :: (constraints 없음) -> constraints 빈 배열 유지 : 추가 제약 미정 상태를 유지한다
+- [ ] implement_main_page_hero_carousel_feature_footer :: (constraints 없음) -> constraints 빈 배열 유지 : 추가 제약 미정 상태를 유지한다
+- [ ] implement_qa_page_board_list_with_floating_chat_toggle :: (constraints 없음) -> constraints 빈 배열 유지 : 추가 제약 미정 상태를 유지한다
+- [ ] implement_profile_page_card_carousel_with_tag_badges :: (constraints 없음) -> constraints 빈 배열 유지 : 추가 제약 미정 상태를 유지한다
+- [ ] apply_shadcn_first_ui_component_policy :: (constraints 없음) -> constraints 빈 배열 유지 : 추가 제약 미정 상태를 유지한다
+- [ ] enforce_accessibility_and_hydration_boundaries :: (constraints 없음) -> constraints 빈 배열 유지 : 추가 제약 미정 상태를 유지한다
+- [ ] add_not_found_route_handling :: (constraints 없음) -> constraints 빈 배열 유지 : 추가 제약 미정 상태를 유지한다
+- [ ] update_project_documentation :: (constraints 없음) -> constraints 빈 배열 유지 : 추가 제약 미정 상태를 유지한다

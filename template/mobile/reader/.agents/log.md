@@ -1,3 +1,4 @@
-## 2026-03-09 - 작업한일
-- reader/subject 도메인 유즈케이스와 zustand 상태관리를 사용한 Expo 3탭 앱(목록/리더/설정) 기본 구현
-- 첫 실행 시 nation_song.md(애국가) 임시 파일 생성 및 파일 목록/리더 화면 연동
+## 2026-03-09 - 모바일 md 리더 앱 구현
+- Expo 기반 모바일 md 리더 앱에 4개 하단 탭(목록, 소개, 리더, 옵션)을 추가했다.
+- Zustand 상태와 FlashList, React Native Elements UI, markdown 리더 화면을 연결했다.
+- Maestro 시나리오 파일을 추가했고 타입체크와 Expo web export로 동작 경로를 검증했다.

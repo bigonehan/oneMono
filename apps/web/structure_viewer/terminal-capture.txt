@@ -1,0 +1,42 @@
+  └ Read chat.log
+    List .project
+    Search draft|error|failed|timeout|unresolved in chat.log
+    Read drafts.yaml, scenario.md
+    List reference
+
+──────────────────────────────────────────────────────────────────────────────────────────────
+
+• 구현 단계가 시작됐고 7개 draft 항목이 병렬 실행 중입니다. 이 단계는 생성 파일과 drafts.yaml
+  상태 변화를 기준으로 확인하겠습니다.
+
+• Ran orc add_code_draft -a
+  └ [auto:input-md] build_input_md_auto completed: input.md generated
+    [auto:draft-yaml] drafts.yaml generated: draft=7
+    [auto:draft-yaml] drafts.yaml checked
+    add_code_draft completed: draft=7 | check_code_draft completed: report.md generated |
+    reference=.project/reference
+
+• Waited for background terminal · orc impl_code_draft
+
+• Explored
+  └ List ls -la
+    Read drafts.yaml, package.json
+    List rg --files -uu
+    Read report.md
+
+─ Worked for 2m 12s ──────────────────────────────────────────────────────────────────────────
+
+• 생성물은 들어왔지만 구조가 요구사항을 충분히 반영했는지 아직 확인이 필요합니다. 핵심 UI,
+  discovery, 상태, 렌더링 경로를 읽고 검증 명령을 실행해 실제 동작 수준을 판정하겠습니다.
+
+• Explored
+  └ Read index.astro, App.tsx, useStructureViewerStore.ts, RenderingRuntimeBridge.tsx, lib.rs
+    Search discover|domain|module|function|scan|root in src
+    Read package.json
+
+• Working (11m 22s • esc to interrupt) · 2 background terminals running · /ps to view · /clea…
+
+
+› Implement {feature}
+
+  gpt-5.4 high · 82% left · ~/home/apps/web/structure_viewer

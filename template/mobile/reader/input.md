@@ -1,48 +1,54 @@
-# workspace_bootstrap
-- Expo + React Native + TypeScript strict 기준으로 워크스페이스를 구성한다.
-- iOS/Android 실행 가능 설정과 필수 라이브러리 설치 상태를 보장한다.
-> Expo 프로젝트 초기화와 기본 폴더 구조를 준비한다.
-> react navigation, zustand, markdown 렌더링 의존성을 설치하고 개발 실행 스크립트를 검증한다.
+# node_package_workspace
+- Expo 기반 React Native 앱 패키지와 공통 설정 경계를 워크스페이스 구조에서 분리한다.
+- React Navigation, zustand, FlashList, React Native Elements, Maestro를 Expo 호환 범위 안에서 구성한다.
+> 워크스페이스 앱 패키지와 공통 설정 구조를 정리한다.
+> 필수 의존성과 실행 구성을 연결한다.
 
-# nation_song_markdown_seed
-- nation_song 문서는 고정 식별자와 UTF-8 `.md` 형식으로 기본 데이터에 포함한다.
-- 오프라인 환경에서도 항상 접근 가능하도록 앱 내부 리소스로 유지한다.
-> nation_song markdown 파일과 메타데이터(제목, 경로, 생성일)를 생성한다.
-> markdown 저장소 초기화 시 기본 문서가 목록과 로드 대상에 포함되도록 연결한다.
+# markdown_repository_subject_domain
+- markdown 문서를 메타데이터와 본문으로 정규화해 목록, 소개, 리더 화면이 같은 데이터를 참조한다.
+- 문서 선택 전에는 임의의 기본 문서를 노출하지 않고 안전한 빈 상태를 제공한다.
+> markdown 문서를 수집하고 읽기 가능한 구조로 변환한다.
+> 정규화된 문서 컬렉션을 전역 상태 초기값과 연결한다.
+
+# app_shell_navigation
+- 기본 엔트리는 doc list, doc 소개, doc reader, option 4개 하단 탭으로 고정한다.
+- 앱 초기화 전에는 명시적 로딩 상태를 보여주고 초기화 실패 시 복구 가능한 상태를 제공한다.
+> 앱 시작 시 문서 데이터와 기본 옵션을 로드한다.
+> 하단 tab 네비게이션을 렌더링하고 현재 탭 상태를 유지한다.
 
 # file_list_screen
-- 파일 목록은 markdown 확장자 문서만 표시하고 제목과 식별자를 함께 노출한다.
-- loading, empty, error 상태 UI를 분리하고 선택 시 navigation과 selectedDocument 갱신을 동시에 수행한다.
-> 초기 진입 시 문서 목록 조회 usecase를 호출해 상태를 로딩에서 로드 결과로 전이한다.
-> 항목 선택 시 선택 문서 상태를 저장하고 Reader View로 이동한다.
+- 문서 목록 렌더링은 반드시 FlashList를 사용하고 FlatList로 대체하지 않는다.
+- 목록 아이템 선택은 선택 문서 상태를 갱신하는 단일 진입점이어야 하며 빈 목록 UI를 제공한다.
+> 정규화된 문서 메타데이터 목록을 FlashList로 표시한다.
+> 사용자가 문서를 선택하면 선택 id를 전역 store에 반영한다.
 
-# reader_view_typing_effect
-- Reader View 텍스트는 타이핑 효과로만 점진 출력하고 completed에서 원문과 동일해야 한다.
-- 문서 변경·언마운트 시 타이머를 정리하고 오류 입력은 error 상태로 처리한다.
-> 선택 문서 로드 후 preparing에서 typing으로 전이해 인덱스 기반 출력 루프를 시작한다.
-> 일시정지·재개·처음부터 재생·완료 동작과 긴 텍스트 성능을 검증한다.
+# doc_detail
+- 소개 화면은 선택된 문서의 제목, 설명, 분류 등 요약 정보를 우선 표시한다.
+- 선택된 문서가 없을 때도 화면이 깨지지 않도록 안내형 빈 상태를 유지한다.
+> 전역 store에서 현재 선택 문서 메타데이터를 읽는다.
+> 선택 상태에 따라 소개 정보 또는 빈 상태 문구를 렌더링한다.
 
-# settings_screen
-- 타이핑 속도와 자동 시작 설정은 즉시 store action으로 반영하고 범위를 벗어나면 보정한다.
-- 저장된 설정은 앱 재실행 후에도 숫자/불리언 타입 일관성으로 복원한다.
-> 설정 화면에서 속도와 자동 시작 값을 편집하고 변경 즉시 상태를 갱신한다.
-> 저장/초기화 동작으로 persisted 상태를 갱신하고 Reader View 반영을 확인한다.
+# reader_view
+- 리더 화면은 본문 표시를 우선하고 선택된 markdown 문서만 기준으로 렌더링한다.
+- 표시용 변환과 원본 markdown 데이터를 분리하고 옵션 변경을 현재 세션에 즉시 반영한다.
+> 선택된 문서 본문을 로드하고 읽기 화면용으로 파싱한다.
+> 글자 크기, 여백, 테마 옵션을 적용해 본문을 표시한다.
 
-# subject_domain_usecase_integration
-- markdown 로딩·파싱·렌더링 흐름은 단일 진입 loadReaderDocumentUsecase를 통해 호출한다.
-- 화면 계층은 저장소 구현을 직접 참조하지 않고 명시 DTO와 도메인 결과 타입만 사용한다.
-> loadReaderDocumentUsecase, buildReaderSessionUsecase, updateReaderSettingUsecase를 정의한다.
-> 각 화면은 usecase 결과로 상태를 전이하고 실패는 도메인 실패 결과로 표시한다.
+# settings_option_tab
+- 옵션 화면은 글자 크기, 줄 간격 또는 여백, 테마 같은 리더 관련 설정만 다룬다.
+- 옵션 변경은 앱 재시작 없이 적용되고 현재 선택 문서 상태를 초기화하지 않는다.
+> 사용자가 리더 옵션 값을 변경한다.
+> 변경값 또는 기본값 복원을 전역 store에 즉시 반영한다.
 
-# zustand_state_management
-- 도메인 상태 변경은 Zustand action을 통해서만 수행하고 직접 변경을 금지한다.
-- selector 기반 구독과 직렬화 가능한 persisted 구조로 hydrate 실패 시 기본값 복구를 지원한다.
-> 초기 상태, 문서 선택, Reader 진행, 설정 갱신 action을 분리 정의한다.
-> persistence hydrate 경로와 오류 상태 기록 경로를 구현해 화면 간 일관성을 유지한다.
+# zustand_store
+- 문서 컬렉션, 선택 문서, 리더 옵션, 앱 초기화 상태의 단일 소스는 zustand store로 유지한다.
+- 동일 의미 상태를 중복 저장하지 않고 화면 간 공유가 필요한 값만 전역으로 관리한다.
+> 초기 문서 데이터와 기본 옵션으로 store를 초기화한다.
+> 목록, 소개, 리더, 옵션 화면이 같은 선택 상태와 옵션 상태를 참조한다.
 
-# react_navigation_three_screen_flow
-- 라우트 이름은 상수로 관리하고 타입드 네비게이션 파라미터를 강제한다.
-- Reader 진입 시 문서 식별자 누락을 차단하고 잘못된 접근은 안전한 기본 화면으로 폴백한다.
-> 파일목록, Reader View, 설정의 3개 화면 스택을 구성한다.
-> 파일목록→Reader, Reader→설정, 설정→복귀 흐름과 상태 무결성을 검증한다.
+# qa_maestro
+- 핵심 사용자 흐름 검증은 단위 테스트로 대체하지 않고 Maestro 시나리오로 자동화한다.
+- 테스트는 doc list -> doc 소개 -> doc reader -> option 흐름과 옵션 반영 결과를 포함한다.
+> 탭 전환과 문서 선택을 포함한 사용자 시나리오를 실행한다.
+> 옵션 변경 후 리더 화면 반영 여부까지 검증한다.
 

@@ -1,49 +1,95 @@
 import * as FileSystem from 'expo-file-system';
-import { NATION_SONG_CONTENT, NATION_SONG_FILENAME } from '../constants/nationSong';
+import { Platform } from 'react-native';
 import type { Subject, SubjectPort } from '../domains/subject/subject_port';
+import { SEED_DOCUMENTS } from '../constants/seedDocuments';
 
-const SUBJECT_ID = 'nation_song';
+const WEB_STORAGE_PREFIX = 'reader-seed-document:';
 
-const getNationSongPath = (): string => {
+const getSeedDirectory = (): string => {
   const base = FileSystem.cacheDirectory ?? FileSystem.documentDirectory;
   if (!base) {
     throw new Error('File system directory is unavailable.');
   }
-  return `${base}${NATION_SONG_FILENAME}`;
+  return `${base}reader-seed-documents/`;
 };
 
-const ensureNationSongSubject = async (): Promise<Subject> => {
-  const path = getNationSongPath();
+const getWebStorage = (): Storage | null => {
+  if (typeof globalThis === 'undefined') {
+    return null;
+  }
+  return globalThis.localStorage ?? null;
+};
+
+const ensureDocumentContent = async (
+  subjectId: string,
+  fileName: string,
+  seedContent: string
+): Promise<string> => {
+  const directory = FileSystem.cacheDirectory ?? FileSystem.documentDirectory;
+
+  if (!directory) {
+    if (Platform.OS !== 'web') {
+      throw new Error('File system directory is unavailable.');
+    }
+
+    const storage = getWebStorage();
+    if (!storage) {
+      return seedContent;
+    }
+
+    const key = `${WEB_STORAGE_PREFIX}${subjectId}`;
+    const current = storage.getItem(key);
+    if (current === null) {
+      storage.setItem(key, seedContent);
+      return seedContent;
+    }
+
+    return current;
+  }
+
+  const seedDirectory = getSeedDirectory();
+  await FileSystem.makeDirectoryAsync(seedDirectory, { intermediates: true });
+  const path = `${seedDirectory}${fileName}`;
   const info = await FileSystem.getInfoAsync(path);
 
   if (!info.exists) {
-    await FileSystem.writeAsStringAsync(path, NATION_SONG_CONTENT, {
+    await FileSystem.writeAsStringAsync(path, seedContent, {
       encoding: FileSystem.EncodingType.UTF8
     });
   }
 
-  const content = await FileSystem.readAsStringAsync(path, {
+  return FileSystem.readAsStringAsync(path, {
     encoding: FileSystem.EncodingType.UTF8
   });
+};
+
+const ensureDocumentFile = async (subjectId: string): Promise<Subject | null> => {
+  const seed = SEED_DOCUMENTS.find((item) => item.id === subjectId);
+  if (!seed) {
+    return null;
+  }
+
+  const directory = FileSystem.cacheDirectory ?? FileSystem.documentDirectory;
+  const path = directory ? `${getSeedDirectory()}${seed.fileName}` : `web-storage://${seed.fileName}`;
+  const content = await ensureDocumentContent(subjectId, seed.fileName, seed.content);
 
   return {
-    id: SUBJECT_ID,
-    title: '애국가',
-    fileName: NATION_SONG_FILENAME,
+    id: seed.id,
+    title: seed.title,
+    fileName: seed.fileName,
     path,
+    description: seed.description,
+    tags: seed.tags,
     content
   };
 };
 
 export const fileSubjectRepository: SubjectPort = {
   async ensureSeed() {
-    const nationSong = await ensureNationSongSubject();
-    return [nationSong];
+    const subjects = await Promise.all(SEED_DOCUMENTS.map((item) => ensureDocumentFile(item.id)));
+    return subjects.filter((item): item is Subject => item !== null);
   },
   async getById(id) {
-    if (id !== SUBJECT_ID) {
-      return null;
-    }
-    return ensureNationSongSubject();
+    return ensureDocumentFile(id);
   }
 };

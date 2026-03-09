@@ -1,3 +1,5 @@
+import { apply_character_movement } from "@domains/game/character/movement-apply";
+
 export type CharacterInput = {
   type: "click";
   worldX: number;
@@ -28,8 +30,12 @@ export function create_game_character(): GameCharacter {
       if (input.type !== "click") {
         return;
       }
-      this.x = input.worldX;
-      this.z = input.worldZ;
+      const nextPosition = apply_character_movement(
+        { x: this.x, z: this.z },
+        { worldX: input.worldX, worldZ: input.worldZ }
+      );
+      this.x = nextPosition.x;
+      this.z = nextPosition.z;
       this.clickCount += 1;
     }
   };

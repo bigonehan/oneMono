@@ -1,5 +1,6 @@
 draft:
 - name: commentcreate
+  state: planned
   type: action
   domain:
   - app
@@ -43,6 +44,7 @@ draft:
   - 정상 입력 시 DB에 author/content/postId/createdAt이 저장되는지 확인
   - 성공 후 댓글 목록이 즉시 갱신되는지 확인
 - name: commentread
+  state: planned
   type: action
   domain:
   - app
@@ -81,6 +83,7 @@ draft:
   - 페이지당 최대 20개만 내려오는지 확인
   - page=2 이상 추가 요청 시 기존 목록 뒤에 정상 병합되는지 확인
 - name: commentupdate
+  state: planned
   type: action
   domain:
   - app
@@ -112,6 +115,7 @@ draft:
   - '프로젝트 표준 검증 명령(예: `pnpm test`, `pnpm lint`)을 실행해 실패 없이 통과 여부를 확인한다.'
   - 반환 데이터 형식이 액션 계약과 일치하는지 확인하고 회귀 영향이 없는지 점검한다.
 - name: commentdelete
+  state: planned
   type: action
   domain:
   - app
@@ -139,6 +143,7 @@ draft:
   - 유효하지 않은 id, 권한 없음, 대상 없음 케이스에서 실패 응답이 일관되게 반환된다.
   - 관련 테스트 또는 실행 검증 명령에서 commentdelete 경로가 통과한다.
 - name: commentreply
+  state: planned
   type: action
   domain:
   - app
@@ -165,12 +170,190 @@ draft:
   - '정적 점검: `commentreply` 식별자가 액션 등록/호출 경로에서 실제 참조되는지 `rg "commentreply"`로 확인한다.'
   - '실행 점검: 프로젝트 표준 검사 명령(예: `pnpm lint` 또는 `pnpm test`)을 실행해 통과 여부를 확인한다.'
   - '흐름 점검: UI 트리거 입력 -> 액션 핸들러 -> 내부 로직 -> 상태/파일 변경 -> 화면 재반영 경로가 실제로 연결되는지 검증한다.'
-planned: []
-worked:
-- commentcreate
-- commentupdate
-complete:
-- commentread
-- commentdelete
-- commentreply
-failed: []
+- name: 1_nav_menu_blog_profile_menu_item_2_navbar_login_auth_forms_login_login_signup_signup_feature_editor_editor_component_write_editor_component_editor_local_storage_localstorage_public_posts_date_name_md_date_260308_2
+  state: planned
+  type: action
+  domain:
+  - app
+  depends_on: []
+  scope:
+  - 1_nav_menu_blog_profile_menu_item_2_navbar_login_auth_forms_login_login_signup_signup_feature_editor_editor_component_write_editor_component_editor_local_storage_localstorage_public_posts_date_name_md_date_260308_2
+  rule:
+  - 1_nav_menu_blog_profile_menu_item_2_navbar_login_auth_forms_login_login_signup_signup_feature_editor_editor_component_write_editor_component_editor_local_storage_localstorage_public_posts_date_name_md_date_260308_2 exists
+  step:
+  - implement 1_nav_menu_blog_profile_menu_item_2_navbar_login_auth_forms_login_login_signup_signup_feature_editor_editor_component_write_editor_component_editor_local_storage_localstorage_public_posts_date_name_md_date_260308_2
+  tasks:
+  - implement 1_nav_menu_blog_profile_menu_item_2_navbar_login_auth_forms_login_login_signup_signup_feature_editor_editor_component_write_editor_component_editor_local_storage_localstorage_public_posts_date_name_md_date_260308_2
+  constraints: []
+  check:
+  - cargo test
+- name: setup_node_package_workspace
+  state: planned
+  type: action
+  domain:
+  - app
+  depends_on: []
+  scope:
+  - setup_node_package_workspace
+  rule:
+  - setup_node_package_workspace exists
+  step:
+  - implement setup_node_package_workspace
+  tasks:
+  - implement setup_node_package_workspace
+  constraints: []
+  check:
+  - cargo test
+- name: scaffold_next_app_router_routes
+  state: planned
+  type: action
+  domain:
+  - app
+  depends_on: []
+  scope:
+  - scaffold_next_app_router_routes
+  rule:
+  - scaffold_next_app_router_routes exists
+  step:
+  - implement scaffold_next_app_router_routes
+  tasks:
+  - implement scaffold_next_app_router_routes
+  constraints: []
+  check:
+  - cargo test
+- name: implement_shared_responsive_navbar_with_login_icon
+  state: planned
+  type: action
+  domain:
+  - app
+  depends_on: []
+  scope:
+  - implement_shared_responsive_navbar_with_login_icon
+  rule:
+  - implement_shared_responsive_navbar_with_login_icon exists
+  step:
+  - implement implement_shared_responsive_navbar_with_login_icon
+  tasks:
+  - implement implement_shared_responsive_navbar_with_login_icon
+  constraints: []
+  check:
+  - cargo test
+- name: implement_main_page_hero_carousel_feature_footer
+  state: planned
+  type: action
+  domain:
+  - app
+  depends_on: []
+  scope:
+  - implement_main_page_hero_carousel_feature_footer
+  rule:
+  - implement_main_page_hero_carousel_feature_footer exists
+  step:
+  - implement implement_main_page_hero_carousel_feature_footer
+  tasks:
+  - implement implement_main_page_hero_carousel_feature_footer
+  constraints: []
+  check:
+  - cargo test
+- name: implement_qa_page_board_list_with_floating_chat_toggle
+  state: planned
+  type: action
+  domain:
+  - app
+  depends_on: []
+  scope:
+  - implement_qa_page_board_list_with_floating_chat_toggle
+  rule:
+  - implement_qa_page_board_list_with_floating_chat_toggle exists
+  step:
+  - implement implement_qa_page_board_list_with_floating_chat_toggle
+  tasks:
+  - implement implement_qa_page_board_list_with_floating_chat_toggle
+  constraints: []
+  check:
+  - cargo test
+- name: implement_profile_page_card_carousel_with_tag_badges
+  state: planned
+  type: action
+  domain:
+  - app
+  depends_on: []
+  scope:
+  - implement_profile_page_card_carousel_with_tag_badges
+  rule:
+  - implement_profile_page_card_carousel_with_tag_badges exists
+  step:
+  - implement implement_profile_page_card_carousel_with_tag_badges
+  tasks:
+  - implement implement_profile_page_card_carousel_with_tag_badges
+  constraints: []
+  check:
+  - cargo test
+- name: apply_shadcn_first_ui_component_policy
+  state: planned
+  type: action
+  domain:
+  - app
+  depends_on: []
+  scope:
+  - apply_shadcn_first_ui_component_policy
+  rule:
+  - apply_shadcn_first_ui_component_policy exists
+  step:
+  - implement apply_shadcn_first_ui_component_policy
+  tasks:
+  - implement apply_shadcn_first_ui_component_policy
+  constraints: []
+  check:
+  - cargo test
+- name: enforce_accessibility_and_hydration_boundaries
+  state: planned
+  type: action
+  domain:
+  - app
+  depends_on: []
+  scope:
+  - enforce_accessibility_and_hydration_boundaries
+  rule:
+  - enforce_accessibility_and_hydration_boundaries exists
+  step:
+  - implement enforce_accessibility_and_hydration_boundaries
+  tasks:
+  - implement enforce_accessibility_and_hydration_boundaries
+  constraints: []
+  check:
+  - cargo test
+- name: add_not_found_route_handling
+  state: planned
+  type: action
+  domain:
+  - app
+  depends_on: []
+  scope:
+  - add_not_found_route_handling
+  rule:
+  - add_not_found_route_handling exists
+  step:
+  - implement add_not_found_route_handling
+  tasks:
+  - implement add_not_found_route_handling
+  constraints: []
+  check:
+  - cargo test
+- name: update_project_documentation
+  state: planned
+  type: action
+  domain:
+  - app
+  depends_on: []
+  scope:
+  - update_project_documentation
+  rule:
+  - update_project_documentation exists
+  step:
+  - implement update_project_documentation
+  tasks:
+  - implement update_project_documentation
+  constraints: []
+  check:
+  - cargo test

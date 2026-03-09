@@ -3,6 +3,8 @@ export type Subject = {
   title: string;
   fileName: string;
   path: string;
+  description: string;
+  tags: string[];
   content: string;
 };
 
