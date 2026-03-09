@@ -1,5 +1,0 @@
-package: web
-summary: Primary Next.js app runtime for the monorepo web surface.
-info:
-  render_web_routes: app router pages and assets
-  consume_shared_ui: integrates workspace UI packages
