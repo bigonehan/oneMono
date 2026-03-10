@@ -142,3 +142,9 @@
 - `@features/user` 인증을 bcrypt 기반으로 변경하고 역할 조회 메서드를 추가했다.
 - `@features/comment` 수정/삭제 권한(작성자/admin) 검증과 알림(읽음/안읽음, 100개 보관) 구현체를 추가했다.
 - `template/web/blog`에 `/search` 페이지를 추가하고 `search-index.json` fetch + Fuse 검색(2자 미만 차단) 흐름을 연결했다.
+
+## 2026-03-10 - donation 랜딩 템플릿 추가
+- `template/web/donation` 패키지를 새로 만들고 소개/detail/progress/Stripe CTA를 갖춘 단일 페이지 모금 랜딩과 `/admin` 운영자 편집 화면을 구현했다.
+- `@ui/shadcn`의 `Footer`, `SimpleCarousel`, `TagBadge`와 `@features/editor`의 `ArticleEditor`를 재사용해 copy/theme 편집, live preview, preset 금액 UI를 연결했다.
+- `app/api/donate`, `app/api/stripe/webhook`, `app/api/admin/content`를 추가해 Stripe Checkout 생성, webhook 기반 누적 모금 반영, JSON 기반 운영자 저장 흐름을 구성했다.
+- `bun run lint`, `bun run check-types`, `bun run build`, `rc clit test -p .`, admin 저장/landing 반영/webhook 실행 검증을 완료했고 리서치 기반 개선점은 `template/web/donation/feedback.md`에 기록했다.

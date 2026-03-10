@@ -14,6 +14,11 @@ domains:
 - notification
 - frontend_main_intro_detail_user
 - backend_api_integration
+- lecture_page
+- lecture_interaction
+- lecture_content
+- lecture_quality
+- lecture_site
 drafts:
   planned:
   - NestJS 모듈을 도메인 단위로 분리하고 GraphQL Relay(Node/Edge/Connection/PageInfo) 규격 및 전역 ID 인코딩/역변환 정책을 공통화한다.
@@ -21,6 +26,27 @@ drafts:
   - review/enrollment/progress/cart/coupon/certification/notification 상태 변경에 감사 이벤트 로그를 기록하고 타임아웃/재시도/멱등/민감정보 마스킹 제약을 반영한다.
   - Astro main/intro/detail/user 페이지에서 SSR 초기 데이터 로드, API 오류 노출, 재사용 가능한 GraphQL 쿼리 조합, hydration 가드를 구현한다.
   - cursor 기반 Relay pagination, 하위 호환 deprecation 전략, 도메인별 제약(진도 0~100, 쿠폰/결제 재검산, 인증서 1회 발급 원칙 등)을 테스트로 검증한다.
+  - audit_existing_html_css_js_structure
+  - implement_missing_lecture_page_sections
+  - add_responsive_layout_readability_adjustments
+  - separate_reusable_common_styles_and_scripts
+  - implement_menu_tab_button_interactions
+  - implement_accordion_toggle_interactions
+  - add_form_validation_and_error_feedback
+  - add_async_loading_success_error_state_feedback
+  - normalize_lecture_content_key_naming_and_required_fields
+  - prevent_null_undefined_access_in_rendering
+  - prevent_duplicate_event_binding_and_global_state_pollution
+  - create_reproducible_checklist_and_regression_verification
+  - lecture_domain_gap_check
+  - page_route_coverage
+  - core_feature_flow_minimum
+  - verification_and_regression
+  - compare_requirements_with_current_implementation
+  - identify_missing_ui_logic_connection_points
+  - apply_minimal_compatibility_preserving_fixes
+  - revalidate_core_display_interaction_link_flows
+  - document_inspection_and_supplement_results
   worked:
   - nestjs_graphql_relay_node_edge_connection_pageinfo_id
   - dataloader

@@ -9,14 +9,12 @@
     }
   ],
   "output_log": [
-    "error: a bin target must be available for `cargo run`\n",
+    "structure_viewer_bootstrap\n  --help, -h    show help\n  (default)     discover monorepo root/domain and run `pnpm astro dev --host`\n",
+    "   Compiling structure_viewer_bootstrap v0.1.0 (/home/tree/home/apps/web/structure_viewer)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.32s\n     Running `target/debug/structure_viewer_bootstrap --help`\n",
     "current-state:\nstdin state unavailable: empty input",
     "windows-context: ���� (18552)"
   ],
-  "errors": [
-    "command=`cargo run -- --help` exit=Some(101)",
-    "error: a bin target must be available for `cargo run`\n"
-  ],
+  "errors": [],
   "captures": [
     "/home/tree/home/apps/web/structure_viewer/terminal-capture.txt",
     "/home/tree/home/apps/web/structure_viewer/rect-capture.png",

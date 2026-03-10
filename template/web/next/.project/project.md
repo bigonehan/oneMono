@@ -7,6 +7,10 @@ path : /home/tree/home/template/web/next
 # features
 - node_package_workspace
 - project_documentation
+- commentcreate_action_init_path
+- commentread
+- commentdelete_action
+- app_commentupdate_action
 
 # rules
 - Next.js App Router 기준으로 페이지 라우팅을 구성한다.
@@ -144,3 +148,70 @@ path : /home/tree/home/template/web/next
 ### constraints
 - shadcn과 내부 컴포넌트 혼용 시 스타일 충돌을 방지한다.
 - 과도한 추상화 컴포넌트 생성을 금지한다.
+
+## commentcreate
+### states
+- 댓글 입력값 초기 상태
+- 댓글 입력값 유효 상태(1..500, trim non-empty)
+- 댓글 입력값 무효 상태(공백-only/0자/501자 이상)
+- 댓글 등록 요청 중 상태
+- 댓글 등록 성공 후 목록 갱신 상태
+### action
+- 댓글 textarea 입력
+- 등록 버튼 클릭 시 클라이언트 유효성 검사
+- `POST /api/posts/[postId]/comments` 요청 전송
+- 서버 인증/검증/정제 후 저장
+- 성공 시 클라이언트 목록 즉시 반영
+### rules
+- `request.method == POST` 경로에서만 댓글 생성한다.
+- 인증된 사용자만 댓글 생성할 수 있다.
+- 본문은 `1..500`자이며 trim 기준 공백-only를 허용하지 않는다.
+- sanitize 결과가 빈 문자열이면 저장하지 않는다.
+- 저장 레코드는 `author/content/postId/createdAt` 필드를 포함한다.
+### constraints
+- 비인증 요청은 `401`로 차단한다.
+- 잘못된 `postId` 또는 대상 게시글 없음은 `400/404`를 반환한다.
+- 유효 본문만 저장하고 XSS 위험 태그는 sanitize 후 저장한다.
+
+## commentread
+### states
+- 포스트 상세 진입 초기 댓글 로딩 상태
+- 비로그인 댓글 조회 상태
+- page=1 기본 조회 상태
+- page>=2 추가 조회 상태
+### action
+- GET `/api/posts/[postId]/comments?page=1` 초기 조회
+- postId 기준 댓글 조회 및 `createdAt` 오름차순 정렬
+- 서버 기반(SSR/ISR) 초기 댓글 주입
+- 추가 페이지 조회 결과 기존 목록에 병합
+### rules
+- 댓글 읽기는 인증 없이 허용하고 유효 요청은 `200`으로 응답한다.
+- 댓글 조회는 페이지 단위로 최대 20개만 반환한다.
+- 추가 조회 모드는 `page>=2`에서만 허용한다.
+- 초기 화면은 SSR 또는 ISR 경로로 page=1 결과를 렌더한다.
+### constraints
+- `postId,page -> 댓글 목록(JSON)` 조회 계약을 유지한다.
+- `createdAt` 오름차순 정렬을 유지한다.
+- 추가 페이지 데이터는 기존 목록 뒤에 이어 붙인다.
+
+## app_commentupdate_action
+### states
+- 댓글 기본 조회 상태
+- 인라인 편집 모드 상태
+- 수정 저장 요청 중 상태
+- 수정 성공 상태
+- 수정 실패 상태
+### action
+- 댓글 `수정` 버튼 클릭
+- `저장` 버튼 클릭으로 `PATCH /api/comments/[commentId]` 요청
+- 서버 액션 경로에서 요청자/작성자 권한 확인
+- 업데이트 결과를 UI 목록 상태에 반영
+### rules
+- 입력은 `commentId`/`content`를 검증한다.
+- 본인 댓글만 수정 가능하다.
+- 성공 시 `updatedAt`이 갱신되어야 한다.
+- 기존 댓글 조회/삭제/답글 흐름은 변경하지 않는다.
+### constraints
+- `app/actions/commentupdate.ts|schema.ts|steps.ts` 구조를 유지한다.
+- 액션 레지스트리(`app/actions/index.ts`)에서 `commentupdate` 호출 경로가 끊기지 않아야 한다.
+- `PATCH /api/comments/[commentId]` 응답 포맷은 액션 계약과 일치해야 한다.

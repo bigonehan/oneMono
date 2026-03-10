@@ -1,24 +1,7 @@
-- [ ] commentcreate :: 인증된 사용자 + 유효한 댓글 본문 -> 댓글 생성 성공 응답 : 로그인 사용자만 댓글 작성 가능
-- [ ] commentcreate :: 1~500자 범위 본문 -> 저장 허용 : 댓글 길이 제한 준수
-- [ ] commentcreate :: 빈 문자열 또는 공백-only 본문 -> 400 에러 응답 : 무의미한 댓글 등록 차단
-- [ ] commentcreate :: 스크립트/위험 태그 포함 본문 -> sanitize된 본문 저장 : XSS 위험 입력 방지
-- [ ] commentcreate :: 유효하지 않은 postId 또는 대상 게시글 없음 -> 404/400 에러 응답 : 잘못된 대상에 대한 생성 방지
-- [ ] commentread :: postId,page -> 댓글 목록(JSON) : 특정 게시글의 댓글을 페이지 단위로 조회한다
-- [ ] commentread :: 비로그인 요청 -> 200 응답 : 인증 없이 댓글 읽기 기능을 제공한다
-- [ ] commentread :: 댓글 집합 -> createdAt 오름차순 목록 : 최신 댓글이 하단에 위치하도록 정렬한다
-- [ ] commentread :: 초기 페이지 진입 -> 서버 기반 초기 목록 렌더 : SSR/ISR로 초기 로딩 성능과 노출을 보장한다
-- [ ] commentread :: page 증가 요청 -> 기존 목록 + 추가 목록 : 연속 스크롤/페이지네이션으로 목록을 확장한다
-- [ ] commentupdate :: (constraints 없음) -> constraints 빈 배열 유지 : 추가 제약 미정 상태를 유지한다
-- [ ] commentdelete :: (constraints 없음) -> constraints 빈 배열 유지 : 추가 제약 미정 상태를 유지한다
-- [ ] commentreply :: (constraints 없음) -> constraints 빈 배열 유지 : 추가 제약 미정 상태를 유지한다
-- [ ] 1_nav_menu_blog_profile_menu_item_2_navbar_login_auth_forms_login_login_signup_signup_feature_editor_editor_component_write_editor_component_editor_local_storage_localstorage_public_posts_date_name_md_date_260308_2 :: (constraints 없음) -> constraints 빈 배열 유지 : 추가 제약 미정 상태를 유지한다
-- [ ] setup_node_package_workspace :: (constraints 없음) -> constraints 빈 배열 유지 : 추가 제약 미정 상태를 유지한다
-- [ ] scaffold_next_app_router_routes :: (constraints 없음) -> constraints 빈 배열 유지 : 추가 제약 미정 상태를 유지한다
-- [ ] implement_shared_responsive_navbar_with_login_icon :: (constraints 없음) -> constraints 빈 배열 유지 : 추가 제약 미정 상태를 유지한다
-- [ ] implement_main_page_hero_carousel_feature_footer :: (constraints 없음) -> constraints 빈 배열 유지 : 추가 제약 미정 상태를 유지한다
-- [ ] implement_qa_page_board_list_with_floating_chat_toggle :: (constraints 없음) -> constraints 빈 배열 유지 : 추가 제약 미정 상태를 유지한다
-- [ ] implement_profile_page_card_carousel_with_tag_badges :: (constraints 없음) -> constraints 빈 배열 유지 : 추가 제약 미정 상태를 유지한다
-- [ ] apply_shadcn_first_ui_component_policy :: (constraints 없음) -> constraints 빈 배열 유지 : 추가 제약 미정 상태를 유지한다
-- [ ] enforce_accessibility_and_hydration_boundaries :: (constraints 없음) -> constraints 빈 배열 유지 : 추가 제약 미정 상태를 유지한다
-- [ ] add_not_found_route_handling :: (constraints 없음) -> constraints 빈 배열 유지 : 추가 제약 미정 상태를 유지한다
-- [ ] update_project_documentation :: (constraints 없음) -> constraints 빈 배열 유지 : 추가 제약 미정 상태를 유지한다
+- [ ] landing_page_routing_and_responsive_sections_for_main_profile_qa :: `/`,`/profile`,`/qa`,`/not-found` 접근 -> 공통 navbar 유지 + 각 라우트 정상 렌더 : App Router 라우팅 구성 검증
+- [ ] landing_page_routing_and_responsive_sections_for_main_profile_qa :: 메인 페이지 진입 -> hero→carousel→feature→footer 순서 노출 : main 섹션 순서 요구사항 검증
+- [ ] landing_page_routing_and_responsive_sections_for_main_profile_qa :: 모바일 화면 진입 -> 섹션/네비게이션 레이아웃 반응형 전환 : 모바일 우선 반응형 검증
+- [ ] landing_page_routing_and_responsive_sections_for_main_profile_qa :: navbar 메뉴 클릭 + 현재 경로 -> main/profile/qa 이동 + active 스타일 적용 : 네비게이션 접근성/상태 검증
+- [ ] landing_page_routing_and_responsive_sections_for_main_profile_qa :: QA 페이지 하단 원형 버튼 클릭 -> boolean 상태 토글 + 채팅 패널 표시/숨김 : 플로팅 채팅 토글 흐름 검증
+- [ ] landing_page_routing_and_responsive_sections_for_main_profile_qa :: profile 페이지 캐러셀 표시 -> 카드형 carousel + tag badge 동시 노출 : profile 카드/태그 노출 검증
+- [ ] landing_page_routing_and_responsive_sections_for_main_profile_qa :: (constraints 없음) -> constraints 빈 배열 유지 : draft constraints checklist 준수

@@ -74,3 +74,28 @@
 - `app/api/posts/[postId]/comments/route.ts`에서 JSON body가 비객체(`null`, 원시값)인 경우 즉시 `400 invalid payload`를 반환하도록 보강해 POST 경로 런타임 예외를 차단함.
 - `app/actions/commentcreate.test.ts`에 `500`자 경계 허용 케이스를 추가해 길이 제한(1..500) 조건을 테스트로 고정함.
 - 검증: `pnpm exec tsx --test app/actions/commentcreate.test.ts`, `pnpm test`, `pnpm lint` 통과. `pnpm check-types`는 기존 타입 오류로 실패.
+
+## 2026-03-09 - commentupdate draft_item 구현/제약 검증
+- `references/plan-function.md`와 `./.project/project.md`에 `commentupdate` 스코프, 입력 규칙/스텝, 체크 항목을 추가해 설계 게이트를 최신화함.
+- `app/actions/commentupdate.ts|schema.ts|steps.ts`, `app/actions/index.ts`, `app/api/comments/[commentId]/route.ts`, `app/post/[postId]/comments-client.tsx` 경로를 점검해 트리거 -> 액션 -> 내부 로직 -> 저장소 업데이트 -> UI 반영 연결을 재확인함.
+- `app/actions/commentupdate.test.ts`의 실패/성공 케이스(입력 오류, 권한 오류, 성공 시 `updatedAt` 갱신)를 기준으로 액션 계약 일치와 회귀 위험을 검증함.
+- 검증: `rg -n "commentupdate" app`, `pnpm test`, `pnpm lint` 통과.
+
+## 2026-03-09 - commentdelete draft_item 구현 완료 재검증
+- `src/app/actions/commentdelete.ts`의 입력 검증(`commentId`), 권한 검증(본인 또는 admin), 소프트 삭제 실행 결과 포맷을 기준 구현으로 재확인함.
+- `app/post/[postId]/comments-client.tsx` 삭제 버튼 트리거에서 확인 모달 이후 `requestCommentDelete` 호출, 성공 시 목록 반영/실패 시 코드별 메시지 처리 흐름을 점검함.
+- `app/api/comments/[commentId]/route.ts`의 `DELETE` 핸들러가 `executeCommentDelete`와 `commentDb.findById`/`commentDb.softDeleteById`를 연결하는 경로를 확인함.
+- 검증: `rg -n "handleDelete|requestCommentDelete|executeCommentDelete|softDeleteById|DELETE\\(" app src lib`, `pnpm exec tsx --test src/app/actions/commentdelete.test.ts`, `pnpm test`, `pnpm lint` 실행.
+
+## 2026-03-09 - commentread draft_item 구현/제약 검증
+- `references/plan-function.md`, `./.project/project.md`에 `commentread` 범위/입력 규칙/스텝/체크를 추가해 설계 게이트 기준을 반영함.
+- `app/actions/commentread.ts|schema.ts|steps.ts`, `app/api/posts/[postId]/comments/route.ts`, `app/post/[postId]/page.tsx`, `app/post/[postId]/comments-client.tsx`, `lib/comment-db.ts` 경로를 점검해 액션 엔트리/입력 규칙/실행 연결과 SSR(ISR) 초기 주입, page>=2 추가 병합 흐름을 확인함.
+- 비로그인 조회 허용(`GET` 인증 예외), `createdAt` 오름차순 정렬, 페이지 크기 20 제한, 추가 요청 page 증가 규칙을 코드 경로 기준으로 재검증함.
+- 검증: `rg -n "runCommentReadSteps|commentread|/api/posts/.+comments|comments\\?page=|revalidate =" app lib`, `pnpm test`, `pnpm lint` 통과.
+
+## 2026-03-09 - landing page routing and responsive sections for main/profile/qa
+- `app/page.tsx`, `app/profile/page.tsx`, `app/qa/page.tsx`, `app/not-found.tsx`를 추가해 draft 요구 라우트(`/`, `/profile`, `/qa`, not-found)를 구성함.
+- `app/_components/navbar.tsx`의 공통 네비게이션과 연계해 현재 경로 active 스타일(`aria-current`, `is-active`) 및 이동 흐름을 유지함.
+- main 페이지의 hero→carousel→feature→footer 순서, profile 카드 carousel+tag badge, qa 게시판+하단 고정 원형 채팅 토글(boolean state)을 구현함.
+- `app/globals.css`에 최소 범위 스타일(`app-navbar`, `app-main-shell`, landing/profile/qa/not-found`)을 추가해 모바일 우선 반응형 레이아웃을 반영함.
+- 검증: `pnpm -s test`, `pnpm -s lint`, `rg -n "onClick|setIndex|setIsChatOpen|aria-current" app` 실행.

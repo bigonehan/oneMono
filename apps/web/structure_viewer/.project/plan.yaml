@@ -7,6 +7,8 @@ domains:
 - function_list_view
 - rendering_runtime
 - state_management
+- node_package_workspace
+- rust_cli_workspace
 drafts:
   planned:
   - Bootstrap the monorepo root and base workspace structure for structure_viewer.
@@ -16,6 +18,20 @@ drafts:
   - Define domains and a domain discovery structure under the project.
   - Implement the initial module card UI.
   - Render function lists inside the module card UI.
+  - setup_astro_entry_and_routing
+  - define_global_zustand_store_schema
+  - implement_monorepo_root_scanner_from_cwd
+  - implement_domains_domain_path_collector
+  - build_js_ts_module_parser_with_error_tolerance
+  - build_rust_symbol_parser_with_error_tolerance
+  - normalize_module_and_symbol_data_for_cards
+  - implement_pixi_card_renderer_with_module_and_function_list
+  - add_shadcn_first_ui_component_selection
+  - add_incremental_rescan_and_stale_data_replacement
+  - exclude_node_modules_target_and_build_outputs
+  - add_render_data_summarization_for_performance
+  - wire_scan_parse_render_pipeline_states
+  - add_error_registry_and_non_blocking_pipeline_behavior
   worked:
   - bootstrap_the_monorepo_root_and_base_workspace_structure_for_structure_viewer
   - configure_astro_react_and_typescript_as_the_primary_application_stack

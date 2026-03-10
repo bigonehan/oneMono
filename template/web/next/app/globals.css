@@ -843,3 +843,243 @@ a {
   font-weight: 600;
   cursor: pointer;
 }
+
+.app-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 25;
+  height: var(--header-height);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
+}
+
+.app-navbar__inner {
+  height: 100%;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.app-navbar__brand {
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+.app-navbar__nav {
+  display: flex;
+  gap: 8px;
+}
+
+.app-navbar__login {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #111111;
+}
+
+.app-navbar__login svg {
+  width: 22px;
+  height: 22px;
+}
+
+.app-navbar__link {
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.app-navbar__link.is-active {
+  background: #111111;
+  color: #ffffff;
+}
+
+.app-main-shell {
+  min-height: calc(100vh - var(--header-height));
+  padding-top: var(--header-height);
+}
+
+.landing-page,
+.profile-page,
+.qa-page,
+.not-found-page {
+  min-height: calc(100vh - var(--header-height));
+  padding: 20px 16px 28px;
+}
+
+.landing-page {
+  display: grid;
+  gap: 16px;
+}
+
+.landing-hero,
+.landing-carousel__card,
+.landing-feature,
+.landing-footer,
+.profile-card,
+.qa-board li,
+.qa-chat,
+.not-found-page {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 14px;
+  background: #ffffff;
+  padding: 16px;
+}
+
+.landing-hero__eyebrow,
+.landing-carousel__index,
+.profile-card__index {
+  margin: 0;
+  color: #6b7280;
+  font-size: 0.85rem;
+}
+
+.landing-hero h1,
+.profile-page__header h1,
+.qa-page__header h1,
+.not-found-page h1 {
+  margin: 8px 0;
+}
+
+.landing-carousel__actions,
+.profile-card__actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.landing-carousel__actions button,
+.profile-card__actions button,
+.qa-chat-toggle {
+  height: 38px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  background: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.landing-feature ul,
+.profile-card__tags,
+.qa-board {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+.landing-feature li h3,
+.landing-feature li p {
+  margin: 0;
+}
+
+.profile-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.profile-tags {
+  margin-top: 16px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.profile-card__tags li {
+  border-radius: 999px;
+  background: #eef3ff;
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.ui-tag-badge {
+  border-radius: 999px;
+  background: #eef3ff;
+  border: 1px solid rgba(52, 91, 173, 0.24);
+  padding: 6px 10px;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.ui-simple-carousel__controls {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ui-simple-carousel__controls button {
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.ui-simple-carousel__meta {
+  margin: 0;
+  font-weight: 700;
+}
+
+.qa-board li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.qa-board li span {
+  border-radius: 999px;
+  background: #eef3ff;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+}
+
+.qa-chat {
+  margin-top: 12px;
+}
+
+.qa-chat-toggle {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  width: 58px;
+  height: 58px;
+  border-radius: 999px;
+  background: #111111;
+  color: #ffffff;
+}
+
+.landing-footer {
+  text-align: center;
+  font-weight: 700;
+}
+
+@media (min-width: 768px) {
+  .app-navbar__inner {
+    padding: 0 24px;
+  }
+
+  .landing-page,
+  .profile-page,
+  .qa-page,
+  .not-found-page {
+    padding: 28px 24px 32px;
+  }
+
+  .landing-feature ul {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

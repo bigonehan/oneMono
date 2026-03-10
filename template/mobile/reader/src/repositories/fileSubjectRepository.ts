@@ -25,13 +25,7 @@ const ensureDocumentContent = async (
   fileName: string,
   seedContent: string
 ): Promise<string> => {
-  const directory = FileSystem.cacheDirectory ?? FileSystem.documentDirectory;
-
-  if (!directory) {
-    if (Platform.OS !== 'web') {
-      throw new Error('File system directory is unavailable.');
-    }
-
+  if (Platform.OS === 'web') {
     const storage = getWebStorage();
     if (!storage) {
       return seedContent;
@@ -45,6 +39,12 @@ const ensureDocumentContent = async (
     }
 
     return current;
+  }
+
+  const directory = FileSystem.cacheDirectory ?? FileSystem.documentDirectory;
+
+  if (!directory) {
+    throw new Error('File system directory is unavailable.');
   }
 
   const seedDirectory = getSeedDirectory();
@@ -86,8 +86,11 @@ const ensureDocumentFile = async (subjectId: string): Promise<Subject | null> =>
 
 export const fileSubjectRepository: SubjectPort = {
   async ensureSeed() {
-    const subjects = await Promise.all(SEED_DOCUMENTS.map((item) => ensureDocumentFile(item.id)));
-    return subjects.filter((item): item is Subject => item !== null);
+    const results = await Promise.allSettled(SEED_DOCUMENTS.map((item) => ensureDocumentFile(item.id)));
+    return results
+      .filter((result): result is PromiseFulfilledResult<Subject | null> => result.status === 'fulfilled')
+      .map((result) => result.value)
+      .filter((item): item is Subject => item !== null);
   },
   async getById(id) {
     return ensureDocumentFile(id);

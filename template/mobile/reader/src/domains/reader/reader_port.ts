@@ -4,6 +4,7 @@ export type ReaderSettings = {
   typingIntervalMs: number;
   autoPlay: boolean;
   fontScale: number;
+  fontPreset: 'sans' | 'serif' | 'mono';
 };
 
 export type ReaderPort = {

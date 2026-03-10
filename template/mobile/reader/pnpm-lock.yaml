@@ -26,6 +26,9 @@ importers:
       '@shopify/flash-list':
         specifier: ^2.3.0
         version: 2.3.0(@babel/runtime@7.28.6)(react-native@0.79.0(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
+      '@shopify/react-native-skia':
+        specifier: ^2.5.1
+        version: 2.5.1(react-native-reanimated@4.2.2(react-native-worklets@0.7.4(@babel/core@7.29.0)(react-native@0.79.0(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native@0.79.0(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native@0.79.0(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
       expo:
         specifier: ~53.0.0
         version: 53.0.27(@babel/core@7.29.0)(@expo/metro-runtime@5.0.5(react-native@0.79.0(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0)))(react-native@0.79.0(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
@@ -909,6 +912,19 @@ packages:
       react: '*'
       react-native: '*'
 
+  '@shopify/react-native-skia@2.5.1':
+    resolution: {integrity: sha512-o1P9rFVEqWkEPLg3we6byTBK1ykKtx1GuVCUMSGfrlgKIIZ22WnQhLGSjL2cl2+a4P9li7zxXa5wlMVWTKdVCQ==}
+    hasBin: true
+    peerDependencies:
+      react: '>=19.0'
+      react-native: '>=0.78'
+      react-native-reanimated: '>=3.19.1'
+    peerDependenciesMeta:
+      react-native:
+        optional: true
+      react-native-reanimated:
+        optional: true
+
   '@sinclair/typebox@0.27.10':
     resolution: {integrity: sha512-MTBk/3jGLNB2tVxv6uLlFh1iu64iYOQ2PbdOSK3NW8JZsmlaOh2q6sdtKowBhfw8QFLmYNzTW4/oK4uATIi6ZA==}
 
@@ -994,6 +1010,9 @@ packages:
     resolution: {integrity: sha512-TQMCz2pFJMfpNxmSfX1VSfTjwUIFx/mL+p1bnfM1xjjdla7Z+KnGMW/EhFbpckp3LyWAH4PgOsMwOMnIN+MBFg==}
     peerDependencies:
       '@urql/core': ^5.0.0
+
+  '@webgpu/types@0.1.21':
+    resolution: {integrity: sha512-pUrWq3V5PiSGFLeLxoGqReTZmiiXwY3jRkIG5sLLKjyqNxrwm/04b4nw7LSmGWJcKk59XOM/YRTUwOzo4MMlow==}
 
   '@xmldom/xmldom@0.8.11':
     resolution: {integrity: sha512-cQzWCtO6C8TQiYl1ruKNn2U6Ao4o4WBBcbL61yJl84x+j5sOWWFU9X7DpND8XZG3daDppSsigMdfAIl2upQBRw==}
@@ -1213,6 +1232,9 @@ packages:
 
   caniuse-lite@1.0.30001777:
     resolution: {integrity: sha512-tmN+fJxroPndC74efCdp12j+0rk0RHwV5Jwa1zWaFVyw2ZxAuPeG8ZgWC3Wz7uSjT3qMRQ5XHZ4COgQmsCMJAQ==}
+
+  canvaskit-wasm@0.40.0:
+    resolution: {integrity: sha512-Od2o+ZmoEw9PBdN/yCGvzfu0WVqlufBPEWNG452wY7E9aT8RBE+ChpZF526doOlg7zumO4iCS+RAeht4P0Gbpw==}
 
   chalk@2.4.2:
     resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
@@ -2409,6 +2431,18 @@ packages:
     peerDependencies:
       react-native: '*'
 
+  react-native-skia-android@144.3.0:
+    resolution: {integrity: sha512-0XsW8JQAgNBNvCwp/ypOKDF5CjKOlCTBfj43gYXK/clystG7e4y3XF/4v0vw9Slekj9BSQruHqGYpfs5hWgO/g==}
+
+  react-native-skia-apple-ios@144.3.0:
+    resolution: {integrity: sha512-gY8M6IiYhQR9J1xHvAbH4M5pcgS3wsBal/jETcwb7LHaPuxiRkig3Y3Bcl4yK5JgHomcrl18oWVj3xh3UqR2cg==}
+
+  react-native-skia-apple-macos@144.3.0:
+    resolution: {integrity: sha512-+2kYg+kfVRJX/FAsg+jIcvDQHTG9DzkI+b9GG4XdqHG/ixR4yd5opZ95l9rjLJuRGhnE+AB6StAz5zhjWFhHuw==}
+
+  react-native-skia-apple-tvos@144.3.0:
+    resolution: {integrity: sha512-Xq4N1xlIzZQgx/6LfkHbSCn5poo0O1D/5LjKmQvfVOrUkOe2Det4OdXrmbsVLFaeh7soB6Bn290s31agD011tw==}
+
   react-native-web@0.20.0:
     resolution: {integrity: sha512-OOSgrw+aON6R3hRosCau/xVxdLzbjEcsLysYedka0ZON4ZZe6n9xgeN9ZkoejhARM36oTlUgHIQqxGutEJ9Wxg==}
     peerDependencies:
@@ -2432,6 +2466,12 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
+
+  react-reconciler@0.31.0:
+    resolution: {integrity: sha512-7Ob7Z+URmesIsIVRjnLoDGwBEG/tVitidU0nMsqX/eeJaLY89RISO/10ERe0MqmzuKUUB1rmY+h1itMbUHg9BQ==}
+    engines: {node: '>=0.10.0'}
+    peerDependencies:
+      react: ^19.0.0
 
   react-refresh@0.14.2:
     resolution: {integrity: sha512-jCvmsr+1IUSMUyzOkRcvnVbX3ZYC6g9TDrDbFuFmRDq7PD4yaGbLKNQL6k2jnArV8hjYxh7hVhAZB6s9HDGpZA==}
@@ -4237,6 +4277,19 @@ snapshots:
       react: 19.0.0
       react-native: 0.79.0(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0)
 
+  '@shopify/react-native-skia@2.5.1(react-native-reanimated@4.2.2(react-native-worklets@0.7.4(@babel/core@7.29.0)(react-native@0.79.0(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native@0.79.0(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native@0.79.0(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)':
+    dependencies:
+      canvaskit-wasm: 0.40.0
+      react: 19.0.0
+      react-native-skia-android: 144.3.0
+      react-native-skia-apple-ios: 144.3.0
+      react-native-skia-apple-macos: 144.3.0
+      react-native-skia-apple-tvos: 144.3.0
+      react-reconciler: 0.31.0(react@19.0.0)
+    optionalDependencies:
+      react-native: 0.79.0(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0)
+      react-native-reanimated: 4.2.2(react-native-worklets@0.7.4(@babel/core@7.29.0)(react-native@0.79.0(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native@0.79.0(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
+
   '@sinclair/typebox@0.27.10': {}
 
   '@sinclair/typebox@0.34.48': {}
@@ -4334,6 +4387,8 @@ snapshots:
     dependencies:
       '@urql/core': 5.2.0
       wonka: 6.3.5
+
+  '@webgpu/types@0.1.21': {}
 
   '@xmldom/xmldom@0.8.11': {}
 
@@ -4586,6 +4641,10 @@ snapshots:
   camelize@1.0.1: {}
 
   caniuse-lite@1.0.30001777: {}
+
+  canvaskit-wasm@0.40.0:
+    dependencies:
+      '@webgpu/types': 0.1.21
 
   chalk@2.4.2:
     dependencies:
@@ -5866,6 +5925,14 @@ snapshots:
     dependencies:
       react-native: 0.79.0(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0)
 
+  react-native-skia-android@144.3.0: {}
+
+  react-native-skia-apple-ios@144.3.0: {}
+
+  react-native-skia-apple-macos@144.3.0: {}
+
+  react-native-skia-apple-tvos@144.3.0: {}
+
   react-native-web@0.20.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
       '@babel/runtime': 7.28.6
@@ -5947,6 +6014,11 @@ snapshots:
       - bufferutil
       - supports-color
       - utf-8-validate
+
+  react-reconciler@0.31.0(react@19.0.0):
+    dependencies:
+      react: 19.0.0
+      scheduler: 0.25.0
 
   react-refresh@0.14.2: {}
 

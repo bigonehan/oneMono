@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev --port 3000",
     "build": "next build",
-    "test": "tsx --test app/actions/commentupdate.test.ts app/actions/commentread.test.ts",
+    "test": "tsx --test app/actions/commentupdate.test.ts app/actions/commentread.test.ts app/actions/commentcreate.test.ts",
     "start": "next start",
     "lint": "eslint --max-warnings 0",
     "check-types": "next typegen && tsc --noEmit"

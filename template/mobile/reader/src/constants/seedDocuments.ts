@@ -47,6 +47,18 @@ The street lamps were dim, but the moon made the sidewalk feel almost silver.
 Every few steps, the air changed. It carried a little grass, a little dust,
 and the distant sound of traffic that never fully disappeared.
 
+if> 그렇다면 나는 이제 어디로 가야하지 |여기로 간다>a|저기로 간다>b
+
+## Riverside Steps >a
+
+The river moved slowly, and every stone step held a different echo.
+It felt like the city had gone quiet only for this path.
+
+## Old Market Alley >b
+
+The alley smelled of coffee and warm bread.
+Even the signboards looked softer under the moonlight.
+
 ## Why it works in a reader
 
 1. Short paragraphs create a clear pacing rhythm.
@@ -77,6 +89,33 @@ and the distant sound of traffic that never fully disappeared.
 - [x] 알림 끄기
 - [x] 속도와 폰트 크기 맞추기
 - [x] 끝까지 읽지 않아도 중단 지점 기록하기
+`
+  },
+  {
+    id: 'city-morning-note',
+    title: 'City Morning Note',
+    fileName: 'city_morning_note.md',
+    description: '도시의 아침 풍경을 짧게 기록한 테스트용 예시 문서입니다.',
+    tags: ['sample', 'morning', 'city'],
+    content: `# City Morning Note
+
+출근 시간 직전의 도시를 짧게 관찰한 문서입니다.
+
+## Crosswalk
+
+신호가 바뀌기 전, 모두가 잠깐 멈춰 서서 같은 방향을 바라본다.
+누군가는 이어폰을 고치고, 누군가는 커피 뚜껑을 다시 눌러 본다.
+
+## Corner Cafe
+
+카페 앞 유리창에는 김이 얇게 서려 있고,
+문이 열릴 때마다 볶은 원두 냄새가 바람처럼 지나간다.
+
+## Reader Check
+
+- 타이핑 속도를 빠르게 올렸을 때 줄바꿈이 자연스러운지 확인
+- 폰트 크기를 키웠을 때 본문 가독성 확인
+- 설정 변경 후 다시 목록으로 이동해 선택 상태 유지 확인
 `
   }
 ];

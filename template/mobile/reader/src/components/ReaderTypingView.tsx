@@ -1,54 +1,42 @@
 import { useEffect, useState } from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
-import Markdown from 'react-native-markdown-display';
+import { ScrollView, StyleSheet, Text } from 'react-native';
+import { getReaderDelayMs } from '../modules/readerSpeed';
 
 type Props = {
   content: string;
   typingIntervalMs: number;
   fontScale: number;
+  fontPreset: 'sans' | 'serif' | 'mono';
   isPlaying: boolean;
   restartToken: number;
+  startIndex: number;
+  onCursorChange?: (cursor: number) => void;
 };
 
-const buildMarkdownStyles = (fontScale: number) => ({
-  body: {
-    color: '#1f2937',
-    fontSize: 17 * fontScale,
-    lineHeight: 29 * fontScale
-  },
-  heading1: {
-    color: '#7c2d12',
-    fontSize: 28 * fontScale,
-    marginBottom: 12
-  },
-  heading2: {
-    color: '#9a3412',
-    fontSize: 22 * fontScale,
-    marginTop: 18,
-    marginBottom: 8
-  },
-  paragraph: {
-    marginTop: 0,
-    marginBottom: 10
-  },
-  list_item: {
-    marginBottom: 8
-  }
-});
+const FONT_FAMILY_MAP: Record<Props['fontPreset'], string> = {
+  sans: 'sans-serif',
+  serif: 'serif',
+  mono: 'monospace'
+};
 
 export const ReaderTypingView = ({
   content,
   typingIntervalMs,
   fontScale,
+  fontPreset,
   isPlaying,
-  restartToken
+  restartToken,
+  startIndex,
+  onCursorChange
 }: Props) => {
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(startIndex);
   const normalized = content ?? '';
+  const visible = normalized.slice(startIndex, index);
+  const delayMs = getReaderDelayMs(typingIntervalMs);
 
   useEffect(() => {
-    setIndex(0);
-  }, [normalized, restartToken]);
+    setIndex(startIndex);
+  }, [normalized, restartToken, startIndex]);
 
   useEffect(() => {
     if (!isPlaying || index >= normalized.length) {
@@ -57,16 +45,27 @@ export const ReaderTypingView = ({
 
     const timer = setTimeout(() => {
       setIndex((prev) => prev + 1);
-    }, typingIntervalMs);
+    }, delayMs);
 
     return () => clearTimeout(timer);
-  }, [index, isPlaying, normalized, typingIntervalMs]);
+  }, [delayMs, index, isPlaying, normalized]);
+
+  useEffect(() => {
+    onCursorChange?.(index);
+  }, [index, onCursorChange]);
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      <Markdown style={buildMarkdownStyles(fontScale)}>
-        {normalized.slice(0, index)}
-      </Markdown>
+      <Text
+        style={{
+          color: '#1f2937',
+          fontSize: 17 * fontScale,
+          lineHeight: 29 * fontScale,
+          fontFamily: FONT_FAMILY_MAP[fontPreset]
+        }}
+      >
+        {visible}
+      </Text>
     </ScrollView>
   );
 };

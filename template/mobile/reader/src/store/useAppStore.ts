@@ -26,7 +26,8 @@ export const useAppStore = create<AppState>((set, get) => ({
   readerSettings: {
     typingIntervalMs: 40,
     autoPlay: true,
-    fontScale: 1
+    fontScale: 1,
+    fontPreset: 'sans'
   },
   bootstrap: async () => {
     const subjects = await ensureSubjectSeedUseCase(fileSubjectRepository);
@@ -64,7 +65,8 @@ export const useAppStore = create<AppState>((set, get) => ({
           120
         ),
         autoPlay: settings.autoPlay ?? prev.autoPlay,
-        fontScale: clamp(settings.fontScale ?? prev.fontScale, 0.9, 1.6)
+        fontScale: clamp(settings.fontScale ?? prev.fontScale, 0.9, 1.6),
+        fontPreset: settings.fontPreset ?? prev.fontPreset
       }
     });
   }

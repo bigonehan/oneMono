@@ -1,12 +1,15 @@
 # problem
-강의 메인과 연결 페이지가 백엔드 미실행 상태에서 `fetch failed`로 깨져 기본 탐색 흐름이 막힌다.
+draft 생성 단계가 반복 hang되어 신규 draft 작성이 막힌 상태에서 구현/검증 완료가 지연된다.
 
 # tasks
-- `src/lib/api.ts`와 페이지 호출 지점을 기준으로 실패 경로를 확인한다.
-- 네트워크 요청 실패 시 lecture 템플릿 데이터로 대체 응답하는 최소 fallback 경로를 추가한다.
-- 메인/소개/상세/사용자 페이지가 같은 API 헬퍼를 통해 fallback까지 연결되는지 점검한다.
-- 실패 원인이 남으면 `feedback.md`에 기록하고 해당 원인을 막는 조치를 `todo.md`에 반영한 뒤 다시 검증한다.
+- 기존 `.project/drafts.yaml` 산출물을 기준으로 `orc impl_code_draft`를 실행한다.
+- 이후 `orc clit test -p . -m "lecture site workflow check"`, `orc check_code_draft -a`, `npm run build`를 실행한다.
+- 실제 코드와 설계 문서 간 누락 항목을 점검해 최소 보완 상태를 최종 정리한다.
+- 완료 시 `.agents/log.md` 기록과 `nf -m` 완료 알림을 실행한다.
+- 강제 실행 항목: 다음 시도는 `orc impl_code_draft`를 반드시 실행한다.
 
 # check
+- `orc impl_code_draft`
+- `orc clit test -p . -m "lecture site workflow check"`
+- `orc check_code_draft -a`
 - `npm run build`
-- `rg -n "queryGraphQL|buildFallbackResponse" src`

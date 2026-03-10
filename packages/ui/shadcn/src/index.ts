@@ -16,3 +16,5 @@ export type { BlogShowcasePost, ListBlogShowcaseProps } from "../components/list
 export { DashUserOverview } from "../components/dashboard/dash_user_overview";
 export type { DashUser, DashUserOverviewProps } from "../components/dashboard/dash_user_overview";
 export { GenPane, gen_Pane, buildPaneFromDomain } from "../custom/gen_Pane";
+export { SimpleCarousel } from "../components/ui/simple-carousel";
+export { TagBadge } from "../components/ui/tag-badge";

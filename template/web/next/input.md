@@ -1,54 +1,21 @@
-# node_package_workspace
-- Next.js 프로젝트가 워크스페이스 환경에서 의존성을 일관되게 관리해야 한다.
-- 기술 스택 범위(next js, react, typescript, tailwind css, shadcn ui)를 벗어나지 않아야 한다.
-> 워크스페이스 루트와 패키지 경계를 정의한다.
-> 앱 실행/빌드에 필요한 의존성만 최소로 정리한다.
+# landing_page_routing_and_responsive_sections_for_main_profile_qa
+- Next.js App Router 기준으로 `/`, `/profile`, `/qa` 라우트를 구성하고 공통 navbar를 유지한다.
+- main 페이지는 hero, carousel, feature, footer 순서를 유지하고 모바일 우선 반응형 레이아웃을 적용한다.
+- navbar에서 main/profile/qa로 항상 이동 가능하고 현재 경로 활성 스타일을 제공한다.
+- qa 페이지는 게시판 리스트 기본 노출과 하단 고정 원형 버튼 기반 채팅 토글을 제공한다.
+- profile 페이지는 카드형 carousel과 tag badge를 함께 노출한다.
+> App Router 레이아웃에 공통 navbar를 배치하고 main/profile/qa/not-found 라우트를 점검한다.
+> main 페이지 섹션(hero→carousel→feature→footer) 반응형 구성과 carousel 조작(터치/클릭)을 구현한다.
+> qa 페이지 게시판 리스트와 플로팅 원형 버튼-채팅창 토글 boolean 상태 흐름을 연결한다.
+> profile 페이지 카드 carousel-태그 매핑, 작은 화면 가독성, 접근성 속성을 검증한다.
 
-# app_router
-- `/`, `/profile`, `/qa` 경로를 명시적으로 제공해야 한다.
-- 공통 레이아웃에서 navbar를 유지하고 라우팅 경로 명세를 변경하지 않아야 한다.
-> App Router 기준으로 각 페이지 엔트리를 생성한다.
-> 존재하지 않는 경로 처리까지 연결한다.
-
-# navbar
-- 모든 페이지에서 동일한 navbar 레이아웃과 우측 로그인 사람 아이콘 버튼을 유지해야 한다.
-- 모바일에서는 햄버거 메뉴 토글, 현재 경로 메뉴 활성 스타일, 키보드 접근성을 보장해야 한다.
-> 공통 navbar 컴포넌트를 레이아웃에 배치한다.
-> 데스크톱/모바일 상태 전환과 접근성 속성을 적용한다.
-
-# hero_carousel_feature_footer
-- 메인 페이지 섹션 순서는 hero, carousel, feature, footer를 고정해야 한다.
-- carousel은 이전/다음/인디케이터 이동과 터치/클릭 조작을 지원해야 한다.
-> hero에 핵심 메시지와 CTA를 배치한다.
-> carousel, feature, footer를 순서대로 구현한다.
-
-# qa
-- 기본 콘텐츠는 게시판 리스트이며 하단 고정 원형 버튼 클릭으로만 채팅창 토글이 가능해야 한다.
-- 채팅창 상태는 단일 boolean으로 관리하고 모바일 가시 영역 침범을 방지해야 한다.
-> 게시판 리스트와 플로팅 버튼을 먼저 배치한다.
-> 버튼 클릭 기반 채팅창 열림/닫힘 동작을 연결한다.
-
-# profile_carousel_tag_badge
-- profile 페이지는 카드형 carousel을 핵심으로 하고 각 카드에 tag badge를 함께 노출해야 한다.
-- 카드-태그 매핑 일관성과 작은 화면 가독성을 유지해야 한다.
-> 카드 데이터와 태그 데이터를 매핑해 렌더링한다.
-> carousel 이동 시 현재 카드 정보와 태그 상태를 갱신한다.
-
-# shadcn_ui
-- 동일 목적 UI는 `@ui/shadcn` 컴포넌트를 우선 사용해야 한다.
-- 미제공 UI만 내부 최소 컴포넌트로 보완하고 과도한 추상화를 피해야 한다.
-> 사용 예정 UI를 shadcn 기준으로 우선 매핑한다.
-> 누락 컴포넌트만 최소 props 단위로 추가한다.
-
-# hydration
-- 버튼 role, aria-label 등 접근성 속성을 생략하지 않아야 한다.
-- 클라이언트/서버 경계를 분리해 hydration mismatch를 방지해야 한다.
-> 상호작용 요소에 접근성 속성을 적용한다.
-> 클라이언트 상태 로직과 서버 렌더 영역을 분리한다.
-
-# not_found
-- 존재하지 않는 경로 접근 상태를 명시적으로 처리해야 한다.
-- 공통 레이아웃 일관성을 해치지 않아야 한다.
-> App Router not-found 페이지를 추가한다.
-> 잘못된 경로 진입 시 안내 화면으로 연결한다.
+# commentcreate_action_init_path
+- 댓글 생성은 `POST /api/posts/[postId]/comments` 경로에서만 처리한다.
+- 인증 사용자만 생성 가능하며 본문은 trim 기준 `1..500`자 유효성 및 sanitize를 통과해야 한다.
+- 저장 레코드는 `author/content/postId/createdAt` 필드를 포함하고 성공 시 목록에 즉시 반영한다.
+- 비인증은 `401`, 잘못된 postId/대상 없음은 `400/404` 계약을 유지한다.
+> 댓글 생성 액션 진입 경로와 API 라우트 연결 상태를 점검한다.
+> 클라이언트 입력 검증(공백-only/길이)과 서버 sanitize 후 저장 차단 조건을 구현한다.
+> 인증/게시글 존재 검증 분기별 응답 코드(401/400/404)를 맞춘다.
+> 성공 시 UI 댓글 목록 갱신 흐름을 연결하고 회귀를 확인한다.
 

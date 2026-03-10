@@ -1,6 +1,9 @@
 import { StyleSheet, View } from 'react-native';
-import { Button, Card, Slider, Switch, Text } from '@rneui/themed';
+import { Button, ButtonGroup, Card, Slider, Switch, Text } from '@rneui/themed';
 import { useAppStore } from '../store/useAppStore';
+
+const FONT_OPTIONS = ['Sans', 'Serif', 'Mono'];
+const FONT_VALUES = ['sans', 'serif', 'mono'] as const;
 
 export const SettingsScreen = () => {
   const readerSettings = useAppStore((state) => state.readerSettings);
@@ -25,8 +28,8 @@ export const SettingsScreen = () => {
           />
         </View>
 
-        <Text style={styles.sectionLabel}>타이핑 속도</Text>
-        <Text style={styles.value}>{readerSettings.typingIntervalMs}ms</Text>
+        <Text style={styles.sectionLabel}>읽기 속도</Text>
+        <Text style={styles.value}>{readerSettings.typingIntervalMs}</Text>
         <Slider
           value={readerSettings.typingIntervalMs}
           onValueChange={(value) => updateReaderSettings({ typingIntervalMs: value })}
@@ -49,6 +52,13 @@ export const SettingsScreen = () => {
           minimumTrackTintColor="#7c3aed"
         />
 
+        <Text style={styles.sectionLabel}>폰트 스타일</Text>
+        <ButtonGroup
+          buttons={FONT_OPTIONS}
+          selectedIndex={FONT_VALUES.indexOf(readerSettings.fontPreset)}
+          onPress={(index) => updateReaderSettings({ fontPreset: FONT_VALUES[index] })}
+        />
+
         <Button
           title="기본값으로 되돌리기"
           type="outline"
@@ -56,7 +66,8 @@ export const SettingsScreen = () => {
             updateReaderSettings({
               typingIntervalMs: 40,
               autoPlay: true,
-              fontScale: 1
+              fontScale: 1,
+              fontPreset: 'sans'
             })
           }
         />

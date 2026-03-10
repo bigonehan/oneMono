@@ -1,6 +1,36 @@
 use std::fs;
 use std::path::Path;
 
+pub fn find_monorepo_root(start: &Path) -> Option<std::path::PathBuf> {
+    let mut cursor = start.to_path_buf();
+    loop {
+        let markers = [
+            cursor.join("pnpm-workspace.yaml").exists(),
+            cursor.join("turbo.json").exists(),
+            cursor.join(".git").exists(),
+        ];
+        if markers.iter().any(|value| *value) {
+            return Some(cursor);
+        }
+        if !cursor.pop() {
+            return None;
+        }
+    }
+}
+
+pub fn find_domain_directory(monorepo_root: &Path) -> Option<std::path::PathBuf> {
+    let candidates = [
+        monorepo_root.join("domains"),
+        monorepo_root.join("domain"),
+        monorepo_root.join("packages").join("domains"),
+        monorepo_root.join("packages").join("domain"),
+    ];
+
+    candidates
+        .into_iter()
+        .find(|candidate| candidate.exists() && candidate.is_dir())
+}
+
 pub fn rendering_runtime_foundations_present(root: &Path) -> bool {
     let files = [
         "src/rendering/runtime/types.ts",
@@ -41,7 +71,7 @@ pub fn domain_discovery_structure_exists(root: &Path) -> bool {
         return false;
     };
 
-    content.contains("projectDomainDiscovery") && content.contains("hydrateDiscovery(")
+    content.contains("fetch(\"/api/discovery.json\")") && content.contains("hydrateDiscovery(")
 }
 
 #[cfg(test)]

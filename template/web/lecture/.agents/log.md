@@ -28,3 +28,8 @@
 ## 2026-03-09 - 작업한일
 - `/home/tree/home/template/server/lecture`를 별도 Gel project + NestJS 백엔드로 구축하고 `lecture-backend` 로컬 인스턴스와 도메인 스키마/migration을 구성.
 - `web/lecture`의 `npm run dev`가 `server/lecture` 백엔드를 함께 실행하도록 연동하고, Gel 데이터가 메인/사용자/상세 페이지에 렌더되는 것을 검증.
+
+## 2026-03-09 - 작업한일
+- 강의 사이트 설계 문서 대비 누락 라우트를 보완: `/search`, `/category/:id`, `/courses*`, `/cart`, `/checkout`, `/my/*`, `/instructor/*`, `/admin/*`, `/verify/:uuid` 페이지를 추가.
+- 학습/장바구니 핵심 흐름을 연결: `/courses/:id/learn` 진도 저장(localStorage), `/cart` 임시 장바구니 추가/삭제 동작 구현.
+- 도메인 보완으로 `templates/server/lecture/src/domains/study/payment.ts`를 추가하고 `npm run build`, `orc clit test`, `orc check_code_draft` 검증을 완료.

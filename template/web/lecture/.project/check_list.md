@@ -1,4 +1,5 @@
-- [ ] userPage GraphQL 요청 실패 입력 -> fallback 사용자 데이터 렌더링 출력 : 사용자 페이지 fetch 실패 복구
-- [ ] endpoint localhost 실패 입력 -> 127.0.0.1 재시도 후 성공 출력 : 네트워크 경로 복구
-- [ ] backend 미기동 입력 -> "API 오류" 대신 fallback 화면 유지 출력 : 기본 학습 흐름 유지
-- [ ] queryGraphQL 실패 처리 입력 -> 정규화된 오류 메시지 출력 : 에러 표시 일관성 검증
+- [ ] astro_main_intro_detail_user_ssr_api_graphql_hydration constraints 없음 입력 -> constraints 빈 배열 유지 출력 : draft 제약조건 없음 확인
+- [ ] cursor_relay_pagination_deprecation_0_100_1 constraints 없음 입력 -> constraints 빈 배열 유지 출력 : draft 제약조건 없음 확인
+- [ ] dataloader constraints 없음 입력 -> constraints 빈 배열 유지 출력 : draft 제약조건 없음 확인
+- [ ] nestjs_graphql_relay_node_edge_connection_pageinfo_id constraints 없음 입력 -> constraints 빈 배열 유지 출력 : draft 제약조건 없음 확인
+- [ ] review_enrollment_progress_cart_coupon_certification_notification constraints 없음 입력 -> constraints 빈 배열 유지 출력 : draft 제약조건 없음 확인

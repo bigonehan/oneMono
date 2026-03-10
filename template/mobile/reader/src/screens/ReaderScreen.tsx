@@ -1,19 +1,73 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Button, Card, Text } from '@rneui/themed';
+import { ReaderBranchChoices } from '../components/ReaderBranchChoices';
+import { ReaderSettingsMenu } from '../components/ReaderSettingsMenu';
 import { ReaderTypingView } from '../components/ReaderTypingView';
+import {
+  findBranchForCursor,
+  findHeaderCursor,
+  parseReaderMarkdown,
+  type ReaderBranch
+} from '../modules/readerMarkdownParser';
 import { useAppStore } from '../store/useAppStore';
 
 export const ReaderScreen = () => {
   const currentSubject = useAppStore((state) => state.currentSubject);
   const readerSettings = useAppStore((state) => state.readerSettings);
+  const updateReaderSettings = useAppStore((state) => state.updateReaderSettings);
   const [restartToken, setRestartToken] = useState(0);
   const [isPlaying, setIsPlaying] = useState(readerSettings.autoPlay);
+  const [startIndex, setStartIndex] = useState(0);
+  const [activeBranch, setActiveBranch] = useState<ReaderBranch | null>(null);
+  const [isSettingsVisible, setIsSettingsVisible] = useState(false);
+  const parsedDocument = useMemo(
+    () => parseReaderMarkdown(currentSubject?.content ?? ''),
+    [currentSubject?.content]
+  );
 
   useEffect(() => {
     setIsPlaying(readerSettings.autoPlay);
     setRestartToken((prev) => prev + 1);
+    setStartIndex(0);
+    setActiveBranch(null);
   }, [currentSubject?.id, readerSettings.autoPlay]);
+
+  const openReaderSettingsMenu = () => {
+    setIsSettingsVisible(true);
+  };
+
+  const closeReaderSettingsMenu = () => {
+    setIsSettingsVisible(false);
+  };
+
+  const handleReaderCursorChange = (cursor: number) => {
+    if (activeBranch) {
+      return;
+    }
+
+    const branch = findBranchForCursor(parsedDocument, startIndex, cursor);
+    if (!branch) {
+      return;
+    }
+
+    setActiveBranch(branch);
+    setIsPlaying(false);
+  };
+
+  const handleBranchChoice = (targetId: string) => {
+    const nextCursor = findHeaderCursor(parsedDocument, targetId);
+    setActiveBranch(null);
+
+    if (nextCursor === null) {
+      setIsPlaying(true);
+      return;
+    }
+
+    setStartIndex(nextCursor);
+    setRestartToken((prev) => prev + 1);
+    setIsPlaying(true);
+  };
 
   if (!currentSubject) {
     return (
@@ -32,7 +86,7 @@ export const ReaderScreen = () => {
         <Text h4>{currentSubject.title}</Text>
         <Text style={styles.fileName}>{currentSubject.fileName}</Text>
         <Text style={styles.meta}>
-          {readerSettings.typingIntervalMs}ms · 폰트 {readerSettings.fontScale.toFixed(2)}x
+          속도 {readerSettings.typingIntervalMs} · 폰트 {readerSettings.fontScale.toFixed(2)}x · {readerSettings.fontPreset}
         </Text>
         <View style={styles.actions}>
           <Button
@@ -55,14 +109,29 @@ export const ReaderScreen = () => {
               setIsPlaying(readerSettings.autoPlay);
             }}
           />
+          <Button
+            type="clear"
+            title="설정"
+            onPress={openReaderSettingsMenu}
+          />
         </View>
       </Card>
+      {activeBranch ? <ReaderBranchChoices branch={activeBranch} onSelect={handleBranchChoice} /> : null}
       <ReaderTypingView
-        content={currentSubject.content}
+        content={parsedDocument.renderText}
         typingIntervalMs={readerSettings.typingIntervalMs}
         fontScale={readerSettings.fontScale}
+        fontPreset={readerSettings.fontPreset}
         isPlaying={isPlaying}
         restartToken={restartToken}
+        startIndex={startIndex}
+        onCursorChange={handleReaderCursorChange}
+      />
+      <ReaderSettingsMenu
+        visible={isSettingsVisible}
+        settings={readerSettings}
+        onClose={closeReaderSettingsMenu}
+        onChange={updateReaderSettings}
       />
     </View>
   );

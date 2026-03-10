@@ -7,9 +7,16 @@ import type { RenderingRuntimeConfig, RuntimeSelectionState } from "./types";
 type Props = {
   config: RenderingRuntimeConfig;
   selection: RuntimeSelectionState;
+  onFunctionSelect?: (functionId: string) => void;
+  onDomainSelect?: (domainId: string | null) => void;
 };
 
-export function RenderingRuntimeBridge({ config, selection }: Props) {
+export function RenderingRuntimeBridge({
+  config,
+  selection,
+  onFunctionSelect,
+  onDomainSelect,
+}: Props) {
   const pixiMountRef = useRef<HTMLDivElement | null>(null);
   const pixiRuntimeRef = useRef<PixiRuntime | null>(null);
   const [pixiError, setPixiError] = useState<string | null>(null);
@@ -54,7 +61,13 @@ export function RenderingRuntimeBridge({ config, selection }: Props) {
       ) : null}
       {pixiError ? <p>Pixi runtime disabled: {pixiError}</p> : null}
 
-      {config.enableR3f ? <R3FViewport selection={selection} /> : null}
+      {config.enableR3f ? (
+        <R3FViewport
+          selection={selection}
+          onFunctionSelect={onFunctionSelect}
+          onDomainSelect={onDomainSelect}
+        />
+      ) : null}
     </section>
   );
 }

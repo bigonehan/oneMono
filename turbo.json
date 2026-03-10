@@ -1,7 +1,14 @@
 {
   "$schema": "https://turborepo.dev/schema.json",
   "ui": "tui",
-  "globalEnv": ["NODE_ENV", "AUTH_JWT_SECRET", "POST_STORAGE_DIR"],
+  "globalEnv": [
+    "NODE_ENV",
+    "AUTH_JWT_SECRET",
+    "POST_STORAGE_DIR",
+    "ADMIN_ACCESS_TOKEN",
+    "STRIPE_SECRET_KEY",
+    "STRIPE_WEBHOOK_SECRET"
+  ],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],

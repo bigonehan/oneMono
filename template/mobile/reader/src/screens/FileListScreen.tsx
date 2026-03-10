@@ -24,6 +24,12 @@ export const FileListScreen = () => {
         data={subjects}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.listContent}
+        ListEmptyComponent={
+          <View style={styles.emptyWrap}>
+            <Text style={styles.emptyTitle}>표시할 문서가 없습니다.</Text>
+            <Text style={styles.emptyCopy}>앱을 새로고침하면 시드 문서를 다시 불러옵니다.</Text>
+          </View>
+        }
         renderItem={({ item }: { item: Subject }) => {
           const selected = selectedSubjectId === item.id;
           return (
@@ -88,6 +94,20 @@ const styles = StyleSheet.create({
     color: '#8a5a2b'
   },
   description: {
+    marginTop: 8,
+    color: '#4b5563',
+    lineHeight: 20
+  },
+  emptyWrap: {
+    borderRadius: 16,
+    padding: 18,
+    backgroundColor: '#fff8ef'
+  },
+  emptyTitle: {
+    fontWeight: '700',
+    color: '#7c2d12'
+  },
+  emptyCopy: {
     marginTop: 8,
     color: '#4b5563',
     lineHeight: 20

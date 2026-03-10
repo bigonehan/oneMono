@@ -7,5 +7,7 @@ appId: host.exp.exponent
 - assertVisible: "리더 시작하기"
 - tapOn: "리더 시작하기"
 - assertVisible: "재생"
+- assertVisible: "그렇다면 나는 이제 어디로 가야하지"
+- tapOn: "여기로 간다"
 - tapOn: "옵션"
 - assertVisible: "자동 재생"

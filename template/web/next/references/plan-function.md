@@ -86,3 +86,67 @@
 - whitespace-only content rejected
 - script/tag payload stored as sanitized content
 - success stores `author/content/postId/createdAt` and updates list immediately
+
+# commentread plan
+
+## scope
+- keep read action entry on `app/actions/commentread.ts` and schema/steps pair
+- keep read API on `GET /api/posts/[postId]/comments` with `page` query pagination
+- keep post detail initial comment render via SSR/ISR path `app/post/[postId]/page.tsx`
+- keep client append flow in `app/post/[postId]/comments-client.tsx` with page>=2 requests
+- keep changes minimal and avoid unrelated refactor
+
+## input_rules
+- `postId`: required non-empty path param
+- `page`: integer and `>= 1`, append mode requires `>= 2`
+- unauthenticated read: allowed and returns `200` on valid request
+- page size: max `20`
+- comment order: `createdAt` ascending
+
+## input_steps
+1. enter post detail page
+2. SSR/ISR initial read requests page `1` comments
+3. API/action reads comments filtered by `postId`
+4. repository sorts by `createdAt` ascending and slices by page size `20`
+5. UI renders initial comments on first paint
+6. load-more requests `page>=2` and appends into existing list
+
+## checks
+- unauthenticated request for `page=1` returns comment list with `200`
+- returned comments are sorted by `createdAt` ascending
+- initial post detail render includes server-side injected comments
+- each page returns at most `20` comments
+- `page>=2` request appends new page after existing list
+
+# commentupdate plan
+
+## scope
+- fix `commentupdate` action entry on `app/actions/commentupdate.ts` and keep schema/steps split
+- keep `PATCH /api/comments/[commentId]` as the only update endpoint and preserve existing UI inline edit flow
+- enforce requester-author ownership check before storage update
+- update comment storage `updatedAt` and return updated comment payload for UI rerender
+- keep changes minimal and avoid unrelated refactor
+
+## input_rules
+- `commentId`: required non-empty string and `/^[a-zA-Z0-9_-]{3,128}$/`
+- `content`: required 1..500 chars and non-empty after trim
+- requester login id: required, and must match comment `authorLoginId`
+- target comment: must exist before update
+
+## input_steps
+1. click `수정` button in own comment row
+2. switch to inline edit mode (`textarea`)
+3. click `저장` after editing content
+4. run client-side content validation
+5. send `PATCH /api/comments/[commentId]`
+6. validate requester==author and input on server action path
+7. persist updated content and refresh `updatedAt`
+8. return result and exit edit mode with updated UI state
+
+## checks
+- invalid input returns `invalid_input`
+- non-author requester returns `forbidden`
+- missing target returns `not_found`
+- success updates `content` and `updatedAt`
+- `rg "commentupdate" app` confirms trigger -> action -> logic -> state update path
+- `pnpm test` and `pnpm lint` pass
