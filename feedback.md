@@ -37,3 +37,18 @@
 - 템플릿 타입체크: `bun run --cwd template/web/next check-types` 통과
 - dev 서버 확인: `cd template/web/next && bunx next dev --port 3100` 실행 후 `GET / 200` 확인
 - 참고: `next build`에서 별개 기존 이슈(`@domain/article`의 `create-article.js` 경로 해석) 존재
+
+# 문제
+- 현재 환경에 `git filter-repo`가 없어 `target` 히스토리 제거를 그 경로로 진행할 수 없다.
+- rewritten refs를 가져온 뒤에도 현재 저장소의 일부 refs가 옛 커밋을 계속 가리켜 `target` 히스토리가 남아 있다.
+- 잔존 ref의 실체는 `refs/jj/keep/*`였고, 첫 임시 클론이 이 namespace를 포함하지 않아 rewrite 대상에서 빠졌다.
+- 캡처 히스토리 정리 재시도에서 임시 클론의 체크아웃 브랜치(`main`)로 직접 fetch하려다 `refusing to fetch into branch checked out` 오류가 났다.
+- 캡처 파일을 제거하는 rewrite와 fetch 반영까지 끝냈지만, `git rev-list --objects --all` 기준으로 일부 캡처 blob이 여전히 reachable 상태다.
+
+# 미해결점
+- `git filter-branch` fallback으로 `apps/web/structure_viewer/target`, `template/web/lecture/target`, `template/desktop/astro/src-tauri/target` 히스토리를 제거해야 한다.
+- rewrite 중 작업트리 유실을 막기 위해 `.git` 제외 백업 후 복원 절차가 필요하다.
+- 어떤 ref가 옛 커밋을 유지하는지 추적하고, 해당 ref를 rewritten commit으로 다시 맞춘 뒤 GC를 다시 실행해야 한다.
+- `refs/jj/keep/*`를 임시 클론에 fetch한 뒤 같은 필터를 다시 적용하고, rewritten JJ refs를 현재 저장소로 되돌려와야 한다.
+- 캡처 히스토리 제거는 임시 클론에서 현재 refs 상태를 그대로 사용하거나, 비체크아웃 namespace로 fetch한 뒤 필터를 적용하는 방식으로 다시 진행해야 한다.
+- 캡처 blob을 아직 붙잡고 있는 정확한 ref/commit을 찾아 그 namespace까지 다시 rewrite하거나 정리해야 한다.

@@ -1,6 +1,0 @@
-package: template-desktop-astro
-summary: Desktop Astro template with Tauri runtime and Playwright-based Google login automation UI.
-info:
-  desktop_google_login_sidebar_r: render VSCode-style sidebar and automation runner panel
-  desktop_google_login_run_c: trigger tauri command and execute playwright login script
-  desktop_login_state_zustand_u: manage idle/running/success/error login states with zustand

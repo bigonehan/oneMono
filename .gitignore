@@ -47,6 +47,12 @@ web_modules/
 # TypeScript cache
 *.tsbuildinfo
 
+# Rust build outputs
+**/target/
+**/.captures/
+**/screen-capture.png
+**/rect-capture.png
+
 # Optional npm cache directory
 .npm
 

@@ -1,5 +1,5 @@
 # info
-name: desktop/astro
+name: desktop/basic
 description: monorepo template package
 spec: auto
 goal: init
