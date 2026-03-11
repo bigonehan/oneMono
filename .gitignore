@@ -52,6 +52,7 @@ web_modules/
 **/.captures/
 **/screen-capture.png
 **/rect-capture.png
+.workspaces/*/.jj/
 
 # Optional npm cache directory
 .npm
