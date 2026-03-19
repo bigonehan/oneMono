@@ -2,7 +2,7 @@
 title: "Playwright Write Smoke 1772698414"
 date: "2026-03-05"
 tags: ['e2e', 'playwright']
-category: "test"
+category: "tech"
 description: "playwright write flow verification description"
 ---
 

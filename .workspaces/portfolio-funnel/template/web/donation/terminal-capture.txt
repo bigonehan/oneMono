@@ -1,0 +1,28 @@
+    110
+    111 -      <div className="footer-copy">
+    112 -        <p>Use `/admin` to update copy, theme tokens, and the campaign target without redeploying.</p>
+    113 -      </div>
+    111        {showRcProbe ? (
+        ⋮
+    116        ) : null}
+    117 +      <div className="footer-copy">
+    118 +        <p>Use `/admin` to update copy, theme tokens, and the campaign target without redeploying.</p>
+    119 +      </div>
+    120        <Footer />
+
+↳ Interacted with background terminal · npm run dev
+  └
+
+• Ran npm run dev
+  └
+    > @templates/web-donation@0.1.0 dev
+    … +9 lines
+    ✓ Compiled in 23ms
+    ^C
+
+• Working (46m 15s • esc to interrupt) · 1 background terminal running · /ps to view · /clean to close
+
+
+› Implement {feature}
+
+  gpt-5.4 xhigh · 75% left · ~/home

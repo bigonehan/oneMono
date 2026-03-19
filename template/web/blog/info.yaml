@@ -13,3 +13,5 @@ features:
   - blog_write_tiptap_c
   - blog_showcase_ui_r
   - blog_header_nav_r
+  - blog_sponsor_page_c
+  - blog_sponsor_cta_u

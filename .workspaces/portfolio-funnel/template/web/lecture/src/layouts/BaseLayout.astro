@@ -1,0 +1,55 @@
+---
+const { title = 'Lecture Site' } = Astro.props;
+---
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <style>
+      :root {
+        --bg: #f6f7f3;
+        --ink: #1b1f1f;
+        --card: #ffffff;
+        --accent: #0f766e;
+      }
+      body {
+        margin: 0;
+        font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+        background: radial-gradient(circle at top right, #d8f3dc 0%, var(--bg) 45%);
+        color: var(--ink);
+      }
+      main { max-width: 960px; margin: 0 auto; padding: 24px 16px 56px; }
+      a { color: var(--accent); text-decoration: none; }
+      nav { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 18px; }
+      nav a { font-size: 14px; }
+      .card { background: var(--card); border-radius: 14px; padding: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+      .grid { display: grid; gap: 16px; }
+      @media (min-width: 768px) { .grid.two { grid-template-columns: 1fr 1fr; } }
+      .muted { color: #4b5563; font-size: 14px; }
+      .controls { display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0; }
+      input, select, button {
+        border: 1px solid #d1d5db;
+        border-radius: 10px;
+        padding: 8px 10px;
+        font: inherit;
+      }
+      button { background: #0f766e; color: #fff; border: 0; cursor: pointer; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <nav>
+        <a href="/">홈</a>
+        <a href="/courses">강의목록</a>
+        <a href="/search">검색</a>
+        <a href="/category/development">카테고리</a>
+        <a href="/cart">장바구니</a>
+        <a href="/my/dashboard">내학습</a>
+        <a href="/instructor/dashboard">강사</a>
+        <a href="/admin/users">관리자</a>
+      </nav>
+      <slot />
+    </main>
+  </body>
+</html>

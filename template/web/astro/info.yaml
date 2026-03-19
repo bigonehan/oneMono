@@ -1,5 +1,6 @@
 package: template-web-astro
 summary: Astro web template baseline with global style and page scaffold.
 info:
-  astro_page_scaffold: starter page composition
+  astro_page_scaffold: hero board workflow proof close starter page composition
+  astro_operations_board: table section with seeded demo rows and section shell layout
   global_style_baseline: shared style and smooth-scroll hooks

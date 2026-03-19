@@ -1,0 +1,8 @@
+# plan
+
+- path: /home/tree/home/apps/web/structure_viewer
+- runner: Rust
+- headed: Off
+- mode: structure viewer initial build verification
+- execute: cargo run -- --help
+- expected: feedback.md, drafts.yaml, session logs, captures

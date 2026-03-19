@@ -6,6 +6,9 @@ const articleReadRepo = new ArticleReadFileRepo(process.cwd());
 
 export const normalizeTag = (tag: string): string => tag.trim().toLowerCase();
 
+const compareByDateDesc = (left: BlogPost, right: BlogPost): number =>
+  new Date(right.date).getTime() - new Date(left.date).getTime();
+
 const assertSeriesOrder = (posts: BlogPost[]): void => {
   const map = new Map<string, Set<number>>();
   for (const post of posts) {
@@ -32,6 +35,9 @@ export const getAllPosts = async (): Promise<BlogPost[]> => {
   assertSeriesOrder(posts);
   return posts;
 };
+
+export const getPopularPosts = async (limit = 5): Promise<BlogPost[]> =>
+  (await getAllPosts()).slice().sort(compareByDateDesc).slice(0, limit);
 
 export const getPostBySlug = (
   slug: string,

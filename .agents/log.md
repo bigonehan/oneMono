@@ -148,3 +148,19 @@
 - `@ui/shadcn`의 `Footer`, `SimpleCarousel`, `TagBadge`와 `@features/editor`의 `ArticleEditor`를 재사용해 copy/theme 편집, live preview, preset 금액 UI를 연결했다.
 - `app/api/donate`, `app/api/stripe/webhook`, `app/api/admin/content`를 추가해 Stripe Checkout 생성, webhook 기반 누적 모금 반영, JSON 기반 운영자 저장 흐름을 구성했다.
 - `bun run lint`, `bun run check-types`, `bun run build`, `rc clit test -p .`, admin 저장/landing 반영/webhook 실행 검증을 완료했고 리서치 기반 개선점은 `template/web/donation/feedback.md`에 기록했다.
+
+## 2026-03-15 - 작업한일
+- `template/web/donation` 랜딩을 sticky section nav, quick donate rail, proof strip, organizer updates, impact callout 중심으로 재구성해 first-fold CTA와 section 위계를 강화했다.
+- `template/web/donation/plan.md`에 current/reference capture와 개선 순서를 기록하고, 리서치 기준 차이를 반영해 hero -> proof -> story -> impact -> checkout 흐름으로 정리했다.
+- `bun run lint`, `bun run check-types`, `bun run build`, `bun run dev`, `orc clit test -p . -m "donation ui improvement verification"`를 통과했고 `PUT /api/admin/content -> saveCampaignContent -> data file -> / 재렌더` 런타임 경로를 실제 호출로 검증했다.
+
+## 2026-03-15 - 작업한일
+- `template/web/landing`을 hero, features, workflow, proof가 분리된 실제 one-page landing 구조로 재구성하고, 기존 Zustand 카운터를 interaction panel로 재배치했다.
+- `template/web/astro`의 placeholder section 나열을 hero, operations board, workflow, proof, close 구조로 재구성해 section 간 역할이 분명하게 보이도록 정리했다.
+- `landing`과 `astro` 모두 빌드/타입/런타임 렌더를 다시 검증했고, `template/web` 범위 피드백은 `template/web/.project/feedback.md`에 정리했다.
+
+## 2026-03-16 - 작업한일
+- `template/web/blog`에 `/sponsor` 랜딩 페이지를 추가하고 헤더 Sponsor 링크, 전역 `이 페이지 스폰서 하기` CTA 배너, 인기 게시물 5개 링크, 미디어 키트, 3가지 패키지, 짧은 인테이크 폼을 연결했다.
+- 스폰서 노출용 콘텐츠 슬롯을 맞추기 위해 블로그 예시 글 2개를 추가하고 `getPopularPosts()` 헬퍼로 최신 5개 게시물을 묶어 재사용하게 했다.
+- `template/web/blog/tests/sponsor-page.spec.ts`를 추가해 헤더 CTA -> 스폰서 페이지 진입, 기사 상세 CTA 노출 흐름을 Playwright로 검증했다.
+- `template/web/blog/src/components/WriteArticleForm.tsx`와 `packages/features/editor/src/index.ts`의 React 19 타입 호환 문제를 최소 수정해 `astro check`가 다시 통과하도록 정리했다.

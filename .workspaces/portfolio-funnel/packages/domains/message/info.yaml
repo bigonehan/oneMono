@@ -1,0 +1,6 @@
+package: @domain/message
+summary: Message domain models, use-cases, and message port contracts.
+info:
+  message_model: canonical message entity and payload fields
+  message_usecase: message creation and conversation grouping flows
+  message_port_contract: domain-owned message port interface

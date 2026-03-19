@@ -3,11 +3,65 @@ import { Footer, Header } from "@ui/shadcn";
 import "../styles/global.css";
 
 const sections = [
-  { id: "section-1", title: "Section 1", color: "section--one" },
-  { id: "section-2", title: "Section 2", color: "section--two" },
-  { id: "section-3", title: "Section 3", color: "section--three" },
-  { id: "section-4", title: "Section 4", color: "section--four" },
-  { id: "section-5", title: "Section 5", color: "section--five" },
+  {
+    id: "section-foundation",
+    title: "Foundations",
+    kicker: "Structure",
+    summary: "Start the template with a clear promise, a table demo, and repeatable section shells instead of anonymous color bands.",
+    bullets: [
+      "Hero copy states what the starter is for before any interaction starts.",
+      "Table demo is still present, but now it sits inside a clearly explained operations section.",
+      "Section shells share spacing rules so future edits do not collapse the rhythm.",
+    ],
+    color: "section--one",
+  },
+  {
+    id: "section-workflow",
+    title: "Workflow",
+    kicker: "How to use it",
+    summary: "Explain how teams should move through the starter so it reads like a usable foundation, not a design draft.",
+    bullets: [
+      "Use the header menu to seed example rows in the table.",
+      "Link every follow-up section back to a real product action or explanation.",
+      "Keep the mobile side menu aligned with the same section order as desktop.",
+    ],
+    color: "section--two",
+  },
+  {
+    id: "section-proof",
+    title: "Proof",
+    kicker: "Why it works",
+    summary: "A good template proves layout, motion, and interaction together. This section explains those guarantees up front.",
+    bullets: [
+      "Lenis scrolling still snaps the user through the page, but now the stops are meaningful.",
+      "Header, footer, and table remain reusable package-level UI pieces.",
+      "Each section has copy, cards, and contrast levels that are ready for real content.",
+    ],
+    color: "section--three",
+  },
+  {
+    id: "section-cta",
+    title: "Launch next",
+    kicker: "Close",
+    summary: "End the template with a concrete next step so the page finishes like a starter site, not a sandbox.",
+    bullets: [
+      "Replace the bullets with product-specific proof, pricing, or onboarding steps.",
+      "Swap the demo rows for your domain entities without changing the section structure.",
+      "Keep the final CTA short and actionable so the page closes with intent.",
+    ],
+    color: "section--four",
+  },
+];
+
+const navSections = [{ id: "table-section", title: "Operations board" }, ...sections.map((section) => ({
+  id: section.id,
+  title: section.title,
+}))];
+
+const heroStats = [
+  { label: "Reusable zones", value: "5", detail: "Hero, board, workflow, proof, and CTA each have a distinct role." },
+  { label: "UI packages", value: "@ui/shadcn", detail: "Header and footer still come from the shared UI package." },
+  { label: "Live interaction", value: "Table seed", detail: "The example row flow remains attached to a real action in the header." },
 ];
 ---
 
@@ -23,25 +77,85 @@ const sections = [
       <Header />
 
       <main class="template-body">
-        <section id="table-section" class="table-section">
-          <h2>User + Task Table</h2>
-          <p>Click Header `Table` to create user and related task rows.</p>
-          <div class="table-shell">
-            <table>
-              <thead data-table-head></thead>
-              <tbody data-table-body>
-                <tr>
-                  <td colspan="4">No rows yet. Use Header Table menu.</td>
-                </tr>
-              </tbody>
-            </table>
+        <section class="hero-section">
+          <div class="hero-section__copy">
+            <p class="hero-section__eyebrow">Astro web template</p>
+            <h1>Replace placeholder sections with a starter that actually explains itself.</h1>
+            <p>
+              This template keeps the reusable header, footer, smooth scroll, and table interaction,
+              but now the page is organized like a real product starter: hero, operations board,
+              workflow, proof, then closing CTA.
+            </p>
+            <div class="hero-section__actions">
+              <a href="#table-section" class="hero-button hero-button--primary">Open operations board</a>
+              <a href="#section-foundation" class="hero-button hero-button--ghost">Review section flow</a>
+            </div>
+          </div>
+
+          <div class="hero-section__stats">
+            {
+              heroStats.map((stat) => (
+                <article class="hero-stat-card">
+                  <span>{stat.label}</span>
+                  <strong>{stat.value}</strong>
+                  <p>{stat.detail}</p>
+                </article>
+              ))
+            }
+          </div>
+        </section>
+
+        <section id="table-section" class="table-section section">
+          <div class="section__shell section__shell--table">
+            <div class="section__intro">
+              <p class="section__eyebrow">Operations board</p>
+              <h2>User + task table</h2>
+              <p>Click Header `Table` to create example users and related tasks, then use this block as the live interaction zone for the template.</p>
+              <div class="table-notes">
+                <article>
+                  <strong>Seed rows</strong>
+                  <p>The header action creates example user-task pairs so the table is never a dead demo.</p>
+                </article>
+                <article>
+                  <strong>Swap domains</strong>
+                  <p>Replace user/task with your own entities while keeping the same section and card rhythm.</p>
+                </article>
+              </div>
+            </div>
+
+            <div class="table-shell">
+              <table>
+                <thead data-table-head></thead>
+                <tbody data-table-body>
+                  <tr>
+                    <td colspan="4">No rows yet. Use Header Table menu.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </section>
 
         {
           sections.map((section) => (
             <section id={section.id} class={`section ${section.color}`}>
-              <h2>{section.title}</h2>
+              <div class="section__shell">
+                <div class="section__intro">
+                  <p class="section__eyebrow">{section.kicker}</p>
+                  <h2>{section.title}</h2>
+                  <p>{section.summary}</p>
+                </div>
+
+                <div class="section__cards">
+                  {
+                    section.bullets.map((bullet) => (
+                      <article class="section-card">
+                        <p>{bullet}</p>
+                      </article>
+                    ))
+                  }
+                </div>
+              </div>
             </section>
           ))
         }
@@ -62,7 +176,7 @@ const sections = [
         </div>
         <nav class="mobile-sidemenu__nav" aria-label="Mobile menu">
           {
-            sections.map((section) => (
+            navSections.map((section) => (
               <a href={`#${section.id}`} data-menu-link>
                 {section.title}
               </a>

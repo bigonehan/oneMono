@@ -51,6 +51,40 @@ body {
   background: #e9ecf2;
 }
 
+.site-nav__cta {
+  background: #1f2a3c;
+  color: #fff !important;
+}
+
+.site-nav__cta:hover {
+  background: #111827 !important;
+}
+
+.site-sponsor-strip {
+  max-width: 711px;
+  margin: 0 auto;
+  padding: 0 38px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.site-sponsor-strip p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.site-sponsor-strip a {
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 10px 14px;
+  background: #f5d98a;
+  color: #1f2937;
+  font-weight: 800;
+}
+
 .shell {
   max-width: 711px;
   margin: 0 auto;
@@ -260,6 +294,221 @@ button {
   overflow: hidden;
 }
 
+.card-surface {
+  background: var(--card);
+  border: 1px solid #ebedf2;
+  border-radius: 20px;
+  padding: 22px;
+}
+
+.sponsor-page {
+  display: grid;
+  gap: 20px;
+}
+
+.sponsor-hero {
+  display: grid;
+  grid-template-columns: 1.4fr 0.9fr;
+  gap: 22px;
+}
+
+.section-kicker {
+  margin: 0 0 10px;
+  color: #8a6d1f;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.section-lead {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.cta-button,
+.text-link {
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 11px 18px;
+  background: #1f2a3c;
+  color: #fff;
+}
+
+.text-link {
+  color: #8a6d1f;
+}
+
+.hero-side h2,
+.section-header h2,
+.package-section h2,
+.sponsor-grid h2,
+.card-surface h2 {
+  margin: 0 0 12px;
+}
+
+.hero-side {
+  background: linear-gradient(180deg, #fff7da, #fff);
+  border-radius: 16px;
+  padding: 18px;
+}
+
+.bullet-list,
+.rollout-list {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 10px;
+}
+
+.sponsor-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.metric-card {
+  border-radius: 16px;
+  background: #f7f8fb;
+  padding: 16px;
+}
+
+.metric-card h3 {
+  margin: 0 0 8px;
+}
+
+.metric-card p,
+.rollout-list p,
+.package-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.rollout-list li {
+  display: grid;
+  gap: 4px;
+}
+
+.rollout-list a,
+.popular-list a {
+  color: var(--ink);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.popular-list {
+  margin: 0;
+  padding-left: 22px;
+  display: grid;
+  gap: 14px;
+}
+
+.popular-list a {
+  display: grid;
+  gap: 4px;
+}
+
+.popular-list span {
+  color: var(--muted);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.package-section {
+  display: grid;
+  gap: 18px;
+}
+
+.package-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.package-card {
+  display: grid;
+  gap: 12px;
+}
+
+.package-name {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.package-price {
+  color: #1f2a3c !important;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.package-outcome {
+  padding-top: 10px;
+  border-top: 1px solid #eceff5;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.field-group {
+  display: grid;
+  gap: 8px;
+}
+
+.field-group span {
+  font-weight: 700;
+}
+
+.field-group--wide {
+  grid-column: 1 / -1;
+}
+
+.form-grid button,
+.form-status {
+  grid-column: 1 / -1;
+}
+
+.form-status {
+  margin: 0;
+  color: var(--muted);
+  min-height: 20px;
+}
+
 @media (max-width: 640px) {
   .site-header {
     flex-direction: column;
@@ -270,6 +519,12 @@ button {
 
   .shell {
     padding: 12px 16px 40px;
+  }
+
+  .site-sponsor-strip {
+    padding: 0 16px 12px;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .blog-showcase__featured {
@@ -287,5 +542,18 @@ button {
 
   .card-item__content h3 {
     font-size: 30px;
+  }
+
+  .sponsor-hero,
+  .sponsor-grid,
+  .metric-grid,
+  .package-grid,
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-header {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }

@@ -1,5 +1,11 @@
-import { useMemo, useState, type FormEvent } from "react";
+import { useMemo, useState, type FormEvent, type ReactElement } from "react";
 import { ArticleEditor } from "@features/editor";
+
+const SafeArticleEditor = ArticleEditor as unknown as (props: {
+  value?: string;
+  onChange?: (value: string) => void;
+  placeholder?: string;
+}) => ReactElement;
 
 const htmlToMarkdown = (html: string): string =>
   html
@@ -92,7 +98,7 @@ export const WriteArticleForm = () => {
       <input value={description} onChange={(event) => setDescription(event.target.value)} name="description" placeholder="description" />
       <input value={series} onChange={(event) => setSeries(event.target.value)} name="series" placeholder="series(optional)" />
       <input value={seriesOrder} onChange={(event) => setSeriesOrder(event.target.value)} name="seriesOrder" type="number" placeholder="series order(optional)" />
-      <ArticleEditor value={editorHtml} onChange={setEditorHtml} placeholder="Write markdown content" />
+      <SafeArticleEditor value={editorHtml} onChange={setEditorHtml} placeholder="Write markdown content" />
       <button type="submit" disabled={saving}>
         {saving ? "저장 중..." : "등록"}
       </button>

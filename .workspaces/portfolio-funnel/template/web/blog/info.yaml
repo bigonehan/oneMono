@@ -1,0 +1,15 @@
+name: template-web-blog
+description: Astro markdown blog template with post listing, detail, taxonomy, series, and write flow.
+features:
+  - blog_article_md_c
+  - blog_article_list_r
+  - blog_article_detail_r
+  - blog_article_alias_route_r
+  - blog_tag_list_r
+  - blog_category_list_r
+  - blog_series_list_r
+  - blog_search_index_r
+  - blog_search_fuse_r
+  - blog_write_tiptap_c
+  - blog_showcase_ui_r
+  - blog_header_nav_r

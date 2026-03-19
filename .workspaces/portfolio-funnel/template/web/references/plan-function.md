@@ -1,0 +1,11 @@
+# function plan
+- feature: add-character-usecase
+- input: character click input
+- output: character position movement(x,z) update through usecase
+- scope:
+  - create `game/src/domains/game/character`
+  - add movement usecase for basic move
+  - wire character entity to call usecase
+- done criteria:
+  - lint/build pass
+  - click input path uses character movement usecase

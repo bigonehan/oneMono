@@ -3,7 +3,7 @@
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import type { NewArticle } from "@domain/article";
-import { createElement, useEffect } from "react";
+import { createElement, useEffect, type ReactElement } from "react";
 
 type EditorProps = {
   value?: string;
@@ -15,7 +15,7 @@ export const ArticleEditor = ({
   value = "",
   onChange,
   placeholder = "Write your article...",
-}: EditorProps) => {
+}: EditorProps): ReactElement => {
   const editor = useEditor({
     extensions: [StarterKit],
     immediatelyRender: false,
@@ -37,7 +37,7 @@ export const ArticleEditor = ({
     }
   }, [editor, value, placeholder]);
 
-  return createElement(EditorContent, { editor });
+  return createElement(EditorContent, { editor }) as ReactElement;
 };
 
 export type EditorDraft = Pick<NewArticle, "title" | "body" | "rule">;
