@@ -4,10 +4,10 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "bunx astro dev --host",
-    "build": "bunx astro build",
-    "preview": "bunx astro preview --host",
-    "check-types": "bunx astro check"
+    "dev": "./node_modules/.bin/astro dev --host",
+    "build": "./node_modules/.bin/astro build",
+    "preview": "./node_modules/.bin/astro preview --host",
+    "check-types": "./node_modules/.bin/astro check"
   },
   "dependencies": {
     "@astrojs/react": "^4.4.0",
