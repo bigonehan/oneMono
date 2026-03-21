@@ -164,3 +164,9 @@
 - 스폰서 노출용 콘텐츠 슬롯을 맞추기 위해 블로그 예시 글 2개를 추가하고 `getPopularPosts()` 헬퍼로 최신 5개 게시물을 묶어 재사용하게 했다.
 - `template/web/blog/tests/sponsor-page.spec.ts`를 추가해 헤더 CTA -> 스폰서 페이지 진입, 기사 상세 CTA 노출 흐름을 Playwright로 검증했다.
 - `template/web/blog/src/components/WriteArticleForm.tsx`와 `packages/features/editor/src/index.ts`의 React 19 타입 호환 문제를 최소 수정해 `astro check`가 다시 통과하도록 정리했다.
+
+## 2026-03-21 - 작업한일
+- `apps/web/agent` Astro 앱을 신규 추가하고 `Chat`/`Configs` 헤더 메뉴, 텍스트 입력+전송 UI, 사이트 설정 등록/선택/삭제 UI를 구성했다.
+- `zustand` persist 스토어로 사이트 설정(`url`, `inputSelector`, `submitSelector`, `responseSelector`)을 브라우저 저장소에 유지하도록 연결했다.
+- `src/pages/api/agent-chat.ts`를 추가해 `agent-browser` 기반 `open -> fill -> click -> get text` 자동화 실행과 최종 응답/오류 반환 API를 구현했다.
+- `bun run check-types`, `timeout 25s bun run dev` 검증 및 `rg` 호출 경로 점검으로 UI 트리거 -> API -> 내부 실행 -> 상태 반영 흐름을 확인했다.
