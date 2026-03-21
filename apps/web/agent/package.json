@@ -1,0 +1,27 @@
+{
+  "name": "agent-browser-web",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "bunx astro dev --host",
+    "build": "bunx astro build",
+    "preview": "bunx astro preview --host",
+    "check-types": "bunx astro check"
+  },
+  "dependencies": {
+    "@astrojs/react": "^4.4.0",
+    "agent-browser": "^0.21.4",
+    "astro": "^5.14.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "zustand": "^5.0.12"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.6",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "typescript": "^5.9.3"
+  }
+}
