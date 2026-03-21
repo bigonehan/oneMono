@@ -5,4 +5,4 @@
 - headed: Off
 - mode: donation template verification
 - execute: npm run dev -> browser open http://172.21.188.149:3000
-- expected: feedback.md, drafts.yaml, session logs, captures
+- expected: job.md, drafts.yaml, session logs, captures

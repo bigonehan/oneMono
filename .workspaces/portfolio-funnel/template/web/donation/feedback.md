@@ -46,11 +46,11 @@ PY, if command -v agent-browser >/dev/null 2>&1; then agent-browser install; els
 - impact card는 텍스트 설명 중심이라 시각적 위계가 약하다. 금액, 결과, 시간 범위를 3단 구조로 재정렬하면 스캔 속도가 좋아진다.
 
 # 과정 개선
-- `cargo run --bin orc -- create_input_md`가 제한 시간 안에 끝나지 않아 ORC 산출물 생성 흐름이 초반부터 멈췄다. 입력 초안이 비었을 때는 기존 `input.md` diff 기반 보강 모드가 필요하다.
-- `impl_code_draft`는 donation 요구사항을 반영하지 못하고 generic 초안에 머물렀다. feature 설명이 구체적인 UI/API 흐름일 때는 `.project/project.md`와 `input.md`의 섹션을 직접 매핑하는 구현 모드가 필요하다.
+- `cargo run --bin orc -- init_orc_job`가 제한 시간 안에 끝나지 않아 ORC 산출물 생성 흐름이 초반부터 멈췄다. 입력 초안이 비었을 때는 기존 `job.md` diff 기반 보강 모드가 필요하다.
+- `impl_orc_code`는 donation 요구사항을 반영하지 못하고 generic 초안에 머물렀다. feature 설명이 구체적인 UI/API 흐름일 때는 `.project/project.md`와 `job.md`의 섹션을 직접 매핑하는 구현 모드가 필요하다.
 - `rc clit test`는 현재 로컬 `drafts.yaml`를 읽지 않고 내부 `build_drafts()`의 `.auth-card` 셀렉터를 강제로 사용한다. 이번 작업에서는 dev 전용 probe를 추가해 우회했지만, 근본적으로는 프로젝트별 selector override 또는 `drafts.yaml` 우선 로딩이 필요하다.
 - `agent-browser install`은 종료 코드는 0인데도 경고성 stderr를 남겨 RC 내부 error heuristic에 걸릴 수 있다. 실패 판정은 stderr 문자열보다 exit code 중심으로 바꾸는 편이 안정적이다.
-- `cargo run --bin orc -- check_code_draft -a`는 2026-03-10 기준 `[orc-status] codex exec | elapsed=60s | waiting for llm response` 상태에서 장시간 정체됐다. 이 단계는 타임아웃 이후 중간 원인과 재시도 지점을 바로 출력하도록 바꾸는 편이 좋다.
+- `cargo run --bin orc -- check_orc_code -a`는 2026-03-10 기준 `[orc-status] codex exec | elapsed=60s | waiting for llm response` 상태에서 장시간 정체됐다. 이 단계는 타임아웃 이후 중간 원인과 재시도 지점을 바로 출력하도록 바꾸는 편이 좋다.
 
 # 추가 검증 메모
 - 실제 실행 검증으로 admin 저장 API를 호출해 `campaign-content.json` 변경과 landing 재반영을 확인했고, 이후 원본 데이터를 복구했다.

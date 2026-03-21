@@ -4,38 +4,38 @@
 초기 UI는 PixiJS에서 사각형 카드 안에 모듈명과 그 아래 함수 목록이 펼쳐지는 화면까지 동작해야 한다.
 
 # tasks
-- `orc-cli-workflow` 순서로 `.project/project.md`, `.project/plan.yaml`, `input.md`, `.project/drafts.yaml`을 생성한다.
+- `orc-cli-workflow` 순서로 `.project/project.md`, `.project/plan.yaml`, `job.md`, `.project/drafts.yaml`을 생성한다.
 - ORC 구현 결과를 바탕으로 Astro, Zustand, PixiJS, React Three Fiber 의존성과 초기 구조 뷰 UI가 연결되었는지 확인한다.
 - 현재 폴더 기준으로 모노레포 루트 및 `domains|domain` 폴더를 찾는 로직과 파일/함수 목록 제공 흐름을 확인한다.
 - `@ui/shadcn` 사용 가능 여부를 확인하고, 있으면 기존 컴포넌트를 우선 활용한다.
-- 검증 실패 시 `feedback.md`를 반영해 재시도한다.
-- 재시도에서는 긴 요구사항 문자열을 tmux pane에 직접 보내지 않고, 짧은 `orc` 인자 또는 로컬 `input.md` 기반 단계 명령으로 분리 실행한다.
-- 강제 실행 항목: 실패 단계마다 새 worker pane을 열고, 단계 완료 여부는 `.project/*`, `input.md`, `feedback.md` 파일 생성으로 판정한다.
+- 검증 실패 시 `job.md`와 `report.md`를 반영해 재시도한다.
+- 재시도에서는 긴 요구사항 문자열을 tmux pane에 직접 보내지 않고, 짧은 `orc` 인자 또는 로컬 `job.md` 기반 단계 명령으로 분리 실행한다.
+- 강제 실행 항목: 실패 단계마다 새 worker pane을 열고, 단계 완료 여부는 `.project/*`, `job.md`, `report.md` 파일 생성으로 판정한다.
 - tmux worker가 정체되면 동일한 `orc` 단계를 현재 셸에서 직접 실행해 출력과 종료 코드를 확보한 뒤 다음 단계로 진행한다.
 - `orc clit test` 실패 원인인 Rust CLI 바이너리 부재를 해결하기 위해 `cargo run -- --help`가 통과하는 실행 진입점을 추가한다.
 - CLI 실행 시 현재 작업 디렉터리 기준 모노레포 루트 탐색, `domains|domain` 폴더 탐색, 웹서버 시작 흐름을 실제 코드로 연결한다.
 - UI 자동 검증을 위해 discovery API 호출, Zustand 저장, Pixi 카드 렌더, 함수 리스트 반영 경로를 실행 기반으로 확인한다.
-- 재시도 사유: `orc add_code_draft -a` 장시간 정체.
-- 실패 원인 해결: draft 생성은 `orc add_code_draft -f`를 우선 사용하고, 성공 즉시 `orc impl_code_draft`를 연속 실행한다.
-- 강제 실행 항목: `-a` 경로 재시도 금지, `-f` 완료 로그 확인 후에만 다음 단계로 진행한다.
-- 재시도 사유: `orc add_code_draft -f`도 동일 정체.
-- 실패 원인 해결: draft 재생성은 생략하고 기존 `.project/drafts.yaml` 기준으로 `orc impl_code_draft -> orc clit test -> orc check_code_draft -a`를 강제 실행한다.
-- 강제 실행 항목: draft 단계 명령 재실행 금지, 검증 단계 결과 파일(`feedback.md`, `report.md`)로 완료 판정한다.
+- 재시도 사유: `orc add_orc_drafts` 장시간 정체.
+- 실패 원인 해결: draft 생성은 `orc add_orc_drafts`를 실행하고, 성공 즉시 `orc impl_orc_code`를 연속 실행한다.
+- 강제 실행 항목: `orc add_orc_drafts` 완료 로그 확인 후에만 다음 단계로 진행한다.
+- 재시도 사유: `orc add_orc_drafts`도 동일 정체.
+- 실패 원인 해결: draft 재생성은 생략하고 기존 `.project/drafts.yaml` 기준으로 `orc impl_orc_code -> orc clit test -> orc check_orc_code`를 강제 실행한다.
+- 강제 실행 항목: draft 단계 명령 재실행 금지, 검증 단계 결과 파일(`job.md`, `report.md`)로 완료 판정한다.
 - 재시도 사유: `cargo run -- --help` 실패(exit 254).
 - 실패 원인 해결: CLI는 `--help|-h`에서 즉시 사용법 출력 후 종료 코드 0을 반환하도록 유지하고, 그 다음 `orc clit test -p .`를 재실행한다.
 - 강제 실행 항목: help 인자 실행이 성공(0)으로 확인되기 전에는 완료 판정하지 않는다.
 
 # check
-- `orc init_code_project -a "<요구사항>"`
-- `orc init_code_plan -a`
-- `orc create_input_md`
-- `orc add_code_draft -a`
-- `orc impl_code_draft`
+- `orc init_orc_project -a`
+- `orc init_orc_job`
+- `orc init_orc_job`
+- `orc add_orc_drafts`
+- `orc impl_orc_code`
 - `orc clit test -p . -m "structure viewer initial build verification"`
-- `orc check_code_draft -a`
-- 재시도 사유: `orc check_code_draft -a` 장시간 정체.
-- 실패 원인 해결: 체크 단계는 `orc check_draft`로 축소 실행하고 생성 파일(`report.md`, `.project/feedback.md`)로 완료 판정한다.
-- 강제 실행 항목: `check_code_draft -a` 재시도 금지, `check_draft` 종료 코드 확인 후에만 마감한다.
+- `orc check_orc_code`
+- 재시도 사유: `orc check_orc_code` 장시간 정체.
+- 실패 원인 해결: 체크 단계는 `orc check_orc_code`로 축소 실행하고 생성 파일(`report.md`, `job.md`)로 완료 판정한다.
+- 강제 실행 항목: `orc check_orc_code` 종료 코드 확인 후에만 마감한다.
 
 - 요청 반영: 하위 워크스페이스(`pnpm-workspace.yaml`, 루트 `workspaces`)를 정리해 상위 모노레포 기준으로 동작하도록 수정한다.
 - 요청 반영: 루트 `package.json`에 실행/테스트 스크립트를 추가해 `pnpm run test`로 검증 가능하게 만든다.

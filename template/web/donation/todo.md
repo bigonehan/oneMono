@@ -6,7 +6,7 @@
 # tasks
 - workspace 의존성을 복구하고 ORC current capture, reference capture, `plan.md` 작성까지 완료한다.
 - `app/page.tsx`와 `app/globals.css`를 중심으로 hero CTA, section rhythm, proof/update blocks, checkout hierarchy를 재구성한다.
-- lint/typecheck/build, dev 서버, admin 저장 경로, ORC capture를 다시 실행하고 결과를 `.project/feedback.md`에 정리한다.
+- lint/typecheck/build, dev 서버, admin 저장 경로, ORC capture를 다시 실행하고 결과를 `job.md`에 정리한다.
 
 # check
 - `cd /home/tree/home-check-ui-template-web && bun install`

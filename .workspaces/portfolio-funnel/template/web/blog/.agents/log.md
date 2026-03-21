@@ -1,7 +1,7 @@
 ## 2026-03-05 - 작업한일
 - blog index UI를 `current.png` 레퍼런스 기반 쇼케이스 레이아웃으로 변경
 - `@ui/shadcn`에 `ListBlogShowcase` 컴포넌트를 추가하고 export 연결
-- Playwright(headless, firefox) 캡처 및 diff 확인 후 `feedback.md` 기록
+- Playwright(headless, firefox) 캡처 및 diff 확인 후 `job.md` 기록
 
 ## 2026-03-05 - 작업한일
 - `@ui/shadcn`에 `CardItem`, `CardList` 컴포넌트를 추가하고 grid 배치 구조로 분리

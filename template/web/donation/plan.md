@@ -50,7 +50,7 @@
 2. Reorganize the landing into clearer sections with distinct visual roles: mission/story, proof/update, impact ladder, checkout.
 3. Add missing trust/support modules that improve credibility and make section transitions intentional.
 4. Refresh typography, spacing, and section backgrounds so each block has a clear reason to exist.
-5. Rerun lint, typecheck, build, and ORC capture verification and update `./.project/feedback.md`.
+5. Rerun lint, typecheck, build, and ORC capture verification and update `./job.md`.
 
 # dispatch prompt
-`cd /home/tree/home-check-ui-template-web/template/web/donation && codex exec --dangerously-bypass-approvals-and-sandbox "$orc-cli-workflow ./plan.md를 읽고 donation landing의 UI 부족 기능과 디자인 부족 항목을 구현하라. 시작 전에 todo.md와 ./.project/feedback.md를 현재 실패 원인 기준으로 정리하고, hero quick donate rail, section 재구성, proof/update block, trust/impact 시각 위계를 순서대로 반영하라. 구현 후 bun run lint, bun run check-types, bun run build, orc clit test -p . -m 'donation ui improvement verification'를 다시 실행하고 ./.project/feedback.md의 # 문제를 0으로 만든 뒤 결과를 정리하라."`
+`cd /home/tree/home-check-ui-template-web/template/web/donation && codex exec --dangerously-bypass-approvals-and-sandbox "$orc-cli-workflow ./plan.md를 읽고 donation landing의 UI 부족 기능과 디자인 부족 항목을 구현하라. 시작 전에 todo.md와 ./job.md를 현재 실패 원인 기준으로 정리하고, hero quick donate rail, section 재구성, proof/update block, trust/impact 시각 위계를 순서대로 반영하라. 구현 후 bun run lint, bun run check-types, bun run build, orc clit test -p . -m 'donation ui improvement verification'를 다시 실행하고 ./job.md의 # 문제를 0으로 만든 뒤 결과를 정리하라."`

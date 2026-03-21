@@ -4,7 +4,7 @@
 ─ Worked for 1m 10s ──────────────────────────────────────────────────────────────────────────
 
 • 구현 반영이 끝나서 검증을 실행합니다. lint/type/build, UI 호출 경로 rg 점검, 그리고 스킬 규
-  칙의 orc clit test/check_code_draft 순서까지 수행하겠습니다.
+  칙의 orc clit test/check_orc_code 순서까지 수행하겠습니다.
 
 • Ran npm --prefix /home/tree/home/template/web/next run lint
   └
@@ -31,7 +31,7 @@
 
 ──────────────────────────────────────────────────────────────────────────────────────────────
 
-• orc clit test와 orc check_code_draft -a를 실행 중이며 완료 메시지와 생성된 feedback/report
+• orc clit test와 orc check_orc_code -a를 실행 중이며 완료 메시지와 생성된 feedback/report
   파일을 회수하겠습니다.
 
 • Working (29m 10s • esc to interrupt) · 2 background terminals running · /ps to view · /clea…

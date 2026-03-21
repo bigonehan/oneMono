@@ -1,8 +1,8 @@
   └ (no output)
 
-• Waited for background terminal · orc add_code_draft -m "page_route_coverage"
+• Waited for background terminal · orc add_orc_drafts -m "page_route_coverage"
 
-• Ran orc add_code_draft -m "page_route_coverage"
+• Ran orc add_orc_drafts -m "page_route_coverage"
   └ ^C
 
 ↳ Interacted with background terminal
@@ -12,9 +12,9 @@
 
 • 축소 draft(-m)도 동일하게 정지되어 draft 생성 단계가 하드 블로커 상태입니다. 실패 기록을 반영하고 기존 draft 산출물 기준으로 impl -> check 단계를 이어서 실행합니다.
 
-• Ran cat > feedback.md <<'EOF'
+• Ran cat > job.md <<'EOF'
   │ # 문제
-  │ `orc add_code_draft -m "page_route_coverage"`도 동일하게 hang되어 중단했다.
+  │ `orc add_orc_drafts -m "page_route_coverage"`도 동일하게 hang되어 중단했다.
   │ … +4 lines
   └ (no output)
 
@@ -24,8 +24,8 @@
   │ … +14 lines
   └ (no output)
 
-• Ran orc impl_code_draft
-  └ impl_code_draft skipped: no drafts.yaml.planned item
+• Ran orc impl_orc_code
+  └ impl_orc_code skipped: no drafts.yaml.planned item
 
 • Ran npm run build
   └

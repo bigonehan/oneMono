@@ -35,7 +35,7 @@
 - 서버 API(`src/pages/api/discovery.json.ts`)를 추가해 현재 작업 디렉터리 기준 모노레포 루트 및 `domains|domain` 경로를 탐색하고 도메인/모듈/함수 목록을 반환하도록 구현.
 - `App`에서 discovery API를 호출해 Zustand 상태를 hydrate하고, 도메인/모듈 선택과 함수 리스트 렌더를 Pixi 카드/React UI에 동기화.
 - Pixi 카드에 선택 모듈명과 함수 리스트 표시를 반영하고, Rust CLI 엔트리(`src/main.rs`)에서 루트 탐색 후 Astro 서버 실행 경로를 연결.
-- 검증: `orc clit test -p . -m "structure viewer initial build verification"`, `cargo test`, `orc check_draft`.
+- 검증: `orc clit test -p . -m "structure viewer initial build verification"`, `cargo test`, `orc check_orc_code`.
 
 ## 2026-03-09 - 작업한일
 - 로컬 중복 워크스페이스 정리 완료(`pnpm-workspace.yaml` 제거, 루트 `package.json`의 `workspaces` 제거).

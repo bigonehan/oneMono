@@ -5,4 +5,4 @@
 - headed: Off
 - mode: lecture site workflow check
 - execute: cargo run -- --help
-- expected: feedback.md, drafts.yaml, session logs, captures
+- expected: job.md, drafts.yaml, session logs, captures

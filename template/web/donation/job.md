@@ -31,8 +31,8 @@
 
 # validation_feedback_loop
 - 검증은 lint, typecheck, build, `rc` 체크, `rg` 호출 경로 점검을 모두 포함한다.
-- 웹 리서치로 donation landing page의 trust signal, progress 표현, CTA 배치 기준을 확인하고 부족한 점을 `feedback.md`에 누적한다.
+- 웹 리서치로 donation landing page의 trust signal, progress 표현, CTA 배치 기준을 확인하고 부족한 점을 `job.md`에 누적한다.
 - 문제가 남으면 원인과 수정안을 문서화한 뒤 다시 구현/검증을 반복한다.
 > 구현 후 정적 검증과 실행 기반 검증을 수행한다.
 > 호출 경로와 화면 반영 경로를 `rg`로 추적한다.
-> 리서치 기반 개선점을 `feedback.md`에 기록하고 필요한 수정을 재반영한다.
+> 리서치 기반 개선점을 `job.md`에 기록하고 필요한 수정을 재반영한다.

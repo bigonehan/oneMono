@@ -111,7 +111,7 @@
 - `@ui/shadcn` 리스트 UI와 `@features/editor` 에디터 모달을 연결해 `추가 -> 저장 -> 리스트 갱신` 흐름을 구현했다.
 - Tauri SQL 플러그인 기반 SQLite 테이블(users/articles) 초기화와 article 생성/조회 저장소를 추가했다.
 - Playwright e2e(`tests/article-flow.spec.ts`)를 추가하고 실제 실행 통과를 확인했다.
-- `plan.md`, `feedback.md`, `funcion.yaml`, `info.yaml`, `feature.yaml`을 함께 갱신했다.
+- `plan.md`, `job.md`, `funcion.yaml`, `info.yaml`, `feature.yaml`을 함께 갱신했다.
 
 ## 2026-03-03 - features reader 패키지 추가 및 Next 홈 화면 PixiJS 타이핑 데모 연결
 - `packages/features/reader` 패키지를 신규 생성하고 `TypingTextReader`(PixiJS 기반 타이핑 텍스트 React 컴포넌트)를 구현했다.
@@ -147,4 +147,4 @@
 - `template/web/donation` 패키지를 새로 만들고 소개/detail/progress/Stripe CTA를 갖춘 단일 페이지 모금 랜딩과 `/admin` 운영자 편집 화면을 구현했다.
 - `@ui/shadcn`의 `Footer`, `SimpleCarousel`, `TagBadge`와 `@features/editor`의 `ArticleEditor`를 재사용해 copy/theme 편집, live preview, preset 금액 UI를 연결했다.
 - `app/api/donate`, `app/api/stripe/webhook`, `app/api/admin/content`를 추가해 Stripe Checkout 생성, webhook 기반 누적 모금 반영, JSON 기반 운영자 저장 흐름을 구성했다.
-- `bun run lint`, `bun run check-types`, `bun run build`, `rc clit test -p .`, admin 저장/landing 반영/webhook 실행 검증을 완료했고 리서치 기반 개선점은 `template/web/donation/feedback.md`에 기록했다.
+- `bun run lint`, `bun run check-types`, `bun run build`, `rc clit test -p .`, admin 저장/landing 반영/webhook 실행 검증을 완료했고 리서치 기반 개선점은 `template/web/donation/job.md`에 기록했다.

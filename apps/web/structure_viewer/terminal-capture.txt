@@ -1,6 +1,6 @@
     45      let cwd = env::current_dir()?;
 
-• Edited feedback.md (+9 -0)
+• Edited job.md (+9 -0)
     19  - feedback를 기준으로 plan/drafts 절차를 갱신해야 한다.
     20 +
     21 +# 문제
@@ -14,7 +14,7 @@
         정하고, 이후 `orc clit test`를 재실행한다.
 
 • Edited todo.md (+3 -0)
-    23  - 강제 실행 항목: draft 단계 명령 재실행 금지, 검증 단계 결과 파일(`feedback.md`, `rep
+    23  - 강제 실행 항목: draft 단계 명령 재실행 금지, 검증 단계 결과 파일(`job.md`, `rep
         ort.md`)로 완료 판정한다.
     24 +- 재시도 사유: `cargo run -- --help` 실패(exit 254).
     25 +- 실패 원인 해결: CLI는 `--help|-h`에서 즉시 사용법 출력 후 종료 코드 0을 반환하도록
@@ -25,7 +25,7 @@
 ──────────────────────────────────────────────────────────────────────────────────────────────
 
 • cargo run -- --help 실패 원인을 코드에 반영했습니다. 이제 orc clit test를 재실행해 통과 여부
-  를 확인하고 orc check_code_draft -a까지 마무리합니다.
+  를 확인하고 orc check_orc_code -a까지 마무리합니다.
 
 • Ran cargo test
   └     Finished `test` profile [unoptimized + debuginfo] target(s) in 0.34s

@@ -32,4 +32,4 @@
 ## 2026-03-09 - 작업한일
 - 강의 사이트 설계 문서 대비 누락 라우트를 보완: `/search`, `/category/:id`, `/courses*`, `/cart`, `/checkout`, `/my/*`, `/instructor/*`, `/admin/*`, `/verify/:uuid` 페이지를 추가.
 - 학습/장바구니 핵심 흐름을 연결: `/courses/:id/learn` 진도 저장(localStorage), `/cart` 임시 장바구니 추가/삭제 동작 구현.
-- 도메인 보완으로 `templates/server/lecture/src/domains/study/payment.ts`를 추가하고 `npm run build`, `orc clit test`, `orc check_code_draft` 검증을 완료.
+- 도메인 보완으로 `templates/server/lecture/src/domains/study/payment.ts`를 추가하고 `npm run build`, `orc clit test`, `orc check_orc_code` 검증을 완료.
