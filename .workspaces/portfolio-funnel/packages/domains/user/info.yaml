@@ -1,6 +1,0 @@
-package: @domain/user
-summary: User domain models, use-cases, and user port contracts.
-info:
-  user_model: canonical user entity and profile fields
-  user_usecase: user creation and domain validation flows
-  user_port_contract: domain-owned user port interface
