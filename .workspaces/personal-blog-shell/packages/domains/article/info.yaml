@@ -1,6 +1,0 @@
-package: @domain/article
-summary: Article domain models, use-cases, and article port contracts.
-info:
-  article_model: canonical article entity and rule states
-  article_usecase: article creation/update validation flows
-  article_port_contract: domain-owned article port interface

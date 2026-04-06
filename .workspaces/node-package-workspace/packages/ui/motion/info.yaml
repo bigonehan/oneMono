@@ -1,5 +1,0 @@
-package: @ui/motion
-summary: Motion UI package containing scroll/text animation components.
-info:
-  slide_up_text: scroll-triggered text reveal animation
-  motion_entrypoints: shared animation exports

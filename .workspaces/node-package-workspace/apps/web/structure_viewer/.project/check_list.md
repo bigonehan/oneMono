@@ -1,7 +1,0 @@
-- [ ] .project/drafts.yaml:draft[name=bootstrap_the_monorepo_root_and_base_workspace_structure_for_structure_viewer] -> monorepo root + base workspace files present : 모노레포 루트/워크스페이스 기본 구조 부트스트랩 검증
-- [ ] .project/drafts.yaml:draft[name=configure_astro_react_and_typescript_as_the_primary_application_stack] -> Astro + React + TypeScript stack configured : Astro/React/TypeScript 주 스택 구성 검증
-- [ ] .project/drafts.yaml:draft[name=define_domains_and_a_domain_discovery_structure_under_the_project] -> domain discovery structure and API wiring present : 도메인/디스커버리 구조 및 API 연결 검증
-- [ ] .project/drafts.yaml:draft[name=implement_the_initial_module_card_ui] -> module card UI rendered with domain/module selection : 초기 모듈 카드 UI 렌더링 검증
-- [ ] .project/drafts.yaml:draft[name=integrate_pixijs_and_react_three_fiber_as_rendering_runtime_foundations] -> PixiJS + R3F runtime bridge/files wired : PixiJS 및 R3F 런타임 기반 통합 검증
-- [ ] .project/drafts.yaml:draft[name=render_function_lists_inside_the_module_card_ui] -> function list rendered and selectable in module card : 모듈 카드 내 함수 목록 렌더/선택 검증
-- [ ] .project/drafts.yaml:draft[name=set_up_zustand_for_shared_client_state_management] -> zustand store manages shared selection/filter state : zustand 공유 상태 관리 검증

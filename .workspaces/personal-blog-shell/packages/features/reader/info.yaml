@@ -1,4 +1,0 @@
-package: @features/reader
-summary: Reader feature package with PixiJS typing text component.
-info:
-  reader_typing_text: pixijs typing style text renderer component

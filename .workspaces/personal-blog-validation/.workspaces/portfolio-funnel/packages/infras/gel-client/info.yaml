@@ -1,5 +1,0 @@
-package: @infras/gel-client
-summary: GEL client bootstrap and schema export utilities.
-info:
-  gel_client_get: lazy client accessor for GEL runtime
-  gel_schema_export: user/article schema definitions

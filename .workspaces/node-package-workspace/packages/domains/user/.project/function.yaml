@@ -1,4 +1,0 @@
-functions:
-  - name: "createUserModel"
-    icon: "create"
-    description: "Auto-generated: createUserModel handles create behavior in user."

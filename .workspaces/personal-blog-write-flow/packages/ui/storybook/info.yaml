@@ -1,4 +1,0 @@
-package: @ui/storybook
-summary: Storybook integration package for UI component documentation.
-info:
-  storybook_runtime: storybook react runtime export
