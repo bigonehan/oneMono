@@ -1,0 +1,30 @@
+{
+  "name": "@repo/home",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "format": "oxfmt --write \"**/*.{ts,tsx,md}\"",
+    "check-types": "turbo run check-types"
+  },
+  "devDependencies": {
+    "oxfmt": "latest",
+    "turbo": "^2.8.6",
+    "typescript": "5.9.2"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "bun@1.3.2",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "packages/features/*",
+    "packages/domains/*",
+    "packages/adapters/*",
+    "packages/infras/*",
+    "packages/ui/*",
+    "template/*/*"
+  ]
+}

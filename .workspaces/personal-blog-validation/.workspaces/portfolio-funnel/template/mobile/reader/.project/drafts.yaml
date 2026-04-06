@@ -1,0 +1,52 @@
+draft:
+- name: feature_reader_expo_app_3_reader_view_nation_song_md_subject_domain_usecase_zustand
+  state: complete
+  type: action
+  domain:
+  - app
+  depends_on: []
+  scope:
+  - feature_reader_expo_app_3_reader_view_nation_song_md_subject_domain_usecase_zustand
+  rule:
+  - feature_reader_expo_app_3_reader_view_nation_song_md_subject_domain_usecase_zustand exists
+  step:
+  - implement feature_reader_expo_app_3_reader_view_nation_song_md_subject_domain_usecase_zustand
+  tasks:
+  - implement feature_reader_expo_app_3_reader_view_nation_song_md_subject_domain_usecase_zustand
+  constraints: []
+  check:
+  - pnpm typecheck
+- name: 4_flashlist_react_native_elements_ui_md_zustand_maestro
+  state: planned
+  type: action
+  domain:
+  - app
+  depends_on: []
+  scope:
+  - 4_flashlist_react_native_elements_ui_md_zustand_maestro
+  rule:
+  - 4_flashlist_react_native_elements_ui_md_zustand_maestro exists
+  step:
+  - implement 4_flashlist_react_native_elements_ui_md_zustand_maestro
+  tasks:
+  - implement 4_flashlist_react_native_elements_ui_md_zustand_maestro
+  constraints: []
+  check:
+  - pnpm typecheck
+- name: feature_reader_component_mobile_md_expo_1_doc_list_2_doc_3_doc_reader_4_option_tab_zustand_flashlist_ui_react_native_elements_maestro
+  state: planned
+  type: action
+  domain:
+  - app
+  depends_on: []
+  scope:
+  - feature_reader_component_mobile_md_expo_1_doc_list_2_doc_3_doc_reader_4_option_tab_zustand_flashlist_ui_react_native_elements_maestro
+  rule:
+  - feature_reader_component_mobile_md_expo_1_doc_list_2_doc_3_doc_reader_4_option_tab_zustand_flashlist_ui_react_native_elements_maestro exists
+  step:
+  - implement feature_reader_component_mobile_md_expo_1_doc_list_2_doc_3_doc_reader_4_option_tab_zustand_flashlist_ui_react_native_elements_maestro
+  tasks:
+  - implement feature_reader_component_mobile_md_expo_1_doc_list_2_doc_3_doc_reader_4_option_tab_zustand_flashlist_ui_react_native_elements_maestro
+  constraints: []
+  check:
+  - pnpm typecheck

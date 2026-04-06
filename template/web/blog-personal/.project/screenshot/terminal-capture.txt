@@ -1,0 +1,42 @@
+ cli_impl_code_draft
+  orc init_orc_job
+  orc init_orc_project|
+init_code_project [-n <
+name>] [-p <path>] [-s
+<spec>] [-d <descriptio
+n>] [-m <message>] [-a]
+  orc open-ui [-w|--web
+|-b|--build]
+  orc send-tmux <pane_i
+d> <msg...> [enter|ente
+r-exit|raw|display]
+  orc serve-web-api [--
+addr <host:port>]
+tsend done: pane=%1 opt
+ion=enter msg=worker:%2
+3:fail:orc_clit_test
+
+…via  v25.8.1 took 3s
+♥ 16:16  ➜ bash -lc 'c
+d /home/tree/oneMono/te
+mplate/web/blog-persona
+l && rm -f .rc-run.lock
+ && code=1; for attempt
+ in 1 2 3; do timeout 1
+80s orc clit test -p .
+-m "blog-personal tisto
+ry" && code=0 && break;
+ rc=$?; printf "[%s] or
+c clit test attempt %s
+failed with %s\n" "$(da
+te +%F\ %T)" "$attempt"
+ "$rc" >> .project/chec
+k-process.md; sleep 1;
+done; if [ "$code" -eq
+0 ]; then orc send-tmux
+ %1 "worker:%23:done:or
+c_clit_test" enter; els
+e orc send-tmux %1 "wor
+ker:%23:fail:orc_clit_t
+est" enter; fi'
+

@@ -1,0 +1,28 @@
+draft:
+- name: landing_page_routing_and_responsive_sections_for_main_profile_qa
+  state: worked
+  type: action
+  domain:
+  - app
+  depends_on: []
+  scope:
+  - landing_page_routing_and_responsive_sections_for_main_profile_qa
+  rule:
+  - Next.js App Router 기준으로 `/`, `/profile`, `/qa` 라우트를 구성하고 공통 navbar를 유지한다.
+  - main 페이지는 hero, carousel, feature, footer 순서를 유지하고 모바일 우선 반응형 레이아웃을 적용한다.
+  - navbar에서 main/profile/qa로 항상 이동 가능하고 현재 경로 활성 스타일을 제공한다.
+  - qa 페이지는 게시판 리스트 기본 노출과 하단 고정 원형 버튼 기반 채팅 토글을 제공한다.
+  - profile 페이지는 카드형 carousel과 tag badge를 함께 노출한다.
+  step:
+  - App Router 레이아웃에 공통 navbar를 배치하고 main/profile/qa/not-found 라우트를 점검한다.
+  - main 페이지 섹션(hero→carousel→feature→footer) 반응형 구성과 carousel 조작(터치/클릭)을 구현한다.
+  - qa 페이지 게시판 리스트와 플로팅 원형 버튼-채팅창 토글 boolean 상태 흐름을 연결한다.
+  - profile 페이지 카드 carousel-태그 매핑, 작은 화면 가독성, 접근성 속성을 검증한다.
+  tasks:
+  - App Router 레이아웃에 공통 navbar를 배치하고 main/profile/qa/not-found 라우트를 점검한다.
+  - main 페이지 섹션(hero→carousel→feature→footer) 반응형 구성과 carousel 조작(터치/클릭)을 구현한다.
+  - qa 페이지 게시판 리스트와 플로팅 원형 버튼-채팅창 토글 boolean 상태 흐름을 연결한다.
+  - profile 페이지 카드 carousel-태그 매핑, 작은 화면 가독성, 접근성 속성을 검증한다.
+  constraints: []
+  check:
+  - cargo test

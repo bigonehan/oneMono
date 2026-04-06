@@ -1,0 +1,12 @@
+goal: blog-personal 폴더에 티스토리형 개인 블로그를 만들고 글 작성/저장/조회 흐름을 검증한다.
+domains:
+- personal_shell
+- write_flow
+- validation
+drafts:
+  planned:
+  - '[personal_shell] 개인 블로그형 헤더, 소개, 대표 글, 최근 글, 카테고리 탐색이 있는 메인 화면을 만든다.'
+  - '[write_flow] 글쓰기 화면 설명과 입력 폼을 연결하고 입력 -> API -> posts 저장 경로를 유지한다.'
+  - '[validation] ORC job/draft/check와 Playwright, 타입체크, 빌드, dev 서버 검증을 수행한다.'
+  worked: []
+  complete: []

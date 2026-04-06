@@ -1,0 +1,4 @@
+functions:
+  - name: "createArticleModel"
+    icon: "create"
+    description: "Auto-generated: createArticleModel handles create behavior in article."

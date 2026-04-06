@@ -1,0 +1,19 @@
+---
+import { AppHeader } from "../components/AppHeader";
+import { ChatPanel } from "../components/ChatPanel";
+import "../styles/global.css";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Agent Browser Chat</title>
+  </head>
+  <body>
+    <AppHeader current="home" client:load />
+    <main class="page-shell">
+      <ChatPanel client:load />
+    </main>
+  </body>
+</html>

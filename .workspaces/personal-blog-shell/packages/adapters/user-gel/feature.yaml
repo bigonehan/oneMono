@@ -1,0 +1,11 @@
+package: @adapters/user-gel
+path: packages/adapters/user-gel
+domain: user-article-adapter
+summary: Adapter layer for user/article CRUD and joined row access over GEL infra.
+llm_hint:
+  - Use this file as a quick package capability map before reading code.
+  - Treat listed features as stable entry points; verify details in src when implementing.
+features:
+  - user_crud: create/read/update/delete users
+  - article_crud: create/read/update/delete articles
+  - user_article_rows: joined row queries for author/article views

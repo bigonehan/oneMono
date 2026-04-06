@@ -1,0 +1,10 @@
+package: @features/user
+path: packages/features/user
+domain: user-feature
+summary: User auth/role CRUD use-case interfaces and in-memory repository.
+llm_hint:
+  - Use IUserAuthUseCase for login/signup flows.
+  - Repository files user-repo-*.ts provide simple adapters for local dev.
+features:
+  - user_usecase_crud: user create/read/update/delete interfaces
+  - user_auth_r: credential verify and role resolution

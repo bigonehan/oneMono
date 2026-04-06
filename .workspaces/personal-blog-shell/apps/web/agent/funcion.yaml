@@ -1,0 +1,5 @@
+package: agent
+features:
+  - agent_chat_c
+  - agent_configs_crud
+  - agent_browser_run_c

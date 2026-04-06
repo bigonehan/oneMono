@@ -15,3 +15,8 @@
 - `profile` 페이지에 카드형 carousel과 tag badge UI를 구현했다.
 - `@ui/shadcn` 패키지에 `SimpleCarousel`, `TagBadge` 컴포넌트를 추가해 페이지에서 재사용하도록 연결했다.
 - 검증: `npm --prefix next run lint`, `npm --prefix next run test` 통과. (`check-types`, `build`는 기존 코드의 선행 오류로 실패)
+## 2026-03-30 - 작업한일
+- `blog-personal` 폴더를 생성하고 티스토리형 개인 블로그 메인 화면, 대표 글, 최근 글, 카테고리 탐색 UI를 구성했다.
+- `/write` 페이지를 순수 HTML 폼 + inline script 기반 글쓰기 흐름으로 연결해 `posts/` 파일 저장이 실제로 동작하도록 구현했다.
+- ORC `create_job_md`, `add_orc_drafts`, 병렬 `impl_code_draft`, `check_orc_code`, `clit test`를 실행했고 최종 `clit` smoke 캡처를 남겼다.
+- 검증: `bun install`, `bun run check-types`, `bun run build`, `bunx playwright test tests/index-visual.spec.ts tests/write-flow.spec.ts`, `bun run dev -- --host 127.0.0.1` 통과.

@@ -16,7 +16,16 @@ const FUNCTION_PATTERNS = [
   /(?:export\s+)?const\s+([A-Za-z0-9_]+)\s*=\s*(?:async\s*)?\(/g,
 ];
 
-type FunctionAction = "create" | "delete" | "load" | "update" | "filter" | "convert" | "calc";
+type FunctionAction =
+  | "search"
+  | "browse"
+  | "refresh"
+  | "edit"
+  | "delete"
+  | "save"
+  | "confirm"
+  | "cancel"
+  | "calc";
 
 type DiscoveryMeta = {
   monorepoRoot: string;
@@ -30,22 +39,26 @@ export type ProjectDiscoveryResult = {
 };
 
 const ACTION_ICON_MAP: Record<FunctionAction, string> = {
-  create: "➕",
+  search: "🔍",
+  browse: "📁",
+  refresh: "🔄",
+  edit: "✏",
   delete: "🗑",
-  load: "📥",
-  update: "✏",
-  filter: "🔎",
-  convert: "🔁",
+  save: "📄↑",
+  confirm: "✔",
+  cancel: "✕",
   calc: "🧮",
 };
 
 const LLM_FUNCTION_ICON_MAPPER: Record<FunctionAction, string[]> = {
-  create: ["create", "add", "insert", "register", "new", "generate", "build"],
+  search: ["search", "query", "find", "filter", "match", "lookup"],
+  browse: ["folder", "directory", "tree", "browse", "explore", "discover", "load", "read", "list", "get", "fetch"],
+  refresh: ["refresh", "reload", "revalidate", "hydrate", "rescan"],
+  edit: ["update", "set", "edit", "patch", "change", "rename", "modify", "convert", "transform", "map", "parse", "format"],
   delete: ["delete", "remove", "clear", "drop", "destroy"],
-  load: ["load", "read", "fetch", "find", "list", "get", "hydrate"],
-  update: ["update", "set", "edit", "patch", "write", "save", "sync"],
-  filter: ["filter", "search", "query", "match", "select", "sort"],
-  convert: ["convert", "transform", "map", "parse", "serialize", "format"],
+  save: ["save", "store", "persist", "write", "export", "upload", "sync"],
+  confirm: ["confirm", "approve", "accept", "check", "verify"],
+  cancel: ["cancel", "close", "abort", "reset", "dismiss"],
   calc: ["calc", "count", "sum", "total", "compute", "estimate"],
 };
 

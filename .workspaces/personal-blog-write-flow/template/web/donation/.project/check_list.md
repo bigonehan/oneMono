@@ -1,0 +1,2 @@
+- [x] donation template verification -> 기본 점검 통과 : mode 기반 기본 체크리스트
+- [x] step 실행 -> output_log 기록 : 실행 로그 수집

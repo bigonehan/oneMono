@@ -1,0 +1,10 @@
+package: @ui/three
+path: packages/ui/three
+domain: ui-three
+summary: Three.js character controller and third-person follow camera helpers.
+llm_hint:
+  - Use this file as a quick package capability map before reading code.
+  - Treat listed features as stable entry points; verify details in src when implementing.
+features:
+  - character_controller: keyboard and mobile joystick character movement with jump
+  - third_person_camera: follow camera logic that trails the character

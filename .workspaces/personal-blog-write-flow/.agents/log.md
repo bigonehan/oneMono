@@ -1,0 +1,172 @@
+## 2026-02-20 - funcion.yaml 패키지 기능 목록 생성
+- 모노레포 `packages` 하위 패키지를 순회해 공개 기능을 기준으로 `funcion.yaml`을 생성했다.
+- `domains` 아래는 패키지 이름별 기능 리스트 형태로 정리했다.
+
+## 2026-02-20 - 약어 규칙 추가 및 funcion.yaml 압축
+- `AGENTS.md`에 `crud/c/r/u/d` 약어 의미와 사용 규칙을 추가했다.
+- `funcion.yaml`을 약어 사전과 객체별 `can` 액션 중심 구조로 압축해 LLM이 객체-행동 매핑을 빠르게 파악하도록 정리했다.
+
+## 2026-02-20 - user/article 도메인 및 auth/editor 기능 추가
+- `packages/domains`의 기존 시험용 도메인(task/user)을 정리하고 `@domain/user`, `@domain/article`를 새로 구성했다.
+- `packages/ports`에 `user_port`, `article_port` CRUD 인터페이스를 추가하고 기존 task port를 제거했다.
+- `packages/infras/gel-client`에 user/article 스키마와 EdgeDB schema 문자열(`edgeDbSchema`)을 추가했다.
+- `packages/features/auth`(better-auth 기반 id/pw 인증 흐름)와 `packages/features/editor`(tiptap 에디터 컴포넌트)를 추가했다.
+- `packages/ui/shadcn`에 `form_login`, `form_editor`, `list_article` 컴포넌트를 추가하고 export를 갱신했다.
+- `funcion.yaml`을 현재 구조에 맞춰 domains/features/ports/adapters/infras/ui 항목으로 업데이트했다.
+
+## 2026-02-20 - ports 레이어 제거 및 도메인 내부 포트 소유 일원화
+- `packages/ports/*` 사용을 중단하고 포트 인터페이스를 각 도메인 패키지(`packages/domains/<domain>/src/<domain>_port.ts`)에서 관리하도록 규칙을 정리했다.
+- `AGENTS.md`, `AGENTS.override.md`, `packages/domains/AGENTS.md`에 포트 위치/소유 규칙을 명시했다.
+- `funcion.yaml`에서 분리된 `ports` 섹션을 제거해 도메인 중심 구조와 일치시켰다.
+
+## 2026-02-20 - @ui/motion 패키지 추가 및 Next 템플릿 스크롤 텍스트 애니메이션 적용
+- `packages/ui/motion` 패키지를 추가하고 `gsap`, `lenis` 의존성을 구성했다.
+- `packages/ui/motion/src/animation/slide-up-text.tsx`에 스크롤 진입 시 텍스트가 위로 떠오르는 GSAP 컴포넌트를 구현했다.
+- `template/web/next/app/page.tsx`에서 `@ui/motion`의 `Lenis`, `SlideUpText`를 사용하도록 변경했다.
+- `template/web/next/package.json`에 `@ui/motion` 워크스페이스 의존성을 추가했다.
+
+## 2026-02-20 - React Native(Expo) 템플릿 추가 및 FlashList 기본 구성
+- `template/mobile/expo` 템플릿을 새로 추가하고 Expo 실행 스크립트(`dev/android/ios/web`)를 구성했다.
+- `template/mobile/expo/App.tsx`에서 `@shopify/flash-list`를 사용하는 기본 리스트 화면을 구현했다.
+- 모노레포 기능 기록 파일 `funcion.yaml`에 `template-mobile-expo` 기능 항목(`mobile_expo_flashlist_r`)을 반영했다.
+
+## 2026-02-20 - Next 템플릿 헤더 로그인 메뉴 및 auth 폼 연동
+- `packages/features/auth`에 `components/form_login.tsx`, `components/form_sign_up.tsx`를 추가하고 `src/index.ts`에서 export 하도록 구성했다.
+- `template/web/next/app/page.tsx`에서 `@features/auth`의 로그인/회원가입 폼을 불러와 `auth-section`에서 두 폼을 모두 테스트할 수 있게 연결했다.
+- `packages/ui/shadcn/components/layout/header.tsx`에 Login 메뉴를 추가해 `template/web/next` 헤더에서 인증 섹션으로 이동 가능하게 했다.
+- 워크스페이스 인식 문제를 해결하기 위해 루트 `package.json`에 `packages/features/*`를 추가하고 의존성 링크를 갱신했다.
+
+## 2026-02-20 - Next 템플릿 JWT 인증 메뉴(Login/Signin/Logout) 및 회원정보 표시 구현
+- `template/web/next/app/api/auth/*` 라우트(`sign-up`, `login`, `logout`, `me`)를 추가해 JWT(HttpOnly cookie) 기반 인증 플로우를 구현했다.
+- `template/web/next/lib/auth-jwt.ts`, `template/web/next/lib/auth-store.ts`를 추가해 토큰 서명/검증과 인메모리 사용자 저장소를 구성했다.
+- `packages/ui/shadcn/components/layout/header.tsx`를 인증 상태 기반 메뉴로 확장해 비로그인 시 `Login/Signin`, 로그인 시 `Logout + 회원정보`를 노출하도록 변경했다.
+- `template/web/next/app/page.tsx`를 API 연동으로 수정해 로그인/회원가입/로그아웃 동작과 현재 사용자 표시를 연결했다.
+- `funcion.yaml`에 `template-web-next`의 JWT 인증 기능 항목을 반영했다.
+
+## 2026-02-21 - Expo 모바일 기울기 실시간 화면 및 하단 탭 추가
+- `template/mobile/expo/App.tsx`를 `List`/`Interaction` 하단 탭 구조로 변경했다.
+- `Interaction` 화면에서 `expo-sensors` `Accelerometer`를 구독해 `x/y/z` 기울기 값을 실시간으로 표시하도록 구현했다.
+- `template/mobile/expo/package.json`에 `expo-sensors` 의존성을 추가하고 타입체크(`bun run check-types`)를 통과했다.
+
+## 2026-02-20 - Next 템플릿 Post 라우트/에디터 및 Markdown 저장 CRUD 연동
+- `packages/domains/article/src/article_port.ts`의 CRUD 포트(create/get/list/update/delete) 제공 여부를 확인하고, 이를 구현하는 `@adapters/article-md`를 새로 추가했다.
+- `@infras/article-md`를 추가해 Article 도메인 상태 필드와 일치하는 스키마 기반으로 `.md` 파일 저장/조회/수정/삭제 스토어를 구현했다.
+- `template/web/next`에 `/post`, `/post/editor`, `/api/post`, `/api/post/[postId]`를 추가해 로그인 사용자 기준 글 등록/수정/삭제와 목록/상세 조회를 연결했다.
+- `/post`의 글쓰기 버튼 클릭 시 `대기중...` 오버레이를 표시하고, 제목 클릭 시 본문 토글이 되도록 UI를 구현했다.
+- 헤더/모바일 메뉴에 `Post` 항목을 추가하고 `bun run check-types`, `bun run lint`, 어댑터 실행 스크립트로 Markdown 저장/로드를 검증했다.
+
+## 2026-02-20 - shadcn list_card 컴포넌트 추가 및 Next Post 메뉴 카드 목록 연동
+- `packages/ui/shadcn/components/list` 폴더 존재 여부를 확인했고, 기존 폴더를 재사용해 `list_card.tsx`를 추가했다.
+- `ListCard`에서 포스트 제목/이미지 썸네일/글쓴이를 카드 형태로 표시하도록 구현하고 `@ui/shadcn` export를 갱신했다.
+- `template/web/next/app/post/page.tsx` 목록 렌더링을 `ListCard` 기반으로 교체해 `Post` 메뉴(`/post`) 진입 시 카드 UI가 보이도록 연결했다.
+- `template/web/next/app/globals.css`에 list-card 스타일을 추가해 데스크톱/모바일에서 카드 레이아웃이 동작하도록 보강했다.
+- 검증으로 `bunx turbo run check-types --filter=@ui/shadcn --filter=template-web-next` 및 `bunx turbo run lint --filter=template-web-next --filter=@ui/shadcn`를 통과했다.
+
+## 2026-02-21 - 모노레포 패키지별 feature.yaml 일괄 생성
+- 워크스페이스의 `package.json` 기준 패키지(루트/apps/packages/template, `.next`/`node_modules` 제외)를 순회해 `feature.yaml` 존재 여부를 점검했다.
+- 누락된 모든 패키지에 LLM 인식용 `feature.yaml`을 생성하고 패키지 경로, 도메인, 요약, 핵심 기능 목록을 간략히 작성했다.
+- 검증으로 패키지 20개 대비 `feature.yaml` 누락 0건을 확인했고 `bun run check-types`를 통과했다.
+
+## 2026-02-20 - features dashboard 패키지 추가 및 user 정보 기본 대시보드 구현
+- `packages/features/dashboard` 패키지를 신규 생성하고 기존 feature 패키지 규칙(`package.json`, `tsconfig.json`, `src/index.ts`)을 맞췄다.
+- `@domain/user`의 `User` 타입을 사용하는 `DashboardUserPanel` 컴포넌트를 추가했다.
+- 대시보드에서 사용자 수, 이름, ID, 생성일, 수정일을 표시하고 `pw`는 마스킹 처리해 노출을 제한했다.
+
+## 2026-02-20 - shadcn 대시보드 UI 추가 및 Next Dash 메뉴/페이지 연결
+- `packages/ui/shadcn/components/dashboard/dash_user_overview.tsx`를 추가해 대시보드 사용자 요약 UI를 새로 만들었다.
+- `packages/ui/shadcn/src/index.ts`에 `DashUserOverview` export를 추가했다.
+- `packages/ui/shadcn/components/layout/header.tsx`에 `Dash` 메뉴 링크를 추가했다.
+- `template/web/next/app/page.tsx` 모바일 메뉴에 `Dash` 링크를 추가했다.
+- `template/web/next/app/dash/page.tsx`를 추가해 `/api/auth/me` 기반 사용자 정보를 대시보드 UI로 렌더링하도록 연결했다.
+- `template/web/next/app/globals.css`에 dash 페이지/카드 스타일을 추가했다.
+
+## 2026-02-21 - shadcn gen_Pane 컴포넌트 및 도메인->Pane 매핑 함수 추가
+- `packages/ui/shadcn/custom/gen_Pane.tsx`를 추가해 도메인 객체에서 `title`/`description`을 선택하는 `buildPaneFromDomain` 함수를 구현했다.
+- `title`은 `title/name/id` 우선순위와 fallback 규칙으로 선택하고, `description`은 설명 계열 키 또는 멀티라인 속성 합성으로 구성되도록 했다.
+- `GenPane` 컴포넌트와 `gen_Pane` alias를 추가하고 `@ui/shadcn` index export 및 tsconfig include(`custom`)를 갱신했다.
+
+## 2026-02-24 - Expo 모바일 Grid 탭 핀치 줌/카메라 전환 추가
+- `template/mobile/expo/App.tsx`에 하단 탭 `Grid`를 추가하고, 선택 시 핀치 입력으로 `3x3 -> 5x5 -> 7x7 -> 9x9` 그리드 전환이 동작하도록 구현했다.
+- 핀치 이동량을 `zoom` 상태로 변환하고 `Animated.spring` 기반 카메라 스케일/위치 보간을 적용해 자연스럽게 멀어지는 전환감을 구성했다.
+- UI 연결 검증으로 `Grid 탭 버튼 -> activeTab 상태 변경 -> onResponder 핀치 핸들러 호출 -> gridSize/zoom 상태 갱신 -> 그리드 재렌더` 경로를 `rg`와 빌드/타입체크로 확인했다.
+
+## 2026-02-26 - message 도메인 및 UI 쪽지/대화창 컴포넌트 추가
+- `packages/domains/message` 패키지를 새로 추가하고 `Message` 모델, `MessagePort`, 메시지 생성/대화 필터 유스케이스를 구현했다.
+- `packages/ui/src/message-compose.tsx`에 받는 사람/내용 입력 기반 쪽지 보내기 폼 컴포넌트를 추가했다.
+- `packages/ui/src/message-chat-window.tsx`에 현재 사용자 기준 메시지 대화 목록 렌더 컴포넌트를 추가했다.
+- 검증으로 `bun run check-types --filter=@domain/message --filter=@repo/ui`를 실행해 타입체크를 통과했다.
+
+## 2026-03-02 - 패키지별 info.yaml 생성 및 탐색 규칙 추가
+- 모노레포의 각 `feature.yaml`을 기준으로 패키지 기능을 `name: description` 형태로 정리한 `info.yaml`을 같은 경로에 생성했다.
+- 루트 `AGENTS.md`에 신규 기능 추가 시 `info.yaml` 갱신 규칙을 추가했다.
+- 새 작업/코드 개선/기능 추가 전 패키지 순회와 `info.yaml` 탐색을 필수 절차로 명시했다.
+
+## 2026-03-02 - Codex용 모노레포 project.md 설계 문서 생성
+- `plan-project-code` 기준으로 `.project/project.md`를 신규 생성했다.
+- 폴더별 위치와 사용 조건을 `structure` 섹션에 명시했다.
+- `features`, `domains`, `stage`, `step`, `constraints`, `verification(미완)`을 모노레포 운영 흐름에 맞게 정리했다.
+
+## 2026-03-03 - template/desktop/astro Astro+Tauri+SQLite 기본 템플릿 추가
+- `template/desktop/astro` 패키지를 새로 만들고 Astro + React + Tauri 구조를 구성했다.
+- `@ui/shadcn` 리스트 UI와 `@features/editor` 에디터 모달을 연결해 `추가 -> 저장 -> 리스트 갱신` 흐름을 구현했다.
+- Tauri SQL 플러그인 기반 SQLite 테이블(users/articles) 초기화와 article 생성/조회 저장소를 추가했다.
+- Playwright e2e(`tests/article-flow.spec.ts`)를 추가하고 실제 실행 통과를 확인했다.
+- `plan.md`, `job.md`, `funcion.yaml`, `info.yaml`, `feature.yaml`을 함께 갱신했다.
+
+## 2026-03-03 - features reader 패키지 추가 및 Next 홈 화면 PixiJS 타이핑 데모 연결
+- `packages/features/reader` 패키지를 신규 생성하고 `TypingTextReader`(PixiJS 기반 타이핑 텍스트 React 컴포넌트)를 구현했다.
+- `funcion.yaml`에 `@features/reader` 기능(`reader_typing_text_r`)을 추가하고, 패키지 `feature.yaml`/`info.yaml`을 함께 반영했다.
+- `template/web/next/app/page.tsx`에서 `@features/reader`를 import해 홈 화면 내 `Reader Typing Demo` 섹션에서 입력/재생 UI와 캔버스 렌더를 연결했다.
+- `template/web/next/package.json`, `feature.yaml`, `info.yaml`, `app/globals.css`를 갱신해 의존성과 기능 메타/스타일을 정리했다.
+- 검증으로 `packages/features/reader`와 `template/web/next` 타입체크를 통과했고, `rg`로 트리거/핸들러/렌더 연결 경로를 확인했다.
+
+## 2026-03-03 - reader 패키지 Config.yaml/AGENTS 추가 및 타이핑 속도 설정화
+- `packages/features/reader/Config.yaml`을 추가하고 `reader.speed: 100` 기본 설정을 정의했다.
+- `packages/features/reader/AGENTS.md`를 추가해 기능/설정 추가 시 `Config.yaml` 참조 규칙을 명시했다.
+- `TypingTextReader` 기본 타이핑 속도를 `READER_DEFAULT_SPEED(100)`로 변경하고 설정 상수를 패키지 export로 노출했다.
+- `template/web/next/app/page.tsx`에 속도 조절 슬라이더를 추가해 타이핑 속도를 실시간 조절할 수 있게 연결했다.
+
+## 2026-03-03 - reader 캔버스 window resize 이벤트 반응 보강
+- `TypingTextReader`에 `window.addEventListener("resize", resize)`를 추가해 화면 크기 변경 시 캔버스와 텍스트 래핑 폭이 즉시 갱신되도록 보강했다.
+- cleanup에서 `removeEventListener`를 함께 처리해 리스너 누수를 방지했다.
+
+## 2026-03-05 - template/desktop/astro 구글 로그인 자동화 사이드바 앱 추가
+- `template/desktop/astro/src/components/DesktopArticleApp.tsx`를 Zustand 상태 기반 로그인 러너 UI로 교체해 VSCode 유사 사이드바 + 실행 로그 패널을 구성했다.
+- `template/desktop/astro/src-tauri/src/main.rs`에 `run_google_login` Tauri command를 추가해 Playwright 스크립트를 `bun/node` 런타임으로 실행하도록 연결했다.
+- `template/desktop/astro/scripts/google-login.mjs`를 추가해 Google 로그인 페이지 이동 및 계정/비밀번호 자동 입력 흐름을 구현했다.
+- `template/desktop/astro/info.yaml`, `template/desktop/astro/feature.yaml`, `template/desktop/astro/tests/article-flow.spec.ts`를 새 기능 기준으로 갱신했다.
+
+## 2026-03-07 - 작업한일
+- `template/web/blog` 작성 화면을 `@features/editor` 기반 tiptap 에디터로 전환하고 등록 유효성 검증(필수 frontmatter, 태그 1~5개)을 강화했다.
+- `@features/article`에 검색 인덱스/검색(Fuse), 상세(prev/next), slug 전역 중복 방지, 좋아요/북마크/조회수 메모리 구현체를 추가했다.
+- `@features/user` 인증을 bcrypt 기반으로 변경하고 역할 조회 메서드를 추가했다.
+- `@features/comment` 수정/삭제 권한(작성자/admin) 검증과 알림(읽음/안읽음, 100개 보관) 구현체를 추가했다.
+- `template/web/blog`에 `/search` 페이지를 추가하고 `search-index.json` fetch + Fuse 검색(2자 미만 차단) 흐름을 연결했다.
+
+## 2026-03-10 - donation 랜딩 템플릿 추가
+- `template/web/donation` 패키지를 새로 만들고 소개/detail/progress/Stripe CTA를 갖춘 단일 페이지 모금 랜딩과 `/admin` 운영자 편집 화면을 구현했다.
+- `@ui/shadcn`의 `Footer`, `SimpleCarousel`, `TagBadge`와 `@features/editor`의 `ArticleEditor`를 재사용해 copy/theme 편집, live preview, preset 금액 UI를 연결했다.
+- `app/api/donate`, `app/api/stripe/webhook`, `app/api/admin/content`를 추가해 Stripe Checkout 생성, webhook 기반 누적 모금 반영, JSON 기반 운영자 저장 흐름을 구성했다.
+- `bun run lint`, `bun run check-types`, `bun run build`, `rc clit test -p .`, admin 저장/landing 반영/webhook 실행 검증을 완료했고 리서치 기반 개선점은 `template/web/donation/job.md`에 기록했다.
+
+## 2026-03-15 - 작업한일
+- `template/web/donation` 랜딩을 sticky section nav, quick donate rail, proof strip, organizer updates, impact callout 중심으로 재구성해 first-fold CTA와 section 위계를 강화했다.
+- `template/web/donation/plan.md`에 current/reference capture와 개선 순서를 기록하고, 리서치 기준 차이를 반영해 hero -> proof -> story -> impact -> checkout 흐름으로 정리했다.
+- `bun run lint`, `bun run check-types`, `bun run build`, `bun run dev`, `orc clit test -p . -m "donation ui improvement verification"`를 통과했고 `PUT /api/admin/content -> saveCampaignContent -> data file -> / 재렌더` 런타임 경로를 실제 호출로 검증했다.
+
+## 2026-03-15 - 작업한일
+- `template/web/landing`을 hero, features, workflow, proof가 분리된 실제 one-page landing 구조로 재구성하고, 기존 Zustand 카운터를 interaction panel로 재배치했다.
+- `template/web/astro`의 placeholder section 나열을 hero, operations board, workflow, proof, close 구조로 재구성해 section 간 역할이 분명하게 보이도록 정리했다.
+- `landing`과 `astro` 모두 빌드/타입/런타임 렌더를 다시 검증했고, `template/web` 범위 피드백은 `template/web/job.md`에 정리했다.
+
+## 2026-03-16 - 작업한일
+- `template/web/blog`에 `/sponsor` 랜딩 페이지를 추가하고 헤더 Sponsor 링크, 전역 `이 페이지 스폰서 하기` CTA 배너, 인기 게시물 5개 링크, 미디어 키트, 3가지 패키지, 짧은 인테이크 폼을 연결했다.
+- 스폰서 노출용 콘텐츠 슬롯을 맞추기 위해 블로그 예시 글 2개를 추가하고 `getPopularPosts()` 헬퍼로 최신 5개 게시물을 묶어 재사용하게 했다.
+- `template/web/blog/tests/sponsor-page.spec.ts`를 추가해 헤더 CTA -> 스폰서 페이지 진입, 기사 상세 CTA 노출 흐름을 Playwright로 검증했다.
+- `template/web/blog/src/components/WriteArticleForm.tsx`와 `packages/features/editor/src/index.ts`의 React 19 타입 호환 문제를 최소 수정해 `astro check`가 다시 통과하도록 정리했다.
+
+## 2026-03-21 - 작업한일
+- `apps/web/agent` Astro 앱을 신규 추가하고 `Chat`/`Configs` 헤더 메뉴, 텍스트 입력+전송 UI, 사이트 설정 등록/선택/삭제 UI를 구성했다.
+- `zustand` persist 스토어로 사이트 설정(`url`, `inputSelector`, `submitSelector`, `responseSelector`)을 브라우저 저장소에 유지하도록 연결했다.
+- `src/pages/api/agent-chat.ts`를 추가해 `agent-browser` 기반 `open -> fill -> click -> get text` 자동화 실행과 최종 응답/오류 반환 API를 구현했다.
+- `bun run check-types`, `timeout 25s bun run dev` 검증 및 `rg` 호출 경로 점검으로 UI 트리거 -> API -> 내부 실행 -> 상태 반영 흐름을 확인했다.

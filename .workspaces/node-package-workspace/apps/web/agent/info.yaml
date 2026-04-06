@@ -1,0 +1,6 @@
+package: agent
+summary: Astro + Zustand UI for site config management and agent-browser chat automation.
+info:
+  agent_chat_page_c: textarea input and send action wired to automation API
+  agent_configs_crud: register, select, and delete target site automation rules
+  agent_browser_run_c: execute open/fill/click/get-text flow with agent-browser

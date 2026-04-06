@@ -1,0 +1,3 @@
+- [ ] feature_reader_expo_app_3_reader_view_nation_song_md_subject_domain_usecase_zustand draft constraints checklist 없음 -> `.project/drafts.yaml`에서 `constraints: []` 유지 확인 : 제약 없음 조건 준수 여부 점검
+- [ ] 4_flashlist_react_native_elements_ui_md_zustand_maestro draft constraints checklist 없음 -> `.project/drafts.yaml`에서 `constraints: []` 유지 확인 : 제약 없음 조건 준수 여부 점검
+- [ ] feature_reader_component_mobile_md_expo_1_doc_list_2_doc_3_doc_reader_4_option_tab_zustand_flashlist_ui_react_native_elements_maestro draft constraints checklist 없음 -> `.project/drafts.yaml`에서 `constraints: []` 유지 확인 : 제약 없음 조건 준수 여부 점검

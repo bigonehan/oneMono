@@ -1,0 +1,6 @@
+package: @adapters/user-gel
+summary: Adapter layer for user/article CRUD and joined row access over GEL infra.
+info:
+  user_crud: create/read/update/delete users
+  article_crud: create/read/update/delete articles
+  user_article_rows: joined row queries for author/article views

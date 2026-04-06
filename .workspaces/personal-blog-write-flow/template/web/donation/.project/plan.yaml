@@ -1,0 +1,18 @@
+goal: Donation landing template with Stripe checkout progress and admin editor
+domains:
+- landing_page
+- checkout_progress
+- admin_editor
+drafts:
+  planned:
+  - Implement donation landing experience
+  - Integrate Stripe checkout progress flow
+  - Provide admin editing workflow
+  worked:
+  - implement_donation_landing_experience
+  - integrate_stripe_checkout_progress_flow
+  - provide_admin_editing_workflow
+  - one_page_donation_landing_with_intro_detail_progress_bar_donate_cta_stripe_checkout_webhook_raised_total_sync_admin_editor_for_copy_and_style_reuse_ui_shadcn_and_features_editor
+  complete:
+  - workspace_bootstrap
+  error: []

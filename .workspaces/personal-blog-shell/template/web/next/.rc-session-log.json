@@ -1,0 +1,54 @@
+{
+  "mission": "landing page template build verification",
+  "runner": "Web",
+  "detected_command": "pnpm dev",
+  "steps": [
+    {
+      "command_template": "if [ -f .rc-web-server.pid ]; then kill $(cat .rc-web-server.pid) >/dev/null 2>&1 || true; fi; (pnpm dev) > .rc-web-server.log 2>&1 & echo $! > .rc-web-server.pid; sleep 5",
+      "responses": []
+    },
+    {
+      "command_template": "python3 - \"http://127.0.0.1:3000\" <<'PY'\nimport sys\nimport time\nimport urllib.request\n\nurl = sys.argv[1]\nlast = None\nfor _ in range(30):\n    try:\n        with urllib.request.urlopen(url, timeout=2) as response:\n            if response.status < 500:\n                raise SystemExit(0)\n    except Exception as exc:\n        last = exc\n        time.sleep(1)\n\nprint(\"server not ready: \" + url + \": \" + str(last), file=sys.stderr)\nraise SystemExit(1)\nPY",
+      "responses": []
+    },
+    {
+      "command_template": "if command -v agent-browser >/dev/null 2>&1; then agent-browser install; else npm install -g agent-browser && agent-browser install; fi",
+      "responses": []
+    },
+    {
+      "command_template": "agent-browser open http://172.21.188.149:3000",
+      "responses": []
+    },
+    {
+      "command_template": "agent-browser wait \".auth-card:nth-of-type(1) input[placeholder='user id']\"",
+      "responses": []
+    },
+    {
+      "command_template": "agent-browser snapshot -i",
+      "responses": []
+    },
+    {
+      "command_template": "agent-browser screenshot rc-web.png && printf 'Screenshot saved: rc-web.png\\n' && agent-browser close; if [ -f .rc-web-server.pid ]; then kill $(cat .rc-web-server.pid) >/dev/null 2>&1 || true; fi",
+      "responses": []
+    }
+  ],
+  "output_log": [
+    "⚠ Linux detected. If browser fails to launch, run:\n  agent-browser install --with-deps\n  or: npx playwright install-deps chromium\n\nInstalling Chromium browser...\nBEWARE: your OS is not officially supported by Playwright; downloading fallback build for ubuntu24.04-x64.\nBEWARE: your OS is not officially supported by Playwright; downloading fallback build for ubuntu24.04-x64.\nBEWARE: your OS is not officially supported by Playwright; downloading fallback build for ubuntu24.04-x64.\n✓ Chromium installed successfully\n\nNote: If you see \"shared library\" errors when running, use:\n  agent-browser install --with-deps\n",
+    "✓ Monorepo Next Template\n  http://172.21.188.149:3000/\n",
+    "✗ page.waitForSelector: Timeout 25000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.auth-card:nth-of-type(1) input[placeholder=\\'user id\\']') to be visible\u001b[22m\n\n",
+    "- link \"Main Profile QA\" [ref=e1]\n- link \"Main\" [ref=e2]\n- link \"Profile\" [ref=e3]\n- link \"QA\" [ref=e4]\n- button \"Open login\" [ref=e5]\n- button \"Previous item\" [ref=e6]\n- button \"Next item\" [ref=e7]\n- link \"X\" [ref=e8]\n- link \"IG\" [ref=e9]\n- link \"GH\" [ref=e10]\n",
+    "✓ Screenshot saved to rc-web.png\nScreenshot saved: rc-web.png\n✓ Browser closed\n",
+    "current-state:\n(no interactive elements)",
+    "windows-context: ���� (18552)"
+  ],
+  "errors": [
+    "command=`if command -v agent-browser >/dev/null 2>&1; then agent-browser install; else npm install -g agent-browser && agent-browser install; fi` exit=Some(0)",
+    "command=`agent-browser wait \".auth-card:nth-of-type(1) input[placeholder='user id']\"` exit=Some(1)",
+    "✗ page.waitForSelector: Timeout 25000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.auth-card:nth-of-type(1) input[placeholder=\\'user id\\']') to be visible\u001b[22m\n\n"
+  ],
+  "captures": [
+    "/home/tree/home/template/web/next/terminal-capture.txt",
+    "/home/tree/home/template/web/next/rect-capture.png",
+    "/home/tree/home/template/web/next/screen-capture.png"
+  ]
+}

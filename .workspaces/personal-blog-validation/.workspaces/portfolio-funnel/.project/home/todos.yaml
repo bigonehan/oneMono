@@ -1,0 +1,10 @@
+tasks: []
+# item schema:
+# - name: "" # 작업 이름
+#   type: "" # action | calc
+#   domain: [] # 기능이 영향을 받는 도메인 목록
+#   depends_on: [] # 선행 완료가 필요한 task name 목록
+#   scope: [] # 수정/생성 파일 경로(루트 기준 상대 경로)
+#   state: [] # 기능 상태 전이 목록
+#   rule: [] # 구현/검증 규칙 목록
+#   step: [] # 수행 단계 목록

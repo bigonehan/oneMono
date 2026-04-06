@@ -74,6 +74,42 @@ pub fn domain_discovery_structure_exists(root: &Path) -> bool {
     content.contains("fetch(\"/api/discovery.json\")") && content.contains("hydrateDiscovery(")
 }
 
+pub fn icon_guide_and_selection_sections_exist(root: &Path) -> bool {
+    let app_tsx = root.join("src/components/App.tsx");
+    let Ok(content) = fs::read_to_string(app_tsx) else {
+        return false;
+    };
+
+    content.contains("aria-label=\"icon guide\"")
+        && content.contains("Action Icons")
+        && content.contains("aria-label=\"selected function details\"")
+        && content.contains("Selected Function")
+}
+
+pub fn requested_icon_mapping_exists(root: &Path) -> bool {
+    let discovery = root.join("src/domain/discovery/index.ts");
+    let Ok(content) = fs::read_to_string(discovery) else {
+        return false;
+    };
+
+    for needle in [
+        "search: \"🔍\"",
+        "browse: \"📁\"",
+        "refresh: \"🔄\"",
+        "edit: \"✏\"",
+        "delete: \"🗑\"",
+        "save: \"📄↑\"",
+        "confirm: \"✔\"",
+        "cancel: \"✕\"",
+    ] {
+        if !content.contains(needle) {
+            return false;
+        }
+    }
+
+    true
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -107,5 +143,17 @@ mod tests {
     fn domain_discovery_structure_is_defined() {
         let root = Path::new(env!("CARGO_MANIFEST_DIR"));
         assert!(domain_discovery_structure_exists(root));
+    }
+
+    #[test]
+    fn icon_guide_and_selected_section_are_rendered() {
+        let root = Path::new(env!("CARGO_MANIFEST_DIR"));
+        assert!(icon_guide_and_selection_sections_exist(root));
+    }
+
+    #[test]
+    fn requested_icon_mapping_is_defined() {
+        let root = Path::new(env!("CARGO_MANIFEST_DIR"));
+        assert!(requested_icon_mapping_exists(root));
     }
 }

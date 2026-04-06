@@ -1,0 +1,7 @@
+functions:
+  - name: "create_message_model"
+    icon: "create"
+    description: "Auto-generated: create_message_model handles create behavior in message."
+  - name: "filter_conversation"
+    icon: "filter"
+    description: "Auto-generated: filter_conversation handles filter behavior in message."

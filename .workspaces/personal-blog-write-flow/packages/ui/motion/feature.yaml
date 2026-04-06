@@ -1,0 +1,10 @@
+package: @ui/motion
+path: packages/ui/motion
+domain: ui-motion
+summary: Motion UI package containing scroll/text animation components.
+llm_hint:
+  - Use this file as a quick package capability map before reading code.
+  - Treat listed features as stable entry points; verify details in src when implementing.
+features:
+  - slide_up_text: scroll-triggered text reveal animation
+  - motion_entrypoints: shared animation exports

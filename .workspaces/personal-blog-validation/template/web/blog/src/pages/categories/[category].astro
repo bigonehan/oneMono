@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCategoryCounts, getPostsByCategory } from "../../lib/posts";
+import { normalizeCategory } from "../../lib/category";
+
+export const getStaticPaths = async () =>
+  (await getCategoryCounts()).map((item) => ({
+    params: { category: item.category },
+  }));
+
+const category = normalizeCategory(Astro.params.category);
+const posts = await getPostsByCategory(category);
+---
+
+<BaseLayout title={`Category: ${category}`}>
+  <h1>{category}</h1>
+  <ul>
+    {posts.map((post) => (
+      <li><a href={`/posts/${post.slug}`}>{post.title}</a></li>
+    ))}
+  </ul>
+</BaseLayout>

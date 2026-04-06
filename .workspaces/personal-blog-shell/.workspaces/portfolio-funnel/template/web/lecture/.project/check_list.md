@@ -1,0 +1,5 @@
+- [ ] astro_main_intro_detail_user_ssr_api_graphql_hydration constraints 없음 입력 -> constraints 빈 배열 유지 출력 : draft 제약조건 없음 확인
+- [ ] cursor_relay_pagination_deprecation_0_100_1 constraints 없음 입력 -> constraints 빈 배열 유지 출력 : draft 제약조건 없음 확인
+- [ ] dataloader constraints 없음 입력 -> constraints 빈 배열 유지 출력 : draft 제약조건 없음 확인
+- [ ] nestjs_graphql_relay_node_edge_connection_pageinfo_id constraints 없음 입력 -> constraints 빈 배열 유지 출력 : draft 제약조건 없음 확인
+- [ ] review_enrollment_progress_cart_coupon_certification_notification constraints 없음 입력 -> constraints 빈 배열 유지 출력 : draft 제약조건 없음 확인

@@ -12,6 +12,17 @@ type DiscoveryResponse = {
   domains: DiscoveredDomain[];
 };
 
+const ACTION_ICON_GUIDE = [
+  { label: "검색", icon: "🔍" },
+  { label: "폴더 탐색", icon: "📁" },
+  { label: "새로고침", icon: "🔄" },
+  { label: "변경", icon: "✏" },
+  { label: "삭제", icon: "🗑" },
+  { label: "저장", icon: "📄↑" },
+  { label: "확인", icon: "✔" },
+  { label: "취소", icon: "✕" },
+] as const;
+
 export function App() {
   const domains = useStructureViewerStore((state) => state.domains);
   const hydrateDiscovery = useStructureViewerStore((state) => state.hydrateDiscovery);
@@ -137,6 +148,47 @@ export function App() {
         </select>
       </section>
       <section
+        aria-label="icon guide"
+        style={{
+          border: "1px solid #d9d9d9",
+          borderRadius: "12px",
+          padding: "16px",
+          background: "#fff",
+          marginBottom: 16,
+        }}
+      >
+        <h2 style={{ marginTop: 0 }}>Action Icons</h2>
+        <ul
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
+            gap: 8,
+            paddingLeft: 0,
+            marginBottom: 0,
+          }}
+        >
+          {ACTION_ICON_GUIDE.map((item) => (
+            <li
+              key={item.label}
+              style={{
+                listStyle: "none",
+                border: "1px solid #e5e7eb",
+                borderRadius: "10px",
+                padding: "10px 12px",
+                display: "flex",
+                alignItems: "center",
+                gap: 8,
+              }}
+            >
+              <span aria-hidden="true" style={{ fontSize: 20 }}>
+                {item.icon}
+              </span>
+              <span>{item.label}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+      <section
         aria-label="module card"
         style={{
           border: "1px solid #d9d9d9",
@@ -199,13 +251,27 @@ export function App() {
         <p style={{ marginBottom: 0 }}>
           <strong>Module Filter:</strong> {moduleFilter || "none"}
         </p>
+      </section>
+      <section
+        aria-label="selected function details"
+        style={{
+          border: "1px solid #d9d9d9",
+          borderRadius: "12px",
+          padding: "16px",
+          background: "#fff",
+          marginTop: 16,
+        }}
+      >
+        <h2 style={{ marginTop: 0 }}>Selected Function</h2>
         {selectedFunction ? (
-          <p style={{ marginTop: 12 }}>
+          <p style={{ marginBottom: 0 }}>
             <strong>Selected:</strong> {selectedFunction.iconGlyph ?? "🧮"} {selectedFunction.name}
             <br />
             <strong>Description:</strong> {selectedFunction.description ?? "No description available."}
           </p>
-        ) : null}
+        ) : (
+          <p style={{ marginBottom: 0 }}>Choose a function to inspect its icon and description.</p>
+        )}
       </section>
       <RenderingRuntimeBridge
         config={{ enablePixi: true, enableR3f: true }}
