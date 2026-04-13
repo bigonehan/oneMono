@@ -1,9 +1,0 @@
-package: @features/article
-summary: Article feature package that defines CRUD use-cases and markdown repository adapters.
-info:
-  article_usecase_crud: create/read/update/delete usecase contracts
-  article_md_repo_crud: markdown file CRUD repository functions
-  article_search_index_r: search index/read/search methods with fuse ranking
-  article_like_toggle_u: prevent duplicate likes per user and toggle count
-  article_bookmark_toggle_u: per-user bookmark toggle and latest-first list
-  article_view_count_u: 1-hour ip dedupe and bot-excluded view counting

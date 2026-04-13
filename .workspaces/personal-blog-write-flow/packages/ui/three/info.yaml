@@ -1,5 +1,0 @@
-package: @ui/three
-summary: Three.js character controller and third-person follow camera helpers.
-info:
-  character_controller: keyboard and mobile joystick character movement with jump
-  third_person_camera: follow camera logic that trails the character

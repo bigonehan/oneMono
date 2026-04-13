@@ -1,8 +1,0 @@
-[package]
-name = "structure_viewer_bootstrap"
-version = "0.1.0"
-edition = "2021"
-
-[lib]
-name = "structure_viewer_bootstrap"
-path = "src/lib.rs"

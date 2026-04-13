@@ -1,4 +1,0 @@
-package: @ui/gsap
-summary: GSAP wrapper exports for workspace animation usage.
-info:
-  gsap_runtime_export: gsap instance and named helpers

@@ -1,8 +1,0 @@
-package: template-web-next
-summary: Next.js template containing auth and post APIs with UI integration.
-info:
-  auth_api_flow: sign-up/login/me/logout route handlers
-  post_api_flow: create/read/update/delete post handlers
-  commentread_flow: post comments API read + SSR initial comments + append pagination
-  template_ui_pages: page/editor/post list rendering
-  reader_demo_ui: home page inline pixijs typing reader section

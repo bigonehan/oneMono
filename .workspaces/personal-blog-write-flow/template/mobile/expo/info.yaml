@@ -1,6 +1,0 @@
-package: template-mobile-expo
-summary: Expo mobile template with list and interaction (sensor) examples.
-info:
-  mobile_tab_navigation: list/interaction tab structure
-  accelerometer_interaction: realtime tilt value rendering
-  flashlist_example: list rendering template

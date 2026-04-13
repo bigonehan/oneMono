@@ -1,8 +1,0 @@
-package: @ui/shadcn
-summary: Shadcn-based composed UI components for forms/layout/list.
-info:
-  layout_components: header/footer/navigation components
-  form_components: login/editor forms
-  list_components: article list and card rendering
-  blog_showcase_list_r: featured plus grid list cards for blog landing pages
-  blog_card_list_grid_r: card_item plus card_list grid composition for blog feeds

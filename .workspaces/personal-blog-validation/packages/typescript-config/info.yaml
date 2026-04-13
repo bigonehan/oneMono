@@ -1,6 +1,0 @@
-package: @repo/typescript-config
-summary: Shared TypeScript config presets used across packages and apps.
-info:
-  base_tsconfig: strict shared compiler defaults
-  next_tsconfig: Next.js oriented compiler preset
-  react_library_tsconfig: react library compiler preset

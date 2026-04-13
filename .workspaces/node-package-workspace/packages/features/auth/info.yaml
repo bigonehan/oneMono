@@ -1,6 +1,0 @@
-package: @features/auth
-summary: Auth feature package with sign-in/sign-up flows and auth service helpers.
-info:
-  auth_form_login: login form component and payload contract
-  auth_form_sign_up: sign-up form component and payload contract
-  auth_service_flow: credential/session service abstraction

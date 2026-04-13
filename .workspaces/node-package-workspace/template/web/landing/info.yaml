@@ -1,5 +1,0 @@
-package: template-web-landing
-summary: Next.js landing template with structured hero, feature, workflow, and proof sections plus a small Zustand demo panel.
-info:
-  landing_section_flow: hero to features to workflow to proof one-page landing composition
-  landing_demo_panel: zustand-backed interest counter embedded as a live interaction rail

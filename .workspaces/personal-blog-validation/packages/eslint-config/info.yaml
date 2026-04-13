@@ -1,6 +1,0 @@
-package: @repo/eslint-config
-summary: Reusable ESLint rule presets for workspace projects.
-info:
-  base_ruleset: shared baseline lint rules
-  next_ruleset: Next.js specific lint policy
-  react_internal_ruleset: internal React lint profile
