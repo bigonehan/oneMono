@@ -1,5 +1,5 @@
 package: @repo/typescript-config
-path: packages/typescript-config
+path: packages/configs/typescript-config
 domain: tooling-typescript
 summary: Shared TypeScript config presets used across packages and apps.
 llm_hint:
