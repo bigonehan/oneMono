@@ -1,11 +1,25 @@
-import type { User } from "@domain/user";
-import type { UserPort } from "@domain/user";
 import * as BetterAuthModule from "better-auth";
+
+export type AuthUser = {
+  id: string;
+  name: string;
+  pw: string;
+  created_at: string;
+  modified_at: string;
+};
+
+export interface AuthUserPort {
+  createUser(input: { name: string; pw: string }): Promise<AuthUser>;
+  getUserById(userId: string): Promise<AuthUser | null>;
+  listUsers(): Promise<AuthUser[]>;
+  updateUser(userId: string, input: Partial<{ name: string; pw: string }>): Promise<AuthUser | null>;
+  deleteUser(userId: string): Promise<boolean>;
+}
 
 type BetterAuthFactory = (config: unknown) => unknown;
 
 type AuthSession = {
-  user: User;
+  user: AuthUser;
   token: string;
 };
 
@@ -16,14 +30,14 @@ export type AuthService = {
   betterAuth: unknown;
 };
 
-const flow_findUserById = async (userPort: UserPort, id: string): Promise<User | null> =>
+const flow_findUserById = async (userPort: AuthUserPort, id: string): Promise<AuthUser | null> =>
   userPort.getUserById(id);
 
-const flow_buildToken = (user: User): string => `${user.id}:${Date.now()}`;
+const flow_buildToken = (user: AuthUser): string => `${user.id}:${Date.now()}`;
 
-const calc_compareCredential = (user: User, pw: string): boolean => user.pw === pw;
+const calc_compareCredential = (user: AuthUser, pw: string): boolean => user.pw === pw;
 
-export const createAuthService = (userPort: UserPort): AuthService => {
+export const createAuthService = (userPort: AuthUserPort): AuthService => {
   const sessions = new Map<string, AuthSession>();
   const maybeFactory = (BetterAuthModule as { betterAuth?: BetterAuthFactory }).betterAuth;
   const betterAuth = maybeFactory
@@ -55,7 +69,7 @@ export const createAuthService = (userPort: UserPort): AuthService => {
   };
 };
 
-export { FormLogin } from "./components/form_login";
-export type { LoginPayload } from "./components/form_login";
-export { FormSignUp } from "./components/form_sign_up";
-export type { SignUpPayload } from "./components/form_sign_up";
+export { FormLogin } from "./components/form_login.js";
+export type { LoginPayload } from "./components/form_login.js";
+export { FormSignUp } from "./components/form_sign_up.js";
+export type { SignUpPayload } from "./components/form_sign_up.js";

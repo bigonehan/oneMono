@@ -2,8 +2,9 @@
 
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import type { NewArticle } from "@domain/article";
 import { createElement, useEffect, type ReactElement } from "react";
+
+type ArticleRule = "public" | "private" | "protected";
 
 type EditorProps = {
   value?: string;
@@ -40,4 +41,8 @@ export const ArticleEditor = ({
   return createElement(EditorContent, { editor }) as ReactElement;
 };
 
-export type EditorDraft = Pick<NewArticle, "title" | "body" | "rule">;
+export type EditorDraft = {
+  title: string;
+  body: string;
+  rule: ArticleRule;
+};

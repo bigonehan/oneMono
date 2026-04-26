@@ -1,14 +1,24 @@
-import type { Article } from "@domain/article";
 import { mkdir, readFile, readdir, rm, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 
+type ArticleRule = "public" | "private" | "protected";
+
+export type StoredArticle = {
+  id: string;
+  title: string;
+  body: string;
+  rule: ArticleRule;
+  created_at: string;
+  modified_at: string;
+};
+
 export type ArticleFileSchema = {
-  article: Article;
+  article: StoredArticle;
   authorLoginId: string;
   authorName: string;
 };
 
-type ArticleFrontmatter = Omit<Article, "body"> & {
+type ArticleFrontmatter = Omit<StoredArticle, "body"> & {
   authorLoginId: string;
   authorName: string;
 };
@@ -27,7 +37,7 @@ type ArticleMarkdownStoreOptions = {
 const DEFAULT_ROOT_DIR = path.resolve(process.cwd(), ".data/posts");
 const FRONTMATTER_START = "---\n";
 const FRONTMATTER_END = "\n---\n";
-const isArticleRule = (value: string): value is Article["rule"] =>
+const isArticleRule = (value: string): value is ArticleRule =>
   value === "public" || value === "private" || value === "protected";
 
 const ensureSafeId = (articleId: string): string => {

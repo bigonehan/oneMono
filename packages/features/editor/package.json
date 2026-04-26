@@ -9,7 +9,6 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
-    "@domain/article": "*",
     "@tiptap/react": "^2.12.0",
     "@tiptap/starter-kit": "^2.12.0",
     "react": "^19.2.0",

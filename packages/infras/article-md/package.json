@@ -8,9 +8,7 @@
   "scripts": {
     "check-types": "tsc --noEmit"
   },
-  "dependencies": {
-    "@domain/article": "*"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@repo/typescript-config": "*",
     "@types/node": "^22.15.3",

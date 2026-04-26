@@ -1,7 +1,13 @@
-import type { User } from "@domain/user";
+export type DashboardUser = {
+  id: string;
+  name: string;
+  pw: string;
+  created_at: string;
+  modified_at: string;
+};
 
 type DashboardUserPanelProps = {
-  users: User[];
+  users: DashboardUser[];
   title?: string;
 };
 
