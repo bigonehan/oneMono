@@ -1,5 +1,6 @@
 export { Footer } from "../components/layout/footer";
 export { Header } from "../components/layout/header";
+export type { HeaderNavItem, HeaderProps } from "../components/layout/header";
 export { HamburgerIcon } from "../components/icons/hamburger";
 export { Label } from "../components/ui/label";
 export { Test } from "../components/test";
@@ -12,7 +13,10 @@ export type { CardItemProps } from "../components/list/card_item";
 export { CardList } from "../components/list/card_list";
 export type { CardListProps } from "../components/list/card_list";
 export { ListBlogShowcase } from "../components/list/list_blog_showcase";
-export type { BlogShowcasePost, ListBlogShowcaseProps } from "../components/list/list_blog_showcase";
+export type {
+  BlogShowcasePost,
+  ListBlogShowcaseProps,
+} from "../components/list/list_blog_showcase";
 export { DashUserOverview } from "../components/dashboard/dash_user_overview";
 export type { DashUser, DashUserOverviewProps } from "../components/dashboard/dash_user_overview";
 export { GenPane, gen_Pane, buildPaneFromDomain } from "../custom/gen_Pane";

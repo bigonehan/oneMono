@@ -1,59 +1,87 @@
-import { Footer, SimpleCarousel } from "@ui/shadcn";
+import { ListBlogShowcase, SimpleCarousel } from "@ui/shadcn";
+import { FullscreenScroller } from "./_components/fullscreen-scroller";
 
 const slides = [
   {
-    title: "Fast Setup",
-    body: "바로 확장 가능한 템플릿 구조로 메인 흐름을 빠르게 구성합니다.",
+    title: "Bare Next",
+    body: "App Router, 공통 navbar, fullscreen section만 남긴 시작점입니다.",
   },
   {
-    title: "Responsive First",
-    body: "모바일부터 데스크톱까지 navbar와 섹션이 자연스럽게 전환됩니다.",
+    title: "Shared UI",
+    body: "@ui/shadcn 컴포넌트를 직접 import해서 화면 골격을 구성합니다.",
   },
   {
-    title: "Composable UI",
-    body: "공통 UI는 @ui/shadcn 패키지 컴포넌트 중심으로 조합됩니다.",
+    title: "GSAP Scroll",
+    body: "섹션 단위 이동은 GSAP easing으로 부드럽게 처리합니다.",
   },
 ];
 
-const features = [
-  { title: "Main", description: "Hero, carousel, feature, footer 섹션으로 시작 화면을 구성" },
-  { title: "Profile", description: "카드형 carousel과 badge 세트로 사용자 소개 정보를 배치" },
-  { title: "QA", description: "게시판 리스트와 채팅 토글 버튼으로 문의 흐름을 제공" },
-];
+const showcase = {
+  featured: {
+    path: "barebone",
+    title: "Reusable Body Section",
+    description:
+      "ListBlogShowcase를 body section 안에 넣어 템플릿의 기본 콘텐츠 영역으로 사용합니다.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1400&q=80",
+    labels: ["Next", "UI"],
+    date: "Template",
+  },
+  items: [
+    {
+      path: "navbar",
+      title: "Navbar",
+      description: "Header 컴포넌트를 확장해 템플릿 navbar로 가져왔습니다.",
+      imageUrl:
+        "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=900&q=80",
+      labels: ["shadcn"],
+    },
+    {
+      path: "scroll",
+      title: "Scroll Sections",
+      description: "한 화면 섹션을 기준으로 wheel과 touch 이동을 보정합니다.",
+      imageUrl:
+        "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=900&q=80",
+      labels: ["gsap"],
+    },
+  ],
+};
 
 export default function MainPage() {
   return (
-    <div className="landing-page">
-      <section className="landing-hero">
-        <p className="landing-hero__eyebrow">Template Landing</p>
-        <h1>Main</h1>
-        <p>기본 랜딩 페이지 구성 요소를 한 화면에서 확인할 수 있습니다.</p>
+    <FullscreenScroller>
+      <section className="screen-section screen-section--hero" id="hero" data-scroll-section>
+        <div className="screen-section__content">
+          <p className="screen-section__eyebrow">Template Web Next</p>
+          <h1>Next Barebone</h1>
+          <p>navbar, body section, GSAP fullscreen scroll을 갖춘 최소 Next 템플릿입니다.</p>
+        </div>
       </section>
 
-      <SimpleCarousel
-        ariaLabel="Main carousel"
-        className="landing-carousel"
-        items={slides.map((slide) => (
-          <article key={slide.title} className="landing-carousel__card">
-            <h2>{slide.title}</h2>
-            <p>{slide.body}</p>
-          </article>
-        ))}
-      />
+      <section
+        className="screen-section screen-section--showcase"
+        id="showcase"
+        data-scroll-section
+      >
+        <ListBlogShowcase featured={showcase.featured} items={showcase.items} />
+      </section>
 
-      <section className="landing-feature" aria-labelledby="main-features">
-        <h2 id="main-features">Features</h2>
-        <ul>
-          {features.map((feature) => (
-            <li key={feature.title}>
-              <h3>{feature.title}</h3>
-              <p>{feature.description}</p>
-            </li>
+      <section
+        className="screen-section screen-section--sections"
+        id="sections"
+        data-scroll-section
+      >
+        <SimpleCarousel
+          ariaLabel="Template sections"
+          className="landing-carousel"
+          items={slides.map((slide) => (
+            <article key={slide.title} className="landing-carousel__card">
+              <h2>{slide.title}</h2>
+              <p>{slide.body}</p>
+            </article>
           ))}
-        </ul>
+        />
       </section>
-
-      <Footer />
-    </div>
+    </FullscreenScroller>
   );
 }
