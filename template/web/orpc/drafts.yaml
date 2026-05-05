@@ -1,0 +1,38 @@
+runner: Web
+procedures:
+- name: web_login_check
+  expected: user can log in through the UI
+  steps:
+  - command_template: if [ -f .rc-web-server.pid ]; then kill $(cat .rc-web-server.pid) >/dev/null 2>&1 || true; fi; (pnpm dev) > .rc-web-server.log 2>&1 & echo $! > .rc-web-server.pid; sleep 5
+    responses: []
+  - command_template: |-
+      python3 - "http://127.0.0.1:3000" <<'PY'
+      import sys
+      import time
+      import urllib.request
+
+      url = sys.argv[1]
+      last = None
+      for _ in range(30):
+          try:
+              with urllib.request.urlopen(url, timeout=2) as response:
+                  if response.status < 500:
+                      raise SystemExit(0)
+          except Exception as exc:
+              last = exc
+              time.sleep(1)
+
+      print("server not ready: " + url + ": " + str(last), file=sys.stderr)
+      raise SystemExit(1)
+      PY
+    responses: []
+  - command_template: if command -v agent-browser >/dev/null 2>&1; then agent-browser install; else npm install -g agent-browser && agent-browser install; fi
+    responses: []
+  - command_template: agent-browser open http://172.21.188.149:3000
+    responses: []
+  - command_template: agent-browser wait ".auth-card:nth-of-type(1) input[placeholder='user id']"
+    responses: []
+  - command_template: agent-browser snapshot -i
+    responses: []
+  - command_template: 'agent-browser screenshot rc-web.png && printf ''Screenshot saved: rc-web.png\n'' && agent-browser close; if [ -f .rc-web-server.pid ]; then kill $(cat .rc-web-server.pid) >/dev/null 2>&1 || true; fi'
+    responses: []
