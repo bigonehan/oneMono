@@ -1,0 +1,34 @@
+goal: ""
+domains:
+  - navbar
+  - routing
+  - main_landing
+  - qa_board_chat
+  - profile_carousel_tag
+  - ui_component_policy
+  - commentcreate
+  - commentread
+  - app_commentupdate_action
+drafts:
+  planned: []
+  worked:
+    - unknown
+    - commentcreate
+    - commentupdate
+    - commentdelete
+    - commentreply
+    - 1_nav_menu_blog_profile_menu_item_2_navbar_login_auth_forms_login_login_signup_signup_feature_editor_editor_component_write_editor_component_editor_local_storage_localstorage_public_posts_date_name_md_date_260308_2
+    - setup_node_package_workspace
+    - scaffold_next_app_router_routes
+    - implement_shared_responsive_navbar_with_login_icon
+    - implement_main_page_hero_carousel_feature_footer
+    - implement_qa_page_board_list_with_floating_chat_toggle
+    - implement_profile_page_card_carousel_with_tag_badges
+    - apply_shadcn_first_ui_component_policy
+    - enforce_accessibility_and_hydration_boundaries
+    - add_not_found_route_handling
+    - update_project_documentation
+    - landing_page_routing_and_responsive_sections_for_main_profile_qa
+  complete:
+    - commentread
+  error: []
