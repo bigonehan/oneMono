@@ -1,5 +1,5 @@
 package: @repo/eslint-config
-path: packages/eslint-config
+path: packages/configs/eslint-config
 domain: tooling-eslint
 summary: Reusable ESLint rule presets for workspace projects.
 llm_hint:

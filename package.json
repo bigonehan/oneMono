@@ -20,6 +20,7 @@
   "workspaces": [
     "apps/*",
     "packages/*",
+    "packages/configs/*",
     "packages/features/*",
     "packages/domains/*",
     "packages/adapters/*",
