@@ -59,7 +59,7 @@
         "typescript": "5.9.2",
       },
     },
-    "packages/eslint-config": {
+    "packages/configs/eslint-config": {
       "name": "@repo/eslint-config",
       "version": "0.0.0",
       "devDependencies": {
@@ -190,7 +190,7 @@
         "typescript": "5.9.2",
       },
     },
-    "packages/typescript-config": {
+    "packages/configs/typescript-config": {
       "name": "@repo/typescript-config",
       "version": "0.0.0",
     },
@@ -1395,9 +1395,9 @@
 
     "@remirror/core-constants": ["@remirror/core-constants@3.0.0", "", {}, "sha512-42aWfPrimMfDKDi4YegyS7x+/0tlzaqwPQCULLanv3DMIlu96KTJR0fM5isWX2UViOqlGnX6YFgqWepcX+XMNg=="],
 
-    "@repo/eslint-config": ["@repo/eslint-config@workspace:packages/eslint-config"],
+    "@repo/eslint-config": ["@repo/eslint-config@workspace:packages/configs/eslint-config"],
 
-    "@repo/typescript-config": ["@repo/typescript-config@workspace:packages/typescript-config"],
+    "@repo/typescript-config": ["@repo/typescript-config@workspace:packages/configs/typescript-config"],
 
     "@rneui/base": ["@rneui/base@5.0.0", "", { "dependencies": { "color": "^3.2.1", "deepmerge": "^4.2.2", "hoist-non-react-statics": "^3.3.2", "react-native-size-matters": "^0.4.0" }, "peerDependencies": { "@testing-library/jest-native": "^5.4.3", "@testing-library/react-native": "^13.2.0", "react-native-safe-area-context": ">= 3.0.0" } }, "sha512-8nXCybRiLExmQlbTtCR5NEQudfTXTEkpoLBXinnxtBHPIF5L8YEdtuX00GlFoT/iU1h58AOl5koDMy35qSxgFQ=="],
 
