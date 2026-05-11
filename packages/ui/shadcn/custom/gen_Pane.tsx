@@ -99,5 +99,3 @@ export const GenPane = ({ domain, className, titleAs = "h3", footer }: GenPanePr
     </section>
   );
 };
-
-export { GenPane as gen_Pane };
