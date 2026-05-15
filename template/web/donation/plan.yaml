@@ -1,8 +1,0 @@
-# plan
-
-- path: /home/tree/home/template/web/donation
-- runner: Web
-- headed: Off
-- mode: donation template verification
-- execute: npm run dev -> browser open http://172.21.188.149:3000
-- expected: job.md, drafts.yaml, session logs, captures
