@@ -1,4 +1,0 @@
-functions:
-  - name: "create_board_model"
-    icon: "create"
-    description: "Auto-generated: create_board_model handles create behavior in board."
