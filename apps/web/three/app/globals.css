@@ -1,6 +1,6 @@
 :root {
   color-scheme: light;
-  background: #f5dce9;
+  background: #7fa9cf;
   color: #fff9fb;
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -22,9 +22,9 @@ body {
 
 body {
   background:
-    radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.76), transparent 27rem),
-    radial-gradient(circle at 76% 24%, rgba(181, 220, 255, 0.58), transparent 30rem),
-    linear-gradient(145deg, #f5d9e6 0%, #dbcaf7 42%, #b8d9f5 100%);
+    radial-gradient(circle at 44% 21%, rgba(255, 181, 207, 0.62), transparent 24rem),
+    radial-gradient(circle at 70% 42%, rgba(255, 221, 147, 0.34), transparent 23rem),
+    linear-gradient(145deg, #8ab6dc 0%, #78a3cd 46%, #8d8dc1 100%);
 }
 
 button,
@@ -54,13 +54,13 @@ select {
 
 .soft-grade {
   background:
-    radial-gradient(circle at 50% 42%, transparent 0 35%, rgba(255, 245, 250, 0.28) 62%, rgba(118, 76, 135, 0.26) 100%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(240, 210, 230, 0.14));
+    radial-gradient(circle at 43% 31%, rgba(255, 183, 206, 0.3), transparent 0 36%, rgba(255, 246, 252, 0.16) 64%, rgba(42, 83, 124, 0.28) 100%),
+    linear-gradient(180deg, rgba(255, 231, 222, 0.1), rgba(84, 112, 171, 0.18));
   mix-blend-mode: soft-light;
 }
 
 .film-grain {
-  opacity: 0.14;
+  opacity: 0.12;
   background-image:
     linear-gradient(115deg, rgba(255, 255, 255, 0.32), transparent 28%),
     repeating-radial-gradient(circle at 18% 24%, rgba(255, 255, 255, 0.4) 0 1px, transparent 1px 5px);
