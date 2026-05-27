@@ -8,8 +8,11 @@ import {
   EffectComposer,
   Vignette,
 } from "@react-three/postprocessing";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import * as THREE from "three";
+
+const LOOK_SENSITIVITY = 0.0018;
+const MAX_LOOK_PITCH = Math.PI / 2 - 0.22;
 
 export function DreamGlassScene() {
   return (
@@ -31,12 +34,56 @@ export function DreamGlassScene() {
           scene.fog = new THREE.FogExp2("#7fa9cf", 0.035);
         }}
       >
+        <ClickLookAround />
         <CubeLightCheck />
       </Canvas>
       <div className="soft-grade" />
       <div className="film-grain" />
     </main>
   );
+}
+
+function ClickLookAround() {
+  const { camera, gl } = useThree();
+  const yawRef = useRef(0);
+  const pitchRef = useRef(0);
+
+  useEffect(() => {
+    camera.rotation.order = "YXZ";
+    yawRef.current = camera.rotation.y;
+    pitchRef.current = camera.rotation.x;
+
+    const canvas = gl.domElement;
+
+    const lockPointer = () => {
+      if (document.pointerLockElement !== canvas) {
+        void canvas.requestPointerLock();
+      }
+    };
+
+    const lookAround = (event: MouseEvent) => {
+      if (document.pointerLockElement !== canvas) return;
+
+      yawRef.current -= event.movementX * LOOK_SENSITIVITY;
+      pitchRef.current = THREE.MathUtils.clamp(
+        pitchRef.current - event.movementY * LOOK_SENSITIVITY,
+        -MAX_LOOK_PITCH,
+        MAX_LOOK_PITCH,
+      );
+
+      camera.rotation.set(pitchRef.current, yawRef.current, 0);
+    };
+
+    canvas.addEventListener("click", lockPointer);
+    document.addEventListener("mousemove", lookAround);
+
+    return () => {
+      canvas.removeEventListener("click", lockPointer);
+      document.removeEventListener("mousemove", lookAround);
+    };
+  }, [camera, gl]);
+
+  return null;
 }
 
 function CubeLightCheck() {

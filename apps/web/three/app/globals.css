@@ -43,6 +43,7 @@ select {
 .scene-canvas {
   position: absolute;
   inset: 0;
+  cursor: grab;
 }
 
 .film-grain,
