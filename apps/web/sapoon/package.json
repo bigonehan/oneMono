@@ -1,0 +1,25 @@
+{
+  "name": "@apps/web-sapoon",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "next build",
+    "check-types": "tsc --noEmit",
+    "dev": "next dev"
+  },
+  "dependencies": {
+    "@ui/shadcn": "*",
+    "effect": "^3.18.4",
+    "next": "^15.5.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "*",
+    "@types/node": "^24.0.0",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "typescript": "5.9.2"
+  }
+}

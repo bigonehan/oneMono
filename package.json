@@ -20,6 +20,7 @@
   "workspaces": [
     "apps/*",
     "apps/web/three",
+    "apps/web/sapoon",
     "packages/*",
     "packages/configs/*",
     "packages/features/*",
