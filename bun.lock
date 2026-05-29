@@ -89,6 +89,22 @@
         "typescript": "5.9.2",
       },
     },
+    "templates/web/motion": {
+      "name": "@template/web-motion",
+      "version": "0.0.1",
+      "dependencies": {
+        "next": "^15.5.0",
+        "react": "^19.2.0",
+        "react-dom": "^19.2.0",
+      },
+      "devDependencies": {
+        "@repo/typescript-config": "*",
+        "@types/node": "^24.0.0",
+        "@types/react": "19.2.2",
+        "@types/react-dom": "19.2.2",
+        "typescript": "5.9.2",
+      },
+    },
     "templates/web/next": {
       "name": "@template/web-next",
       "version": "0.0.1",
@@ -279,6 +295,8 @@
     "@standard-schema/spec": ["@standard-schema/spec@1.1.0", "", {}, "sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w=="],
 
     "@swc/helpers": ["@swc/helpers@0.5.15", "", { "dependencies": { "tslib": "^2.8.0" } }, "sha512-JQ5TuMi45Owi4/BIMAJBoSQoOJu12oOk/gADqlcUL9JEdHB8vyjUSsxqeNXnmXHjYKMi2WcYtezGEEhqUI/E2g=="],
+
+    "@template/web-motion": ["@template/web-motion@workspace:templates/web/motion"],
 
     "@template/web-next": ["@template/web-next@workspace:templates/web/next"],
 
