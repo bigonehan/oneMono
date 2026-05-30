@@ -1,0 +1,11 @@
+package: template-mobile-expo
+path: template/mobile/expo
+domain: mobile-template-expo
+summary: Expo mobile template with list and interaction (sensor) examples.
+llm_hint:
+  - Use this file as a quick package capability map before reading code.
+  - Treat listed features as stable entry points; verify details in src when implementing.
+features:
+  - mobile_tab_navigation: list/interaction tab structure
+  - accelerometer_interaction: realtime tilt value rendering
+  - flashlist_example: list rendering template

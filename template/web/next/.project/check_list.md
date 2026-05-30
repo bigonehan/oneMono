@@ -1,0 +1,13 @@
+- [ ] commentcreate :: 인증된 사용자 + 유효한 댓글 본문 -> 댓글 생성 성공 응답 : 로그인 사용자만 댓글 작성 가능
+- [ ] commentcreate :: 1~500자 범위 본문 -> 저장 허용 : 댓글 길이 제한 준수
+- [ ] commentcreate :: 빈 문자열 또는 공백-only 본문 -> 400 에러 응답 : 무의미한 댓글 등록 차단
+- [ ] commentcreate :: 스크립트/위험 태그 포함 본문 -> sanitize된 본문 저장 : XSS 위험 입력 방지
+- [ ] commentcreate :: 유효하지 않은 postId 또는 대상 게시글 없음 -> 404/400 에러 응답 : 잘못된 대상에 대한 생성 방지
+- [ ] commentread :: postId,page -> 댓글 목록(JSON) : 특정 게시글의 댓글을 페이지 단위로 조회한다
+- [ ] commentread :: 비로그인 요청 -> 200 응답 : 인증 없이 댓글 읽기 기능을 제공한다
+- [ ] commentread :: 댓글 집합 -> createdAt 오름차순 목록 : 최신 댓글이 하단에 위치하도록 정렬한다
+- [ ] commentread :: 초기 페이지 진입 -> 서버 기반 초기 목록 렌더 : SSR/ISR로 초기 로딩 성능과 노출을 보장한다
+- [ ] commentread :: page 증가 요청 -> 기존 목록 + 추가 목록 : 연속 스크롤/페이지네이션으로 목록을 확장한다
+- [ ] commentupdate :: (constraints 없음) -> 제약 비정의 상태 유지 : 추가 제약은 추후 확정
+- [ ] commentdelete :: (constraints 없음) -> 제약 비정의 상태 유지 : 추가 제약은 추후 확정
+- [ ] commentreply :: (constraints 없음) -> 제약 비정의 상태 유지 : 추가 제약은 추후 확정

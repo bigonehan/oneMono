@@ -1,0 +1,15 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCategoryCounts } from "../../lib/posts";
+
+const categories = await getCategoryCounts();
+---
+
+<BaseLayout title="Categories">
+  <h1>Categories</h1>
+  <ul>
+    {categories.map((item) => (
+      <li><a href={`/categories/${item.category}`}>{item.category} ({item.count})</a></li>
+    ))}
+  </ul>
+</BaseLayout>

@@ -1,0 +1,14 @@
+# function plan
+- feature: create-clicker-game
+- input: 사용자의 클릭 입력
+- output: character 위치/클릭 카운트 업데이트
+- domain:
+  - game-system: load/start
+  - game-stage: load/start/end + character 보유
+  - game-character: click 입력만 허용, 클릭 시 이동
+- ui flow:
+  - 페이지 로드 -> system.load -> 버튼으로 game start -> stage.start
+  - scene click -> character.click_input -> 상태 반영
+- done criteria:
+  - `game` 앱이 lint/build 통과
+  - `@domains/game` alias import가 정상 동작

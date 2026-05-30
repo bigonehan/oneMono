@@ -1,0 +1,5 @@
+package: @features/editor
+summary: Article editor feature built with tiptap for rich text editing.
+info:
+  article_editor_ui: editor component for article body authoring
+  editor_draft_type: typed draft model for article input

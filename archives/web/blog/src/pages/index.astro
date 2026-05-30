@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { ListBlogShowcase } from "@ui/shadcn";
+import { getAllPosts } from "../lib/posts";
+
+const posts = await getAllPosts();
+const imagePool = ["/reference/featured.jpg", "/reference/card1.jpg", "/reference/card2.jpg", "/reference/card3.jpg"];
+
+const fallback = {
+  slug: "mycase-transforming-legal-practice",
+  title: "MyCase, Transforming Legal Practice",
+  description:
+    "Our commitment to providing value extends beyond the features and products or services. We believe in fostering long-term partnerships by ensuring that our pricing plans. Many legal professionals find it difficult to accurately keep track of all case-related time.",
+  date: "22 Dec 2023",
+  tags: ["News", "Inspiration"],
+  content: "",
+};
+
+const source = posts.length > 0 ? posts.slice(0, 4) : [fallback, fallback, fallback, fallback];
+
+const mapped = source.map((post, index) => ({
+  path: post.slug,
+  title: post.title,
+  description: post.description || post.content.slice(0, 220),
+  imageUrl: imagePool[index % imagePool.length],
+  labels: [post.tags[0] ?? "News", post.tags[1] ?? "Inspiration"],
+  date: post.date,
+}));
+
+const featured = mapped[0];
+const items = mapped.slice(1);
+---
+
+<BaseLayout title="MyCase Blog">
+  <ListBlogShowcase featured={featured} items={items} />
+</BaseLayout>

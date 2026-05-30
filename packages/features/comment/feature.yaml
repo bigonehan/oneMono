@@ -1,0 +1,10 @@
+package: @features/comment
+path: packages/features/comment
+domain: comment-feature
+summary: Comment CRUD interfaces with one-depth reply and soft delete rules.
+llm_hint:
+  - Use comment usecase interfaces before attaching storage adapters.
+  - comment-repo-*.ts includes in-memory repository behavior.
+features:
+  - comment_usecase_crud: comment create/read/update/delete interfaces
+  - comment_soft_delete_u: soft delete with placeholder content

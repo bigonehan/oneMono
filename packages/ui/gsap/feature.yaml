@@ -1,0 +1,9 @@
+package: @ui/gsap
+path: packages/ui/gsap
+domain: ui-animation-gsap
+summary: GSAP wrapper exports for workspace animation usage.
+llm_hint:
+  - Use this file as a quick package capability map before reading code.
+  - Treat listed features as stable entry points; verify details in src when implementing.
+features:
+  - gsap_runtime_export: gsap instance and named helpers

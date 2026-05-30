@@ -111,7 +111,7 @@
 - `@ui/shadcn` 리스트 UI와 `@features/editor` 에디터 모달을 연결해 `추가 -> 저장 -> 리스트 갱신` 흐름을 구현했다.
 - Tauri SQL 플러그인 기반 SQLite 테이블(users/articles) 초기화와 article 생성/조회 저장소를 추가했다.
 - Playwright e2e(`tests/article-flow.spec.ts`)를 추가하고 실제 실행 통과를 확인했다.
-- `plan.md`, `job.md`, `funcion.yaml`, `info.yaml`, `feature.yaml`을 함께 갱신했다.
+- `plan.md`, `feedback.md`, `funcion.yaml`, `info.yaml`, `feature.yaml`을 함께 갱신했다.
 
 ## 2026-03-03 - features reader 패키지 추가 및 Next 홈 화면 PixiJS 타이핑 데모 연결
 - `packages/features/reader` 패키지를 신규 생성하고 `TypingTextReader`(PixiJS 기반 타이핑 텍스트 React 컴포넌트)를 구현했다.
@@ -142,31 +142,3 @@
 - `@features/user` 인증을 bcrypt 기반으로 변경하고 역할 조회 메서드를 추가했다.
 - `@features/comment` 수정/삭제 권한(작성자/admin) 검증과 알림(읽음/안읽음, 100개 보관) 구현체를 추가했다.
 - `template/web/blog`에 `/search` 페이지를 추가하고 `search-index.json` fetch + Fuse 검색(2자 미만 차단) 흐름을 연결했다.
-
-## 2026-03-10 - donation 랜딩 템플릿 추가
-- `template/web/donation` 패키지를 새로 만들고 소개/detail/progress/Stripe CTA를 갖춘 단일 페이지 모금 랜딩과 `/admin` 운영자 편집 화면을 구현했다.
-- `@ui/shadcn`의 `Footer`, `SimpleCarousel`, `TagBadge`와 `@features/editor`의 `ArticleEditor`를 재사용해 copy/theme 편집, live preview, preset 금액 UI를 연결했다.
-- `app/api/donate`, `app/api/stripe/webhook`, `app/api/admin/content`를 추가해 Stripe Checkout 생성, webhook 기반 누적 모금 반영, JSON 기반 운영자 저장 흐름을 구성했다.
-- `bun run lint`, `bun run check-types`, `bun run build`, `rc clit test -p .`, admin 저장/landing 반영/webhook 실행 검증을 완료했고 리서치 기반 개선점은 `template/web/donation/job.md`에 기록했다.
-
-## 2026-03-15 - 작업한일
-- `template/web/donation` 랜딩을 sticky section nav, quick donate rail, proof strip, organizer updates, impact callout 중심으로 재구성해 first-fold CTA와 section 위계를 강화했다.
-- `template/web/donation/plan.md`에 current/reference capture와 개선 순서를 기록하고, 리서치 기준 차이를 반영해 hero -> proof -> story -> impact -> checkout 흐름으로 정리했다.
-- `bun run lint`, `bun run check-types`, `bun run build`, `bun run dev`, `orc clit test -p . -m "donation ui improvement verification"`를 통과했고 `PUT /api/admin/content -> saveCampaignContent -> data file -> / 재렌더` 런타임 경로를 실제 호출로 검증했다.
-
-## 2026-03-15 - 작업한일
-- `template/web/landing`을 hero, features, workflow, proof가 분리된 실제 one-page landing 구조로 재구성하고, 기존 Zustand 카운터를 interaction panel로 재배치했다.
-- `template/web/astro`의 placeholder section 나열을 hero, operations board, workflow, proof, close 구조로 재구성해 section 간 역할이 분명하게 보이도록 정리했다.
-- `landing`과 `astro` 모두 빌드/타입/런타임 렌더를 다시 검증했고, `template/web` 범위 피드백은 `template/web/job.md`에 정리했다.
-
-## 2026-03-16 - 작업한일
-- `template/web/blog`에 `/sponsor` 랜딩 페이지를 추가하고 헤더 Sponsor 링크, 전역 `이 페이지 스폰서 하기` CTA 배너, 인기 게시물 5개 링크, 미디어 키트, 3가지 패키지, 짧은 인테이크 폼을 연결했다.
-- 스폰서 노출용 콘텐츠 슬롯을 맞추기 위해 블로그 예시 글 2개를 추가하고 `getPopularPosts()` 헬퍼로 최신 5개 게시물을 묶어 재사용하게 했다.
-- `template/web/blog/tests/sponsor-page.spec.ts`를 추가해 헤더 CTA -> 스폰서 페이지 진입, 기사 상세 CTA 노출 흐름을 Playwright로 검증했다.
-- `template/web/blog/src/components/WriteArticleForm.tsx`와 `packages/features/editor/src/index.ts`의 React 19 타입 호환 문제를 최소 수정해 `astro check`가 다시 통과하도록 정리했다.
-
-## 2026-03-21 - 작업한일
-- `apps/web/agent` Astro 앱을 신규 추가하고 `Chat`/`Configs` 헤더 메뉴, 텍스트 입력+전송 UI, 사이트 설정 등록/선택/삭제 UI를 구성했다.
-- `zustand` persist 스토어로 사이트 설정(`url`, `inputSelector`, `submitSelector`, `responseSelector`)을 브라우저 저장소에 유지하도록 연결했다.
-- `src/pages/api/agent-chat.ts`를 추가해 `agent-browser` 기반 `open -> fill -> click -> get text` 자동화 실행과 최종 응답/오류 반환 API를 구현했다.
-- `bun run check-types`, `timeout 25s bun run dev` 검증 및 `rg` 호출 경로 점검으로 UI 트리거 -> API -> 내부 실행 -> 상태 반영 흐름을 확인했다.

@@ -1,0 +1,10 @@
+package: @infras/gel-client
+path: packages/infras/gel-client
+domain: gel-infrastructure
+summary: GEL client bootstrap and schema export utilities.
+llm_hint:
+  - Use this file as a quick package capability map before reading code.
+  - Treat listed features as stable entry points; verify details in src when implementing.
+features:
+  - gel_client_get: lazy client accessor for GEL runtime
+  - gel_schema_export: user/article schema definitions

@@ -1,0 +1,8 @@
+# plan
+
+- path: /home/tree/home/template/web/lecture
+- runner: Rust
+- headed: Off
+- mode: lecture site workflow check
+- execute: cargo run -- --help
+- expected: job.md, drafts.yaml, session logs, captures

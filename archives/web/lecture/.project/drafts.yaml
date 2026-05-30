@@ -1,0 +1,86 @@
+draft:
+- name: nestjs_graphql_relay_node_edge_connection_pageinfo_id
+  state: worked
+  type: action
+  domain:
+  - app
+  depends_on: []
+  scope:
+  - nestjs_graphql_relay_node_edge_connection_pageinfo_id
+  rule:
+  - nestjs_graphql_relay_node_edge_connection_pageinfo_id exists
+  step:
+  - implement nestjs_graphql_relay_node_edge_connection_pageinfo_id
+  tasks:
+  - implement nestjs_graphql_relay_node_edge_connection_pageinfo_id
+  constraints: []
+  check:
+  - cargo test
+- name: dataloader
+  state: worked
+  type: action
+  domain:
+  - app
+  depends_on: []
+  scope:
+  - dataloader
+  rule:
+  - dataloader exists
+  step:
+  - implement dataloader
+  tasks:
+  - implement dataloader
+  constraints: []
+  check:
+  - cargo test
+- name: review_enrollment_progress_cart_coupon_certification_notification
+  state: worked
+  type: action
+  domain:
+  - app
+  depends_on: []
+  scope:
+  - review_enrollment_progress_cart_coupon_certification_notification
+  rule:
+  - review_enrollment_progress_cart_coupon_certification_notification exists
+  step:
+  - implement review_enrollment_progress_cart_coupon_certification_notification
+  tasks:
+  - implement review_enrollment_progress_cart_coupon_certification_notification
+  constraints: []
+  check:
+  - cargo test
+- name: astro_main_intro_detail_user_ssr_api_graphql_hydration
+  state: worked
+  type: action
+  domain:
+  - app
+  depends_on: []
+  scope:
+  - astro_main_intro_detail_user_ssr_api_graphql_hydration
+  rule:
+  - astro_main_intro_detail_user_ssr_api_graphql_hydration exists
+  step:
+  - implement astro_main_intro_detail_user_ssr_api_graphql_hydration
+  tasks:
+  - implement astro_main_intro_detail_user_ssr_api_graphql_hydration
+  constraints: []
+  check:
+  - cargo test
+- name: cursor_relay_pagination_deprecation_0_100_1
+  state: worked
+  type: action
+  domain:
+  - app
+  depends_on: []
+  scope:
+  - cursor_relay_pagination_deprecation_0_100_1
+  rule:
+  - cursor_relay_pagination_deprecation_0_100_1 exists
+  step:
+  - implement cursor_relay_pagination_deprecation_0_100_1
+  tasks:
+  - implement cursor_relay_pagination_deprecation_0_100_1
+  constraints: []
+  check:
+  - cargo test

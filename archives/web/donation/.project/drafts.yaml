@@ -1,0 +1,69 @@
+draft:
+- name: implement_donation_landing_experience
+  state: worked
+  type: action
+  domain:
+  - app
+  depends_on: []
+  scope:
+  - implement_donation_landing_experience
+  rule:
+  - implement_donation_landing_experience exists
+  step:
+  - implement implement_donation_landing_experience
+  tasks:
+  - implement implement_donation_landing_experience
+  constraints: []
+  check:
+  - cargo test
+- name: integrate_stripe_checkout_progress_flow
+  state: worked
+  type: action
+  domain:
+  - app
+  depends_on: []
+  scope:
+  - integrate_stripe_checkout_progress_flow
+  rule:
+  - integrate_stripe_checkout_progress_flow exists
+  step:
+  - implement integrate_stripe_checkout_progress_flow
+  tasks:
+  - implement integrate_stripe_checkout_progress_flow
+  constraints: []
+  check:
+  - cargo test
+- name: provide_admin_editing_workflow
+  state: worked
+  type: action
+  domain:
+  - app
+  depends_on: []
+  scope:
+  - provide_admin_editing_workflow
+  rule:
+  - provide_admin_editing_workflow exists
+  step:
+  - implement provide_admin_editing_workflow
+  tasks:
+  - implement provide_admin_editing_workflow
+  constraints: []
+  check:
+  - cargo test
+- name: one_page_donation_landing_with_intro_detail_progress_bar_donate_cta_stripe_checkout_webhook_raised_total_sync_admin_editor_for_copy_and_style_reuse_ui_shadcn_and_features_editor
+  state: worked
+  type: action
+  domain:
+  - app
+  depends_on: []
+  scope:
+  - one_page_donation_landing_with_intro_detail_progress_bar_donate_cta_stripe_checkout_webhook_raised_total_sync_admin_editor_for_copy_and_style_reuse_ui_shadcn_and_features_editor
+  rule:
+  - one_page_donation_landing_with_intro_detail_progress_bar_donate_cta_stripe_checkout_webhook_raised_total_sync_admin_editor_for_copy_and_style_reuse_ui_shadcn_and_features_editor exists
+  step:
+  - implement one_page_donation_landing_with_intro_detail_progress_bar_donate_cta_stripe_checkout_webhook_raised_total_sync_admin_editor_for_copy_and_style_reuse_ui_shadcn_and_features_editor
+  tasks:
+  - implement one_page_donation_landing_with_intro_detail_progress_bar_donate_cta_stripe_checkout_webhook_raised_total_sync_admin_editor_for_copy_and_style_reuse_ui_shadcn_and_features_editor
+  constraints: []
+  check:
+  - cargo test

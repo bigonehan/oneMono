@@ -1,0 +1,16 @@
+goal: ''
+domains:
+- workspace
+- markdown_repository
+- file_list_screen
+- reader_view
+- settings
+- subject_domain
+- app_navigation
+- zustand_store
+drafts:
+  planned: []
+  worked: []
+  complete:
+  - feature_reader_expo_app_3_reader_view_nation_song_md_subject_domain_usecase_zustand
+  error: []

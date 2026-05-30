@@ -1,0 +1,10 @@
+package: @infras/article-md
+path: packages/infras/article-md
+domain: article-infrastructure
+summary: Markdown-file backed infrastructure store for article persistence.
+llm_hint:
+  - Use this file as a quick package capability map before reading code.
+  - Treat listed features as stable entry points; verify details in src when implementing.
+features:
+  - markdown_store: get/list/save/delete article files
+  - frontmatter_codec: metadata and markdown body serialization

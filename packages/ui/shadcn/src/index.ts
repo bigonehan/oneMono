@@ -1,3 +1,11 @@
 export { Button, buttonVariants } from "./components/ui/button";
 export type { ButtonProps } from "./components/ui/button";
 export { cn } from "./lib/utils";
+export { DashUserOverview } from "../components/dashboard/dash_user_overview";
+export type { DashUser, DashUserOverviewProps } from "../components/dashboard/dash_user_overview";
+export { Footer } from "../components/layout/footer";
+export { Header } from "../components/layout/header";
+export type { HeaderNavItem, HeaderProps } from "../components/layout/header";
+export { ListCard } from "../components/list/list_card";
+export { SimpleCarousel } from "./components/ui/simple-carousel";
+export { TagBadge } from "./components/ui/tag-badge";

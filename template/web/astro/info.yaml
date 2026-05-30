@@ -1,0 +1,5 @@
+package: template-web-astro
+summary: Astro web template baseline with global style and page scaffold.
+info:
+  astro_page_scaffold: starter page composition
+  global_style_baseline: shared style and smooth-scroll hooks

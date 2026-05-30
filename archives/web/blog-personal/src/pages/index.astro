@@ -1,0 +1,98 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getAllPosts, getCategoryCounts } from "../lib/posts";
+
+const posts = await getAllPosts();
+const categories = await getCategoryCounts();
+const featured = posts[0];
+const recentPosts = posts.slice(1, 6);
+---
+
+<BaseLayout title="개인 블로그">
+  <section class="personal-hero">
+    <div class="personal-hero__copy">
+      <p class="eyebrow">TISTORY STYLE PERSONAL BLOG</p>
+      <h1>개인이 글을 쓰고 쌓아 두는 기본형 블로그</h1>
+      <p>
+        일상 메모, 개발 기록, 생각 정리를 한 화면에 모으고 바로 글을 작성할 수 있게 구성했습니다.
+        최신 글은 메인에서 바로 읽고, 카테고리와 태그로 묶어서 탐색할 수 있습니다.
+      </p>
+      <div class="hero-actions">
+        <a href="/write" class="hero-actions__primary">새 글 작성</a>
+        <a href={featured ? `/posts/${featured.slug}` : "/tags"} class="hero-actions__secondary">대표 글 읽기</a>
+      </div>
+    </div>
+    <aside class="profile-card">
+      <p class="profile-card__label">ABOUT</p>
+      <h2>기록하는 개발자</h2>
+      <p>작업 로그와 개인 글을 꾸준히 적어 두는, 티스토리 형태의 개인 아카이브입니다.</p>
+      <dl class="profile-card__stats">
+        <div>
+          <dt>글</dt>
+          <dd>{posts.length}</dd>
+        </div>
+        <div>
+          <dt>카테고리</dt>
+          <dd>{categories.length}</dd>
+        </div>
+      </dl>
+    </aside>
+  </section>
+
+  {featured && (
+    <section class="featured-post">
+      <div>
+        <p class="eyebrow">FEATURED POST</p>
+        <h2>{featured.title}</h2>
+        <p class="featured-post__meta">{featured.date} · {featured.category}</p>
+        <p>{featured.description || featured.content.slice(0, 180)}</p>
+        <div class="tags">
+          {featured.tags.map((tag) => (
+            <a href={`/tags/${tag}`}>#{tag}</a>
+          ))}
+        </div>
+      </div>
+      <a href={`/posts/${featured.slug}`} class="featured-post__link">본문 보러가기</a>
+    </section>
+  )}
+
+  <section class="content-grid">
+    <div>
+      <div class="section-heading">
+        <h2>최근 글</h2>
+        <a href="/categories">전체 카테고리</a>
+      </div>
+      <ul class="post-list">
+        {(recentPosts.length > 0 ? recentPosts : posts).map((post) => (
+          <li>
+            <a href={`/posts/${post.slug}`} class="post-card">
+              <p class="post-card__meta">{post.date} · {post.category}</p>
+              <strong>{post.title}</strong>
+              <span>{post.description || post.content.slice(0, 140)}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <aside class="sidebar-stack">
+      <section class="sidebar-card">
+        <h3>빠른 이동</h3>
+        <a href="/write">글쓰기</a>
+        <a href="/search">검색</a>
+        <a href="/tags">태그 모아보기</a>
+      </section>
+
+      <section class="sidebar-card">
+        <h3>카테고리</h3>
+        <ul class="sidebar-list">
+          {categories.map((item) => (
+            <li>
+              <a href={`/categories/${item.category}`}>{item.category} <span>{item.count}</span></a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </aside>
+  </section>
+</BaseLayout>

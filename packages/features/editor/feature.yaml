@@ -1,0 +1,10 @@
+package: @features/editor
+path: packages/features/editor
+domain: editor-feature
+summary: Article editor feature built with tiptap for rich text editing.
+llm_hint:
+  - Use this file as a quick package capability map before reading code.
+  - Treat listed features as stable entry points; verify details in src when implementing.
+features:
+  - article_editor_ui: editor component for article body authoring
+  - editor_draft_type: typed draft model for article input

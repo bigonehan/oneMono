@@ -1,0 +1,10 @@
+package: template-web-astro
+path: template/web/astro
+domain: web-template-astro
+summary: Astro web template baseline with global style and page scaffold.
+llm_hint:
+  - Use this file as a quick package capability map before reading code.
+  - Treat listed features as stable entry points; verify details in src when implementing.
+features:
+  - astro_page_scaffold: starter page composition
+  - global_style_baseline: shared style and smooth-scroll hooks

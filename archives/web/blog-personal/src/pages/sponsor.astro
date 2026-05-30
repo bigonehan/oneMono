@@ -1,0 +1,237 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getPopularPosts } from "../lib/posts";
+
+const popularPosts = await getPopularPosts(5);
+
+const mediaKitItems = [
+  {
+    title: "Audience",
+    body: "Operators, product teams, and founders reading practical workflow and publishing notes.",
+  },
+  {
+    title: "Formats",
+    body: "Sponsored post, partner link inclusion, and newsletter mention sold as separate packages.",
+  },
+  {
+    title: "Process",
+    body: "Brief -> draft -> proof -> publish with one point of contact and a 7-10 day turnaround window.",
+  },
+  {
+    title: "Placement",
+    body: "Header CTA, popular post placements, search/category discovery routes, and article detail pages.",
+  },
+];
+
+const packageCards = [
+  {
+    name: "Sponsored Post",
+    price: "$2,400",
+    delivery: "Editorial-style post, homepage placement for 7 days, and social repost copy.",
+    outcome: "Best for launches that need a full story, screenshots, and a trackable landing link.",
+  },
+  {
+    name: "Link Included",
+    price: "$950",
+    delivery: "Partner link callout inside a relevant post plus one homepage CTA slot.",
+    outcome: "Best for evergreen tools that want qualified referral traffic without a full feature write-up.",
+  },
+  {
+    name: "Newsletter Mention",
+    price: "$650",
+    delivery: "One sponsor block in the next newsletter and archive mention on the sponsor page.",
+    outcome: "Best for timely launches, waitlists, and quick brand reminders.",
+  },
+];
+
+const rolloutPages = [
+  { title: "Home", href: "/", note: "Top-of-funnel entry with the global CTA banner already visible." },
+  { title: "Search", href: "/search", note: "High-intent readers are already looking for tools and workflows." },
+  { title: "Topics", href: "/tags", note: "Category-like discovery surface for niche sponsorship targeting." },
+  { title: "Categories", href: "/categories", note: "Editorial clusters where sponsors can anchor a theme." },
+  {
+    title: "Article detail",
+    href: popularPosts[0] ? `/posts/${popularPosts[0].slug}` : "/",
+    note: "Best-performing post template with the same CTA banner at the top.",
+  },
+];
+---
+
+<BaseLayout
+  title="Sponsor MyCase Blog"
+  description="Advertising packages, media kit, and sponsor intake form for MyCase Blog."
+>
+  <div class="sponsor-page">
+    <section class="card-surface sponsor-hero">
+      <div>
+        <p class="section-kicker">Sponsor MyCase Blog</p>
+        <h1>Show up where readers are already deciding what tool, workflow, or product to try next.</h1>
+        <p class="section-lead">
+          This page packages the full sponsor offer into one flow: what you can buy, what ships, how much it
+          costs, and what we need from you to launch inside 7-10 days.
+        </p>
+        <div class="cta-row">
+          <a href="#packages" class="cta-button">패키지 보기</a>
+          <a href="#intake" class="text-link">인테이크 폼 바로 가기</a>
+        </div>
+      </div>
+      <div class="hero-side">
+        <p class="section-kicker">Ship window</p>
+        <h2>What gets approved fast</h2>
+        <ul class="bullet-list">
+          <li>One point of contact from brief to publish.</li>
+          <li>Final deliverables and pricing are visible before you reach out.</li>
+          <li>CTA rollout is already prepared for the main discovery pages this weekend.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sponsor-grid">
+      <article class="card-surface">
+        <p class="section-kicker">One-page media kit</p>
+        <h2>No deck required.</h2>
+        <div class="metric-grid">
+          {mediaKitItems.map((item) => (
+            <section class="metric-card">
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </section>
+          ))}
+        </div>
+      </article>
+
+      <article class="card-surface">
+        <p class="section-kicker">Weekend CTA rollout</p>
+        <h2>Pages ready for "이 페이지 스폰서 하기"</h2>
+        <ul class="rollout-list">
+          {rolloutPages.map((item) => (
+            <li>
+              <a href={item.href}>{item.title}</a>
+              <p>{item.note}</p>
+            </li>
+          ))}
+        </ul>
+      </article>
+    </section>
+
+    <section class="card-surface">
+      <div class="section-header">
+        <div>
+          <p class="section-kicker">Popular posts</p>
+          <h2>Five pages you can sponsor immediately</h2>
+        </div>
+        <a href="#intake" class="text-link">이 다섯 위치에 CTA 추가 요청하기</a>
+      </div>
+      <ol class="popular-list">
+        {popularPosts.map((post) => (
+          <li>
+            <a href={`/posts/${post.slug}`}>
+              <strong>{post.title}</strong>
+              <span>{post.description}</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <section id="packages" class="package-section">
+      <div>
+        <p class="section-kicker">Packages</p>
+        <h2>Three clear options</h2>
+        <p class="section-lead">Pick the level of visibility you need. Every package includes one revision round and a 7-10 day turnaround.</p>
+      </div>
+      <div class="package-grid">
+        {packageCards.map((item) => (
+          <article class="card-surface package-card">
+            <p class="package-name">{item.name}</p>
+            <p class="package-price">{item.price}</p>
+            <p>{item.delivery}</p>
+            <p class="package-outcome">{item.outcome}</p>
+            <a href="#intake" class="text-link">이 패키지 문의하기</a>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section id="intake" class="sponsor-grid">
+      <article class="card-surface">
+        <p class="section-kicker">Short intake form</p>
+        <h2>Send one brief and keep the thread short.</h2>
+        <form id="sponsor-intake-form" class="form-grid">
+          <label class="field-group">
+            <span>Brand name</span>
+            <input type="text" name="brand" required />
+          </label>
+          <label class="field-group">
+            <span>Contact name</span>
+            <input type="text" name="contact" required />
+          </label>
+          <label class="field-group">
+            <span>Email</span>
+            <input type="email" name="email" required />
+          </label>
+          <label class="field-group">
+            <span>Package</span>
+            <select name="package" required>
+              {packageCards.map((item) => (
+                <option value={item.name}>{item.name}</option>
+              ))}
+            </select>
+          </label>
+          <label class="field-group field-group--wide">
+            <span>Campaign goal</span>
+            <textarea name="goal" rows="4" required></textarea>
+          </label>
+          <label class="field-group field-group--wide">
+            <span>Launch window</span>
+            <input type="text" name="deadline" required />
+          </label>
+          <button type="submit">partners@mycase.blog로 전송 준비하기</button>
+          <p id="sponsor-intake-status" class="form-status" aria-live="polite"></p>
+        </form>
+      </article>
+
+      <aside class="card-surface">
+        <p class="section-kicker">What we need from you</p>
+        <h2>Required items, deliverables, pricing, and timing in one view</h2>
+        <ul class="bullet-list">
+          <li>Required items: brand, contact, email, package, goal, launch window.</li>
+          <li>Deliverables: sponsored post, partner link inclusion, or newsletter sponsor block.</li>
+          <li>Pricing: $650 to $2,400 depending on the package.</li>
+          <li>Turnaround: 7-10 days after brief approval and asset handoff.</li>
+        </ul>
+      </aside>
+    </section>
+  </div>
+
+  <script>
+    const form = document.querySelector("#sponsor-intake-form");
+    const status = document.querySelector("#sponsor-intake-status");
+
+    form?.addEventListener("submit", (event) => {
+      if (!(form instanceof HTMLFormElement)) return;
+      event.preventDefault();
+
+      const data = new FormData(form);
+      const brand = String(data.get("brand") ?? "");
+      const selectedPackage = String(data.get("package") ?? "");
+      const lines = [
+        `Brand: ${brand}`,
+        `Contact: ${String(data.get("contact") ?? "")}`,
+        `Email: ${String(data.get("email") ?? "")}`,
+        `Package: ${selectedPackage}`,
+        `Campaign goal: ${String(data.get("goal") ?? "")}`,
+        `Launch window: ${String(data.get("deadline") ?? "")}`,
+        "Turnaround: 7-10 days after brief approval.",
+      ];
+
+      if (status instanceof HTMLElement) {
+        status.textContent = "메일 앱을 여는 중입니다.";
+      }
+
+      const subject = encodeURIComponent(`[Sponsor Inquiry] ${brand} - ${selectedPackage}`);
+      const body = encodeURIComponent(lines.join("\n"));
+      window.location.href = `mailto:partners@mycase.blog?subject=${subject}&body=${body}`;
+    });
+  </script>
+</BaseLayout>

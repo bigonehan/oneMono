@@ -1,0 +1,11 @@
+package: template-web-donation
+path: template/web/donation
+domain: web-template-donation
+summary: Next.js donation landing template with Stripe checkout, progress tracking, and admin content editing.
+llm_hint:
+  - Use this file as a quick package capability map before reading code.
+  - Verify API routes and data persistence details in app and lib before editing.
+features:
+  - donation_landing_page: hero detail progress donate one-page flow
+  - stripe_checkout_flow: checkout session creation plus webhook sync
+  - admin_content_editor: copy theme editing with file persistence

@@ -1,0 +1,11 @@
+package: @repo/ui
+path: packages/ui
+domain: ui-core
+summary: Core reusable UI primitives package.
+llm_hint:
+  - Use this file as a quick package capability map before reading code.
+  - Treat listed features as stable entry points; verify details in src when implementing.
+features:
+  - button_component: base button primitive
+  - card_component: container card primitive
+  - code_component: inline code/text display primitive

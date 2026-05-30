@@ -1,0 +1,103 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Write">
+  <section class="write-page">
+    <div class="write-page__intro">
+      <p class="eyebrow">WRITE POST</p>
+      <h1>새 글 작성</h1>
+      <p>제목, 날짜, 태그, 카테고리와 본문을 입력하면 `posts/` 아래에 새 글이 저장됩니다.</p>
+    </div>
+    <form class="write-form">
+      <input name="title" placeholder="title" required />
+      <input name="date" type="date" required />
+      <input name="tags" placeholder="tag1,tag2" required />
+      <input name="category" placeholder="tech" required />
+      <input name="description" placeholder="description" />
+      <input name="series" placeholder="series(optional)" />
+      <input name="seriesOrder" type="number" placeholder="series order(optional)" />
+      <textarea name="content" placeholder="Write markdown content"></textarea>
+      <button type="submit">등록</button>
+      <p data-write-result></p>
+    </form>
+  </section>
+
+  <script>
+    const form = document.querySelector(".write-form");
+    const result = document.querySelector("[data-write-result]");
+
+    if (form instanceof HTMLFormElement && result instanceof HTMLParagraphElement) {
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+        const title = String(formData.get("title") ?? "").trim();
+        const date = String(formData.get("date") ?? "").trim();
+        const category = String(formData.get("category") ?? "").trim();
+        const description = String(formData.get("description") ?? "").trim();
+        const series = String(formData.get("series") ?? "").trim();
+        const seriesOrderText = String(formData.get("seriesOrder") ?? "").trim();
+        const tags = String(formData.get("tags") ?? "")
+          .split(",")
+          .map((item) => item.trim())
+          .filter(Boolean);
+        const content = String(formData.get("content") ?? "").trim();
+
+        if (!title || !date || !category) {
+          result.textContent = "실패: title/date/category 는 필수입니다.";
+          return;
+        }
+        if (tags.length < 1) {
+          result.textContent = "실패: tags 는 최소 1개 필요합니다.";
+          return;
+        }
+        if (tags.length > 5) {
+          result.textContent = "실패: tags 는 최대 5개까지 가능합니다.";
+          return;
+        }
+        if (!content) {
+          result.textContent = "실패: 본문을 입력하세요.";
+          return;
+        }
+
+        const submitButton = form.querySelector("button[type='submit']");
+        if (submitButton instanceof HTMLButtonElement) {
+          submitButton.disabled = true;
+          submitButton.textContent = "저장 중...";
+        }
+        result.textContent = "";
+
+        try {
+          const response = await fetch("/api/articles/create", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({
+              title,
+              date,
+              tags,
+              category,
+              description,
+              series: series || undefined,
+              seriesOrder: seriesOrderText ? Number(seriesOrderText) : undefined,
+              content,
+            }),
+          });
+
+          const data = await response.json();
+          result.textContent = response.ok ? `저장 완료: ${data.slug}` : `실패: ${data.error}`;
+          if (response.ok) {
+            form.reset();
+          }
+        } catch (error) {
+          result.textContent = `실패: ${error instanceof Error ? error.message : "unknown error"}`;
+        } finally {
+          if (submitButton instanceof HTMLButtonElement) {
+            submitButton.disabled = false;
+            submitButton.textContent = "등록";
+          }
+        }
+      });
+    }
+  </script>
+</BaseLayout>

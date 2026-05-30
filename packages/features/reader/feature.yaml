@@ -1,0 +1,9 @@
+package: @features/reader
+path: packages/features/reader
+domain: reader-feature
+summary: Reader feature package with PixiJS typing text component.
+llm_hint:
+  - Use this file as a quick package capability map before reading code.
+  - Treat listed features as stable entry points; verify details in src when implementing.
+features:
+  - reader_typing_text: pixijs typing style text renderer component

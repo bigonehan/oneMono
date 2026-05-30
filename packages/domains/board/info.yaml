@@ -1,0 +1,6 @@
+package: @domain/board
+summary: Board domain schemas, use-cases, and board port contracts.
+info:
+  board_schema: canonical board entity and board creation schema
+  board_usecase: board creation model factory
+  board_port_contract: domain-owned board port interface

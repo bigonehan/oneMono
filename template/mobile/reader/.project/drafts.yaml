@@ -1,0 +1,18 @@
+draft:
+- name: feature_reader_expo_app_3_reader_view_nation_song_md_subject_domain_usecase_zustand
+  state: complete
+  type: action
+  domain:
+  - app
+  depends_on: []
+  scope:
+  - feature_reader_expo_app_3_reader_view_nation_song_md_subject_domain_usecase_zustand
+  rule:
+  - feature_reader_expo_app_3_reader_view_nation_song_md_subject_domain_usecase_zustand exists
+  step:
+  - implement feature_reader_expo_app_3_reader_view_nation_song_md_subject_domain_usecase_zustand
+  tasks:
+  - implement feature_reader_expo_app_3_reader_view_nation_song_md_subject_domain_usecase_zustand
+  constraints: []
+  check:
+  - cargo test

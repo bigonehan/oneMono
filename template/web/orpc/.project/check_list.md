@@ -1,0 +1,7 @@
+- [ ] landing_page_routing_and_responsive_sections_for_main_profile_qa :: `/`,`/profile`,`/qa`,`/not-found` 접근 -> 공통 navbar 유지 + 각 라우트 정상 렌더 : App Router 라우팅 구성 검증
+- [ ] landing_page_routing_and_responsive_sections_for_main_profile_qa :: 메인 페이지 진입 -> hero→carousel→feature→footer 순서 노출 : main 섹션 순서 요구사항 검증
+- [ ] landing_page_routing_and_responsive_sections_for_main_profile_qa :: 모바일 화면 진입 -> 섹션/네비게이션 레이아웃 반응형 전환 : 모바일 우선 반응형 검증
+- [ ] landing_page_routing_and_responsive_sections_for_main_profile_qa :: navbar 메뉴 클릭 + 현재 경로 -> main/profile/qa 이동 + active 스타일 적용 : 네비게이션 접근성/상태 검증
+- [ ] landing_page_routing_and_responsive_sections_for_main_profile_qa :: QA 페이지 하단 원형 버튼 클릭 -> boolean 상태 토글 + 채팅 패널 표시/숨김 : 플로팅 채팅 토글 흐름 검증
+- [ ] landing_page_routing_and_responsive_sections_for_main_profile_qa :: profile 페이지 캐러셀 표시 -> 카드형 carousel + tag badge 동시 노출 : profile 카드/태그 노출 검증
+- [ ] landing_page_routing_and_responsive_sections_for_main_profile_qa :: (constraints 없음) -> constraints 빈 배열 유지 : draft constraints checklist 준수

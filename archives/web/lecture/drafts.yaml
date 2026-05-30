@@ -1,0 +1,7 @@
+runner: Rust
+procedures:
+- name: default_check
+  expected: program runs without error
+  steps:
+  - command_template: cargo run -- --help
+    responses: []

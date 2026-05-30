@@ -1,0 +1,31 @@
+goal: 강의 사이트 설계 문서를 기준으로 NestJS GraphQL Relay 백엔드와 Astro 프론트를 통합 구현하고, user/review/course/lecture/enrollment/progress/category/cart/coupon/certification/notification 도메인의 상태 전이·권한·검증·이벤트 로그 규칙을 일관 적용한다.
+domains:
+- workspace_bootstrap
+- user
+- review
+- course
+- lecture
+- enrollment
+- progress
+- category
+- cart
+- coupon
+- certification
+- notification
+- frontend_main_intro_detail_user
+- backend_api_integration
+drafts:
+  planned:
+  - NestJS 모듈을 도메인 단위로 분리하고 GraphQL Relay(Node/Edge/Connection/PageInfo) 규격 및 전역 ID 인코딩/역변환 정책을 공통화한다.
+  - 도메인 서비스 중심 구조로 리졸버 입출력 매핑/권한 검증을 분리하고 저장소 직접 접근 금지, DataLoader 배치 조회, 공통 에러 코드 포맷을 적용한다.
+  - review/enrollment/progress/cart/coupon/certification/notification 상태 변경에 감사 이벤트 로그를 기록하고 타임아웃/재시도/멱등/민감정보 마스킹 제약을 반영한다.
+  - Astro main/intro/detail/user 페이지에서 SSR 초기 데이터 로드, API 오류 노출, 재사용 가능한 GraphQL 쿼리 조합, hydration 가드를 구현한다.
+  - cursor 기반 Relay pagination, 하위 호환 deprecation 전략, 도메인별 제약(진도 0~100, 쿠폰/결제 재검산, 인증서 1회 발급 원칙 등)을 테스트로 검증한다.
+  worked:
+  - nestjs_graphql_relay_node_edge_connection_pageinfo_id
+  - dataloader
+  - review_enrollment_progress_cart_coupon_certification_notification
+  - astro_main_intro_detail_user_ssr_api_graphql_hydration
+  - cursor_relay_pagination_deprecation_0_100_1
+  complete: []
+  error: []

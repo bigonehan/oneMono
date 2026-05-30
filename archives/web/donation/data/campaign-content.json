@@ -1,0 +1,42 @@
+{
+  "campaignName": "Neighborhood Table Fund",
+  "heroEyebrow": "Emergency Meal Support",
+  "heroTitle": "Keep the weekend kitchen open for 300 families.",
+  "heroSummary": "A one-page campaign that explains the mission, shows transparent progress, and sends donors into a Stripe checkout without losing context.",
+  "introHtml": "<p>Neighborhood Table is raising funds to keep the community kitchen open through the next quarter. Every donation helps cover produce, volunteer logistics, and emergency delivery runs for families who depend on the service.</p>",
+  "detailHtml": "<p>The campaign is structured around three promises: serve warm meals every weekend, publish transparent progress, and let organizers adjust the message and visual tone without a redeploy.</p><ul><li><strong>$25</strong> covers one family meal kit.</li><li><strong>$100</strong> covers a weekend delivery route.</li><li><strong>$250</strong> funds pantry restock for one evening service.</li></ul>",
+  "ctaLabel": "Donate with Stripe",
+  "goalAmountCents": 5000000,
+  "donationPresets": [
+    {
+      "amountCents": 2500,
+      "label": "$25",
+      "impact": "One family meal kit"
+    },
+    {
+      "amountCents": 10000,
+      "label": "$100",
+      "impact": "Weekend delivery route"
+    },
+    {
+      "amountCents": 25000,
+      "label": "$250",
+      "impact": "Pantry restock"
+    }
+  ],
+  "trustBadges": [
+    "Stripe checkout",
+    "Transparent progress",
+    "Weekly organizer updates"
+  ],
+  "theme": {
+    "background": "#16110a",
+    "foreground": "#f8f1e4",
+    "primary": "#f3c94f",
+    "secondary": "#ef8f35",
+    "accent": "#f5df8a",
+    "muted": "#746b60",
+    "surface": "#241b12",
+    "border": "#4c3d2c"
+  }
+}

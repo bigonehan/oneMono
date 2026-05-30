@@ -1,0 +1,9 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { WriteArticleForm } from "../components/WriteArticleForm";
+---
+
+<BaseLayout title="Write">
+  <h1>Write Article</h1>
+  <WriteArticleForm client:load />
+</BaseLayout>

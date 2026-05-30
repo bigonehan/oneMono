@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Cart | Lecture">
+  <h1>장바구니</h1>
+  <section class="card">
+    <p class="muted">브라우저 로컬 저장소 기반 임시 장바구니입니다.</p>
+    <ul id="cartList"></ul>
+    <div class="controls">
+      <input id="courseId" placeholder="강의 ID 입력" />
+      <button id="add">담기</button>
+      <button id="clear" type="button">비우기</button>
+    </div>
+  </section>
+  <script>
+    const key = 'lecture-cart-items';
+    const list = document.getElementById('cartList');
+    const input = document.getElementById('courseId');
+    const add = document.getElementById('add');
+    const clear = document.getElementById('clear');
+
+    const read = () => {
+      try {
+        return JSON.parse(localStorage.getItem(key) || '[]');
+      } catch {
+        return [];
+      }
+    };
+
+    const render = () => {
+      if (!list) return;
+      const items = read();
+      list.innerHTML = items.length ? items.map((id) => `<li>${id}</li>`).join('') : '<li>비어 있습니다.</li>';
+    };
+
+    if (add && input instanceof HTMLInputElement) {
+      add.addEventListener('click', () => {
+        const value = input.value.trim();
+        if (!value) return;
+        const items = read();
+        if (!items.includes(value)) {
+          items.push(value);
+          localStorage.setItem(key, JSON.stringify(items));
+        }
+        input.value = '';
+        render();
+      });
+    }
+
+    if (clear) {
+      clear.addEventListener('click', () => {
+        localStorage.setItem(key, '[]');
+        render();
+      });
+    }
+
+    render();
+  </script>
+</BaseLayout>

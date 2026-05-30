@@ -46,6 +46,8 @@ web_modules/
 
 # TypeScript cache
 *.tsbuildinfo
+.turbo/
+**/.turbo/
 
 # Rust build outputs
 **/target/
