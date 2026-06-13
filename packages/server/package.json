@@ -1,0 +1,9 @@
+{
+  "name": "@server/core",
+  "version": "0.0.1",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "@orpc/server": "^1.14.5"
+  }
+}
